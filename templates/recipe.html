@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mexican Meatball Subs</title>
+    <meta charset="UTF-8" lang="en-gb">
+    <meta name="author" content="Fred Adewole">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="./javascript/jquery-3.2.1.min.js"></script>
+    <script src="./javascript/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/6f567d7f5f.js"></script>
+</head>
+
+<body id="userfavourites">
+    <div class="container container-fluid">
+        <div class="button-menu">
+            <div class="navigation">
+                <div class="dropdown btn-group open">
+                    <button class="btn menu dropdown-toggle " type="button" data-toggle="dropdown"> Menu <i class="fa fa-bars" aria-hidden="true"></i></i>
+                                <span class="caret"></span></button>
+                    <ul class="dropdown-menu menu">
+                        <li><a href="home.html"> Home <span><i class="fa fa-home" aria-hidden="true"></i></span></a></li>
+                        <li><a href="profile.html"> Profile <span><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
+                        <li><a href="profile.html"> Favourites <span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
+                        <li><a href="user.html"> Add Recipe <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="index.html"> Logout <span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="favouritebody">
+            <h2 class="menu-heading">Mexican Meatball Subs</h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="ingredients">
+                        <h5 class="heading"> <span>  Ingredients</span></h5>
+                        <ol class="ingredients-body">
+                            <li>1 pound meatloaf mix (ground beef, pork and veal)</li>
+                            <li>1/4 cup finely crushed tortilla chips</li>
+                            <li>1 large egg, beaten</li>
+                            <li>1/4 cup chopped fresh cilantro, plus 3 sprigs</li>
+                            <li>1/4 cup finely chopped scallions, plus more for garnish (optional)</li>
+                            <li>3 cloves garlic; 1 minced, 2 smashed</li>
+                            <li>3 teaspoons ancho chili powder</li>
+                            <li>2 teaspoons ground cumin</li>
+                            <li>Kosher salt</li>
+                            <li>1 tablespoon extra-virgin olive oil</li>
+                            <li>2 cups canned fire-roasted diced tomatoes</li>
+                            <li>4 crusty sub rolls, halved and split open</li>
+                            <li>Diced avocado and crumbled Mexican cheese, for garnish (optional)</li>
+
+                        </ol>
+                    </div>
+                </div>
+                <div class="col-6 directions">
+                    <div class="directions">
+                        <h5 class="heading">Directions</h5>
+                        <div class="directions-body">
+                            <p>
+                                Preheat the oven to 350. Mix the meat, tortilla chips, egg, chopped cilantro, 1/4 cup scallions, minced garlic, 1 teaspoon chili power, 1 teaspoon cumin, and salt to taste in a bowl. Roll into 16 small meatballs.
+                            </p>
+                            <p>
+                                Heat the olive oil in a nonstick skillet over medium heat. Add the meatballs and lightly brown, turning as needed, about 5 minutes. Add the smashed garlic and the remaining 2 teaspoons chili powder and 1 teaspoon cumin; cook for 1 to 2 minutes. Add the
+                                tomatoes, cilantro sprigs and 1 <span><sub>1/2</sub></span> cups water and season with salt. Bring to a simmer, then cover, reduce the heat to low and cook until the sauce thickens and the
+                                meatballs are tender, about 15 minutes.
+                            </p>
+                            <p>About 5 minutes before the meatballs are done, toast the rolls in the oven. Place 2 roll halves in each of 4 shallow bowls and top with 4 meatballs. Drizzle with sauce, then pour the remaining sauce into the bowls. Top with
+                                avocado, cheese and/or scallions, if desired.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="below">
+                <div class="row actions">
+                    <div class="col-sm">
+                        <button class="btn btn-success"><span><i class="fa fa-heart" aria-hidden="true"></i></span>  </button>
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-success"><span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span> 0</button>
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-success"><span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span> 0</button>
+                    </div>
+                </div>
+                <div class="comment">
+                    <form action="#" method="POST">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label for="comment" class="label">Add comment</label>
+                                <textarea name="comments" class="form-control" id="comment" cols="20" rows="5" placeholder="post a comment"></textarea>
+                            </div>
+                            <div>
+                                <button class=" btn btn-success " type="submit ">send <span><i class="fa fa-paper-plane " aria-hidden="true "></i></span></button>
+                            </div>
+                        </div>
+                        <hr>
+                    </form>
+                    <div class="comments ">
+                        <h5 class="label" id="review">Reviews <span><i class="fa fa-comments " aria-hidden="true "></i></span></h5>
+                        <ul>
+                            <li>
+                                Has a long list of ingredients. I can't stress myself.
+                            </li>
+                            <hr>
+                            <li>
+                                Trying this out now! Mexican foods are awesome
+                            </li>
+                            <hr>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
