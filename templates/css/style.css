@@ -1,0 +1,572 @@
+body#index {
+    background-image: url("../images/back.jpeg");
+}
+
+
+/* Hide scroll bar*/
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#firstName,
+#lastName,
+#email,
+#password,
+#cpassword,
+#loginEmail,
+#loginPassword {
+    width: 90%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+    font-weight: normal
+}
+
+.label {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: large;
+    font-weight: bold;
+    color: #336600;
+}
+
+.title {
+    margin-top: 10%;
+}
+
+.main-form {
+    margin-right: 50%;
+}
+
+.form {
+    width: 50%;
+    margin-left: 70%;
+    border-style: solid;
+    border-radius: 30px;
+    border-width: 1px;
+    border-color: #ffffe6;
+    background-color: #ffffe6;
+}
+
+.register {
+    margin-top: 0px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    color: #336600
+}
+
+span.more {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: larger;
+    font-weight: bolder;
+    color: #336600
+}
+
+h3.register {
+    margin-top: 10px;
+}
+
+h4.register {
+    margin-top: 3px;
+}
+
+.form-body {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    align-content: center;
+}
+
+.form-control {
+    color: #336600;
+}
+
+.signup {
+    color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+}
+
+.login {
+    margin-top: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+    font-weight: normal;
+    color: #336600
+}
+
+#loginform {
+    display: none;
+}
+
+.head {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.row {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dashboard {
+    background-color: green;
+    width: 20%;
+}
+
+.main-page {
+    background-color: blue;
+    width: 80%;
+}
+
+#searchRecipe {
+    width: 90%;
+    background-image: url('../images/cook-food-kitchen-eat-54455.jpeg');
+    height: 100%;
+}
+
+.navigation {
+    margin-left: 100%;
+}
+
+.recipe-body {
+    border-radius: 10px;
+}
+
+.recipe-list {
+    width: 100%;
+    margin-left: 15%;
+    border-color: #336600;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    text-align: center;
+    font-size: larger;
+    color: #336600;
+}
+
+#recipe-title {
+    font-weight: bolder;
+}
+
+.recipe-list ul li {
+    list-style-type: none;
+}
+
+.recipe-list ul li a {
+    list-style-type: none;
+    color: #336600;
+}
+
+.list-header {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+}
+
+.favourites {
+    width: 100%;
+    margin-top: 20%;
+    opacity: 1;
+    filter: alpha(opacity=60);
+    margin-left: 70%;
+    float: left;
+    border-color: #336600;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: #ffffe6
+}
+
+.favourite-body {
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 30%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+    font-weight: normal;
+    color: #ffffe6
+}
+
+.favourite-body ul {
+    list-style-type: none;
+    margin-left: 1px;
+    margin-top: 30px;
+}
+
+.favourite-body li {
+    font-size: large;
+    margin-top: 5px;
+}
+
+.favourite-body li a {
+    color: #336600
+}
+
+#popular {
+    margin-left: 20%;
+    color: #336600;
+    font-weight: bold
+}
+
+.search-body {
+    margin-top: 6px;
+    margin-left: 3%;
+    width: 100%;
+}
+
+#search {
+    margin-left: 20%;
+    width: 100%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.menu {
+    color: #336600;
+}
+
+ul.menu li a {
+    color: #336600;
+}
+
+.search-box {
+    color: #ffffe6
+}
+
+.all {
+    width: 100%;
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+    font-weight: normal;
+    color: #336600;
+}
+
+#userfavourites {
+    background-image: url('../images/favs.jpeg');
+}
+
+.favouritebody {
+    width: 50%;
+    opacity: 1;
+    filter: alpha(opacity=60);
+    border-style: solid;
+    border-radius: 10px;
+    background-color: #ffffe6
+}
+
+.heading {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-weight: bolder;
+    color: #336600;
+    margin-left: 10%
+}
+
+.menu-heading {
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-left: 15%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-weight: bolder;
+    color: #336600;
+}
+
+.directions-body,
+.ingredients-body {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+    font-size: normal;
+    font-weight: normal;
+    color: #336600;
+}
+
+.button-menu {
+    margin-top: 10px;
+}
+
+.actions {
+    margin-left: 10%;
+}
+
+.action {
+    margin-right: 30%;
+}
+
+#comment {
+    width: 75%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.comments ul li {
+    list-style: none;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+#review {
+    margin-left: 5%;
+}
+
+#user-profile {
+    background-image: url("../images/wood.jpeg");
+}
+
+.full {
+    width: 100%;
+    margin-top: 75px;
+}
+
+#picture {
+    height: 150px;
+    width: 50%;
+}
+
+.top {
+    margin-top: 20px;
+}
+
+.user-favourites {
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: black;
+}
+
+.user-details {
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+    margin-left: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.settings {
+    margin-top: 10px;
+    margin-bottom: 100px;
+}
+
+.settings ul li {
+    list-style-type: none;
+}
+
+.user-bio {
+    width: 100%;
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+    margin-left: 5%;
+    border-style: solid;
+    border-color: black;
+}
+
+.text {
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.user-board {
+    width: 100%;
+}
+
+.user-favs {
+    width: 100%;
+}
+
+.profile-board {
+    background-color: #ffffe6;
+    border-style: solid;
+    border-radius: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-favs {
+    background-color: #ffffe6;
+    border-style: solid;
+    border-color: #ffffe6;
+    border-radius: 5%;
+    margin-top: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.profile-favs ul li {
+    list-style-type: none;
+}
+
+.profile-favs ul li a {
+    color: #336600;
+}
+
+.header-fav,
+.header-recipe {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.user-row {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.profileimage {
+    margin-top: 20px;
+}
+
+.user-name {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+#name-header {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+#edit {
+    float: left;
+}
+
+.edit-button {
+    margin-left: 75%;
+}
+
+.summary {
+    font-size: large;
+    font-weight: bolder;
+    color: #336600;
+}
+
+.summary a {
+    color: #336600;
+}
+
+.user-summary {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+#profilepic {
+    margin-left: 40%;
+    height: 150px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 50%;
+}
+
+.user-status {
+    text-align: center;
+}
+
+.about-user {
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: left;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.user-interests {
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: left;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.add-button {
+    margin-left: 20%;
+}
+
+#add-button {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+}
+
+#cancel {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+}
+
+.view-recipes {
+    background-color: #ffffe6;
+    border-style: solid;
+    border-color: #46612A;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-left: 3%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #46612A;
+    font-style: italic;
+    font-size: larger;
+    list-style-type: none;
+}
+
+.view-recipes-recipe-header {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.view-recipes ul li {
+    list-style-type: none;
+}
+
+.view-recipes-recipe ul li a {
+    color: #46612A;
+}
+
+.view-recipes-add {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#add-recipe-form {
+    display: none;
+    margin: 3% 3%;
+}
+
+#recipeName,
+#recipeIngredients,
+#recipeDirections {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+#user {
+    background-image: url("../images/pexels-photo-131044.jpeg");
+}
