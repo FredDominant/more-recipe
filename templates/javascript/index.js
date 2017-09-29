@@ -3,6 +3,9 @@ $(document).ready(() => {
         $("#signupform").hide();
         $("#loginform").show();
     });
+    $("#signUp").hover(() => {
+        this.addClass('animated infinite bounce');
+    });
     $("#signuplink").click(() => {
         $("#loginform").hide();
         $("#signupform").show();

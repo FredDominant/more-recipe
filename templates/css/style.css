@@ -2,6 +2,11 @@ body#index {
     background-image: url("../images/back.jpeg");
 }
 
+.jumbo {
+    margin-top: 10px;
+    height: 60%;
+}
+
 
 /* Hide scroll bar*/
 
@@ -37,6 +42,10 @@ body#index {
 
 .main-form {
     margin-right: 50%;
+}
+
+#login-btn {
+    width: 90%;
 }
 
 .form {
@@ -82,6 +91,14 @@ h4.register {
 
 .form-control {
     color: #336600;
+}
+
+#userAbout {
+    margin-right: 20%;
+}
+
+#userHobby {
+    margin-right: 20%;
 }
 
 .signup {
@@ -456,7 +473,14 @@ ul.menu li a {
 }
 
 .edit-button {
-    margin-left: 75%;
+    margin-left: 5%%;
+}
+
+.home {
+    background-color: #ffffe6;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
 }
 
 .summary {
@@ -492,7 +516,7 @@ ul.menu li a {
 .about-user {
     margin-top: 10px;
     margin-left: 10px;
-    text-align: left;
+    text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     color: #336600;
     font-style: italic;
@@ -501,10 +525,14 @@ ul.menu li a {
 .user-interests {
     margin-top: 10px;
     margin-left: 10px;
-    text-align: left;
+    text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     color: #336600;
     font-style: italic;
+}
+
+.user-interests ul li {
+    list-style-type: none;
 }
 
 .add-button {
@@ -574,4 +602,76 @@ ul.menu li a {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.nav-text {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+#homeBody {
+    background-color: #ffffe6;
+    ;
+}
+
+.nav-text-header {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+    font-size: xx-large;
+    font-weight: bolder
+}
+
+#search-recipe-nav {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+}
+
+#carouselExampleIndicators {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.carousel-text {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    text-align: center;
+}
+
+.thumbnail {
+    margin: 10px 10px 10px 10px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.thumbnail a {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    color: #336600;
+    font-style: italic;
+}
+
+.nav-form {
+    margin-right: 15%;
+}
+
+.btn-navv {
+    background-color: #ffffe6;
+    margin-right: 10%;
+}
+
+.navv ul li {
+    display: inline;
+}
+
+.nav-item {
+    margin-right: 20%;
+    margin-left: 20%;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
+}
+
+#navbarSupportedContent ul li a {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-style: italic;
 }
