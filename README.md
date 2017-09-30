@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Noblemajesty/more-recipe.svg?branch=task%2F1%2Ftest-branch)](https://travis-ci.org/Noblemajesty/more-recipe)
+[![Coverage Status](https://coveralls.io/repos/github/Noblemajesty/more-recipe/badge.svg?branch=master)](https://coveralls.io/github/Noblemajesty/more-recipe?branch=master)
 # **_More-Recipes_**
 
 ##_Introduction_
