@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Noblemajesty/more-recipe.svg?branch=task%2F1%2Ftest-branch)](https://travis-ci.org/Noblemajesty/more-recipe)
 # **_More-Recipes_**
 
 ##_Introduction_
