@@ -2,8 +2,9 @@ import chaiHttp from 'chai-http';
 import chai from 'chai';
 import app from '../../app';
 
+
 const expect = chai.expect;
-const should = chai.should();
+
 
 chai.use(chaiHttp);
 
@@ -13,7 +14,7 @@ describe('Test for API', () => {
       chai.request(app)
         .get('/')
         .end((err, res) => {
-          res.should.have.status(200);
+          expect(res).to.have.status(200);
           done();
         });
     });
@@ -21,7 +22,7 @@ describe('Test for API', () => {
       chai.request(app)
         .get('/some/very/useless/route')
         .end((err, res) => {
-          res.should.have.status(404);
+          expect(res).to.have.status(404);
           done();
         });
     });

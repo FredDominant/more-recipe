@@ -1,41 +1,36 @@
 import db from '../models/database';
 
-
 class Review {
-  addReview(req, res){
-    let reviewer = req.body.reviewer;
-    let content = req.body.content;
-    let recipe = req.params.recipeId;
-    
+  addReview(req, res) {
+    const reviewer = req.body.reviewer;
+    const content = req.body.content;
+    const recipe = req.params.recipeId;
     if (!content) {
       return res.status(400)
-        .send("Review should have a content");
-    };
-    
+        .send('Review should have a content');
+    }
     if (content.trim().length < 1) {
-        return res.status(400)
-          .send("Review is empty");
-    };
-    
-    if (!recipe || !reviewer){
       return res.status(400)
-        .send("Please use a valid recipeId");
+        .send('Review is empty');
     } 
-      let newId = db.reviews.length + 1;
-      let newReview = {
-        reviewId: newId,
-        ownerId: reviewer,
-        content: content
-      };
-      db.reviews.push(newReview);
-      return res.status(201)
-        .json({
-          status: "success",
-          message: "Review added",
-          review: newReview
-        });
-    
+    if (!recipe || !reviewer) {
+      return res.status(400)
+        .send('Please use a valid recipeId');
+    }
+    const newId = db.reviews.length + 1;
+    const newReview = {
+      reviewId: newId,
+      ownerId: reviewer,
+      content
+    };
+    db.reviews.push(newReview);
+    return res.status(201)
+      .json({
+        status: 'success',
+        message: 'Review added',
+        review: newReview
+      });
     return this;
   }
 }
-export { Review };
+export default Review;

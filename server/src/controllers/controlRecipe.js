@@ -6,44 +6,37 @@ class Recipe {
     const name = req.body.name;
     const ingredient = req.body.ingredients;
     const description = req.body.description;
-
     if (!owner) {
       return res.status(400)
         .send('Recipe should have an owner');
     }
-    
     if (!name) {
       return res.status(400)
         .send('Recipe should have a name');
     }
-    
     if (!ingredient) {
       return res.status(400)
         .send('Recipe should have ingredients');
     }
-    
     if (!description) {
       return res.status(400)
         .send('Recipe should have directions to cook');
     }
-    
     if (ingredient.trim().length < 1) {
       return res.status(400)
         .send('Ingredients are empty');
     }
-    
     if (description.trim().length < 1) {
       return res.status(400)
         .send('Recipe should have a direction to cook');
     }
-
     const id = db.recipes.length + 1;
     const newRecipe = {
-      id: id,
+      id,
       ownerId: owner,
-      name: name,
+      name,
       ingredients: [ingredient],
-      description: description,
+      description,
       downVote: 0,
       upVote: 0
     };
@@ -56,28 +49,27 @@ class Recipe {
       });
     return this;
   }
-  updateRecipe(req, res){
-    let query = req.params.recipeId;
-    if(!query){
+  updateRecipe(req, res) {
+    const query = req.params.recipeId;
+    if (!query) {
       return res.status(400)
         .send('Recipe parameter is needed');
+    }
+    for (let i = 0; i < db.recipes.length; i++) {
+      if (parseInt(db.recipes[i].id, 10) === parseInt(req.params.recipeId, 10)) {
+        db.recipes[i].name = req.body.newName || db.recipes[i].name;
+        db.recipes[i].ingredients = [req.body.newIngredients] || db.recipes[i].ingredients;
+        db.recipes[i].description = req.body.newDescription || db.recipes[i].description;
+        return res.status(200)
+          .json({
+            status: 'success',
+            message: 'Recipe modified',
+            recipe: db.recipes[i]
+          });
       }
-        for(let i = 0; i < db.recipes.length; i++){
-          if (parseInt(db.recipes[i].id, 10) === parseInt(req.params.recipeId, 10)){
-            db.recipes[i].name = req.body.newName || db.recipes[i].name;
-            db.recipes[i].ingredients = [req.body.newIngredients] || db.recipes[i].ingredients;
-            db.recipes[i].description = req.body.newDescription || db.recipes[i].description;
-            return res.status(200)
-              .json({
-                status: "success",
-                message: "Recipe modified",
-                recipe: db.recipes[i]
-              });
-            } 
-          }	
-          return res.status(404)
-            .send('recipe with id ' + query + ' not found');
-      
+    }
+    return res.status(404)
+      .send(`recipe with id ${  query  } not found`);
     return this;
   }
   deleteRecipe(req, res) {
@@ -87,8 +79,7 @@ class Recipe {
         return res.status(200)
           .json({
             status: 'success',
-            message: 'Recipe has been deleted',
-            recipe: db.recipes[i]
+            message: 'Recipe has been deleted'
           });
       }
     }
@@ -96,7 +87,6 @@ class Recipe {
       .send('Recipe not found');
   }
   getAllRecipes(req, res) {
-    console.log(req.query);
     if (req.query.sort) {
       const sorted = db.recipes.sort((a, b) => b.upVote - a.upVote);
       return res.status(200)
@@ -113,4 +103,5 @@ class Recipe {
     return this;
   }
 }
-export { Recipe };
+
+export default Recipe;

@@ -1,10 +1,10 @@
-import { Review } from '../controllers/controlReview';
-import { Recipe } from '../controllers/controlRecipe';
-import { Upvote } from '../controllers/controlUpvote';
+import * as Review from '../controllers/controlReview';
+import * as Recipe from '../controllers/controlRecipe';
+import * as Upvote from '../controllers/controlUpvote';
 
-const recipe = new Recipe();
-const review = new Review();
-const upvote = new Upvote();
+const recipe = new Recipe.default();
+const review = new Review.default();
+const upvote = new Upvote.default();
 
 const router = (app) => {
   app.get('/', (req, res) => {
