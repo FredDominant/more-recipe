@@ -78,4 +78,3 @@ db.recipes = [
 ];
 
 export default db;
-
