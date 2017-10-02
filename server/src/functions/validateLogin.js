@@ -19,4 +19,3 @@ const validateLogin = (input) => {
 };
 
 export default validateLogin;
-
