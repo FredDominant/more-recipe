@@ -13,7 +13,7 @@ const validateSignUp = (input) => {
     errors.lastname = 'Last name is empty!';
   }
   if (!(validator.isAlpha(input.lastname))) {
-    errors.firstname = 'Last name should be alphabets';
+    errors.lastname = 'Last name should be alphabets';
   }
   if (validator.isEmpty(input.email)) {
     errors.email = 'Email is empty!';
@@ -23,6 +23,9 @@ const validateSignUp = (input) => {
   }
   if (validator.isEmpty(input.password)) {
     errors.password = 'Password field is empty';
+  }
+  if (!validator.isLength(input.password, { min: 5, max: 100 })) {
+    errors.password = 'Password must be minimum of 5 characters';
   }
   if (validator.isEmpty(input.confirmPassword)) {
     errors.confirmPassword = 'ConfirmPassword field is empty!';

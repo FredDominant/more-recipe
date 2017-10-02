@@ -1,4 +1,3 @@
-
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstname: {
@@ -17,6 +16,11 @@ export default (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    notify: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: true
     }
   });
   User.associate = (models) => {
