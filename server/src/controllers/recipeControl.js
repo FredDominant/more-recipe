@@ -74,4 +74,68 @@ export default class Recipe {
       });
     return this;
   }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof Recipe
+   */
+  updateRecipe(req, res) {
+    if (!(req.params.recipeId)) {
+      return res.status(400)
+        .send('Include ID of recipe to update');
+    }
+    const name = req.body.name;
+    const directions = req.body.directions;
+    const ingredients = req.body.ingredients;
+    recipe.findOne({
+      where: {
+        id: req.params.recipeId,
+        $and: {
+          userId: req.decoded.id
+        }
+      }
+    })
+      .then((foundRecipe) => {
+        if (foundRecipe) {
+          const update = {
+            name: name.toLowerCase() || foundRecipe.dataValues.name,
+            ingredients: ingredients.toLowerCase() || foundRecipe.dataValues.ingredients,
+            directions: directions.toLowerCase() || foundRecipe.dataValues.directions
+          };
+          foundRecipe.update(update)
+            .then((updatedRecipe) => {
+              return res.status(200)
+                .json({
+                  status: 'Update successful',
+                  recipe: updatedRecipe
+                });
+            })
+            .catch((error) => {
+              return res.status(500)
+                .json({
+                  status: 'Fail',
+                  message: error
+                });
+            });
+        }
+        if (!foundRecipe) {
+          return res.status(404)
+            .json({
+              status: 'Fail',
+              message: `Can't find recipe with id ${req.params.recipeId} by you`
+            });
+        }
+      })
+      .catch((error) => {
+        return res.status(500)
+          .json({
+            status: 'Fail',
+            error,
+          });
+      });
+    return this;
+  }
 }
