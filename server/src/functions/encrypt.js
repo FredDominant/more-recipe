@@ -42,31 +42,3 @@ export default class PasswordHelper {
   }
 }
 
-/* const passwordHelper = {
-  hashPassword: (password) => {
-    console.log('Password here is', password);
-    bcrypt.hash(password, 10, ((error, hash) => {
-      if (error) {
-        res.status(500)
-          .send(error);
-      } else {
-        return hash;
-      }
-    }));
-  },
-  decrypt: (password, hash, res) => {
-    bcrypt.compare(password, hash)
-      .catch(() => {
-        res.status(500)
-          .send('Ops! a server error occured. Please try again later');
-      })
-      .then((res) => {
-        if (res === true) {
-          return true;
-        }
-        return false;
-      });
-  }
-};
-
-export default passwordHelper; */
