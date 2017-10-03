@@ -6,7 +6,7 @@ import * as passwordHelper from '../functions/encrypt';
 
 const helper = new passwordHelper.default();
 const user = models.User;
-
+const secret = process.env.SECRET;
 /**
  * 
  * 
@@ -64,7 +64,7 @@ export default class User {
                 lastname: newUser.dataValues.lastname,
                 email: newUser.dataValues.email,
                 notify: newUser.dataValues.notify
-              }, 'Arsenal', { expiresIn: 86400 });
+              }, secret, { expiresIn: 86400 });
               // send user a welcome email
               return res.status(201)
                 .json({
@@ -110,7 +110,7 @@ export default class User {
               firstname: foundUser.dataValues.firstname,
               lastname: foundUser.dataValues.lastname,
               email: foundUser.dataValues.email
-            }, 'Arsenal', { expiresIn: 86400 });
+            }, secret, { expiresIn: 86400 });
             res.status(200)
               .json({
                 status: 'success',

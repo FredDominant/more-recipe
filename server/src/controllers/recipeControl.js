@@ -272,4 +272,44 @@ export default class Recipe {
     }
     return this;
   }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @memberof Recipe
+   */
+  viewOne(req, res) {
+    if (!(req.params.recipeId)) {
+      return res.status(400)
+        .send('Include ID of recipe');
+    }
+    if (isNaN(req.params.recipeId)) {
+      return res.status(400)
+        .send('Invalid recipeId. recipeId should be a number');
+    }
+    recipe.findById(req.params.recipeId)
+      .then((foundRecipe) => {
+        if (!foundRecipe) {
+          return res.status(404)
+            .send(`Can't find recipe with id ${req.params.recipeId}`);
+        }
+        if (foundRecipe) {
+          // add reviews
+          return res.status(200)
+            .json({
+              status: 'Success',
+              foundRecipe,
+            });
+        }
+      })
+      .catch((error) => {
+        return res.status(500)
+          .json({
+            status: 'Fail',
+            error,
+          });
+      });
+    return this;
+  }
 }

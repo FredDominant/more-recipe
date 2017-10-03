@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
+dotenv.config();
+const secret = process.env.SECRET;
 const authorize = (req, res, next) => {
   const token = req.body.token || req.query.token || req.headers['x-access-token'];
   if (token) {
-    jwt.verify(token, 'Arsenal', ((error, decoded) => {
+    jwt.verify(token, secret, ((error, decoded) => {
       if (error) {
         return res.status(403)
           .json({
