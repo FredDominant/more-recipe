@@ -16,8 +16,9 @@ const router = (app) => {
   app.post('/api/v1/users/signin', user.userLogin);
   app.post('/api/v1/recipes', authorize, recipe.addRecipe);
   app.put('/api/v1/recipes/:recipeId', authorize, recipe.updateRecipe);
+  app.delete('/api/v1/recipes/:recipeId', authorize, recipe.deleteRecipe);
+  app.get('/api/v1/recipes', recipe.getAll);
   /* app.post('/api/v1/recipes/:recipeId/review', review.addReview);
-  app.delete('/api/v1/recipes/:recipeId', recipe.deleteRecipe);
   app.get('/api/v1/recipes?sort=up&order=des', upvote.getUpvotes);
   app.get('/api/v1/recipes', recipe.getAllRecipes);  */
 };

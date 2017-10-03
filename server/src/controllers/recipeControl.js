@@ -87,6 +87,10 @@ export default class Recipe {
       return res.status(400)
         .send('Include ID of recipe to update');
     }
+    if (isNaN(req.params.recipeId)) {
+      return res.status(400)
+        .send('Invalid recipeId. recipeId should be a number');
+    }
     const name = req.body.name;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
@@ -136,6 +140,136 @@ export default class Recipe {
             error,
           });
       });
+    return this;
+  }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof Recipe
+   */
+  deleteRecipe(req, res) {
+    if (!(req.params.recipeId)) {
+      return res.status(400)
+        .send('Include ID of recipe to delete');
+    }
+    if (isNaN(req.params.recipeId)) {
+      return res.status(400)
+        .send('Invalid recipeId. recipeId should be a number');
+    }
+    recipe.findOne({
+      where: {
+        id: req.params.recipeId,
+        $and: {
+          userId: req.decoded.id
+        }
+      }
+    })
+      .then((foundRecipe) => {
+        if (!foundRecipe) {
+          return res.status(404)
+            .json({
+              status: 'Fail',
+              message: `Can't find recipe with id ${req.params.recipeId} by you`
+            });
+        }
+        if (foundRecipe) {
+          recipe.destroy({
+            where: {
+              id: req.params.recipeId,
+              $and: {
+                userId: req.decoded.id
+              }
+            }
+          })
+            .then(() => {
+              return res.status(200)
+                .json({
+                  status: 'Success',
+                  message: 'recipe deleted'
+                });
+            })
+            .catch((error) => {
+              return res.status(500)
+                .send(error);
+            });
+        }
+        if (!foundRecipe) {
+          return res.status(404)
+            .json({
+              status: 'Fail',
+              message: `Can't find recipe with id ${req.params.recipeId} by you`
+            });
+        }
+      })
+      .catch((error) => {
+        return res.status(500)
+          .json({
+            status: 'Fail',
+            error,
+          });
+      });
+    return this;
+  }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof Recipe
+   */
+  getAll(req, res) {
+    if (!req.query.sort) {
+      recipe.findAll()
+        .then((recipes) => {
+          if (recipes) {
+            return res.status(200)
+              .json({
+                status: 'Success',
+                recipes,
+              });
+          }
+          if (!recipes) {
+            return res.status(404)
+              .send('No recipes found');
+          }
+        })
+        .catch((error) => {
+          return res.status(500)
+            .json({
+              error,
+            });
+        });
+    }
+    if (req.query.sort) {
+      recipe.findAll()
+        .then((recipes) => {
+          if (recipes) {
+            const sorted = recipes.sort((a, b) => {
+              return b.upvote - a.upvote;
+            });
+            return res.status(200)
+              .json({
+                status: 'Succes',
+                sorted,
+              });
+          }
+          if (!recipes) {
+            return res.status(200)
+              .send('Currently no recipes');
+          }
+        })
+        .catch((error) => {
+          return res.status(500)
+            .json({
+              status: 'Fail',
+              error,
+            });
+        });
+    }
     return this;
   }
 }
