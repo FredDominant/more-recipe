@@ -110,20 +110,16 @@ export default class Recipe {
             directions: directions.toLowerCase() || foundRecipe.dataValues.directions
           };
           foundRecipe.update(update)
-            .then((updatedRecipe) => {
-              return res.status(200)
-                .json({
-                  status: 'Update successful',
-                  recipe: updatedRecipe
-                });
-            })
-            .catch((error) => {
-              return res.status(500)
-                .json({
-                  status: 'Fail',
-                  message: error
-                });
-            });
+            .then(updatedRecipe => res.status(200)
+              .json({
+                status: 'Update successful',
+                recipe: updatedRecipe
+              }))
+            .catch(error => res.status(500)
+              .json({
+                status: 'Fail',
+                message: error
+              }));
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -133,13 +129,11 @@ export default class Recipe {
             });
         }
       })
-      .catch((error) => {
-        return res.status(500)
-          .json({
-            status: 'Fail',
-            error,
-          });
-      });
+      .catch(error => res.status(500)
+        .json({
+          status: 'Fail',
+          error,
+        }));
     return this;
   }
   /**
@@ -184,17 +178,13 @@ export default class Recipe {
               }
             }
           })
-            .then(() => {
-              return res.status(200)
-                .json({
-                  status: 'Success',
-                  message: 'recipe deleted'
-                });
-            })
-            .catch((error) => {
-              return res.status(500)
-                .send(error);
-            });
+            .then(() => res.status(200)
+              .json({
+                status: 'Success',
+                message: 'recipe deleted'
+              }))
+            .catch(error => res.status(500)
+              .send(error));
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -204,13 +194,11 @@ export default class Recipe {
             });
         }
       })
-      .catch((error) => {
-        return res.status(500)
-          .json({
-            status: 'Fail',
-            error,
-          });
-      });
+      .catch(error => res.status(500)
+        .json({
+          status: 'Fail',
+          error,
+        }));
     return this;
   }
   /**
@@ -237,20 +225,16 @@ export default class Recipe {
               .send('No recipes found');
           }
         })
-        .catch((error) => {
-          return res.status(500)
-            .json({
-              error,
-            });
-        });
+        .catch(error => res.status(500)
+          .json({
+            error,
+          }));
     }
     if (req.query.sort) {
       recipe.findAll()
         .then((recipes) => {
           if (recipes) {
-            const sorted = recipes.sort((a, b) => {
-              return b.upvote - a.upvote;
-            });
+            const sorted = recipes.sort((a, b) => b.upvote - a.upvote);
             return res.status(200)
               .json({
                 status: 'Succes',
@@ -262,13 +246,11 @@ export default class Recipe {
               .send('Currently no recipes');
           }
         })
-        .catch((error) => {
-          return res.status(500)
-            .json({
-              status: 'Fail',
-              error,
-            });
-        });
+        .catch(error => res.status(500)
+          .json({
+            status: 'Fail',
+            error,
+          }));
     }
     return this;
   }
@@ -288,7 +270,13 @@ export default class Recipe {
       return res.status(400)
         .send('Invalid recipeId. recipeId should be a number');
     }
-    recipe.findById(req.params.recipeId)
+    recipe.findOne({
+      where: { id: req.params.recipeId },
+      include: [
+        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+        { model: models.Review, attributes: ['content'] }
+      ]
+    })
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
@@ -304,11 +292,48 @@ export default class Recipe {
         }
       })
       .catch((error) => {
+        console.log(error);
         return res.status(500)
           .json({
             status: 'Fail',
             error,
           });
+      });
+    return this;
+  }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof Recipe
+   */
+  getAllUser(req, res) {
+    recipe.findAll({
+      where: {
+        userId: req.decoded.id
+      },
+      include: [
+				 { model: models.Review, attributes: ['content'] }
+      ]
+    })
+      .then((all) => {
+        if (!all) {
+          return res.status(404)
+            .send('You currently have no recipes');
+        }
+        if (all) {
+          return res.status(200)
+            .json({
+              status: 'Success',
+              recipes: all
+            });
+        }
+      })
+      .catch(() => {
+        return res.status(500)
+          .send('Unable to find all recipes by you');
       });
     return this;
   }

@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
+import validate from 'validator';
 import models from '../models';
 import validateSignup from '../functions/validateSignup';
 import validateLogin from '../functions/validateLogin';
 import * as passwordHelper from '../functions/encrypt';
+
 
 const helper = new passwordHelper.default();
 const user = models.User;
@@ -83,7 +85,7 @@ export default class User {
       });
     return this;
   }
-  
+
   /**
    * 
    * 
@@ -131,6 +133,98 @@ export default class User {
               message: `user with email ${req.body.email} not found`
             });
         }
+      });
+    return this;
+  }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof User
+   */
+  delete(req, res) {
+    const password = req.body.password;
+    user.findOne({
+      where: {
+        id: req.decoded.id
+      }
+    })
+      .then((foundUser) => {
+        if (foundUser) {
+          const result = helper.decrypt(password, foundUser.dataValues.password);
+          if (result) {
+            user.destroy({
+              where: {
+                id: req.decoded.id
+              }
+            })
+              .then(() => res.status(200)
+                .send('Your account has been deleted successfully.'))
+              .catch(() => {
+                res.status(500)
+                  .send('Unable to delete account now, please try again later');
+              });
+          }
+        }
+      });
+    return this;
+  }
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @memberof User
+   */
+  updateUser(req, res) {
+    // const firstname = req.body.firstname;
+    // const lastname = req.body.lastname;
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+
+    if (!validate.isEmail(email)) {
+      return res.status(400)
+        .send('Email is not valid');
+    }
+    if (password !== confirmPassword) {
+      return res.status(400)
+        .json({
+          status: 'Fail',
+          message: 'Passwords don\'t match'
+        });
+    }
+    user.findOne({
+      where: {
+        id: req.decoded.id
+      }
+    })
+      .then((foundUser) => {
+        if (!foundUser) {
+          return res.status(401)
+            .send('Unauthorized!');
+        }
+        if (foundUser) {
+          const Update = {
+            email: email.toLowerCase() || foundUser.dataValues.email,
+            password: foundUser.dataValues.password || helper.hashPassword(password)
+          };
+          foundUser.update(Update)
+            .then(() => res.status(200)
+                .send('Profile update successful'))
+            .catch((error) => {
+              console.log(error);
+              return res.status(500)
+                .send('Internal server error. Unable to update profile');
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        return res.status(500)
+          .send('Internal server error. Unable to update profile');
       });
     return this;
   }

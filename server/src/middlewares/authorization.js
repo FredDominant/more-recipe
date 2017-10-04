@@ -8,7 +8,7 @@ const authorize = (req, res, next) => {
   if (token) {
     jwt.verify(token, secret, ((error, decoded) => {
       if (error) {
-        return res.status(403)
+        return res.status(401)
           .json({
             status: 'fail',
             message: 'Unable to verify token'
@@ -18,7 +18,7 @@ const authorize = (req, res, next) => {
       next();
     }));
   } else {
-    return res.status(403)
+    return res.status(401)
       .json({
         status: 'Fail',
         message: 'Failed to provide token'

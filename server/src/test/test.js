@@ -33,9 +33,17 @@ describe('Test for API', () => {
           done();
         });
     });
+    it('Should return 401 for get requests without token', (done) => {
+      chai.request(app)
+        .get('/api/v1/recipes/user/all')
+        .end((err, res) => {
+          expect(res).to.have.status(401);
+          done();
+        });
+    });
   });
   describe('POST recipe', () => {
-    it('Should return 400 for post without recipe name', (done) => {
+    it('Should return 401 for post requests without token', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .send({
@@ -47,23 +55,7 @@ describe('Test for API', () => {
           upVote: 12
         })
         .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-    it('Should return 400 for post without recipe description', (done) => {
-      chai.request(app)
-        .post('/api/v1/recipes')
-        .send({
-          id: 6,
-          ownerId: 12,
-          ingredients: ['something'],
-          name: 'some name',
-          downVote: 6,
-          upVote: 12
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
+          expect(res).to.have.status(401);
           done();
         });
     });
