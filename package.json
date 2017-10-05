@@ -58,7 +58,7 @@
   },
   "scripts": {
     "build": "babel --presets es2015 server -d lib",
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 500000 --compilers js:babel-core/register server/src/test/test.js",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 5000 --compilers js:babel-core/register server/src/test/test.js",
     "start": "npm run build && node lib/bin/www.js",
     "test:dev": "mocha --timeout 500000 --compilers js:babel-core/register server/src/test/test.js",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
