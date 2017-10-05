@@ -1,8 +1,16 @@
 language: node_js
 node_js:
- - "node"
+- "6"
+services:
+- postgresql
+before_script:
+  - psql -c 'create database test;' -U postgres
+  - sequelize db:migrate
+env:
+  global:
+    - export NODE_ENV=test
 script:
+- npm install
 - npm test
 - npm run coverage
-- npm install
-after_success: npm run coverage
+after_success: 'npm run coveralls'
