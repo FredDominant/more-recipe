@@ -62,9 +62,7 @@
 		"test:dev": "mocha --timeout 500000 --compilers js:babel-core/register server/src/test/test.js",
 		"coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
 		"coverage:dev": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-		"coverage": "nyc report --reporter=text-lcov | coveralls",
-		"migrate": "sequelize db:migrate",
-		"postinstall": "npm run migrate"
+		"coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
