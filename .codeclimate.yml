@@ -1,0 +1,19 @@
+engines:
+	duplication:
+		enabled: false
+		checks:
+			simililar code:
+				enabled: false
+		config:
+			languages:
+				javascript:
+					mass_threshold: 20
+ratings:
+	paths:
+	- "server/src/**.js"
+exclude_paths:
+- "server/src/test"
+- "node_modules/"
+- "templates/"
+- "client/"
+- ".vscode/"

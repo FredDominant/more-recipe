@@ -284,6 +284,14 @@ export default class Recipe {
         }
         if (foundRecipe) {
           // add reviews
+          if (req.decoded) {
+            if (req.decoded.id !== foundRecipe.dataValues.userId) {
+              foundRecipe.increment('views');
+            }
+          }
+          if (!req.decoded) {
+            foundRecipe.increment('views');
+          }
           return res.status(200)
             .json({
               status: 'Success',
@@ -331,10 +339,8 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => {
-        return res.status(500)
-          .send('Unable to find all recipes by you');
-      });
+      .catch(() => res.status(500)
+        .send('Unable to find all recipes by you'));
     return this;
   }
 }

@@ -127,7 +127,7 @@ export default class User {
               });
           }
         } else {
-          res.status(404)
+          res.status(401)
             .json({
               status: 'fail',
               message: `user with email ${req.body.email} not found`
