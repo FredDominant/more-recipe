@@ -1,9 +1,7 @@
 import models from '../models';
-import validateReview from '../functions/validateReview';
 
 const review = models.Review;
 const recipe = models.Recipe;
-const user = models.User;
 
 /**
  * 
@@ -20,27 +18,26 @@ export default class Review {
    * @returns 
    * @memberof Review
    */
-  addReview(req, res) {
-    const { errors, isvalid } = validateReview(req.body);
-    if (!(isvalid)) {
-      return res.status(400)
-        .json(errors);
+  static addReview(req, res) {
+    const content = req.body.content;
+    if(!content) {
+      return res.status(400).json({ message: 'Add review content' });
     }
     if (!(req.params.recipeId)) {
       return res.status(400)
-        .send('Include ID of recipe to review');
+        .json({ message: 'Include ID of recipe to review' });
     }
     if (isNaN(req.params.recipeId)) {
       return res.status(400)
-        .send('Invalid recipeId. recipeId should be a number');
+        .json({ message: 'Invalid recipeId. recipeId should be a number' });
     }
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
-            .send(`No recipe with id ${req.params.recipeId}`);
+            .json({ message: `No recipe with id ${req.params.recipeId}` });
         }
-        if(foundRecipe) {
+        if (foundRecipe) {
           review.findOne({
             where: {
               id: req.params.recipeId,
@@ -74,7 +71,7 @@ export default class Review {
               }
               if (foundReview) {
                 return res.status(403)
-                  .send('You\'ve posted a review for this recipe already');
+                  .json({ message: 'You\'ve posted a review for this recipe already' });
               }
             })
             .catch((error) => {
@@ -88,8 +85,7 @@ export default class Review {
       })
       .catch(() => {
         return res.status(500)
-          .send('Internal error ocurred. Please try again later');
+          .json({ message: 'Internal error ocurred. Please try again later' });
       });
-    return this;
   }
 }

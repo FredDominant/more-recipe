@@ -1,8 +1,6 @@
 import models from '../models';
 
 const recipe = models.Recipe;
-const user = models.User;
-const review = models.Review;
 const favourite = models.Favourite;
 
 /**
@@ -20,20 +18,20 @@ export default class Favourite {
    * @returns 
    * @memberof Favourite
    */
-  addFavourite(req, res) {
+  static addFavourite(req, res) {
     if (!(req.params.recipeId)) {
       return res.status(400)
-        .send('Include ID of recipe to favourite');
+        .json({ message: 'Include ID of recipe to favourite' });
     }
     if (isNaN(req.params.recipeId)) {
       return res.status(400)
-        .send('Invalid recipeId. recipeId should be a number');
+        .json({ message: 'Invalid recipeId. recipeId should be a number' });
     }
     recipe.findById(req.params.recipeId)
       .then((found) => {
         if (!found) {
           return res.status(404)
-            .send('recipe doesn\'t exist in catalogue');
+            .json({ message: 'recipe doesn\'t exist in catalogue' });
         }
         favourite.findOne({
           where: {
@@ -56,20 +54,19 @@ export default class Favourite {
               recipeId: req.params.recipeId
             })
               .then(() => res.status(201)
-                  .json({
-                    status: 'Success',
-                    message: 'Recipe added to favourites'
-                  }))
+                .json({
+                  status: 'Success',
+                  message: 'Recipe added to favourites'
+                }))
               .catch(() => res.status(500)
-                  .send('Unable to add to favourites due to server error'));
+                .json({ message: 'Unable to add to favourites due to server error' }));
           })
           .catch(() => res.status(500)
-              .send('a server error ocurred'));
+            .json({ messahe: 'a server error ocurred' }));
       })
       .catch(() => res.status(500)
-          .send('Internal server error, please try again later'));
+        .json({ message: 'Internal server error, please try again later' }));
 
-    return this;
   }
   /**
    * 
@@ -79,7 +76,7 @@ export default class Favourite {
    * @returns 
    * @memberof Favourite
    */
-  getAll(req, res) {
+  static getAll(req, res) {
     favourite.findAll({
       where: {
         userId: req.params.userId
@@ -109,8 +106,7 @@ export default class Favourite {
       .catch((error) => {
         console.log(error);
         return res.status(500)
-          .send('Unable to get favourites, internal server error');
+          .json({ message: 'Unable to get favourites, internal server error' });
       });
-    return this;
   }
 }

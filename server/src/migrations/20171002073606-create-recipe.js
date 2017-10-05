@@ -13,7 +13,8 @@ module.exports = {
     },
     userId: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE'
     },
     ingredients: {
       type: Sequelize.STRING,

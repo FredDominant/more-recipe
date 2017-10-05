@@ -6,8 +6,17 @@ const validateSignUp = (input) => {
   if (validator.isEmpty(input.firstname)) {
     errors.firstname = 'First name is empty!';
   }
+  if (validator.isBoolean(input.firstname)) {
+    errors.firstname = 'First name should be alphabets';
+  }
+  if (validator.isBoolean(input.lastname)) {
+    errors.lastname = 'Last name should be alphabets';
+  }
   if (!(validator.isAlpha(input.firstname))) {
     errors.firstname = 'First name should be alphabets';
+  }
+  if (validator.isBoolean(input.email)) {
+    errors.email = 'Email should be in format \'youremail@example.com\'';
   }
   if (validator.isEmpty(input.lastname)) {
     errors.lastname = 'Last name is empty!';

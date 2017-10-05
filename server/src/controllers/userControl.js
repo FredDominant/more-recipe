@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import validate from 'validator';
 import models from '../models';
-import validateSignup from '../functions/validateSignup';
-import validateLogin from '../functions/validateLogin';
+// import validateSignup from '../functions/validateSignup';
+// import validateLogin from '../functions/validateLogin';
 import * as passwordHelper from '../functions/encrypt';
 
 
@@ -32,49 +32,72 @@ export default class User {
    * @returns 
    * @memberof User
    */
-  createUser(req, res) {
-    console.log(req.body);
-    const { errors, isvalid } = validateSignup(req.body);
-    if (!(isvalid)) {
-      return res.status(400)
-        .json(errors);
+  static createUser(req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const confirmPassword = req.body.confirmPassword;
+
+    if (!firstname) {
+      return res.status(400).json({ message: 'First name field is empty' });
     }
+    if (!lastname) {
+      return res.status(400).json({ message: 'Lastname field is empty' });
+    }
+    if (!password) {
+      return res.status(400).json({ message: 'Password field is empty' });
+    }
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Passwords should be at leats 6 characters'});
+    }
+    if (!confirmPassword) {
+      return res.status(400).json({ message: 'confirmPassword field is empty' });
+    }
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Passwords don\'t match' });
+    }
+    if (!email) {
+      return res.status(400).json({ message: 'Email field is empty' });
+    }
+    if (typeof email !== 'string') {
+      return res.status(400).json({ message: 'Invalid Email' });
+    }
+    
     user.findOne({
-      where: { email: req.body.email.toLowerCase() }
+      where: { email: req.body.email }
     })
       .catch(() => res.status(500)
-        .send('A server error ocurred, Please try again later'))
+        .json({ message: 'A server error ocurred, Please try again later' }))
       .then((existing) => {
         if (!existing) {
           console.log(req.body.password);
           const Password = helper.hashPassword(req.body.password);
           user.create({
-            firstname: req.body.firstname.toLowerCase(),
-            lastname: req.body.lastname.toLowerCase(),
-            email: req.body.email.toLowerCase(),
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
             password: Password
-          })
-            .catch(error => res.status(500)
-              .json({
-                status: 'fail',
-                message: error
-              }))
-            .then((newUser) => {
-              const token = jwt.sign({
-                id: newUser.dataValues.id,
-                firstname: newUser.dataValues.firstname,
-                lastname: newUser.dataValues.lastname,
-                email: newUser.dataValues.email,
-                notify: newUser.dataValues.notify
-              }, secret, { expiresIn: 86400 });
+          }).then((newUser) => {
+            const token = jwt.sign({
+              id: newUser.id,
+              firstname: newUser.firstname,
+              lastname: newUser.lastname,
+              email: newUser.email,
+              notify: newUser.notify
+            }, secret, { expiresIn: 86400 });
               // send user a welcome email
-              return res.status(201)
-                .json({
-                  status: 'success',
-                  token,
-                  user: newUser
-                });
-            });
+            return res.status(201)
+              .json({
+                status: 'success',
+                token,
+                message: 'Account created'
+              });
+          }).catch(error => res.status(400)
+            .json({
+              status: 'fail',
+              message: error.message
+            }));
         } else {
           return res.status(403)
             .json({
@@ -83,7 +106,6 @@ export default class User {
             });
         }
       });
-    return this;
   }
 
   /**
@@ -94,14 +116,17 @@ export default class User {
    * @returns 
    * @memberof User
    */
-  userLogin(req, res) {
-    const { errors, isvalid } = validateLogin(req.body);
-    if (!(isvalid)) {
-      return res.status(400)
-        .json(errors);
+  static userLogin(req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+    if (!password) {
+      return res.status(400).json({ message: 'Password field is empty' });
+    }
+    if (!email) {
+      return res.status(400).json({ message: 'Email field is empty' });
     }
     user.findOne({
-      where: { email: req.body.email.toLowerCase() }
+      where: { email: req.body.email }
     })
       .then((foundUser) => {
         if (foundUser) {
@@ -117,7 +142,7 @@ export default class User {
               .json({
                 status: 'success',
                 token,
-                foundUser
+                message: 'You\'re now logged in'
               });
           } else {
             res.status(401)
@@ -130,11 +155,10 @@ export default class User {
           res.status(401)
             .json({
               status: 'fail',
-              message: `user with email ${req.body.email} not found`
+              message: 'Email and password don\'t match'
             });
         }
       });
-    return this;
   }
   /**
    * 
@@ -144,7 +168,7 @@ export default class User {
    * @returns 
    * @memberof User
    */
-  delete(req, res) {
+  /* delete(req, res) {
     const password = req.body.password;
     user.findOne({
       where: {
@@ -161,16 +185,16 @@ export default class User {
               }
             })
               .then(() => res.status(200)
-                .send('Your account has been deleted successfully.'))
+                .json({ message: 'Your account has been deleted successfully.' }))
               .catch(() => {
                 res.status(500)
-                  .send('Unable to delete account now, please try again later');
+                  .json({ message: 'Unable to delete account now, please try again later' });
               });
           }
         }
       });
     return this;
-  }
+  } */
   /**
    * 
    * 
@@ -178,7 +202,7 @@ export default class User {
    * @param {any} res 
    * @memberof User
    */
-  updateUser(req, res) {
+  static updateUser(req, res) {
     // const firstname = req.body.firstname;
     // const lastname = req.body.lastname;
     const email = req.body.email;
@@ -187,7 +211,7 @@ export default class User {
 
     if (!validate.isEmail(email)) {
       return res.status(400)
-        .send('Email is not valid');
+        .json({ message: 'Email is not valid' });
     }
     if (password !== confirmPassword) {
       return res.status(400)
@@ -204,7 +228,7 @@ export default class User {
       .then((foundUser) => {
         if (!foundUser) {
           return res.status(401)
-            .send('Unauthorized!');
+            .json({ message: 'Unauthorized!' });
         }
         if (foundUser) {
           const Update = {
@@ -213,19 +237,18 @@ export default class User {
           };
           foundUser.update(Update)
             .then(() => res.status(200)
-                .send('Profile update successful'))
+              .json({ message: 'Profile update successful' }))
             .catch((error) => {
               console.log(error);
               return res.status(500)
-                .send('Internal server error. Unable to update profile');
+                .json({ message: 'Internal server error. Unable to update profile' });
             });
         }
       })
       .catch((error) => {
         console.log(error);
         return res.status(500)
-          .send('Internal server error. Unable to update profile');
+          .json({ message: 'Internal server error. Unable to update profile' });
       });
-    return this;
   }
 }
