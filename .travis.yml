@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- "6"
+- "7"
 services:
 - postgresql
 before_script:
   - psql -c 'create database test;' -U postgres
   - sequelize db:migrate
 env:
-	- SECRET=ARSENl
+	- SECRET=ARSENAL
   global:
     - export NODE_ENV=test
 script:
