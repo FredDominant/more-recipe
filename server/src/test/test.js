@@ -20,7 +20,7 @@ describe('Test for API', () => {
     models.User.destroy({ where: { id: { $notIn: [1, 2, 3] } } });
     models.Recipe.destroy({ where: { id: { $notIn: [12, 13, 23] } } });
     models.Review.destroy({ where: { recipeId: { $notIn: [13] } } });
-    models.Favourite.destroy({ where: { recipeId: 23 } });
+    models.Favourite.destroy({ where: { recipeId: { $notIn: [5]} } });
     done();
   });
   describe('encrypted password', () => {
@@ -330,17 +330,6 @@ describe('Test for API', () => {
           .send({ email: 'kt@gmail.com' })
           .end((err, res) => {
             expect(res.status).to.equal(200);
-            done();
-          });
-      });
-    });
-    describe('Test for favourites', () => {
-      it('Should allow user add recipe to favourites', (done) => {
-        chai.request(app)
-          .put('/api/v1/recipes/23/favourite')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoidGhvbXNvbiIsImxhc3RuYW1lIjoia2xheSIsImVtYWlsIjoia3RAZ21haWwuY29tIiwiaWF0IjoxNTA3MTg4MDc4LCJleHAiOjE1MDcyNzQ0Nzh9.5swDz0kRnoK-scttCQUP4riVuH8BVo9xgUUdtRMRaJs')
-          .end((err, res) => {
-            expect(res.status).to.equal(201);
             done();
           });
       });
