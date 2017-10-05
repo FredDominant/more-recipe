@@ -240,7 +240,6 @@ describe('Test for API', () => {
           .send({ email: 'kt@gmail.com', password: '12366866686' })
           .end((err, res) => {
             expect(res.status).to.equal(401);
-            // expect(res.body).to.have.property('confirmPassword').equal('Passwords don\'t match');
             done();
           });
       });
