@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Noblemajesty/more-recipe.svg?branch=task%2F1%2Ftest-branch)](https://travis-ci.org/Noblemajesty/more-recipe)
-[![Coverage Status](https://coveralls.io/repos/github/Noblemajesty/more-recipe/badge.svg?branch=dev-server)](https://coveralls.io/github/Noblemajesty/more-recipe?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Noblemajesty/more-recipe/badge.svg?branch=dev-server)](https://coveralls.io/github/Noblemajesty/more-recipe?branch=dev-server)
 [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/Noblemajesty/more-recipe)
 
 
