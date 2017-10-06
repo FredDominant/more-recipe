@@ -55,23 +55,26 @@ export default class Recipe {
             ingredients: req.body.ingredients.toLowerCase(),
             directions: req.body.directions.toLowerCase()
           })
-            .then((newRecipe) => res.status(201)
+            .then((newRecipe) => { return res.status(201)
               .json({
                 status: 'success',
                 recipe: newRecipe
-              }))
-            .catch((error) => res.status(500)
+              });
+            })
+            .catch((error) => { return res.status(500)
               .json({
                 status: 'Fail',
                 message: error
-              }));
+              });
+            });
         }
       })
-      .catch((error) => res.status(500)
+      .catch((error) => { return res.status(500)
         .json({
           status: 'fail',
           error
-        }));
+        });
+      });
   }
   /**
    * 
@@ -109,16 +112,18 @@ export default class Recipe {
             directions: directions ? directions.toLowerCase() : foundRecipe.dataValues.directions
           };
           foundRecipe.update(update)
-            .then(updatedRecipe => res.status(200)
+            .then((updatedRecipe) => { return res.status(200)
               .json({
                 status: 'Update successful',
                 recipe: updatedRecipe
-              }))
-            .catch(error => res.status(500)
+              });
+            })
+            .catch((error) => { return res.status(500)
               .json({
                 status: 'Fail',
                 message: error
-              }));
+              });
+            });
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -195,11 +200,12 @@ export default class Recipe {
             });
         }
       })
-      .catch(error => res.status(500)
+      .catch((error) => { return res.status(500)
         .json({
           status: 'Fail',
           error,
-        }));
+        });
+      });
   }
   /**
    * 
@@ -225,10 +231,11 @@ export default class Recipe {
               .json({ message: 'No recipes found' });
           }
         })
-        .catch(error => res.status(500)
+        .catch((error) => { return res.status(500)
           .json({
             error,
-          }));
+          });
+        });
     }
     if (req.query.sort) {
       recipe.findAll()
@@ -246,11 +253,12 @@ export default class Recipe {
               .json({ message: 'Currently no recipes' });
           }
         })
-        .catch(error => res.status(500)
+        .catch((error) => { return res.status(500)
           .json({
             status: 'Fail',
             error,
-          }));
+          });
+        });
     }
   }
   /**
@@ -337,7 +345,8 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => res.status(500)
-        .json({ message: 'Unable to find all recipes by you' }));
+      .catch(() => { return res.status(500)
+        .json({ message: 'Unable to find all recipes by you' });
+      });
   }
 }

@@ -20,7 +20,7 @@ export default class Review {
    */
   static addReview(req, res) {
     const content = req.body.content;
-    if(!content) {
+    if (!content) {
       return res.status(400).json({ message: 'Add review content' });
     }
     if (!(req.params.recipeId)) {

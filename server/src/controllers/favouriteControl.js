@@ -53,19 +53,23 @@ export default class Favourite {
               userId: req.decoded.id,
               recipeId: req.params.recipeId
             })
-              .then(() => res.status(201)
+              .then(() => { return res.status(201)
                 .json({
                   status: 'Success',
                   message: 'Recipe added to favourites'
-                }))
-              .catch(() => res.status(500)
-                .json({ message: 'Unable to add to favourites due to server error' }));
+                });
+              })
+              .catch(() => { return res.status(500)
+                .json({ message: 'Unable to add to favourites due to server error' });
+              });
           })
-          .catch(() => res.status(500)
-            .json({ messahe: 'a server error ocurred' }));
+          .catch(() => { return res.status(500)
+            .json({ messahe: 'a server error ocurred' });
+          });
       })
-      .catch(() => res.status(500)
-        .json({ message: 'Internal server error, please try again later' }));
+      .catch(() => { return res.status(500)
+        .json({ message: 'Internal server error, please try again later' });
+      });
 
   }
   /**

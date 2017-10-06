@@ -1,7 +1,6 @@
 import User from '../controllers/userControl';
 import authorize from '../middlewares/authorization';
 import Favourite from '../controllers/favouriteControl';
-// const user = new User.default();
 
 /**
  * 

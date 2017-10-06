@@ -108,7 +108,6 @@ export default class Vote {
       return res.status(500).json({ message: 'internal server error' });
     });
 
-    // check recipe by user at downvote
   }
   /**
    * 

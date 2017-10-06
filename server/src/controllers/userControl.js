@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 import validate from 'validator';
 import models from '../models';
-// import validateSignup from '../functions/validateSignup';
-// import validateLogin from '../functions/validateLogin';
 import * as passwordHelper from '../functions/encrypt';
 
 
@@ -86,18 +84,18 @@ export default class User {
               email: newUser.email,
               notify: newUser.notify
             }, secret, { expiresIn: 86400 });
-              // send user a welcome email
             return res.status(201)
               .json({
                 status: 'success',
                 token,
                 message: 'Account created'
               });
-          }).catch(error => res.status(400)
+          }).catch((error) => { return res.status(400)
             .json({
               status: 'fail',
               message: error.message
-            }));
+            });
+          });
         } else {
           return res.status(403)
             .json({
@@ -168,43 +166,7 @@ export default class User {
    * @returns 
    * @memberof User
    */
-  /* delete(req, res) {
-    const password = req.body.password;
-    user.findOne({
-      where: {
-        id: req.decoded.id
-      }
-    })
-      .then((foundUser) => {
-        if (foundUser) {
-          const result = helper.decrypt(password, foundUser.dataValues.password);
-          if (result) {
-            user.destroy({
-              where: {
-                id: req.decoded.id
-              }
-            })
-              .then(() => res.status(200)
-                .json({ message: 'Your account has been deleted successfully.' }))
-              .catch(() => {
-                res.status(500)
-                  .json({ message: 'Unable to delete account now, please try again later' });
-              });
-          }
-        }
-      });
-    return this;
-  } */
-  /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @memberof User
-   */
   static updateUser(req, res) {
-    // const firstname = req.body.firstname;
-    // const lastname = req.body.lastname;
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -232,12 +194,13 @@ export default class User {
         }
         if (foundUser) {
           const Update = {
-            email: email.toLowerCase() || foundUser.dataValues.email,
+            email: email || foundUser.dataValues.email,
             password: foundUser.dataValues.password || helper.hashPassword(password)
           };
           foundUser.update(Update)
-            .then(() => res.status(200)
-              .json({ message: 'Profile update successful' }))
+            .then(() => { return res.status(200)
+              .json({ message: 'Profile update successful' });
+            })
             .catch((error) => {
               console.log(error);
               return res.status(500)
