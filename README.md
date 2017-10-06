@@ -19,3 +19,18 @@ Suppose a user comes up with a recipe, he/she can post it on More-Recipes and ge
 2. _View or Modify the recipe he/she added_
 3. _Delete the recipe he/she added_
 
+##_It has the following wndpoints_
+* **_Endpoint where users can sign up_ : _post('https://my-more-recipe.herokuapp.com/api/v1/users/signup')_ 
+* **_Endpoint where users can sign in_ : _post('https://my-more-recipe.herokuapp.com/api/v1/users/signup')_ 
+* **_Endpoint where users can update profile_ : _post('https://my-more-recipe.herokuapp.com/api/v1/users/update')_
+* **_Endpoint where users can sign in_ : _post('https://my-more-recipe.herokuapp.com/api/v1/users/signup')_
+* **_Endpoint where users can Add a new recipe_ : _post('https://my-more-recipe.herokuapp.com/api/v1/recipes')_
+* **_Endpoint where users can update a recipe they posted_ : _put('https://my-more-recipe.herokuapp.com/api/v1/recipes/:recipeId')_
+* **_Endpoint where users can delete a recipe they posted_ : _delete('https://my-more-recipe.herokuapp.com/api/v1/recipes/:recipeId')_
+* **_Endpoint where users can view details of a recipe_ : _get('https://my-more-recipe.herokuapp.com/api/v1/recipes/:recipeId')_
+* **_Endpoint where users can get all current recipes in the app_ : _get('https://my-more-recipe.herokuapp.com/api/v1/recipes')_
+* **_Endpoint where logged in users can add reviews to recipes_ : _post('https://my-more-recipe.herokuapp.com/api/v1/recipes/:recipeId/reviews')_
+* **_Endpoint where users can gat all the recipes they own_ : _get('https://my-more-recipe.herokuapp.com/api/v1/recipes/user/all')_
+* **_Endpoint where users can add a recipe as favourite_ : _put('https://my-more-recipe.herokuapp.com/api/v1/recipes/:recipeId')_
+* **_Endpoint where users can view most upvoted recipe_ : _get('https://my-more-recipe.herokuapp.com/api/v1/recipes?sort=up&order=des')_
+* **_Endpoint where users can vupote a recipe_ : _put('https://my-more-recipe.herokuapp.com/api/v1/recipes/upvote/:recipeId')_
