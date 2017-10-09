@@ -23,7 +23,8 @@ const router = (app) => {
   app.get('/api/v1/recipes/user/all', authorize, Recipe.getAllUser); // user can get all recipes by them
   app.put('/api/v1/recipes/:recipeId/favourite', authorize, Favourite.addFavourite); // User can add recipe as favourite
   app.get('/api/v1/recipes?sort=up&order=des', Recipe.getAll); // user can get recipe with most upvotes
-  app.put('/api/v1/recipes/upvote/:recipeId', authorize, Vote.upvote); // user can upvote recipe
+  app.post('/api/v1/recipes/:recipeId/upvote', authorize, Vote.upvote); // user can upvote recipe
+  app.post('/api/v1/recipes/:recipeId/downvote', authorize, Vote.downVote); // user can downvote recipe
 };
 
 export default router;

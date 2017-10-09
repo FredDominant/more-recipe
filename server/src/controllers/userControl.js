@@ -61,7 +61,7 @@ export default class User {
     if (typeof email !== 'string') {
       return res.status(400).json({ message: 'Invalid Email' });
     }
-    
+
     user.findOne({
       where: { email: req.body.email }
     })
@@ -213,5 +213,55 @@ export default class User {
         return res.status(500)
           .json({ message: 'Internal server error. Unable to update profile' });
       });
+  }
+  /**
+   * 
+   * 
+   * @static
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
+   * @memberof User
+   */
+  static deleteUser(req, res) {
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+    
+    if (!password) {
+      return res.status(400).json({ message: 'enter a password' });
+    }
+    if (!confirmPassword) {
+      return res.status(400).json({ message: 'confirm Password field is empty' });
+    }
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Password\'s do not match' });
+    }
+    user.findOne({
+      where: {
+        id: req.decoded.id,
+        $and: { email: req.decoded.email }
+      }
+    }).then((foundUser) => {
+      if (!foundUser) {
+        return res.status(404).json({ message: 'Unauthorized' });
+      }
+      const encrypted = helper.hashPassword(password);
+      if (foundUser.password === encrypted) {
+        user.destroy({
+          where: {
+            id: req.decoded.id,
+            $and: { password: encrypted }
+          }
+        }).then(() => {
+          return res.status(200).json({ message: 'Account deleted' });
+        }).catch(() => {
+          return res.status(500).json({ message: 'Unable to delete account' });
+        });
+      } else {
+        return res.status(403).json({ message: 'Passwords do not match' });
+      }
+    }).catch(() => {
+      return res.status(500).json({ message: 'Unable to complete request' });
+    });
   }
 }
