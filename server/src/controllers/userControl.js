@@ -247,7 +247,7 @@ export default class User {
       }
       const encrypted = helper.hashPassword(password);
       if (foundUser.password === encrypted) {
-        user.destroy({
+        user.destroy({ // confirm if user id and password match
           where: {
             id: req.decoded.id,
             $and: { password: encrypted }
