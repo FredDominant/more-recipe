@@ -38,6 +38,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0",
+    "sass-loader": "^6.0.6",
     "sequelize": "^4.13.1",
     "sequelize-cli": "^3.0.0",
     "style-loader": "^0.19.0",
@@ -73,7 +74,9 @@
     "webpack": "^3.7.1"
   },
   "scripts": {
-    "build:dev": "webpack",
+    "build:client": "webpack -d && webpack-dev-server --content-base client --inline --hot",
+    "start:client": "",
+    "dev": "npm run build:client",
     "build": "npm run build:dev && babel --presets es2015 server -d lib",
     "test:mine": "nyc --reporter=html --reporter=text mocha --timeout 5000 --compilers js:babel-core/register server/src/test/test.js",
     "test": "NODE_ENV=test npm run migration && NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 5000 --compilers js:babel-core/register server/src/test/test.js",

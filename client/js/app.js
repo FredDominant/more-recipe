@@ -1,9 +1,24 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import some from './react';
-
-const fred = () => {
-	alert('I work from app.js');
+import * as activate from './react';
+import { Navbar } from './components/Navbar';
+/**
+ * 
+ * 
+ * @class App
+ * @extends {React.Component}
+ */
+class App extends React.Component {
+	render() {
+		return (
+			<div>
+				<Navbar />
+				<div className="container">	
+					<h4 className="">Hello World! Welcome to my first React app</h4>
+				</div>
+			</div>
+		);
+	}
 };
-some();
-fred();
-$('body').append('<h3>Fredd Adewole</h3>');
+ReactDOM.render(<App/>, document.getElementById('root'));

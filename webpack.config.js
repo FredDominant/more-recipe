@@ -1,19 +1,34 @@
 const path = require('path');
 
 module.exports = {
-  entry: [path.resolve(__dirname, 'client/js/app.js'), path.resolve(__dirname, 'client/js/react.js')],
+  entry: [path.resolve(__dirname, 'client/js/app.js'),
+    path.resolve(__dirname, 'client/js/react.js'),
+    path.resolve(__dirname, 'client/js/components/Navbar.js'),
+    path.resolve(__dirname, 'client/css/style.css')],
   output: {
     path: path.resolve(__dirname, 'client/dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: './client/js'
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style.loader!css-loader' },
-      { test: /\.(js|jsx)$/, loader: 'babel-loader', query: { presets: ['es2015', 'react'] } }
+      {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader'],
+        include: path.resolve(__dirname, './client/css/'),
+      },
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        include: path.resolve(__dirname, './client/'),
+        exclude: path.resolve(__dirname, 'node_modules/'),
+        query: { presets: ['es2015', 'react', 'stage-2']
+        }
+      }
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx', '.css']
   },
   watch: true
 };
