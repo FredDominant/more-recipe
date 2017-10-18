@@ -4,6 +4,7 @@ import $ from 'jquery';
 import * as activate from './react';
 import { Navbar } from './components/Navbar';
 import { Search } from './components/search';
+import { Signup } from './components/signup';
 /**
  * 
  * 
@@ -16,7 +17,7 @@ class App extends React.Component {
 			<div className="main-body">
 				<Navbar />
 				<Search />
-				<Register />
+				<Signup />
 			</div>
 		);
 	}
