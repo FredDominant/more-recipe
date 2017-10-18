@@ -7,11 +7,16 @@ export class Signup extends React.Component {
 				<div className="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog" role="document">
 						<div className="modal-content">
-							<div className="modal-header">
-								<span id="signup-title"><h3 className="modal-title">More Recipes</h3></span>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
+							<div className="row">
+								<div className="col-md-9">
+									<span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
+									<span><h6 className="signup-text">Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.</h6></span>
+								</div>
+								<div className="col-md-3">	
+									<button type="button" className="close cancel-signup" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
 							</div>
 							<div className="modal-body">
 								<div>

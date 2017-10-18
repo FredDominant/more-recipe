@@ -13,8 +13,28 @@
 
 #signup-title {
 	font-family: 'Berkshire Swash', cursive;
-	margin-left: 35%;
+	margin-left: 33%;
 	color: brown;
+	margin-top: 20px;
+}
+
+.signup-text {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
+	text-align: center;
+	margin-left: 30%;
+	font-size: smaller;
+}
+
+#login-title {
+	font-family: 'Berkshire Swash', cursive;
+	color: brown;
+	margin-top: 20px;
+	margin-left: 35%;
+}
+
+.cancel-login,
+.cancel-signup {
+	margin-right: 10px; 
 }
 
 #search-intro {
