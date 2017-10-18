@@ -21,7 +21,7 @@ export class Navbar extends React.Component {
 									<li className="nav-item active" data-toggle="modal" data-target="#register">
 										<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Register |</span></a>
 									</li>
-									<li className="nav-item active">
+									<li className="nav-item active" data-toggle="modal" data-target="#login">
 										<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Log in |</span></a>
 									</li>
 								</ul>
