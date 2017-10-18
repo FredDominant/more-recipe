@@ -5,6 +5,7 @@ import * as activate from './react';
 import { Navbar } from './components/Navbar';
 import { Search } from './components/search';
 import { Signup } from './components/signup';
+import { Login } from './components/login';
 /**
  * 
  * 
@@ -18,6 +19,7 @@ class App extends React.Component {
 				<Navbar />
 				<Search />
 				<Signup />
+				<Login />
 			</div>
 		);
 	}
