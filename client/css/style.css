@@ -1,0 +1,38 @@
+/* .main-body {
+	background-color: #F5F5F5;
+} */
+.search-body {
+	margin-left: 15%;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+.icons {
+	margin-left: 7%;
+}
+
+#search-intro {
+	font-family: 'Berkshire Swash', cursive;
+	margin-right: 10px;
+	color: brown;
+}
+.col-sm-6 a {
+	text-decoration: none;
+}
+
+#search-box {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-style: italic;
+}
+
+.fa-search {
+	color: white;
+}
+#title {
+	/* font-family: 'Righteous', cursive; */
+	font-family: 'Berkshire Swash', cursive;
+	font-size: xx-large;
+	color: brown;
+	/* font-style: italic;
+	font-weight: bolder; */
+}
