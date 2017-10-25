@@ -3,14 +3,13 @@ const path = require('path');
 module.exports = {
   entry: [
     path.resolve(__dirname, 'client/js/app.js'),
-    path.resolve(__dirname, 'client/js/react.js'),
     path.resolve(__dirname, 'client/js/components/Navbar.js'),
     path.resolve(__dirname, 'client/js/components/search.js'),
     path.resolve(__dirname, 'client/js/components/signup.js'),
     path.resolve(__dirname, 'client/css/style.css')
   ],
   output: {
-    path: path.resolve(__dirname, 'client/dist'),
+    path: '/',
     filename: 'bundle.js',
     publicPath: './client/js'
   },

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import * as activate from './react';
+
 import { Navbar } from './components/Navbar';
 import { Search } from './components/search';
 import { Signup } from './components/signup';
@@ -24,4 +23,4 @@ class App extends React.Component {
 		);
 	}
 };
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
