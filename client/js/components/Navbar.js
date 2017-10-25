@@ -33,19 +33,19 @@ export class Navbar extends React.Component {
 							<div className="collapse navbar-collapse" id="navbarSupportedContent">
 								<ul className="navbar-nav mr-auto">
 									<li className="nav-item active">
-										<a className="nav-link" href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+										<a className="nav-link" href="#"><i className="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+										<a className="nav-link" href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+										<a className="nav-link" href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
+										<a className="nav-link" href="#"><i className="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#"><i class="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
+										<a className="nav-link" href="#"><i className="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
 									</li>
 								</ul>
 							</div>

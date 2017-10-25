@@ -19,7 +19,7 @@ export class Search extends React.Component {
 						<div className="input-group">
 							<span id="search-intro"> <h5>Find a  recipe: </h5>  </span> <input type="text" id="search-box" className="form-control" placeholder="Search Recipe name or ingredient" aria-label="Search for..."/>
 							<span className="input-group-btn">
-								<button className="btn btn-warning" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+								<button className="btn btn-warning" type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
 							</span>
 						</div>
 					</div>
