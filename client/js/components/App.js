@@ -10,7 +10,7 @@ import { Body } from './Body';
     return (
       <div className="main-body">
         <Navigation />
-				<div className="container-fluid">
+				<div className="container">
 					<Body />
 				</div>
       </div>
