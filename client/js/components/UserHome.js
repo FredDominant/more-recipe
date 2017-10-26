@@ -6,17 +6,14 @@ import { Navbar } from './Navbar';
 import { Signup } from './Signup';
 import { Login } from './Login';
 
-export class Home extends React.Component {
+export class UserHome extends React.Component {
   render() {
     return (
-			<div>
-				<Navbar />
-				<Login />
-				<Signup />
-				<Search />
-				<div className="container-fluid">
-					<h3>All recipes page - Home page</h3>
-				</div>
+      <div>
+        <Navbar user="registered"/>
+        <div className="container-fluid">
+          <h3>Registered user's home page</h3>
+        </div>
       </div>
     );
   }

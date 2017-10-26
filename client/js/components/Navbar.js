@@ -9,8 +9,9 @@ import ReactDOM from 'react-dom';
  */
 export class Navbar extends React.Component {
   render() {
-    return(
-			<div className="container-fluid">
+    if (this.props.user) {
+			return (
+				<div className="container-fluid">
 				<nav className="row navbar navbar-expand-lg navbar-light bg-light">
 						<div className="col-sm-4">
 							<div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -18,12 +19,15 @@ export class Navbar extends React.Component {
 									<li className="nav-item active">
 										<a className="nav-link" href="#" title="More Recipes home"><i className="fa fa-home fa-lg" aria-hidden="true"></i> <span>Recipes  |</span></a>
 									</li>
-									<li className="nav-item active" data-toggle="modal" data-target="#register">
-										<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Register |</span></a>
+									<li className="nav-item active">
+										<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Add Recipe |</span></a>
 									</li>
-									<li className="nav-item active" data-toggle="modal" data-target="#login">
-										<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Log in |</span></a>
+									<li className="nav-item active">
+										<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Profile |</span></a>
 									</li>
+									<li className="nav-item active">
+									<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Logout |</span></a>
+								</li>
 								</ul>
 							</div>
 						</div>
@@ -52,6 +56,51 @@ export class Navbar extends React.Component {
 						</div>
 				</nav>
 			</div>
+			)
+		}
+		return (
+			<div className="container-fluid">
+			<nav className="row navbar navbar-expand-lg navbar-light bg-light">
+					<div className="col-sm-4">
+						<div className="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul className="navbar-nav mr-auto">
+								<li className="nav-item active">
+									<a className="nav-link" href="#" title="More Recipes home"><i className="fa fa-home fa-lg" aria-hidden="true"></i> <span>Recipes  |</span></a>
+								</li>
+								<li className="nav-item active" data-toggle="modal" data-target="#register">
+									<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Register |</span></a>
+								</li>
+								<li className="nav-item active" data-toggle="modal" data-target="#login">
+									<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Log in |</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div className="col-sm-4">
+					</div>
+					<div className="col-sm-4 icons">
+						<div className="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul className="navbar-nav mr-auto">
+								<li className="nav-item active">
+									<a className="nav-link" href="#"><i className="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+								</li>
+								<li className="nav-item active">
+									<a className="nav-link" href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+								</li>
+								<li className="nav-item active">
+									<a className="nav-link" href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+								</li>
+								<li className="nav-item active">
+									<a className="nav-link" href="#"><i className="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
+								</li>
+								<li className="nav-item active">
+									<a className="nav-link" href="#"><i className="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+			</nav>
+		</div>
 		);
   }
 }
