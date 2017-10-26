@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from 'react-router'
 
-import { Navbar } from './components/Navbar';
-import { Search } from './components/search';
-import { Signup } from './components/signup';
-import { Login } from './components/login';
+import { Navbar } from './Navbar';
+import { Search } from './search';
+import { Signup } from './signup';
+import { Login } from './login';
 /**
  * 
  * 

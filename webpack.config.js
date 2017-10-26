@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    path.resolve(__dirname, 'client/js/app.js'),
+    path.resolve(__dirname, 'client/js/components/app.js'),
     path.resolve(__dirname, 'client/js/components/Navbar.js'),
     path.resolve(__dirname, 'client/js/components/search.js'),
     path.resolve(__dirname, 'client/js/components/signup.js'),
