@@ -8,11 +8,8 @@ import { Body } from './Body';
  export class App extends React.Component {
   render() {
     return (
-      <div className="main-body">
-        <Navigation />
-				<div className="container">
+      <div>
 					<Body />
-				</div>
       </div>
     );
   }
