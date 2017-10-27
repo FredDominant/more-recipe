@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 
 import { Search } from './Search';
 import { Navbar } from './Navbar';
-import { Signup } from './Signup';
-import { Login } from './Login';
 
-export class Recipe extends React.Component {
+export class UserHome extends React.Component {
   render() {
     return (
-			<div>
+      <div>
 				<Navbar user="registered"/>
-				<div className="container-fluid">
-					<h3>Recipe details page</h3>
-				</div>
+				<Search />
+        <div className="container-fluid">
+          <h3>Registered user's home page</h3>
+        </div>
       </div>
     );
   }
