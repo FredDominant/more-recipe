@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export class Signup extends React.Component {
 	constructor(props) {
@@ -22,7 +23,9 @@ export class Signup extends React.Component {
 	
 	onSubmit(e) {
 		e.preventDefault();
-		console.log(this.state);
+		axios.post('/api/v1/users/signup', this.state)
+			.then(() => console.log('post successful'))
+			.catch(error => console.log(error));
 	}
 	render() {
 		return (

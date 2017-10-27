@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 /**
  * 
@@ -17,7 +18,9 @@ export class Login extends React.Component {
 	
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state);
+		axios.post('/api/v1/users/signin', this.state)
+			.then(() => 'No errors')
+			.catch(error => error);
 	}
 	
 	onChange(e) {
@@ -45,13 +48,27 @@ export class Login extends React.Component {
 								<form className="form-group" onSubmit={this.handleSubmit}>
 									<div className="container">
 										<div className="input-group">
+											<label className="control-label"></label> <br/>
 											<span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-											<input type="email" onChange={this.onChange} name="email" value={this.state.email} className="form-control" placeholder="Email " aria-label="email" aria-describedby="email-addon" />
+											<input type="email" 
+											onChange={this.onChange} 
+											name="email" 
+											value={this.state.email} 
+											className="form-control" 
+											placeholder="Email " aria-label="email" aria-describedby="email-addon" />
 										</div>
 										<br/>
-										<div className="input-group">
+										<div className="input-group"> 
+											<label className="control-label"></label> <br/>
 											<span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-											<input type="password" onChange={this.onChange} name="password" value={this.state.password} className="form-control" placeholder="Password" aria-label="password" aria-describedby="password-addon" />
+											<input type="password" 
+											onChange={this.onChange} 
+											name="password" 
+											value={this.state.password} 
+											className="form-control" 
+											placeholder="Password" 
+											aria-label="password" 
+											aria-describedby="password-addon" />
 										</div>
 										<br/>
 										<div className="input-group">
