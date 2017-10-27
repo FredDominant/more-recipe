@@ -19,8 +19,8 @@ export class Login extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		axios.post('/api/v1/users/signin', this.state)
-			.then(() => 'No errors')
-			.catch(error => error);
+			.then(() => console.log('No errors'))
+			.catch(error => console.log(error));
 	}
 	
 	onChange(e) {
