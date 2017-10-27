@@ -39,14 +39,13 @@
 	margin-right: 10px;
 	color: brown;
 }
-.col-sm-6 span {
+span.nav-link a {
+	color: black;
 	text-decoration: none;
 	cursor: pointer;
 }
-
-#navbarSupportedContent ul li {
+.col-sm-6 a {
 	text-decoration: none;
-	color: black;
 	cursor: pointer;
 }
 
