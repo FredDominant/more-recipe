@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 /**
  * 
@@ -17,16 +18,16 @@ export class Navbar extends React.Component {
 							<div className="collapse navbar-collapse" id="navbarSupportedContent">
 								<ul className="navbar-nav mr-auto">
 									<li className="nav-item active">
-										<a className="nav-link" href="#" title="More Recipes home"><i className="fa fa-home fa-lg" aria-hidden="true"></i> <span>Recipes  |</span></a>
+										<span className="nav-link"> <i className="fa fa-home fa-lg" aria-hidden="true"></i> <Link to="/home">Recipes  | </Link></span>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Add Recipe |</span></a>
+										<span className="nav-link"> <i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <Link to="/recipe">Add Recipe | </Link></span>
 									</li>
 									<li className="nav-item active">
-										<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Profile |</span></a>
+										 <span className="nav-link"> <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i><Link to="/profile">Profile | </Link></span>
 									</li>
 									<li className="nav-item active">
-									<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Logout |</span></a>
+										<span className="nav-link"> <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <Link to="/">Logout | </Link> </span>
 								</li>
 								</ul>
 							</div>
