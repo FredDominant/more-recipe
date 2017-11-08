@@ -24,8 +24,8 @@ export class Signup extends React.Component {
 	onSubmit(e) {
 		e.preventDefault();
 		axios.post('/api/v1/users/signup', this.state)
-			.then(() => console.log('post successful'))
-			.catch(error => console.log(error));
+			.then(() => 'post successful')
+			.catch(error => error);
 	}
 	render() {
 		return (
