@@ -161,23 +161,6 @@ export default class User {
   static updateUser(req, res) {
     const email = req.body.email;
     const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
-
-    if (!validate.isEmail(email)) {
-      return res.status(400)
-        .json({ message: 'Email is not valid' });
-    }
-    if ((!password) || (!confirmPassword)) {
-      return res.status(400)
-        .json({ message: 'Passwords are required' });
-    }
-    if (password !== confirmPassword) {
-      return res.status(400)
-        .json({
-          status: 'Fail',
-          message: 'Passwords don\'t match'
-        });
-    }
     user.findOne({
       where: {
         id: req.decoded.id
@@ -189,11 +172,11 @@ export default class User {
             .json({ message: 'Unauthorized!' });
         }
         if (foundUser) {
-          const Update = {
-            email: email || foundUser.dataValues.email,
-            password: foundUser.dataValues.password || helper.hashPassword(password)
+          const update = {
+            email: email ? email.trim() : foundUser.dataValues.email,
+            password: password ? helper.hashPassword(password) : foundUser.dataValues.password
           };
-          foundUser.update(Update)
+          foundUser.update(update)
             .then(() => { return res.status(200)
               .json({ message: 'Profile update successful' });
             })

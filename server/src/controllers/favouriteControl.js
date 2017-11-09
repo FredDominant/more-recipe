@@ -4,18 +4,18 @@ const recipe = models.Recipe;
 const favourite = models.Favourite;
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class Favourite
  */
 export default class Favourite {
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} any
    * @memberof Favourite
    */
   static addFavourite(req, res) {
@@ -70,20 +70,19 @@ export default class Favourite {
       .catch(() => { return res.status(500)
         .json({ message: 'Internal server error, please try again later' });
       });
-
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} any
    * @memberof Favourite
    */
   static getAll(req, res) {
     favourite.findAll({
       where: {
-        userId: req.params.userId
+        userId: req.decoded.id
       },
       include: [
         {
@@ -100,6 +99,10 @@ export default class Favourite {
             });
         }
         if (found) {
+          if (found.length < 1) {
+            return res.status(200)
+              .json({ message: 'You have no favourites. Add recipes to favourite' });
+          }
           return res.status(200)
             .json({
               status: 'Success',

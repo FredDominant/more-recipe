@@ -4,18 +4,18 @@ const review = models.Review;
 const recipe = models.Recipe;
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class Review
  */
 export default class Review {
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} obj
    * @memberof Review
    */
   static addReview(req, res) {

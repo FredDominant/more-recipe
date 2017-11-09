@@ -35,9 +35,7 @@ export default class Recipe {
     recipe.findOne({
       where: {
         name: req.body.name.toLowerCase(),
-        $and: {
-          userId: req.decoded.id
-        }
+        userId: req.decoded.id
       }
     })
       .then((foundRecipe) => {
@@ -220,6 +218,10 @@ export default class Recipe {
       recipe.findAll()
         .then((recipes) => {
           if (recipes) {
+            if (recipes.length < 1) {
+              return res.status(20)
+                .json({ message: 'There are currently no recipes in collection' });
+            }
             return res.status(200)
               .json({
                 status: 'Success',
@@ -282,7 +284,11 @@ export default class Recipe {
       where: { id: req.params.recipeId },
       include: [
         { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-        { model: models.Review, attributes: ['content'] }
+        { model: models.Review,
+          attributes: ['content'],
+          include: [
+            { model: models.User, attributes: ['firstname', 'lastname'] }
+          ] }
       ]
     })
       .then((foundRecipe) => {
