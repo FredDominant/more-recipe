@@ -15,6 +15,7 @@ const router = (app) => {
   userRoutes(app);
 
   app.post('/api/v1/recipes', authorize, Recipe.addRecipe); // auth user adds recipe
+  app.post('/api/v1/search', Recipe.search); // Search recipe
   app.put('/api/v1/recipes/:recipeId', authorize, Recipe.updateRecipe); // auth user updates recipe
   app.delete('/api/v1/recipes/:recipeId', authorize, Recipe.deleteRecipe); // auth user deletes recipe
   app.get('/api/v1/recipes/:recipeId', allowUser, Recipe.viewOne); // user can view a recipe

@@ -1,19 +1,21 @@
+import Sequelize from 'sequelize';
 import models from '../models';
 
+const op = Sequelize.Op;
 const recipe = models.Recipe;
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class Recipe
  */
 export default class Recipe {
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns
    * @memberof Recipe
    */
   static addRecipe(req, res) {
@@ -77,11 +79,11 @@ export default class Recipe {
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns
    * @memberof Recipe
    */
   static updateRecipe(req, res) {
@@ -143,11 +145,11 @@ export default class Recipe {
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns
    * @memberof Recipe
    */
   static deleteRecipe(req, res) {
@@ -208,11 +210,11 @@ export default class Recipe {
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns
    * @memberof Recipe
    */
   static getAll(req, res) {
@@ -262,10 +264,10 @@ export default class Recipe {
     }
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
    * @memberof Recipe
    */
   static viewOne(req, res) {
@@ -316,11 +318,11 @@ export default class Recipe {
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns
    * @memberof Recipe
    */
   static getAllUser(req, res) {
@@ -348,5 +350,47 @@ export default class Recipe {
       .catch(() => { return res.status(500)
         .json({ message: 'Unable to find all recipes by you' });
       });
+  }
+  /**
+ *
+ *
+ * @static
+ * @param {any} req
+ * @param {any} res
+ * @memberof Recipe
+ */
+  static search(req, res) {
+    const search = req.body.search.split(' ');
+    const queryIngredient = search.map((item) => {
+      return { ingredients: { $iLike: `%${item}%` } };
+    });
+    const queryName = search.map((value) => {
+      return { name: { $iLike: `%${value}%` } };
+    });
+    recipe.findAll({
+      where: {
+        $or:
+          queryIngredient.concat(queryName)
+      }
+    }).then((found) => {
+      if (!found) {
+        return res.status(404)
+          .json({
+            message: 'No match(es) found'
+          });
+      }
+      if (found.length < 1) {
+        return res.status(404)
+          .json({
+            message: 'No match(es) found'
+          });
+      }
+      return res.status(200)
+        .json({
+          Status: 'Success',
+          result: found
+        });
+    }).catch(error => res.status(500)
+      .json({ status: 'Fail', message: error }));
   }
 }

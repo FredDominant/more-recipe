@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 module.exports = {
   development: {
-    username: 'Fred',
+    username: 'postgres',
     password: 'Olasunkanmi94',
     database: 'recipes',
     host: '127.0.0.1',
