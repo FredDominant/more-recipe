@@ -13,9 +13,6 @@ const router = (app) => {
     res.status(200)
       .json({ message: 'Welcome to my api' });
   });
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../../client/index.html'));
-  });
   userRoutes(app);
 
   app.post('/api/v1/recipes', authorize, Recipe.addRecipe); // auth user adds recipe
