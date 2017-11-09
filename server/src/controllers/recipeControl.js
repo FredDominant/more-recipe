@@ -1,7 +1,5 @@
-import Sequelize from 'sequelize';
 import models from '../models';
 
-const op = Sequelize.Op;
 const recipe = models.Recipe;
 /**
  *
@@ -15,7 +13,7 @@ export default class Recipe {
    *
    * @param {any} req
    * @param {any} res
-   * @returns
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static addRecipe(req, res) {
@@ -79,11 +77,11 @@ export default class Recipe {
       });
   }
   /**
-   *
+   * This function updates a user's recipe
    *
    * @param {any} req
    * @param {any} res
-   * @returns
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static updateRecipe(req, res) {
@@ -149,7 +147,7 @@ export default class Recipe {
    *
    * @param {any} req
    * @param {any} res
-   * @returns
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static deleteRecipe(req, res) {
@@ -214,7 +212,7 @@ export default class Recipe {
    *
    * @param {any} req
    * @param {any} res
-   * @returns
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static getAll(req, res) {
@@ -268,6 +266,7 @@ export default class Recipe {
    *
    * @param {any} req
    * @param {any} res
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static viewOne(req, res) {
@@ -322,7 +321,7 @@ export default class Recipe {
    *
    * @param {any} req
    * @param {any} res
-   * @returns
+   * @returns {obj} obj
    * @memberof Recipe
    */
   static getAllUser(req, res) {
@@ -357,6 +356,7 @@ export default class Recipe {
  * @static
  * @param {any} req
  * @param {any} res
+ * @returns {obj} obj
  * @memberof Recipe
  */
   static search(req, res) {

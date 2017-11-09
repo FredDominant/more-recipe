@@ -8,26 +8,18 @@ const helper = new passwordHelper.default();
 const user = models.User;
 const secret = process.env.SECRET;
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class User
  */
 export default class User {
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
-   * @memberof User
-   */
-  /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} obj
    * @memberof User
    */
   static createUser(req, res) {
@@ -47,7 +39,7 @@ export default class User {
       return res.status(400).json({ message: 'Password field is empty' });
     }
     if (password.length < 6) {
-      return res.status(400).json({ message: 'Passwords should be at leats 6 characters'});
+      return res.status(400).json({ message: 'Passwords should be at leats 6 characters' });
     }
     if (!confirmPassword) {
       return res.status(400).json({ message: 'confirmPassword field is empty' });
@@ -107,11 +99,11 @@ export default class User {
   }
 
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} obj
    * @memberof User
    */
   static userLogin(req, res) {
@@ -153,17 +145,17 @@ export default class User {
           res.status(401)
             .json({
               status: 'fail',
-              message: 'Email and password don\'t match'
+              message: 'Email not found'
             });
         }
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} any
    * @memberof User
    */
   static updateUser(req, res) {
@@ -174,6 +166,10 @@ export default class User {
     if (!validate.isEmail(email)) {
       return res.status(400)
         .json({ message: 'Email is not valid' });
+    }
+    if ((!password) || (!confirmPassword)) {
+      return res.status(400)
+        .json({ message: 'Passwords are required' });
     }
     if (password !== confirmPassword) {
       return res.status(400)
@@ -215,18 +211,17 @@ export default class User {
       });
   }
   /**
-   * 
-   * 
+   *
+   *
    * @static
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param {any} req
+   * @param {any} res
+   * @returns {obj} any
    * @memberof User
    */
   static deleteUser(req, res) {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
-    
     if (!password) {
       return res.status(400).json({ message: 'enter a password' });
     }
@@ -247,7 +242,7 @@ export default class User {
       }
       const encrypted = helper.hashPassword(password);
       if (foundUser.password === encrypted) {
-        user.destroy({ // confirm if user id and password match
+        user.destroy({
           where: {
             id: req.decoded.id,
             $and: { password: encrypted }

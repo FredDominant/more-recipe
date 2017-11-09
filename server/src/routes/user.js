@@ -3,10 +3,10 @@ import authorize from '../middlewares/authorization';
 import Favourite from '../controllers/favouriteControl';
 
 /**
- * 
- * 
+ *
+ * @returns {null} null
  * @export
- * @param {any} app 
+ * @param {any} app
  */
 export default function userRoutes(app) {
   app.post('/api/v1/users/signup', User.createUser); // user signup route

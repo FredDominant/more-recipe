@@ -1,6 +1,7 @@
+import path from 'path';
+
 import authorize from '../middlewares/authorization';
 import allowUser from '../middlewares/allowUser';
-
 import Recipe from '../controllers/recipeControl';
 import Review from '../controllers/reviewControl';
 import Vote from '../controllers/voteControl';
@@ -8,9 +9,12 @@ import Favourite from '../controllers/favouriteControl';
 import userRoutes from './user';
 
 const router = (app) => {
-  app.get('/', (req, res) => {
+  app.get('/api', (req, res) => {
     res.status(200)
       .json({ message: 'Welcome to my api' });
+  });
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../../client/index.html'));
   });
   userRoutes(app);
 
