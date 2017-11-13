@@ -9,28 +9,26 @@ import { connect } from 'react-redux';
  * @class Login
  * @extends {React.Component}
  */
-export class Login extends React.Component {
+export default class Login extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			email: '',
+			password: ''
+		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
 	}
 	
 	handleSubmit(e) {
 		e.preventDefault();
-		let data = this.props.userState;
-		this.props.click(data);
-		/* axios.post('/api/v1/users/signin', this.state)
+		 axios.post('/api/v1/users/signin', this.state)
 			.then(() => 'No errors')
-			.catch(error => error); */
+			.catch(error => error); 
 	}
 	
 	onChange(e) {
-		//this.setState({ [e.target.name]: e.target.value });
-		let email; password;
-		/* let data = { [e.target.name]: e.target.value };
-		console.log(data);
-		this.props.login(data); */
+		this.setState({ [e.target.name]: e.target.value });
 	}
 
 	
@@ -60,7 +58,7 @@ export class Login extends React.Component {
 											<input type="email" 
 											onChange={this.onChange} 
 											name="email" 
-											value={this.props.userState.email} 
+											value={this.state.email} 
 											className="form-control" 
 											placeholder="Email " aria-label="email" aria-describedby="email-addon" />
 										</div>
@@ -71,7 +69,7 @@ export class Login extends React.Component {
 											<input type="password" 
 											onChange={this.onChange} 
 											name="password" 
-											value={this.props.userState.password} 
+											value={this.state.password} 
 											className="form-control" 
 											placeholder="Password" 
 											aria-label="password" 
@@ -92,25 +90,3 @@ export class Login extends React.Component {
     );
   }
 }
- const mapStateToProps = (state) => {
-	 return {
-		 userState: state.login
-	 }
- }
- const mapDispatchToProps = (dispatch) => {
-	 return {
-		 login: (data) => {
-			 dispatch({
-				 type: 'Login',
-				 payload: data
-			 });
-		 },
-		 click: (data) => {
-			 dispatch({
-				 type: 'user',
-				 payload: data
-			 });
-		 }
-	 };
- };
- export default connect(mapStateToProps, mapDispatchToProps)(Login)
