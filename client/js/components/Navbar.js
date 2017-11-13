@@ -12,7 +12,7 @@ export class Navbar extends React.Component {
   render() {
     if (this.props.user) {
 			return (
-				<div className="container-fluid">
+				<div className="container">
 				<nav className="row navbar navbar-expand-lg navbar-light bg-light">
 						<div className="col-sm-4">
 							<div className="collapse navbar-collapse" id="navbarSupportedContent">

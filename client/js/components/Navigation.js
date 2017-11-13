@@ -12,7 +12,7 @@ export class Navigation extends React.Component {
 				<Navbar />
 				<Login />
 				<Signup />
-		</div>
+			</div>
 		) 
 	}
 }

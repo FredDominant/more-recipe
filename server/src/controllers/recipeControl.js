@@ -11,30 +11,19 @@ export default class Recipe {
   /**
    *
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @param {request} req HTTP request
+   * @param {request} res HTTP response
+   *
+   * @returns {object} JSON and HTTP status code
    * @memberof Recipe
    */
   static addRecipe(req, res) {
     const directions = req.body.directions;
     const name = req.body.name;
     const ingredients = req.body.ingredients;
-    if (!ingredients) {
-      return res.status(400).json({ message: 'Ingredients field is empty' });
-    }
-    if (!name) {
-      return res.status(400).json({ message: 'Recipe name is empty' });
-    }
-    if (name.length < 5) {
-      return res.status(400).json({ message: 'Recipe name should be at least 6 characters' });
-    }
-    if (!directions) {
-      return res.status(400).json({ message: 'Add directions to prepare recipe' });
-    }
     recipe.findOne({
       where: {
-        name: req.body.name.toLowerCase(),
+        name: name.toLowerCase(),
         userId: req.decoded.id
       }
     })
@@ -42,55 +31,48 @@ export default class Recipe {
         if (foundRecipe) {
           return res.status(403)
             .json({
-              status: 'Fail',
-              message: 'You already have a recipe with this name'
+              Message: 'You already have a recipe with this name'
             });
         }
         if (!foundRecipe) {
           recipe.create({
-            name: req.body.name.toLowerCase(),
+            name: name.toLowerCase(),
             userId: req.decoded.id,
-            ingredients: req.body.ingredients.toLowerCase(),
-            directions: req.body.directions.toLowerCase()
+            ingredients: ingredients.toLowerCase(),
+            directions: directions.toLowerCase()
           })
-            .then((newRecipe) => { return res.status(201)
-              .json({
-                status: 'success',
-                recipe: newRecipe
-              });
+            .then((newRecipe) => {
+              return res.status(201)
+                .json({
+                  Recipe: newRecipe
+                });
             })
-            .catch((error) => { return res.status(500)
-              .json({
-                status: 'Fail',
-                message: error
-              });
+            .catch(() => {
+              return res.status(500)
+                .json({
+                  Message: 'Internal server error. Unable to complete'
+                });
             });
         }
       })
-      .catch((error) => { return res.status(500)
-        .json({
-          status: 'fail',
-          error
-        });
+      .catch(() => { 
+        return res.status(500)
+          .json({
+            Message: 'Internal server error. Unable to Add new recipe'
+          });
       });
   }
   /**
-   * This function updates a user's recipe
+   * @description This function updates a user's recipe
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @param {request} req HTTP Reques
+   * @param {response} res HTTP Response
+   *
+   * @returns {object} JSON and HTTP status code
+   *
    * @memberof Recipe
    */
   static updateRecipe(req, res) {
-    if (!(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Include ID of recipe to update' });
-    }
-    if (isNaN(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Invalid recipeId. recipeId should be a number' });
-    }
     const name = req.body.name;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
@@ -104,59 +86,51 @@ export default class Recipe {
     })
       .then((foundRecipe) => {
         if (foundRecipe) {
-          const update = {
+          const newRecipe = {
             name: name ? name.toLowerCase() : foundRecipe.dataValues.name,
             ingredients: ingredients ? ingredients.toLowerCase() : foundRecipe.dataValues.ingredients,
             directions: directions ? directions.toLowerCase() : foundRecipe.dataValues.directions
           };
-          foundRecipe.update(update)
-            .then((updatedRecipe) => { return res.status(200)
-              .json({
-                status: 'Update successful',
-                recipe: updatedRecipe
-              });
+          foundRecipe.update(newRecipe)
+            .then((updatedRecipe) => {
+              return res.status(200)
+                .json({
+                  Message: 'Update successful',
+                  Recipe: updatedRecipe
+                });
             })
-            .catch((error) => { return res.status(500)
-              .json({
-                status: 'Fail',
-                message: error
-              });
+            .catch(() => {
+              return res.status(500)
+                .json({
+                  Message: 'Internal server error.'
+                });
             });
         }
         if (!foundRecipe) {
           return res.status(404)
             .json({
-              status: 'Fail',
-              message: `Can't find recipe with id ${req.params.recipeId} by you`
+              Message: `Can't find recipe with id ${req.params.recipeId} by you`
             });
         }
       })
-      .catch((error) => {
-        console.info(error);
+      .catch(() => {
         return res.status(500)
           .json({
-            status: 'Fail',
-            error,
+            Message: 'Internal server error. Unable to complete request'
           });
       });
   }
   /**
+   * This method deletes a recipe
    *
+   * @param {request} req HTTP request
+   * @param {response} res HTTP response
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @returns {object} JSON HTTP and status code
+   *
    * @memberof Recipe
    */
   static deleteRecipe(req, res) {
-    if (!(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Include ID of recipe to delete' });
-    }
-    if (isNaN(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Invalid recipeId. recipeId should be a number' });
-    }
     recipe.findOne({
       where: {
         id: req.params.recipeId,
@@ -169,8 +143,7 @@ export default class Recipe {
         if (!foundRecipe) {
           return res.status(404)
             .json({
-              status: 'Fail',
-              message: `Can't find recipe with id ${req.params.recipeId} by you`
+              Message: `Can't find recipe with id ${req.params.recipeId} by you`
             });
         }
         if (foundRecipe) {
@@ -184,102 +157,114 @@ export default class Recipe {
           })
             .then(() => res.status(200)
               .json({
-                status: 'Success',
-                message: 'recipe deleted'
+                Message: 'recipe deleted'
               }))
-            .catch(error => res.status(500)
-              .json({ message: error }));
+            .catch(() => res.status(500)
+              .json({ Message: 'Internal server error' }));
         }
         if (!foundRecipe) {
           return res.status(404)
             .json({
-              status: 'Fail',
-              message: `Can't find recipe with id ${req.params.recipeId} by you`
+              Message: `Can't find recipe with id ${req.params.recipeId} by you`
             });
         }
       })
-      .catch((error) => { return res.status(500)
-        .json({
-          status: 'Fail',
-          error,
-        });
+      .catch(() => { 
+        return res.status(500)
+          .json({
+            Message: 'Internal server error.'
+          });
       });
   }
   /**
+   * This method returns all recipes
    *
+   * @param {request} req HTTP request
+   * @param {response} res HTTP response
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @returns {object} JSON and HTTP Status Code
+   *
    * @memberof Recipe
    */
   static getAll(req, res) {
     if (!req.query.sort) {
-      recipe.findAll()
-        .then((recipes) => {
-          if (recipes) {
-            if (recipes.length < 1) {
-              return res.status(20)
-                .json({ message: 'There are currently no recipes in collection' });
-            }
-            return res.status(200)
-              .json({
-                status: 'Success',
-                recipes,
-              });
-          }
-          if (!recipes) {
-            return res.status(404)
-              .json({ message: 'No recipes found' });
-          }
+      recipe.findAndCountAll().then((all) => {
+        const limit = 3;
+        let offset = 0;
+        const page = parseInt((req.query.page || 1), 10);
+        const numberOfItems = all.count;
+        const pages = Math.ceil(numberOfItems / limit);
+        offset = limit * (page - 1);
+        recipe.findAll({
+          limit,
+          offset,
+          order: [
+            ['id', 'ASC']
+          ]
         })
-        .catch((error) => { return res.status(500)
-          .json({
-            error,
+          .then((recipes) => {
+            if (recipes) {
+              if (recipes.length < 1) {
+                return res.status(404)
+                  .json({ Message: 'There are currently no recipes in collection' });
+              }
+              return res.status(200)
+                .json({
+                  NumberOfItems: numberOfItems,
+                  Limit: limit,
+                  Pages: pages,
+                  CurrentPage: page,
+                  Recipes: recipes
+                });
+            }
+          })
+          .catch(() => { 
+            return res.status(500)
+              .json({
+                Message: 'Unable to complete request. Internal server error.'
+              });
           });
-        });
+      }).catch(() => { 
+        return res.status(500)
+          .json({ Message: 'Internal server' });
+      });
     }
     if (req.query.sort) {
       recipe.findAll()
-        .then((recipes) => {
-          if (recipes) {
-            const sorted = recipes.sort((a, b) => b.upvote - a.upvote);
+        .then((allRecipes) => {
+          if (allRecipes) {
+            if (allRecipes.length < 1) {
+              return res.status(404)
+                .json({
+                  Message: 'There are currently no recipes'
+                });
+            }
+            const sortedRecipes = allRecipes.sort((a, b) => b.upvote - a.upvote);
             return res.status(200)
               .json({
-                status: 'Succes',
-                sorted,
+                Recipes: sortedRecipes
               });
           }
-          if (!recipes) {
-            return res.status(200)
-              .json({ message: 'Currently no recipes' });
-          }
         })
-        .catch((error) => { return res.status(500)
-          .json({
-            status: 'Fail',
-            error,
-          });
+        .catch(() => {
+          return res.status(500)
+            .json({
+              Message: 'Internal server error. Unable to complete request.'
+            });
         });
     }
   }
   /**
+   * @description This method returns details of only one recipe
    *
+   * @param {request} req HTTP request
+   * @param {response} res HTTP response
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @returns {object} JSON and HTTP status code
+   *
    * @memberof Recipe
    */
   static viewOne(req, res) {
-    if (!(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Include ID of recipe' });
-    }
-    if (isNaN(req.params.recipeId)) {
-      return res.status(400)
-        .json({ message: 'Invalid recipeId. recipeId should be a number' });
-    }
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
@@ -294,10 +279,9 @@ export default class Recipe {
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
-            .json({ message: `Can't find recipe with id ${req.params.recipeId}` });
+            .json({ Message: `Can't find recipe with id ${req.params.recipeId}` });
         }
         if (foundRecipe) {
-          // add reviews
           if (req.decoded) {
             if (req.decoded.id !== foundRecipe.dataValues.userId) {
               foundRecipe.increment('views');
@@ -308,61 +292,92 @@ export default class Recipe {
           }
           return res.status(200)
             .json({
-              status: 'Success',
-              foundRecipe,
+              Recipe: foundRecipe,
             });
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         return res.status(500)
           .json({
-            status: 'Fail',
-            error,
+            Message: 'Internal server error. Unable to complete request.'
           });
       });
   }
   /**
+   * This method gets all recipes by current user
    *
+   * @param {request} req HTTP request
+   * @param {response} res HHTP response
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {obj} obj
+   * @returns {object} JSON and HTTP Status Code
+   *
    * @memberof Recipe
    */
   static getAllUser(req, res) {
-    recipe.findAll({
+    recipe.findAndCountAll({
       where: {
         userId: req.decoded.id
       },
       include: [
         { model: models.Review, attributes: ['content'] }
       ]
-    })
-      .then((all) => {
-        if (!all) {
-          return res.status(404)
-            .json({ message: 'You currently have no recipes' });
-        }
-        if (all) {
-          return res.status(200)
-            .json({
-              status: 'Success',
-              recipes: all
-            });
-        }
+    }).then((allUser) => {
+      const page = parseInt((req.query.page || 1), 10);
+      const numberOfItems = allUser.count;
+      const limit = 3;
+      const pages = Math.ceil(numberOfItems / limit);
+      let offset = 0;
+      offset = limit * (page - 1);
+      recipe.findAll({
+        where: {
+          userId: req.decoded.id
+        },
+        include: [
+          { model: models.Review, attributes: ['content'] }
+        ],
+        limit,
+        offset,
+        order: [
+          ['id', 'ASC']
+        ]
       })
-      .catch(() => { return res.status(500)
-        .json({ message: 'Unable to find all recipes by you' });
-      });
+        .then((allUserRecipes) => {
+          if (allUserRecipes) {
+            if (allUserRecipes.length < 1) {
+              return res.status(404)
+                .json({ Message: 'You currently have no recipes in catalogue' });
+            }
+            return res.status(200)
+              .json({
+                NumberOfItems: numberOfItems,
+                Limit: limit,
+                NumberOfPages: pages,
+                CurrentPage: page,
+                Recipes: allUserRecipes
+              });
+          }
+        })
+        .catch(() => { 
+          return res.status(500)
+            .json({ Message: 'Unable to find all recipes by you' });
+        });
+    }).catch(() => {
+      return res.status(500)
+        .json({
+          Message: 'Internal server error'
+        });
+    });
+
   }
   /**
  *
  *
  * @static
- * @param {any} req
- * @param {any} res
- * @returns {obj} obj
+ * @param {request} req HTTP request
+ * @param {response} res HTTP response
+ *
+ * @returns {obj} JSON and HTTP Status code
+ *
  * @memberof Recipe
  */
   static search(req, res) {
@@ -373,30 +388,48 @@ export default class Recipe {
     const queryName = search.map((value) => {
       return { name: { $iLike: `%${value}%` } };
     });
-    recipe.findAll({
+    recipe.findAndCountAll({
       where: {
         $or:
           queryIngredient.concat(queryName)
       }
-    }).then((found) => {
-      if (!found) {
-        return res.status(404)
+    }).then((allSearch) => {
+      let offset = 0;
+      const limit = 3;
+      const numberOfItems = allSearch.count;
+      const page = parseInt((req.query.page || 1), 10);
+      const pages = Math.ceil(numberOfItems / limit);
+      offset = limit * (page - 1);
+      recipe.findAll({
+        where: {
+          $or:
+            queryIngredient.concat(queryName)
+        },
+        limit,
+        offset,
+        order: [
+          ['id', 'ASC']
+        ]
+      }).then((foundRecipe) => {
+        if (foundRecipe.length < 1) {
+          return res.status(404)
+            .json({
+              Message: 'No match(es) found'
+            });
+        }
+        return res.status(200)
           .json({
-            message: 'No match(es) found'
+            NumberOfItems: numberOfItems,
+            NumberOfPages: pages,
+            CurrentPage: page,
+            Limit: limit,
+            Recipe: foundRecipe
           });
-      }
-      if (found.length < 1) {
-        return res.status(404)
-          .json({
-            message: 'No match(es) found'
-          });
-      }
-      return res.status(200)
-        .json({
-          Status: 'Success',
-          result: found
-        });
-    }).catch(error => res.status(500)
-      .json({ status: 'Fail', message: error }));
+      }).catch(() => res.status(500)
+        .json({ Message: 'Internal server error. Unable to complete search.' }));
+    }).catch(() => {
+      return res.status(500)
+        .json({ Message: 'Internal server error' });
+    });
   }
 }
