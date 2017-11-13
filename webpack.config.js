@@ -7,7 +7,7 @@ module.exports = {
     path.resolve(__dirname, 'client/js/components/Navbar.js'),
     path.resolve(__dirname, 'client/js/components/Search.js'),
     path.resolve(__dirname, 'client/js/components/Signup.js'),
-    path.resolve(__dirname, 'client/css/style.css')
+    path.resolve(__dirname, 'client/css/style.scss')
   ],
   output: {
     path: '/',
@@ -17,8 +17,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loader: ['style-loader', 'css-loader'],
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader'],
         include: path.resolve(__dirname, './client/css/'),
       },
       {
