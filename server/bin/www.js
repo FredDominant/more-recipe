@@ -3,7 +3,7 @@ import http from 'http';
 import app from '../app';
 
 dotenv.config();
-const port = (process.env.PORT || 2020);
+const port = (process.env.PORT || 5050);
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => {

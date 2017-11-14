@@ -1,33 +1,26 @@
 import jwt from 'jsonwebtoken';
-import validate from 'validator';
+
 import models from '../models';
 import * as passwordHelper from '../functions/encrypt';
-
 
 const helper = new passwordHelper.default();
 const user = models.User;
 const secret = process.env.SECRET;
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class User
  */
 export default class User {
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
-   * @memberof User
-   */
-  /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @description Takes in request and response as parameters and returns an object
+   *
+   * @param {request} req HTTP request
+   * @param {response} res HTTP response
+   *
+   * @returns {object} object with message and status code
+   *
    * @memberof User
    */
   static createUser(req, res) {
@@ -35,153 +28,109 @@ export default class User {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const confirmPassword = req.body.confirmPassword;
-
-    if (!firstname) {
-      return res.status(400).json({ message: 'First name field is empty' });
-    }
-    if (!lastname) {
-      return res.status(400).json({ message: 'Lastname field is empty' });
-    }
-    if (!password) {
-      return res.status(400).json({ message: 'Password field is empty' });
-    }
-    if (password.length < 6) {
-      return res.status(400).json({ message: 'Passwords should be at leats 6 characters'});
-    }
-    if (!confirmPassword) {
-      return res.status(400).json({ message: 'confirmPassword field is empty' });
-    }
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: 'Passwords don\'t match' });
-    }
-    if (!email) {
-      return res.status(400).json({ message: 'Email field is empty' });
-    }
-    if (typeof email !== 'string') {
-      return res.status(400).json({ message: 'Invalid Email' });
-    }
-
     user.findOne({
-      where: { email: req.body.email }
+      where: { email }
     })
       .catch(() => res.status(500)
-        .json({ message: 'A server error ocurred, Please try again later' }))
-      .then((existing) => {
-        if (!existing) {
-          console.log(req.body.password);
-          const Password = helper.hashPassword(req.body.password);
+        .json({ Message: 'A server error ocurred, Please try again later' }))
+      .then((existingUser) => {
+        if (!existingUser) {
+          const Password = helper.hashPassword(password);
           user.create({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
+            firstname,
+            lastname,
+            email,
             password: Password
           }).then((newUser) => {
             const token = jwt.sign({
               id: newUser.id,
-              firstname: newUser.firstname,
-              lastname: newUser.lastname,
-              email: newUser.email,
               notify: newUser.notify
             }, secret, { expiresIn: 86400 });
             return res.status(201)
               .json({
-                status: 'success',
                 token,
-                message: 'Account created'
+                User: {
+                  FirstName: newUser.email,
+                  LastName: newUser.lastname,
+                  Email: newUser.email
+                },
+                Message: 'Account created'
               });
-          }).catch((error) => { return res.status(400)
-            .json({
-              status: 'fail',
-              message: error.message
-            });
+          }).catch(() => { 
+            return res.status(500)
+              .json({
+                Message: 'Unable to create new user. Please try again later'
+              });
           });
         } else {
-          return res.status(403)
+          return res.status(401)
             .json({
-              status: 'Fail',
-              message: 'User with email already exists'
+              Message: 'Email already registered'
             });
         }
       });
   }
 
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @description This function handles a user log in
+   *
+   * @param {request} req HTTP parameter
+   * @param {response} res HTTP parameter
+   *
+   * @returns {object} JSON
    * @memberof User
    */
   static userLogin(req, res) {
     const email = req.body.email;
     const password = req.body.password;
-    if (!password) {
-      return res.status(400).json({ message: 'Password field is empty' });
-    }
-    if (!email) {
-      return res.status(400).json({ message: 'Email field is empty' });
-    }
     user.findOne({
-      where: { email: req.body.email }
+      where: { email }
     })
       .then((foundUser) => {
         if (foundUser) {
-          const result = helper.decrypt(req.body.password, foundUser.dataValues.password);
+          const result = helper.decrypt(password, foundUser.dataValues.password);
           if (result) {
             const token = jwt.sign({
               id: foundUser.dataValues.id,
-              firstname: foundUser.dataValues.firstname,
-              lastname: foundUser.dataValues.lastname,
-              email: foundUser.dataValues.email
+              notify: foundUser.dataValues.notify
             }, secret, { expiresIn: 86400 });
             res.status(200)
               .json({
-                status: 'success',
-                token,
-                message: 'You\'re now logged in'
+                Token: token,
+                User: {
+                  FirstName: foundUser.dataValues.firstname,
+                  LastName: foundUser.dataValues.lastname,
+                  Email: foundUser.dataValues.email
+                },
+                Message: 'You\'re now logged in'
               });
           } else {
             res.status(401)
               .json({
-                status: 'fail',
-                message: 'Email and password don\'t match'
+                Message: 'Invalid login credentials'
               });
           }
         } else {
           res.status(401)
             .json({
-              status: 'fail',
-              message: 'Email and password don\'t match'
+              Message: 'Invalid login credentials'
             });
         }
       });
   }
   /**
-   * 
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @description This takes in reques, and response to update a user's details
+   * @param {request} req HTTP request parameter
+   * @param {response} res HTTP response parameter
+   *
+   * @returns {object} JSON
    * @memberof User
    */
   static updateUser(req, res) {
     const email = req.body.email;
     const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
-
-    if (!validate.isEmail(email)) {
-      return res.status(400)
-        .json({ message: 'Email is not valid' });
-    }
-    if (password !== confirmPassword) {
-      return res.status(400)
-        .json({
-          status: 'Fail',
-          message: 'Passwords don\'t match'
-        });
-    }
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
     user.findOne({
       where: {
         id: req.decoded.id
@@ -190,78 +139,89 @@ export default class User {
       .then((foundUser) => {
         if (!foundUser) {
           return res.status(401)
-            .json({ message: 'Unauthorized!' });
+            .json({ Message: 'You\'re not authorized to perform this operation' });
         }
         if (foundUser) {
-          const Update = {
-            email: email || foundUser.dataValues.email,
-            password: foundUser.dataValues.password || helper.hashPassword(password)
+          const newData = {
+            email: email ? email.trim() : foundUser.dataValues.email,
+            password: password ? helper.hashPassword(password) : foundUser.dataValues.password,
+            firstname: firstname ? firstname.trim() : foundUser.dataValues.firstname,
+            lastname: lastname ? lastname.trim() : foundUser.dataValues.lastname
           };
-          foundUser.update(Update)
-            .then(() => { return res.status(200)
-              .json({ message: 'Profile update successful' });
+          foundUser.update(newData)
+            .then((updatedData) => { 
+              return res.status(200)
+                .json({
+                  Message: 'Profile update successful',
+                  NewDetails: {
+                    FirstName: updatedData.dataValues.firstname,
+                    LastName: updatedData.dataValues.lastname,
+                    Email: updatedData.dataValues.email
+                  }
+                });
             })
-            .catch((error) => {
-              console.log(error);
+            .catch(() => {
               return res.status(500)
-                .json({ message: 'Internal server error. Unable to update profile' });
+                .json({ Message: 'Internal server error. Unable to update profile' });
             });
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         return res.status(500)
-          .json({ message: 'Internal server error. Unable to update profile' });
+          .json({ Message: 'Internal server error. Unable to update profile' });
       });
   }
   /**
-   * 
-   * 
+   * This function deletes a user
    * @static
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   * @param {request} req HTTP request parameter
+   * @param {response} res HTTP response parameter
+   * @returns {object} JSON
    * @memberof User
    */
   static deleteUser(req, res) {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
-    
     if (!password) {
-      return res.status(400).json({ message: 'enter a password' });
+      return res.status(400).json({ Message: 'enter a password' });
     }
     if (!confirmPassword) {
-      return res.status(400).json({ message: 'confirm Password field is empty' });
+      return res.status(400).json({ Message: 'confirm Password field is empty' });
     }
     if (password !== confirmPassword) {
-      return res.status(400).json({ message: 'Password\'s do not match' });
+      return res.status(400).json({ Message: 'Password\'s do not match' });
     }
     user.findOne({
       where: {
-        id: req.decoded.id,
-        $and: { email: req.decoded.email }
+        id: req.decoded.id
       }
     }).then((foundUser) => {
       if (!foundUser) {
-        return res.status(404).json({ message: 'Unauthorized' });
+        return res.status(404)
+          .json({ Message: 'You\'re Unauthorized to perform this operation' });
       }
-      const encrypted = helper.hashPassword(password);
-      if (foundUser.password === encrypted) {
-        user.destroy({ // confirm if user id and password match
+      const encryptedPassword = helper.hashPassword(password);
+      if (foundUser.password === encryptedPassword) {
+        user.destroy({
           where: {
             id: req.decoded.id,
-            $and: { password: encrypted }
+            $and: { password: encryptedPassword }
           }
         }).then(() => {
-          return res.status(200).json({ message: 'Account deleted' });
+          return res.status(200)
+            .json({ Message: 'Account deleted' });
         }).catch(() => {
-          return res.status(500).json({ message: 'Unable to delete account' });
+          return res.status(500)
+            .json({ Message: 'Internal server error' });
         });
       } else {
-        return res.status(403).json({ message: 'Passwords do not match' });
+        return res.status(401)
+          .json({ Message: 'Passwords do not match' });
       }
     }).catch(() => {
-      return res.status(500).json({ message: 'Unable to complete request' });
+      return res.status(500)
+        .json({ Message: 'Unable to complete request' });
     });
   }
 }

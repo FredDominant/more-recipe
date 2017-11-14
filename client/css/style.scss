@@ -1,0 +1,93 @@
+.search-body {
+	width: 100%;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.icons {
+	margin-left: 7%;
+}
+
+#nav2 {
+	width: 100%;
+}
+
+#signup-title {
+	font-family: 'Berkshire Swash', cursive;
+	margin-left: 33%;
+	color: brown;
+	margin-top: 20px;
+}
+
+.signup-text {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
+	text-align: center;
+	margin-left: 30%;
+	font-size: smaller;
+}
+
+#login-title {
+	font-family: 'Berkshire Swash', cursive;
+	color: brown;
+	margin-top: 20px;
+	margin-left: 35%;
+}
+
+.cancel-login,
+.cancel-signup {
+	margin-right: 10px; 
+}
+
+#search-intro {
+	font-family: 'Berkshire Swash', cursive;
+	margin-right: 10px;
+	color: brown;
+}
+span.nav-link a {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+.col-sm-6 a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#search-box {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-style: italic;
+	width: 30%;
+}
+
+.fa-search {
+	color: white;
+}
+
+span.routes a {
+	color: black;
+}
+
+#title {
+	font-family: 'Berkshire Swash', cursive;
+	font-size: xx-large;
+	color: brown;
+}
+.form-control {
+	width: 20%;
+}
+
+#register-button {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	cursor: pointer;
+}
+
+.register-text {
+	text-align: center;
+	margin-left: 40%;
+}
+
+a {
+	color: black;
+}

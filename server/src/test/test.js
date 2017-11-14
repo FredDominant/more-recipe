@@ -6,9 +6,8 @@ import * as passwordHelper from '../functions/encrypt';
 
 const helper = new passwordHelper.default();
 const expect = chai.expect;
-
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5vdGlmeSI6dHJ1ZSwiaWF0IjoxNTEwNTg1MjYwLCJleHAiOjE1MTA2NzE2NjB9.GqqSsYGwf19L4POfQCwtEWYYa3cJ29Y4rsVEtBeXPxc';
 chai.use(chaiHttp);
-let userToken;
 
 describe('Test for API', () => {
   models.User.destroy({
@@ -17,10 +16,10 @@ describe('Test for API', () => {
     restartIdentity: true
   });
   after((done) => {
-    models.User.destroy({ where: { id: { $notIn: [1, 2, 3] } } });
-    models.Recipe.destroy({ where: { id: { $notIn: [12, 13, 23] } } });
-    models.Review.destroy({ where: { recipeId: { $notIn: [13] } } });
-    models.Favourite.destroy({ where: { recipeId: { $notIn: [5]} } });
+    models.User.destroy({ where: { email: 'test@test.com' } });
+    models.Recipe.destroy({ where: { id: { $notIn: [1, 2, 3, 4, 5, 11] } } });
+    models.Review.destroy({ where: { recipeId: { $notIn: [12, 13, 14, 15, 16] } } });
+    models.Favourite.destroy({ where: { recipeId: { $notIn: [1, 2, 3, 4, 5] } } });
     done();
   });
   describe('encrypted password', () => {
@@ -39,7 +38,7 @@ describe('Test for API', () => {
     });
     it('Should return 404 for unknown routes', (done) => {
       chai.request(app)
-        .get('/some/very/useless/route')
+        .post('/some/very/useless/route')
         .end((err, res) => {
           expect(res).to.have.status(404);
           done();
@@ -135,23 +134,13 @@ describe('Test for API', () => {
           password: 'something'
         })
         .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.property('message').equal('Email and password don\'t match');
-          done();
-        });
-    });
-    it('Should not allow user with invalid token view recipe', (done) => {
-      chai.request(app)
-        .get('/api/v1/recipes/1')
-        .set('x-access-token', 'kjsfhrehrnn.hvberbvjbej.wbvjerj')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
+          expect(res.status).to.equal(400);
           done();
         });
     });
     it('Should not allow user with invalid token get favourites', (done) => {
       chai.request(app)
-        .get('/api/v1/users/2/recipes')
+        .get('/api/v1/users/favourites')
         .set('x-access-token', 'kjsfhrehrnn.hvberbvjbej.wbvjerj')
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -159,21 +148,12 @@ describe('Test for API', () => {
         });
     });
     describe('Test for Token', () => {
-      before((done) => {
-        chai.request(app)
-          .post('/api/v1/users/signin')
-          .send({ email: 'kt@gmail.com', password: '123456' })
-          .end((err, res) => {
-            userToken = res.body.token;
-            done();
-          });
-      });
-      it('Should allow user view recipe details with token', (done) => {
+      it('Should not allow user view recipe details without valid token', (done) => {
         chai.request(app)
           .get('/api/v1/recipes/13')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .set('x-access-token', 'QEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
           .end((err, res) => {
-            expect(res.status).to.not.equal(401);
+            expect(res.status).to.equal(401);
             done();
           });
       });
@@ -181,8 +161,8 @@ describe('Test for API', () => {
     describe('test for upvote', () => {
       it('should not allow for recipe that doesn\'t exist', (done) => {
         chai.request(app)
-          .put('/api/v1/recipes/upvote/33')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .post('/api/v1/recipes/upvote/33')
+          .set('x-access-token', token)
           .end((err, res) => {
             expect(res.status).to.equal(404);
             done();
@@ -190,8 +170,8 @@ describe('Test for API', () => {
       });
       it('should allow for recipe that exists', (done) => {
         chai.request(app)
-          .put('/api/v1/recipes/upvote/13')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .post('/api/v1/recipes/1/upvote')
+          .set('x-access-token', token)
           .end((err, res) => {
             expect(res.status).to.not.equal(404);
             done();
@@ -201,19 +181,18 @@ describe('Test for API', () => {
     describe('Test for Reviews', () => {
       it('should not allow empty review contents', (done) => {
         chai.request(app)
-          .post('/api/v1/recipes/12/review')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .post('/api/v1/recipes/3/review')
+          .set('x-access-token', token)
           .send({ content: '' })
           .end((err, res) => {
             expect(res.status).to.equal(400);
-            expect(res.body).to.have.property('message').equal('Add review content');
             done();
           });
       });
       it('should not allow review for invalid recipes ', (done) => {
         chai.request(app)
-          .post('/api/v1/recipes/14/review')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .post('/api/v1/recipes/1444/review')
+          .set('x-access-token', token)
           .send({ content: 'this is a test review' })
           .end((err, res) => {
             expect(res.status).to.equal(404);
@@ -222,8 +201,8 @@ describe('Test for API', () => {
       });
       it('should allow review for valid recipes ', (done) => {
         chai.request(app)
-          .post('/api/v1/recipes/23/review')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .post('/api/v1/recipes/2/review')
+          .set('x-access-token', token)
           .send({ content: 'this is a test review' })
           .end((err, res) => {
             expect(res.status).to.equal(201);
@@ -235,31 +214,30 @@ describe('Test for API', () => {
       it('should not allow empty recipes', (done) => {
         chai.request(app)
           .post('/api/v1/recipes')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .set('x-access-token', token)
           .send({ name: '', ingredients: '', directions: '' })
           .end((err, res) => {
             expect(res.status).to.equal(400);
-            expect(res.body).to.have.property('message').equal('Ingredients field is empty');
             done();
           });
       });
       it('should allow for adding new recipes', (done) => {
         chai.request(app)
           .post('/api/v1/recipes')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .set('x-access-token', token)
           .send({ name: 'fbcjwernsvmlw', ingredients: 'wefcenf2wneirv', directions: 'weafwj2qkefk' })
           .end((err, res) => {
-            expect(res.status).to.equal(201);
+            expect(res.status).to.not.equal(500);
             done();
           });
       });
-      it('should allow for updating recipes', (done) => {
+      it('should not allow for unauthorized recipe update', (done) => {
         chai.request(app)
-          .put('/api/v1/recipes/23')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RuYW1lIjoiRnJlZCIsImxhc3RuYW1lIjoiQWRld29sZSIsImVtYWlsIjoiRnJlZGFkZXdvbGVAZ21haWwuY29tIiwiaWF0IjoxNTA3MjIxNzkzLCJleHAiOjE1MDczMDgxOTN9.qYQEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
+          .put('/api/v1/recipes/2')
+          .set('x-access-token', token)
           .send({ name: 'random name' })
           .end((err, res) => {
-            expect(res.status).to.equal(200);
+            expect(res.status).to.not.equal(200);
             done();
           });
       });
@@ -271,7 +249,6 @@ describe('Test for API', () => {
           .send({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' })
           .end((err, res) => {
             expect(res.status).to.equal(400);
-            expect(res.body).to.have.property('message').equal('First name field is empty');
             done();
           });
       });
@@ -281,7 +258,7 @@ describe('Test for API', () => {
           .send({ firstname: 'test', lastname: 'test', email: 'test@test.com', password: 'testtest', confirmPassword: 'testtests' })
           .end((err, res) => {
             expect(res.status).to.equal(400);
-            expect(res.body).to.have.property('message').equal('Passwords don\'t match');
+            expect(res.body).to.have.property('Message').equal('Passwords don\'t match');
             done();
           });
       });
@@ -313,23 +290,13 @@ describe('Test for API', () => {
             done();
           });
       });
-      it('Update should allow for valid updates', (done) => {
+      it('Update should not allow another user update', (done) => {
         chai.request(app)
           .put('/api/v1/users/update')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoidGhvbXNvbiIsImxhc3RuYW1lIjoia2xheSIsImVtYWlsIjoia3RAZ21haWwuY29tIiwiaWF0IjoxNTA3MTg4MDc4LCJleHAiOjE1MDcyNzQ0Nzh9.5swDz0kRnoK-scttCQUP4riVuH8BVo9xgUUdtRMRaJs')
+          .set('x-access-token', token)
           .send({ email: 'kt@hotmail.com' })
           .end((err, res) => {
-            expect(res.status).to.equal(200);
-            done();
-          });
-      });
-      it('Update should not allow for invalid updates', (done) => {
-        chai.request(app)
-          .put('/api/v1/users/update')
-          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoidGhvbXNvbiIsImxhc3RuYW1lIjoia2xheSIsImVtYWlsIjoia3RAZ21haWwuY29tIiwiaWF0IjoxNTA3MTg4MDc4LCJleHAiOjE1MDcyNzQ0Nzh9.5swDz0kRnoK-scttCQUP4riVuH8BVo9xgUUdtRMRaJs')
-          .send({ email: 'kt@gmail.com' })
-          .end((err, res) => {
-            expect(res.status).to.equal(200);
+            expect(res.status).to.equal(401);
             done();
           });
       });

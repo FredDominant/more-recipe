@@ -20,20 +20,13 @@ export default class PasswordHelper {
     const hash = bcrypt.hashSync(password, this.salt);
     return hash;
   }
-  /**
-   * 
-   * 
-   * @param {any} password 
-   * @param {any} hash 
-   * @memberof PasswordHelper
-   */
 
   /**
 	 * 
 	 * 
-	 * @param {any} password 
-	 * @param {any} hash 
-	 * @returns 
+	 * @param {any} password
+	 * @param {any} hash
+	 * @returns {boolean} true or false
 	 * @memberof PasswordHelper
 	 */
   decrypt(password, hash) {

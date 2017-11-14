@@ -1,16 +1,17 @@
 import User from '../controllers/userControl';
 import authorize from '../middlewares/authorization';
 import Favourite from '../controllers/favouriteControl';
+import Validate from '../functions/validate';
 
 /**
- * 
- * 
+ *
+ * @returns {null} null
  * @export
- * @param {any} app 
+ * @param {server} app server
  */
 export default function userRoutes(app) {
-  app.post('/api/v1/users/signup', User.createUser); // user signup route
-  app.post('/api/v1/users/signin', User.userLogin);
-  app.put('/api/v1/users/update', authorize, User.updateUser); // user update profile
-  app.get('/api/v1/users/:userId/recipes', authorize, Favourite.getAll); // User can get all favourites
+  app.post('/api/v1/users/signup', Validate.userSignup, User.createUser); // user signup route
+  app.post('/api/v1/users/signin', Validate.userLogin, User.userLogin); // user login route
+  app.put('/api/v1/users/update', authorize, Validate.updateUser, User.updateUser); // user update profile
+  app.get('/api/v1/users/favourites', authorize, Favourite.getAll); // User can get all favourites
 }
