@@ -6,7 +6,7 @@ import * as passwordHelper from '../functions/encrypt';
 
 const helper = new passwordHelper.default();
 const expect = chai.expect;
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5vdGlmeSI6dHJ1ZSwiaWF0IjoxNTEwNTg1MjYwLCJleHAiOjE1MTA2NzE2NjB9.GqqSsYGwf19L4POfQCwtEWYYa3cJ29Y4rsVEtBeXPxc';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm90aWZ5Ijp0cnVlLCJpYXQiOjE1MTA2ODYxNzQsImV4cCI6MTUxMDc3MjU3NH0.qntIeEqlCe5qjysqIIz_rzRsPdEMDRnSQPwJhEvNGtA';
 chai.use(chaiHttp);
 
 describe('Test for API', () => {
