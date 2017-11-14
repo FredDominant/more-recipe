@@ -6,12 +6,12 @@ services:
 before_script:
   - psql -c 'create database test;' -U postgres
   - sequelize db:migrate
-	- ./cc-test-reporter before-build
+  - ./cc-test-reporter before-build
 env:
   global:
-		- - CC_TEST_REPORTER_ID=e632d4800db652622767827eace0a9f2aa8353173956696a7dd635936ec456c8
-    - export NODE_ENV=test
-    - SECRET=ARSENAL
+  - CC_TEST_REPORTER_ID=e632d4800db652622767827eace0a9f2aa8353173956696a7dd635936ec456c8
+  - export NODE_ENV=test
+  - SECRET=ARSENAL
 script:
 - npm install
 - npm test
