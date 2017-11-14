@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Search } from './Search';
-import { Navbar } from './Navbar';
+import Search from './Search';
+import Navbar from './Navbar';
 
-export class UserHome extends React.Component {
+export default class UserHome extends React.Component {
   render() {
     return (
       <div>

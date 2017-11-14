@@ -2,106 +2,68 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-/**
- * 
- * 
- * @class Navbar
- * @extends {React.Component}
- */
-export class Navbar extends React.Component {
+export default class Navbar extends React.Component {
   render() {
     if (this.props.user) {
 			return (
-				<div className="container">
-				<nav className="row navbar navbar-expand-lg navbar-light bg-light">
-						<div className="col-sm-4">
-							<div className="collapse navbar-collapse" id="navbarSupportedContent">
-								<ul className="navbar-nav mr-auto">
-									<li className="nav-item active">
-										<span className="nav-link"> <i className="fa fa-home fa-lg" aria-hidden="true"></i> <Link to="/home">Recipes  | </Link></span>
-									</li>
-									<li className="nav-item active">
-										<span className="nav-link"> <i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <Link to="/recipe">Add Recipe | </Link></span>
-									</li>
-									<li className="nav-item active">
-										 <span className="nav-link"> <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i><Link to="/profile">Profile | </Link></span>
-									</li>
-									<li className="nav-item active">
-										<span className="nav-link"> <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <Link to="/">Logout | </Link> </span>
-								</li>
-								</ul>
+				<div className="container-fluid">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<div className="row" id="nav2">
+							<div className="col-sm-6">
+								<a class="navbar-brand" href="#"><span id="title"><h3 title="More Recipes and cooking tips">More Recipes</h3></span></a>
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button>
+							</div>
+							
+							<div className="col-sm-6" >
+								<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									<ul class="navbar-nav mr-auto">
+										<li class="nav-item active">
+											<a class="nav-link" href="#"><span><i className="fa fa-user fa-lg" aria-hidden="true"></i> </span> <Link to='/profile'>Profile </Link> <span class="sr-only">(current)</span></a>
+										</li>
+										<li class="nav-item active">
+											<a class="nav-link" href="#"><span><i className="fa fa-plus-square" aria-hidden="true"></i> </span> <Link to='/add'>Add Recipes </Link> <span class="sr-only">(current)</span></a>
+										</li>
+										<li class="nav-item active">
+											<a class="nav-link" href="#"><span><i className="fa fa-heart" aria-hidden="true"></i> </span> <Link to='/favourites'>Favourites  </Link> <span class="sr-only">(current)</span></a>
+										</li>
+										<li class="nav-item active">
+											<a class="nav-link" href="#"><span><i className="fa fa-sign-out" aria-hidden="true"></i> </span> <Link to='/'>Log out </Link> <span class="sr-only">(current)</span></a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-						<div className="col-sm-4">
-						</div>
-						<div className="col-sm-4 icons">
-							<div className="collapse navbar-collapse" id="navbarSupportedContent">
-								<ul className="navbar-nav mr-auto">
-									<li className="nav-item active">
-										<a className="nav-link" href="#"><i className="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-									</li>
-									<li className="nav-item active">
-										<a className="nav-link" href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-									</li>
-									<li className="nav-item active">
-										<a className="nav-link" href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-									</li>
-									<li className="nav-item active">
-										<a className="nav-link" href="#"><i className="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
-									</li>
-									<li className="nav-item active">
-										<a className="nav-link" href="#"><i className="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-				</nav>
-			</div>
+					</nav>
+				</div>
 			)
 		}
 		return (
 			<div className="container-fluid">
-			<nav className="row navbar navbar-expand-lg navbar-light bg-light">
-					<div className="col-sm-4">
-						<div className="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul className="navbar-nav mr-auto">
-								<li className="nav-item active">
-									<a className="nav-link" href="#" title="More Recipes home"><i className="fa fa-home fa-lg" aria-hidden="true"></i> <span>Recipes  |</span></a>
-								</li>
-								<li className="nav-item active" data-toggle="modal" data-target="#register">
-									<a className="nav-link" href="#" title="Create More Recipes account"><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> <span> Register |</span></a>
-								</li>
-								<li className="nav-item active" data-toggle="modal" data-target="#login">
-									<a className="nav-link" href="#" title="Log in to your More Recipes account"><i className="fa fa-user-circle fa-lg" aria-hidden="true"></i> <span> Log in |</span></a>
-								</li>
-							</ul>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div className="row" id="nav2">
+						<div className="col-sm-9">
+							<a class="navbar-brand" href="#"><span id="title"><h3 title="More Recipes and cooking tips">More Recipes</h3></span></a>
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+						</div>
+						<div className="col-sm-3" >
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active">
+										<a class="nav-link" data-toggle="modal" data-target="#register"href="#"><span><i className="fa fa-user-plus fa-lg" aria-hidden="true"></i> </span>Register |<span class="sr-only">(current)</span></a>
+									</li>
+									<li class="nav-item active">
+										<a class="nav-link" data-toggle="modal" data-target="#login"href="#"><span><i className="fa fa-user fa-lg" aria-hidden="true"></i> </span>Login<span class="sr-only">(current)</span></a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div className="col-sm-4">
-					</div>
-					<div className="col-sm-4 icons">
-						<div className="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul className="navbar-nav mr-auto">
-								<li className="nav-item active">
-									<a className="nav-link" href="#"><i className="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-								</li>
-								<li className="nav-item active">
-									<a className="nav-link" href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-								</li>
-								<li className="nav-item active">
-									<a className="nav-link" href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-								</li>
-								<li className="nav-item active">
-									<a className="nav-link" href="#"><i className="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
-								</li>
-								<li className="nav-item active">
-									<a className="nav-link" href="#"><i className="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-			</nav>
-		</div>
+				</nav>
+			</div>
 		);
   }
 }

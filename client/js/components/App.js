@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Body } from './Body';
+import Body from './Body';
 
- export class App extends React.Component {
+ export default class App extends React.Component {
   render() {
     return (
 			<Body />

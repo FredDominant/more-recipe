@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import { Search } from './Search';
-import { Navbar } from './Navbar';
-import { Signup } from './Signup';
+import Search from './Search';
+import Navbar from './Navbar';
+import Signup from './Signup';
 import Login from './Login';
 
-export class Home extends React.Component {
+class Home extends React.Component {
 	constructor(){
 		super();
 		this.changeAge = this.changeAge.bind(this);
@@ -35,7 +35,7 @@ export class Home extends React.Component {
 				<Login />
 				<Signup />
 				<Search />
-				<div>
+				{/* <div>
 					<h4>this was entered: {this.props.form.value}</h4>
 					<input type="text" 
 					name="value" 
@@ -50,7 +50,7 @@ export class Home extends React.Component {
 				</div>
 				<div className="container-fluid">
 					<h3>All recipes page - Home page</h3>
-				</div>
+				</div> */}
       </div>
     );
   }

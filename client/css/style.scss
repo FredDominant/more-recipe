@@ -1,12 +1,17 @@
 .search-body {
-	/* 15% */
-	margin-left: 5%;
+	width: 100%;
+	margin: auto;
 	margin-top: 30px;
 	margin-bottom: 10px;
+	text-align: center;
 }
 
 .icons {
 	margin-left: 7%;
+}
+
+#nav2 {
+	width: 100%;
 }
 
 #signup-title {
@@ -53,6 +58,7 @@ span.nav-link a {
 #search-box {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-style: italic;
+	width: 30%;
 }
 
 .fa-search {
@@ -80,4 +86,8 @@ span.routes a {
 .register-text {
 	text-align: center;
 	margin-left: 40%;
+}
+
+a {
+	color: black;
 }

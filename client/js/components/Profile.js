@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Search } from './Search';
-import { Navbar } from './Navbar';
-import { Signup } from './Signup';
-import { Login } from './Login';
+import Search from './Search';
+import Navbar from './Navbar';
+import Signup from './Signup';
+import Login from './Login';
 
-export class Profile extends React.Component {
+export default class Profile extends React.Component {
   render() {
     return (
 			<div>

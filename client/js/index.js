@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { App } from './components/App';
+import App from './components/App';
 
 const initialValue = {
   value: 10,
