@@ -1,15 +1,12 @@
 [![Build Status](https://travis-ci.org/Noblemajesty/more-recipe.svg?branch=task%2F1%2Ftest-branch)](https://travis-ci.org/Noblemajesty/more-recipe)
 [![Coverage Status](https://coveralls.io/repos/github/Noblemajesty/more-recipe/badge.svg?branch=dev-server)](https://coveralls.io/github/Noblemajesty/more-recipe?branch=dev-server)
-[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/Noblemajesty/more-recipe)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c7e0da6db5c85bff9a79/maintainability)](https://codeclimate.com/github/Noblemajesty/more-recipe/maintainability)
-
-
 # **_More-Recipes_**
 
 ## _Introduction_
 
 More-Recipes provides a platform for users to share the awesome and exciting recipe ideas they have invented or learnt.  
-Suppose a user comes up with a recipe, he/she can post it on More-Recipes and get feedback in form of reviews and votes from other users who explore that recipe.  Users can also keep a list of their favorite recipes on the application.
+Suppose a user comes up with a recipe, he/she can post it on More-Recipes and get feedback in form of reviews and votes from other users who explore that recipe.  Users can also keep a list of their favorite recipes on the application
 
 ## _Features_
 
