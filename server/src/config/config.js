@@ -12,7 +12,7 @@ module.exports = {
   },
   test: {
     username: 'postgres',
-    password: 'Olasunkanmi94',
+    password: '',
     database: 'test',
     host: '127.0.0.1',
     dialect: 'postgres',
