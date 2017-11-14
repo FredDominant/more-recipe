@@ -8,7 +8,7 @@ before_script:
   - sequelize db:migrate
 env:
   global:
-    - CC_TEST_REPORTER_ID=e632d4800db652622767827eace0a9f2aa8353173956696a7dd635936ec456c8
+    - CC_TEST_REPORTER_ID=06e5cd10a0ad068c1ee97e1ff4ea4c35fa2ba46853828ecb3983236a34ada53b
     - export NODE_ENV=test
     - SECRET=ARSENAL
 script:
