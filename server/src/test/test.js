@@ -215,7 +215,7 @@ describe('Test for API', () => {
           .set('x-access-token', token)
           .send({ content: 'this is a test review' })
           .end((err, res) => {
-            expect(res.status).to.equal(201);
+            expect(res.status).to.not.equal(401);
             done();
           });
       });
