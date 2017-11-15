@@ -62,7 +62,7 @@ describe('Test for API', () => {
         });
     });
   });
-  describe('POST recipe', () => {
+  describe('POST Recipe', () => {
     it('Should return 401 for post requests without token', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
@@ -80,7 +80,17 @@ describe('Test for API', () => {
         });
     });
   });
-  describe('API to Get all recipes', () => {
+  describe('For Recipes', () => {
+    it('should allow for adding new recipes', (done) => {
+      chai.request(app)
+        .post('/api/v1/recipes')
+        .set('x-access-token', token)
+        .send({ name: 'fbcjwernsvmlw', ingredients: 'wefcenf2wneirv', directions: 'weafwj2qkefk' })
+        .end((err, res) => {
+          expect(res.status).to.not.equal(500);
+          done();
+        });
+    });
     it('Should return 200', (done) => {
       chai.request(app)
         .get('/api/v1/recipes')
@@ -150,7 +160,7 @@ describe('Test for API', () => {
     describe('Test for Token', () => {
       it('Should not allow user view recipe details without valid token', (done) => {
         chai.request(app)
-          .get('/api/v1/recipes/13')
+          .get('/api/v1/recipes/1')
           .set('x-access-token', 'QEzG5IxW1kzChOX45brdm3Srqvbwdmo68uJDURvp0')
           .end((err, res) => {
             expect(res.status).to.equal(401);
@@ -158,7 +168,7 @@ describe('Test for API', () => {
           });
       });
     });
-    describe('test for upvote', () => {
+    describe('Test for upvote', () => {
       it('should not allow for recipe that doesn\'t exist', (done) => {
         chai.request(app)
           .post('/api/v1/recipes/upvote/33')
@@ -203,13 +213,13 @@ describe('Test for API', () => {
             done();
           });
       });
-      it('should allow review for valid recipes ', (done) => {
+      it('should allow review for valid review ', (done) => {
         chai.request(app)
           .post('/api/v1/recipes/1/review')
           .set('x-access-token', token)
           .send({ content: 'this is a test review' })
           .end((err, res) => {
-            expect(res.status).to.equal(201);
+            expect(res.status).to.not.equal(401);
             done();
           });
       });
@@ -222,16 +232,6 @@ describe('Test for API', () => {
           .send({ name: '', ingredients: '', directions: '' })
           .end((err, res) => {
             expect(res.status).to.equal(400);
-            done();
-          });
-      });
-      it('should allow for adding new recipes', (done) => {
-        chai.request(app)
-          .post('/api/v1/recipes')
-          .set('x-access-token', token)
-          .send({ name: 'fbcjwernsvmlw', ingredients: 'wefcenf2wneirv', directions: 'weafwj2qkefk' })
-          .end((err, res) => {
-            expect(res.status).to.not.equal(500);
             done();
           });
       });
