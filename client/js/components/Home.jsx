@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import Login from './Login';
 import Carousel from './Carousel';
+import RecipeBody from './RecipeBody';
 
 class Home extends React.Component {
 	constructor(){
@@ -37,6 +38,10 @@ class Home extends React.Component {
 				<Signup />
 				<Search />
 				<Carousel />
+				<div className="recipes">
+					<RecipeBody />
+				</div>
+				
 				{/* <div>
 					<h4>this was entered: {this.props.form.value}</h4>
 					<input type="text" 

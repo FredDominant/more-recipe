@@ -3,8 +3,8 @@ import { UncontrolledCarousel } from 'reactstrap';
 
 const items = [
   {
-    src: 'https://www.thelocal.it/userdata/images/article/69523836b0191608c41d640feead8da2be5462038d3409e1e3900fad039c7fc8.jpg',
-    caption: 'Image 1',
+    src: 'https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg',
+    caption: 'Name is Image 1',
     altText: 'Awesome sauce!'
   },
   {
@@ -16,6 +16,16 @@ const items = [
     src: 'http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg',
     caption: 'Image 3',
     altText: 'Nahh!!!'
+  },
+  {
+    src: 'https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg',
+    caption: 'Image 4',
+    altText: 'Foood'
+  },
+  {
+    src: 'https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg',
+    caption: 'Image 5',
+    altText: 'Eaattt'
   }
 ];
 
