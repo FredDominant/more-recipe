@@ -179,6 +179,10 @@ describe('Test for API', () => {
       });
     });
     describe('Test for Reviews', () => {
+      after((done) => {
+        models.Review.destroy({ where: { id: { $notIn: [1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16] } } });
+        done();
+      });
       it('should not allow empty review contents', (done) => {
         chai.request(app)
           .post('/api/v1/recipes/3/review')
