@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: [
     path.resolve(__dirname, 'client/js/Index.jsx'),
-    path.resolve(__dirname, 'client/css/style.scss')
+    path.resolve(__dirname, 'client/assets/css/style.scss')
   ],
   output: {
     path: '/',
@@ -15,7 +15,7 @@ module.exports = {
       {
         test: /\.s?css$/,
         loader: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.resolve(__dirname, './client/css/'),
+        include: path.resolve(__dirname, './client/assets/css/'),
       },
       {
         test: /\.jsx?$/,
