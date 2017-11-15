@@ -6,6 +6,7 @@ import Search from './Search';
 import Navbar from './Navbar';
 import Signup from './Signup';
 import Login from './Login';
+import Carousel from './Carousel';
 
 class Home extends React.Component {
 	constructor(){
@@ -35,6 +36,7 @@ class Home extends React.Component {
 				<Login />
 				<Signup />
 				<Search />
+				<Carousel />
 				{/* <div>
 					<h4>this was entered: {this.props.form.value}</h4>
 					<input type="text" 

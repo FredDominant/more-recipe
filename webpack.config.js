@@ -13,9 +13,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.s?css$/,
-        loader: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.resolve(__dirname, './client/assets/css/'),
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.jsx?$/,

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Search from './Search';
 import Navbar from './Navbar';
+import Carousel from './Carousel';
 
 export default class UserHome extends React.Component {
   render() {
@@ -11,7 +12,7 @@ export default class UserHome extends React.Component {
 				<Navbar user="registered"/>
 				<Search />
         <div className="container-fluid">
-          <h3>Registered user's home page</h3>
+          <Carousel />
         </div>
       </div>
     );
