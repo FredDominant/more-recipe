@@ -1,13 +1,6 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
 
-UncontrolledCarousel.propTypes = {
-    items: PropTypes.array,isRequired,
-    indicators: PropTypes.bool, // default: true
-    controls: PropTypes.bool, // default: true
-    autoPlay: PropTypes.bool, // default: true
-  };
-  
 const items = [
   {
     src: 'https://www.thelocal.it/userdata/images/article/69523836b0191608c41d640feead8da2be5462038d3409e1e3900fad039c7fc8.jpg',
@@ -39,4 +32,11 @@ class Carousel extends React.Component {
         );
     }
 }
+// UncontrolledCarousel.propTypes = {
+//     items: PropTypes.array,isRequired,
+//     indicators: PropTypes.bool, // default: true
+//     controls: PropTypes.bool, // default: true
+//     autoPlay: PropTypes.bool, // default: true
+//   };
+  
 export default Carousel;
