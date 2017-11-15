@@ -2,11 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    path.resolve(__dirname, 'client/js/index.js'),
-    path.resolve(__dirname, 'client/js/components/App.js'),
-    path.resolve(__dirname, 'client/js/components/Navbar.js'),
-    path.resolve(__dirname, 'client/js/components/Search.js'),
-    path.resolve(__dirname, 'client/js/components/Signup.js'),
+    path.resolve(__dirname, 'client/js/Index.jsx'),
     path.resolve(__dirname, 'client/css/style.scss')
   ],
   output: {
@@ -17,12 +13,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         loader: ['style-loader', 'css-loader', 'sass-loader'],
         include: path.resolve(__dirname, './client/css/'),
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         include: path.resolve(__dirname, './client/'),
         exclude: path.resolve(__dirname, 'node_modules/'),
@@ -32,7 +28,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx', '.css']
+    extensions: ['.js', '.json', '.jsx', '.css', '.scss']
   },
   watch: true
 };
