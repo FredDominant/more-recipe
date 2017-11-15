@@ -35,7 +35,7 @@ class Carousel extends React.Component {
     }
     render() {
         return (
-            <div className="carousels">
+            <div className="carousels container">
                 <UncontrolledCarousel items={items} />
             </div>
             

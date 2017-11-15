@@ -38,7 +38,7 @@ class Home extends React.Component {
 				<Signup />
 				<Search />
 				<Carousel />
-				<div className="recipes">
+				<div className="container recipes">
 					<RecipeBody />
 				</div>
 				

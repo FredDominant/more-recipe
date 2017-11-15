@@ -35,15 +35,15 @@ class RecipeItem extends React.Component {
                         Recipe description will be here
                         <div className="row">
                             <span className="col-sm-4">
-                                <span className="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>: <span id="likes">likes</span></span>
+                                <span className="likes"><i className="fa fa-thumbs-up" aria-hidden="true"></i>: <span id="likes">likes</span></span>
                             </span>
                             <br/>
                             <span className="col-sm-4">
-                                <span className="unlikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>: <span id="dislikes">unlikes</span></span>
+                                <span className="unlikes"><i className="fa fa-thumbs-down" aria-hidden="true"></i>: <span id="dislikes">unlikes</span></span>
                             </span>
                             <br/>
                             <span className="col-sm-4">
-                                <span className="views"><i class="fa fa-eye" aria-hidden="true"></i>: <span id="views">views</span></span>
+                                <span className="views"><i className="fa fa-eye" aria-hidden="true"></i>: <span id="views">views</span></span>
                             </span>
                         </div>
                     </CardText>
