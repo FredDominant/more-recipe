@@ -205,7 +205,7 @@ describe('Test for API', () => {
       });
       it('should allow review for valid recipes ', (done) => {
         chai.request(app)
-          .post('/api/v1/recipes/2/review')
+          .post('/api/v1/recipes/1/review')
           .set('x-access-token', token)
           .send({ content: 'this is a test review' })
           .end((err, res) => {
