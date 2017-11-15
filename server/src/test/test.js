@@ -18,7 +18,7 @@ describe('Test for API', () => {
   after((done) => {
     models.User.destroy({ where: { email: 'test@test.com' } });
     models.Recipe.destroy({ where: { id: { $notIn: [1, 2, 3, 4, 5, 11] } } });
-    models.Review.destroy({ where: { recipeId: { $notIn: [12, 13, 14, 15, 16] } } });
+    models.Review.destroy({ where: { recipeId: [1, 2, 3, 12, 13, 14, 15, 16] } });
     models.Favourite.destroy({ where: { recipeId: { $notIn: [1, 2, 3, 4, 5] } } });
     done();
   });
@@ -179,8 +179,8 @@ describe('Test for API', () => {
       });
     });
     describe('Test for Reviews', () => {
-      after((done) => {
-        models.Review.destroy({ where: { id: { $notIn: [1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16] } } });
+      before((done) => {
+        models.Review.destroy({ where: { recipeId: [1, 2] } });
         done();
       });
       it('should not allow empty review contents', (done) => {
