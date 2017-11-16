@@ -15,14 +15,14 @@ export default class Signup extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onChange(e) {
+	onChange(event) {
 		this.setState({
-			[e.target.name]: e.target.value
+			[event.target.name]: event.target.value
 		})
 	}
 	
-	onSubmit(e) {
-		e.preventDefault();
+	onSubmit(event) {
+		event.preventDefault();
 		axios.post('/api/v1/users/signup', this.state)
 			.then(() => 'post successful')
 			.catch(error => error);
@@ -32,7 +32,7 @@ export default class Signup extends React.Component {
 			<div>
 				<div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog" role="document">
-						<div className="modal-content">
+						<div className="modal-content container">
 							<div className="row">
 								<div className="col-md-9">
 									<span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
@@ -50,31 +50,66 @@ export default class Signup extends React.Component {
 									<div className="container">
 										<div className="input-group">
 											<span className="input-group-addon" id="firstName-addon"><i className="fa fa-user" aria-hidden="true"></i></span>
-											<input type="text" value={this.state.firstname} onChange={this.onChange} className="form-control" placeholder="First Name" aria-label="firstName" aria-describedby="firstName-addon" name="firstname"/>
+											<input type="text" 
+											value={this.state.firstname} 
+											onChange={this.onChange} 
+											className="form-control signup-form" 
+											placeholder="First Name" 
+											aria-label="firstName" 
+											aria-describedby="firstName-addon" 
+											name="firstname"/>
 										</div>
 										<br/>
 										<div className="input-group">
 											<span className="input-group-addon" id="lastName-addon"><i className="fa fa-user" aria-hidden="true"></i></span>
-											<input type="text" value={this.state.lastname} onChange={this.onChange} className="form-control" placeholder="Last Name" aria-label="lastName" aria-describedby="lastName-addon" name="lastname"/>
+											<input type="text" 
+											alue={this.state.lastname} 
+											onChange={this.onChange} 
+											className="form-control signup-form" 
+											placeholder="Last Name" 
+											aria-label="lastName" 
+											aria-describedby="lastName-addon" 
+											name="lastname"/>
 										</div>
 										<br/>
 										<div className="input-group">
 											<span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-											<input type="email" value={this.state.email} onChange={this.onChange}className="form-control" placeholder="Email " aria-label="email" aria-describedby="email-addon" name="email"/>
+											<input type="email" 
+											value={this.state.email} 
+											onChange={this.onChange}
+											className="form-control signup-form" 
+											placeholder="Email " 
+											aria-label="email" 
+											aria-describedby="email-addon" 
+											name="email"/>
 										</div>
 										<br/>
 										<div className="input-group">
 											<span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-											<input type="password" value={this.state.password} onChange={this.onChange}className="form-control" placeholder="Password" aria-label="password" aria-describedby="password-addon" name="password"/>
+											<input type="password" 
+											value={this.state.password} 
+											onChange={this.onChange}
+											className="form-control signup-form" 
+											placeholder="Password" a
+											ria-label="password" 
+											aria-describedby="password-addon" 
+											name="password"/>
 										</div>
 										<br/>
 										<div className="input-group">
 											<span className="input-group-addon" id="confirmPassword-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-											<input type="password" value={this.state.confirmPassword} onChange={this.onChange} className="form-control" placeholder="Confirm password" aria-label="confirmPassword" aria-describedby="confirmPassword-addon" name="confirmPassword"/>
+											<input type="password" 
+											value={this.state.confirmPassword} 
+											onChange={this.onChange} 
+											className="form-control signup-form" 
+											placeholder="Confirm password" 
+											aria-label="confirmPassword" 
+											aria-describedby="confirmPassword-addon" 
+											name="confirmPassword"/>
 										</div>
 										<br/>
 										<div className="input-group">
-											<button type="submit" className="form-control btn btn-primary" id="register-button"> <span className="register-text"> Register </span> </button>
+											<button type="submit" className="form-control btn btn-primary signup-form" id="register-button"> <span className="register-text"> Register </span> </button>
 										</div>
 									</div>
 							</form>

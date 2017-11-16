@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 
 /**
  * 
@@ -20,15 +19,15 @@ export default class Login extends React.Component {
 		this.onChange = this.onChange.bind(this);
 	}
 	
-	handleSubmit(e) {
-		e.preventDefault();
+	handleSubmit(event) {
+		event.preventDefault();
 		 axios.post('/api/v1/users/signin', this.state)
 			.then(() => 'No errors')
 			.catch(error => error); 
 	}
 	
-	onChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
+	onChange(event) {
+		this.setState({ [event.target.name]: event.target.value });
 	}
 
 	
@@ -37,12 +36,12 @@ export default class Login extends React.Component {
       <div>
         <div className="modal fade" id="login" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog" role="document">
-						<div className="modal-content">
+						<div className="modal-content container">
 							<div className="row">
-								<div className="col-md-9">
+								<div className="col-sm-8 login-head">
 									<span><h1 className="modal-title" id="login-title">More Recipes</h1></span>
 								</div>
-								<div className="col-md-3">
+								<div className="col-sm-4 login-close">
 									<button type="button" className="close cancel-login" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -59,7 +58,7 @@ export default class Login extends React.Component {
 											onChange={this.onChange} 
 											name="email" 
 											value={this.state.email} 
-											className="form-control" 
+											className="form-control login-form" 
 											placeholder="Email " aria-label="email" aria-describedby="email-addon" />
 										</div>
 										<br/>
@@ -70,7 +69,7 @@ export default class Login extends React.Component {
 											onChange={this.onChange} 
 											name="password" 
 											value={this.state.password} 
-											className="form-control" 
+											className="form-control login-form" 
 											placeholder="Password" 
 											aria-label="password" 
 											aria-describedby="password-addon" />

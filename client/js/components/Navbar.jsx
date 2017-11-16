@@ -20,20 +20,20 @@ export default class Navbar extends React.Component {
 								<div className="collapse navbar-collapse" id="navbarSupportedContent">
 									<ul className="navbar-nav mr-auto">
 										<li className="nav-item active">
-											<a className="nav-link" href="#"><span><i className="fa fa-user fa-lg" aria-hidden="true"></i> </span> 
-											<Link to='/profile'>PROFILE </Link> <span className="sr-only">(current)</span></a>
+											<span className="nav-link"><span><i className="fa fa-user fa-lg" aria-hidden="true"></i> </span> 
+											<Link to='/profile'>PROFILE </Link> <span className="sr-only">(current)</span></span>
 										</li>
 										<li className="nav-item active">
-											<a className="nav-link" href="#"><span><i className="fa fa-plus-square" aria-hidden="true"></i> </span> 
-											<Link to='/add'>ADD RECIPE</Link> <span className="sr-only">(current)</span></a>
+											<span className="nav-link" data-toggle="modal" data-target="#addRecipe"href="#"><span><i className="fa fa-plus-square" aria-hidden="true"></i> </span> 
+											ADD RECIPE<span className="sr-only">(current)</span></span>
 										</li>
 										<li className="nav-item active">
-											<a className="nav-link" href="#"><span><i className="fa fa-heart" aria-hidden="true"></i> </span> <
-												Link to='/favourites'>FAVOURITES  </Link> <span className="sr-only">(current)</span></a>
+											<span className="nav-link"><span><i className="fa fa-heart" aria-hidden="true"></i> </span> 
+											<Link to='/favourites'>FAVOURITES  </Link> <span className="sr-only">(current)</span></span>
 										</li>
 										<li className="nav-item active">
-											<a className="nav-link" href="#"><span><i className="fa fa-sign-out" aria-hidden="true"></i> </span> 
-											<Link to='/'>LOG OUT </Link> <span className="sr-only">(current)</span></a>
+											<span className="nav-link"><span><i className="fa fa-sign-out" aria-hidden="true"></i> </span> 
+											<Link to='/'>LOG OUT </Link> <span className="sr-only">(current)</span></span>
 										</li>
 									</ul>
 								</div>

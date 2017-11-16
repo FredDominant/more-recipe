@@ -51,13 +51,14 @@ img.card-img{
 #login-title {
 	font-family: 'Berkshire Swash', cursive;
 	color: brown;
-	margin-top: 20px;
-	margin-left: 35%;
+}
+.login-head {
+	width: 70%;
+	margin-left: 20px;
 }
 
-.cancel-login,
-.cancel-signup {
-	margin-right: 10px; 
+.login-close {
+	width: 23%
 }
 
 #search-intro {
@@ -94,7 +95,8 @@ span.routes a {
 	font-size: xx-large;
 	color: brown;
 }
-.form-control {
+.login-form, 
+.signup-form {
 	width: 20%;
 }
 
@@ -128,6 +130,12 @@ div.carousel-inner {
 }
 
 @media (min-width: 320px) and (max-width: 800px) {
-	div.carousel-inner {
+	.login-head {
+		width: 70%;
+		margin-left: 20px;
+	}
+	
+	.login-close {
+		width: 23%
 	}
 }
