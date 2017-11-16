@@ -18,7 +18,7 @@ class RecipeBody extends React.Component {
   }
   render() {
     return (
-      <div className="container row recipes-body">
+      <div className="row recipes-body">
         <div className="col-sm-4">
           <RecipeItem />
         </div>

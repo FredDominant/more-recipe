@@ -28,24 +28,35 @@ class RecipeItem extends React.Component {
     return (
         <div className="recipeCard">
             <Card>
-                <CardImg src='recipe image url' alt='recipeName' />
+                <CardImg src='https://s3.amazonaws.com/libapps/accounts/7712/images/veggie-heart.jpg' alt='recipeName' />
                 <CardBody>
-                    <CardTitle> recipe name </CardTitle>
+                    <CardTitle> 
+                        <span className="recipe-title">Random Recipe Name Here </span> 
+                        <br/>
+                        <h6 className="recipe-owner"><span><i class="fa fa-user-circle-o" aria-hidden="true"></i> </span>RANDOM DUDE</h6>
+                    </CardTitle>
+                    <hr/>
                     <CardText>
-                        Recipe description will be here
-                        <div className="row">
-                            <span className="col-sm-4">
-                                <span className="likes"><i className="fa fa-thumbs-up" aria-hidden="true"></i>: <span id="likes">likes</span></span>
-                            </span>
-                            <br/>
-                            <span className="col-sm-4">
-                                <span className="unlikes"><i className="fa fa-thumbs-down" aria-hidden="true"></i>: <span id="dislikes">unlikes</span></span>
-                            </span>
-                            <br/>
-                            <span className="col-sm-4">
-                                <span className="views"><i className="fa fa-eye" aria-hidden="true"></i>: <span id="views">views</span></span>
-                            </span>
+                        <div className="recipe-description">
+                            <h6> This is just a random recipe description. I love food, I really love food.</h6>
                         </div>
+                        <hr/>
+                        <div className="recipe-icons">
+                            <span className="icons"><i className="fa fa-thumbs-up" aria-hidden="true"></i> <span id="likes">100</span></span>
+                            <span className="icons"><i className="fa fa-thumbs-down" aria-hidden="true"></i> <span id="unlikes">16</span></span>
+                            <span className="icons"><i className="fa fa-eye" aria-hidden="true"></i> <span id="views">45</span></span>
+                        </div>
+                        {/* <div className="row">
+                            <span className="col-sm-4 recipe-body">
+                                <span className="likes"><i className="fa fa-thumbs-up" aria-hidden="true"></i> <span id="likes">100</span></span>
+                            </span>
+                            <span className="col-sm-4">
+                                <span className="unlikes"><i className="fa fa-thumbs-down" aria-hidden="true"></i> <span id="dislikes">15</span></span>
+                            </span>
+                            <span className="col-sm-4">
+                                <span className="views"><i className="fa fa-eye" aria-hidden="true"></i> <span id="views">4</span></span>
+                            </span>
+                        </div> */}
                     </CardText>
                 </CardBody>
             </Card>

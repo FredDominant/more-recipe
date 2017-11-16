@@ -21,6 +21,26 @@
 	margin-top: 20px;
 }
 
+.recipe-title {
+	font-family: 'Berkshire Swash', cursive;
+}
+.recipe-owner {
+	margin-top: 10px;
+	font-weight: 100;
+}
+.recipe-description {
+	text-align: center;
+	margin: auto;
+}
+span.icons {
+	padding-right: 10px;
+}
+div.col-sm-4 {
+	margin-top: 10px;
+}
+img.card-img{
+	height: 150px;
+}
 .signup-text {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
 	text-align: center;
