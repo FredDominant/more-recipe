@@ -18,9 +18,11 @@ export default class Recipe {
    * @memberof Recipe
    */
   static addRecipe(req, res) {
+    const description = req.body.description;
     const directions = req.body.directions;
     const name = req.body.name;
     const ingredients = req.body.ingredients;
+    const picture = req.body.recipeImage;
     recipe.findOne({
       where: {
         name: name.toLowerCase(),
@@ -38,8 +40,10 @@ export default class Recipe {
           recipe.create({
             name: name.toLowerCase(),
             userId: req.decoded.id,
+            description: description.toLowerCase(),
             ingredients: ingredients.toLowerCase(),
-            directions: directions.toLowerCase()
+            directions: directions.toLowerCase(),
+            picture
           })
             .then((newRecipe) => {
               return res.status(201)
@@ -74,8 +78,10 @@ export default class Recipe {
    */
   static updateRecipe(req, res) {
     const name = req.body.name;
+    const description = req.body.description;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
+    const picture = req.body.recipeImage;
     recipe.findOne({
       where: {
         id: req.params.recipeId,
@@ -88,8 +94,10 @@ export default class Recipe {
         if (foundRecipe) {
           const newRecipe = {
             name: name ? name.toLowerCase() : foundRecipe.dataValues.name,
+            description: description ? description.toLowerCase() : foundRecipe.dataValues.description,
             ingredients: ingredients ? ingredients.toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ? directions.toLowerCase() : foundRecipe.dataValues.directions
+            directions: directions ? directions.toLowerCase() : foundRecipe.dataValues.directions,
+            picture: picture ? picture.trim() : foundRecipe.dataValues.picture
           };
           foundRecipe.update(newRecipe)
             .then((updatedRecipe) => {

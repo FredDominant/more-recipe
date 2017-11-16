@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-
+import PropTypes from 'prop-types';
 /**
  * 
  * 
@@ -8,7 +7,7 @@ import axios from 'axios';
  * @class Login
  * @extends {React.Component}
  */
-export default class Login extends React.Component {
+class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,9 +20,7 @@ export default class Login extends React.Component {
 	
 	handleSubmit(event) {
 		event.preventDefault();
-		 axios.post('/api/v1/users/signin', this.state)
-			.then(() => 'No errors')
-			.catch(error => error); 
+		 this.props.userLoginRequest(this.state);
 	}
 	
 	onChange(event) {
@@ -89,3 +86,8 @@ export default class Login extends React.Component {
     );
   }
 }
+Login.propTypes = {
+	userLoginRequest: PropTypes.func.isRequired
+}
+
+export default Login;

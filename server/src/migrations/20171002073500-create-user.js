@@ -32,6 +32,11 @@ module.exports = {
       allowNull: true,
       defaultValue: true
     },
+    picture: {
+      type: Sequelize.STRING,
+      allowNull: true,
+      defaultValue: 'none'
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE

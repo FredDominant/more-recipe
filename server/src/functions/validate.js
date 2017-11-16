@@ -46,15 +46,18 @@ export default class Validate {
    */
   static recipe(req, res, next) {
     const name = req.body.name;
+    const description = req.body.description;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
     const recipeData = {
       name,
+      description,
       directions,
       ingredients
     };
     const recipeRules = {
       name: 'required|string|min:5',
+      description: 'required|string|min:5',
       directions: 'required|string|min:5',
       ingredients: 'required|string|min:5'
     };
@@ -82,17 +85,23 @@ export default class Validate {
    */
   static updateRecipe(req, res, next) {
     const name = req.body.name;
+    const description = req.body.description;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
+    const picture = req.body.recipeImage;
     const recipeUpdateData = {
       name,
+      description,
       directions,
-      ingredients
+      ingredients,
+      picture
     };
     const recipeUpdateRules = {
       name: 'string|min:5',
+      description: 'string|min:5',
       directions: 'string|min:3',
-      ingredients: 'string|min:3'
+      ingredients: 'string|min:3',
+      picture: 'string'
     };
     const validation = new Validator(recipeUpdateData, recipeUpdateRules);
     if (validation.passes()) {
@@ -256,17 +265,20 @@ export default class Validate {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    const picture = req.body.recipeImage;
     const userUpdateData = {
       email,
       password,
       firstname,
-      lastname
+      lastname,
+      picture
     };
     const userUpdateRules = {
       email: 'string|email',
       password: 'string|min:6',
       firstname: 'string|min:3|alpha',
-      lastname: 'string|min:3|alpha'
+      lastname: 'string|min:3|alpha',
+      picture: 'string'
     };
     const validation = new Validator(userUpdateData, userUpdateRules);
     if (validation.passes()) {

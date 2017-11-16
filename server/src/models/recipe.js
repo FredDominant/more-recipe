@@ -9,6 +9,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     ingredients: {
       type: DataTypes.STRING,
       allowNull: false
@@ -31,6 +35,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0
+    },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'none'
     }
   });
   Recipe.associate = (models) => {

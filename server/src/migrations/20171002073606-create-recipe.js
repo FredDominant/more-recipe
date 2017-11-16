@@ -16,6 +16,10 @@ module.exports = {
       allowNull: false,
       onDelete: 'CASCADE'
     },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     ingredients: {
       type: Sequelize.STRING,
       allowNull: false
@@ -38,6 +42,11 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: true,
       defaultValue: 0
+    },
+    picture: {
+      type: Sequelize.STRING,
+      allowNull: true,
+      defaultValue: 'none'
     },
     createdAt: {
       allowNull: false,
