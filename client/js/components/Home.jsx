@@ -52,4 +52,4 @@ Home.PropTypes = {
 	userLoginRequest: PropTypes.func.isRequired
 }
 //export default Home;
-export default connect((state) => { return {} }, { userLoginRequest })(Home);
+export default connect(null, { userLoginRequest })(Home);
