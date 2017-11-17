@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import validateInput from '../validation/validator'
+import loginValidator from '../validation/LoginValidator'
 /**
  * 
  * 
@@ -23,7 +23,7 @@ class Login extends React.Component {
 	}
 	
 	isValid() {
-		const { errors, isValid } = validateInput(this.state)
+		const { errors, isValid } = loginValidator(this.state)
 		console.log('errors in isValid is', errors);
 		console.log('isValid is', isValid)
 		if (!isValid) {
@@ -34,14 +34,11 @@ class Login extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log('isValid() is', this.isValid());
 		if (this.isValid()) {
 			this.setState({ errors: {}, isLoading: true });
 			this.props.userLoginRequest(this.state).then(() => {
 				this.setState({ isLoading: false }).catch(() => {})
 			})
-				// .then(() => {}, ({ data }) => this.setState({ errors: data }))
-				// .catch(() => {});
 		}
 		
 	}
@@ -52,7 +49,6 @@ class Login extends React.Component {
 
 	render() {
 		const errors = this.state.errors;
-		console.log('errors in render is', errors);
 		return (
 		<div>
 			<div className="modal fade" id="login" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

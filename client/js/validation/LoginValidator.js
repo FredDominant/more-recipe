@@ -1,7 +1,7 @@
 import Validator from 'validator';
 import isEmpty from 'lodash.isempty';
 
-const validateInput = (data) => {
+const loginValidator = (data) => {
   const errors = {};
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email field is required';
@@ -17,4 +17,4 @@ const validateInput = (data) => {
     isValid: isEmpty(errors)
   };
 };
-export default validateInput;
+export default loginValidator;
