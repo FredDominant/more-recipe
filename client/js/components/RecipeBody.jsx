@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import RecipeItem from './RecipeItem';
+import getAllRecipes from '../actions/getAllRecipes';
 /**
  * @description this class displays RecipeItem components
  *
@@ -15,6 +18,10 @@ class RecipeBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+  componentWillMount() {
+    console.log('I work');
+    this.props.dispatch(getAllRecipes());
   }
   render() {
     return (
@@ -32,4 +39,4 @@ class RecipeBody extends React.Component {
     );
   }
 }
-export default RecipeBody;
+export default connect(null)(RecipeBody);

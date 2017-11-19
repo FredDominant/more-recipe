@@ -9,8 +9,6 @@ import Signup from './Signup';
 import Login from './Login';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
-import userLoginRequest from '../actions/LoginAction';
-import userSignupRequest from '../actions/SignupAction';
 
 class Home extends React.Component {
 	constructor(){
@@ -25,26 +23,25 @@ class Home extends React.Component {
 	changeName() {
 		this.props.setName('Fred Adewole');
 	}
-	
+
 	onChange(e) {
 		let value = e.target.value
 		// console.log(value);
 		this.props.getInput(value);
 	}
-	
+
   render() {
-	const { userLoginRequest, userSignupRequest } = this.props;
     return (
 			<div>
 				<Navbar />
-				<Login userLoginRequest = {userLoginRequest}/>
-				<Signup userSignupRequest = {userSignupRequest}/>
+				<Login/>
+				<Signup/>
 				<Search />
 				<Carousel />
 				<div className="container recipes">
 					<RecipeBody />
 				</div>
-      		</div>
+      </div>
     );
   }
 }
@@ -53,4 +50,4 @@ Home.PropTypes = {
 	userLoginRequest: PropTypes.func.isRequired
 }
 //export default Home;
-export default connect(null, { userLoginRequest, userSignupRequest })(Home);
+export default connect(null)(Home);

@@ -1,2 +1,7 @@
-const actionTypes = {};
-export default actionTypes;
+export const SET_FETCHING = 'SET_FETCHING';
+export const UNSET_FETCHING = 'UNSET_FETCHING';
+
+export const RECIEVE_AUTH = 'RECIEVE_AUTH';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
+export const GET_ALL_RECIPES_ERROR = 'GET_ALL_RECIPES_ERROR';

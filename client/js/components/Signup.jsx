@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import signupValidator from '../validation/SignupValidator';
+import signupUser from '../actions/signupUser';
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -34,10 +36,11 @@ class Signup extends React.Component {
 	onSubmit(event) {
 		event.preventDefault();
 		if (this.isValid()) {
-			this.setState({ errors: {} });
-			this.props.userSignupRequest(this.state);
+      this.setState({ errors: {} });
+      const {firstname, lastname, email, password, confirmPassword} = this.state;
+			this.props.dispatch(signupUser({firstname, lastname, email, password, confirmPassword}));
 		}
-		
+
 	}
 	render() {
 		const { errors } = this.state;
@@ -51,7 +54,7 @@ class Signup extends React.Component {
 									<span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
 									<span><h6 className="signup-text">Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.</h6></span>
 								</div>
-								<div className="col-md-3">	
+								<div className="col-md-3">
 									<button type="button" className="close cancel-signup" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -70,61 +73,61 @@ class Signup extends React.Component {
 											<div className="container">
 												<div className="input-group">
 													<span className="input-group-addon" id="firstName-addon"><i className="fa fa-user" aria-hidden="true"></i></span>
-													<input type="text" 
-													value={this.state.firstname} 
-													onChange={this.onChange} 
-													className="form-control signup-form" 
-													placeholder="First Name" 
-													aria-label="firstName" 
-													aria-describedby="firstName-addon" 
+													<input type="text"
+													value={this.state.firstname}
+													onChange={this.onChange}
+													className="form-control signup-form"
+													placeholder="First Name"
+													aria-label="firstName"
+													aria-describedby="firstName-addon"
 													name="firstname"/>
 												</div>
 												<br/>
 												<div className="input-group">
 													<span className="input-group-addon" id="lastName-addon"><i className="fa fa-user" aria-hidden="true"></i></span>
-													<input type="text" 
-													alue={this.state.lastname} 
-													onChange={this.onChange} 
-													className="form-control signup-form" 
-													placeholder="Last Name" 
-													aria-label="lastName" 
-													aria-describedby="lastName-addon" 
+													<input type="text"
+													alue={this.state.lastname}
+													onChange={this.onChange}
+													className="form-control signup-form"
+													placeholder="Last Name"
+													aria-label="lastName"
+													aria-describedby="lastName-addon"
 													name="lastname"/>
 												</div>
 												<br/>
 												<div className="input-group">
 													<span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-													<input type="email" 
-													value={this.state.email} 
+													<input type="email"
+													value={this.state.email}
 													onChange={this.onChange}
-													className="form-control signup-form" 
-													placeholder="Email " 
-													aria-label="email" 
-													aria-describedby="email-addon" 
+													className="form-control signup-form"
+													placeholder="Email "
+													aria-label="email"
+													aria-describedby="email-addon"
 													name="email"/>
 												</div>
 												<br/>
 												<div className="input-group">
 													<span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-													<input type="password" 
-													value={this.state.password} 
+													<input type="password"
+													value={this.state.password}
 													onChange={this.onChange}
-													className="form-control signup-form" 
+													className="form-control signup-form"
 													placeholder="Password" a
-													ria-label="password" 
-													aria-describedby="password-addon" 
+													ria-label="password"
+													aria-describedby="password-addon"
 													name="password"/>
 												</div>
 												<br/>
 												<div className="input-group">
 													<span className="input-group-addon" id="confirmPassword-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-													<input type="password" 
-													value={this.state.confirmPassword} 
-													onChange={this.onChange} 
-													className="form-control signup-form" 
-													placeholder="Confirm password" 
-													aria-label="confirmPassword" 
-													aria-describedby="confirmPassword-addon" 
+													<input type="password"
+													value={this.state.confirmPassword}
+													onChange={this.onChange}
+													className="form-control signup-form"
+													placeholder="Confirm password"
+													aria-label="confirmPassword"
+													aria-describedby="confirmPassword-addon"
 													name="confirmPassword"/>
 												</div>
 												<br/>
@@ -146,4 +149,4 @@ class Signup extends React.Component {
 Signup.PropTypes = {
 	userSignupRequest: PropTypes.func.isRequired
 }
-export default Signup;
+export default connect(null)(Signup);

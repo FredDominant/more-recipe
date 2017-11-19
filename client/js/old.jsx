@@ -18,7 +18,7 @@ const values = {
 const loginState = {
 	email: '',
 	password: ''
-};
+;
 const test = {
 	value: ''
 };

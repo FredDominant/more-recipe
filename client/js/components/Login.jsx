@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import loginValidator from '../validation/LoginValidator'
+import loginValidator from '../validation/LoginValidator';
+import loginUser from '../actions/loginUser';
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class Login
  * @extends {React.Component}
@@ -15,13 +17,12 @@ class Login extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
-			errors: {},
-			isLoading: false
+			errors: {}
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
 	}
-	
+
 	isValid() {
 		const { errors, isValid } = loginValidator(this.state)
 		console.log('errors in isValid is', errors);
@@ -31,20 +32,17 @@ class Login extends React.Component {
 		}
 		return isValid;
 	}
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
 	handleSubmit(event) {
-		event.preventDefault();
-		if (this.isValid()) {
-			this.setState({ errors: {}, isLoading: true });
-			this.props.userLoginRequest(this.state).then(() => {
-				this.setState({ isLoading: false }).catch(() => {})
-			})
-		}
-		
-	}
-	
-	onChange(event) {
-		this.setState({ [event.target.name]: event.target.value });
+    event.preventDefault();
+    console.log(this.state);
+    if(this.isValid()); {
+      const { email, password } = this.state;
+      this.props.dispatch(loginUser({email, password}));
+    }
 	}
 
 	render() {
@@ -68,7 +66,7 @@ class Login extends React.Component {
 									<div>
 										<div className="container">
 											{errors.email && <div className="alert alert-danger alert-dismissible" role="alert">{errors.email}
-											</div>}	
+											</div>}
 											{errors.password && <div className="alert alert-danger alert-dismissible" role="alert">{errors.password}
 											</div>}
 											<br/>
@@ -78,25 +76,29 @@ class Login extends React.Component {
 												<div className="input-group">
 													<label className="control-label"></label> <br/>
 													<span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-													<input type="text" 
-													onChange={this.onChange} 
-													name="email" 
-													value={this.state.email} 
-													className="form-control login-form" 
+													<input type="email"
+													name="email"
+
+                          //
+                          value={this.state.email}
+                          onChange={this.onChange}
+													className="form-control login-form"
 													placeholder="Email " aria-label="email" aria-describedby="email-addon" />
 												</div>
 												<br/>
-											
-												<div className="input-group"> 
+
+												<div className="input-group">
 													<label className="control-label"></label> <br/>
 													<span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true"></i></span>
-													<input type="password" 
-													onChange={this.onChange} 
-													name="password" 
-													value={this.state.password} 
-													className="form-control login-form" 
-													placeholder="Password" 
-													aria-label="password" 
+													<input type="password"
+													name="password"
+
+                          //
+                          value={this.state.password}
+                          onChange={this.onChange}
+													className="form-control login-form"
+													placeholder="Password"
+													aria-label="password"
 													aria-describedby="password-addon" />
 												</div>
 												<br/>
@@ -117,5 +119,8 @@ class Login extends React.Component {
 Login.propTypes = {
 	userLoginRequest: PropTypes.func.isRequired
 }
+// const mapStateToProps = () => {
 
-export default Login;
+// }
+
+export default connect(null)(Login);
