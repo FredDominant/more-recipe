@@ -45,26 +45,20 @@ export default class Recipe {
             directions: directions.toLowerCase(),
             picture
           })
-            .then((newRecipe) => {
-              return res.status(201)
-                .json({
-                  Recipe: newRecipe
-                });
-            })
-            .catch(() => {
-              return res.status(500)
-                .json({
-                  Message: 'Internal server error. Unable to complete'
-                });
-            });
+            .then(newRecipe => res.status(201)
+              .json({
+                Recipe: newRecipe
+              }))
+            .catch(() => res.status(500)
+              .json({
+                Message: 'Internal server error. Unable to complete'
+              }));
         }
       })
-      .catch(() => { 
-        return res.status(500)
-          .json({
-            Message: 'Internal server error. Unable to Add new recipe'
-          });
-      });
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error. Unable to Add new recipe'
+        }));
   }
   /**
    * @description This function updates a user's recipe
@@ -100,19 +94,15 @@ export default class Recipe {
             picture: picture ? picture.trim() : foundRecipe.dataValues.picture
           };
           foundRecipe.update(newRecipe)
-            .then((updatedRecipe) => {
-              return res.status(200)
-                .json({
-                  Message: 'Update successful',
-                  Recipe: updatedRecipe
-                });
-            })
-            .catch(() => {
-              return res.status(500)
-                .json({
-                  Message: 'Internal server error.'
-                });
-            });
+            .then(updatedRecipe => res.status(200)
+              .json({
+                Message: 'Update successful',
+                Recipe: updatedRecipe
+              }))
+            .catch(() => res.status(500)
+              .json({
+                Message: 'Internal server error.'
+              }));
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -121,12 +111,10 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => {
-        return res.status(500)
-          .json({
-            Message: 'Internal server error. Unable to complete request'
-          });
-      });
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error. Unable to complete request'
+        }));
   }
   /**
    * This method deletes a recipe
@@ -177,12 +165,10 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => { 
-        return res.status(500)
-          .json({
-            Message: 'Internal server error.'
-          });
-      });
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error.'
+        }));
   }
   /**
    * This method returns all recipes
@@ -197,7 +183,7 @@ export default class Recipe {
   static getAll(req, res) {
     if (!req.query.sort) {
       recipe.findAndCountAll().then((all) => {
-        const limit = 3;
+        const limit = 5;
         let offset = 0;
         const page = parseInt((req.query.page || 1), 10);
         const numberOfItems = all.count;
@@ -208,6 +194,9 @@ export default class Recipe {
           offset,
           order: [
             ['id', 'ASC']
+          ],
+          include: [
+            { model: models.User, attributes: ['firstname', 'lastname'] }
           ]
         })
           .then((recipes) => {
@@ -226,16 +215,12 @@ export default class Recipe {
                 });
             }
           })
-          .catch(() => { 
-            return res.status(500)
-              .json({
-                Message: 'Unable to complete request. Internal server error.'
-              });
-          });
-      }).catch(() => { 
-        return res.status(500)
-          .json({ Message: 'Internal server' });
-      });
+          .catch(() => res.status(500)
+            .json({
+              Message: 'Unable to complete request. Internal server error.'
+            }));
+      }).catch(() => res.status(500)
+        .json({ Message: 'Internal server' }));
     }
     if (req.query.sort) {
       recipe.findAll()
@@ -254,12 +239,10 @@ export default class Recipe {
               });
           }
         })
-        .catch(() => {
-          return res.status(500)
-            .json({
-              Message: 'Internal server error. Unable to complete request.'
-            });
-        });
+        .catch(() => res.status(500)
+          .json({
+            Message: 'Internal server error. Unable to complete request.'
+          }));
     }
   }
   /**
@@ -304,12 +287,10 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => {
-        return res.status(500)
-          .json({
-            Message: 'Internal server error. Unable to complete request.'
-          });
-      });
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error. Unable to complete request.'
+        }));
   }
   /**
    * This method gets all recipes by current user
@@ -365,17 +346,12 @@ export default class Recipe {
               });
           }
         })
-        .catch(() => { 
-          return res.status(500)
-            .json({ Message: 'Unable to find all recipes by you' });
-        });
-    }).catch(() => {
-      return res.status(500)
-        .json({
-          Message: 'Internal server error'
-        });
-    });
-
+        .catch(() => res.status(500)
+          .json({ Message: 'Unable to find all recipes by you' }));
+    }).catch(() => res.status(500)
+      .json({
+        Message: 'Internal server error'
+      }));
   }
   /**
  *
@@ -390,12 +366,8 @@ export default class Recipe {
  */
   static search(req, res) {
     const search = req.body.search.split(' ');
-    const queryIngredient = search.map((item) => {
-      return { ingredients: { $iLike: `%${item}%` } };
-    });
-    const queryName = search.map((value) => {
-      return { name: { $iLike: `%${value}%` } };
-    });
+    const queryIngredient = search.map(item => ({ ingredients: { $iLike: `%${item}%` } }));
+    const queryName = search.map(value => ({ name: { $iLike: `%${value}%` } }));
     recipe.findAndCountAll({
       where: {
         $or:
@@ -435,9 +407,7 @@ export default class Recipe {
           });
       }).catch(() => res.status(500)
         .json({ Message: 'Internal server error. Unable to complete search.' }));
-    }).catch(() => {
-      return res.status(500)
-        .json({ Message: 'Internal server error' });
-    });
+    }).catch(() => res.status(500)
+      .json({ Message: 'Internal server error' }));
   }
 }

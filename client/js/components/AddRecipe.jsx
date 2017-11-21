@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import uploadImage from '../utils/uploadImage';
 /**
  * @description componet holds form to add recipes
  *
@@ -24,31 +25,34 @@ class AddRecipe extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getImageName = this.getImageName.bind(this);
+    this.onUpload = this.onUpload.bind(this);
   }
   onChange(event) {
       this.setState({ [event.target.name]: event.target.value })
   }
-  addImage() {
-    cloudinary.openUploadWidget({})
+
+  onUpload(event) {
+    let image = event.target.files[0];
+    this.setState({ recipeImage: image });
   }
-  getImageName() {
-      console.log(this.state.recipeImage);
-  }
+
   addRecipe() {
-      axios({
-          method: 'POST',
-          url: '/api/v1/recipes',
-          headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm90aWZ5Ijp0cnVlLCJpYXQiOjE1MTA4NTA4ODIsImV4cCI6MTUxMDkzNzI4Mn0.O0LpdnCnbsZwTFm9bfMKtOZFPse78-9XZ20vs43g5bQ' },
-          data: this.state
-      }).catch(error => {
-          console.log(error);
-      }).then(() => {
-          console.log('Recipe Added');
+    //this.addImage();
+    console.log(this.state.recipeImage);
+    uploadImage(this.state.recipeImage)
+      .then((response) => {
+        console.log('image url after axios is', response.data.secure_url);
+        this.setState({ recipeImage: response.data.secure_url})
+        console.log('image url after updating state is', this.state.recipeImage);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
+
   handleSubmit(event) {
     event.preventDefault();
+
     console.log(this.state);
     this.addRecipe();
   }
@@ -65,14 +69,14 @@ class AddRecipe extends React.Component {
                                 </button>
                             </div>
                             <div className="modal-body">
-                            <form onSubmit={this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit} encType="multipart/form-data">
                                 <div className="form-group">
                                     <label htmlFor="exampleInputEmail1">Recipe Name</label>
-                                    <input type="text" 
-                                    className="form-control" 
+                                    <input type="text"
+                                    className="form-control"
                                     name="name"
-                                    id="recipeName" 
-                                    aria-describedby="small-recipe-name" 
+                                    id="recipeName"
+                                    aria-describedby="small-recipe-name"
                                     placeholder="Awesome Recipe!"
                                     value={this.state.name}
                                     onChange={this.onChange} />
@@ -80,21 +84,21 @@ class AddRecipe extends React.Component {
 
                                 <div className="form-group">
                                     <label htmlFor="recipe-description">Recipe Description:</label>
-                                    <input type="text" 
-                                    className="form-control" 
+                                    <input type="text"
+                                    className="form-control"
                                     name="description"
-                                    id="recipe-description" 
-                                    placeholder="Awesome sauce made out of nothing!" 
-                                    value={this.state.description} 
+                                    id="recipe-description"
+                                    placeholder="Awesome sauce made out of nothing!"
+                                    value={this.state.description}
                                     onChange={this.onChange}/>
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="cook-directions">Ingredients:</label>
-                                    <textarea className="form-control" 
+                                    <textarea className="form-control"
                                     id="cook-directions"
-                                    name="ingredients" 
-                                    rows="3" 
+                                    name="ingredients"
+                                    rows="3"
                                     placeholder="Onions, tomatoes, grilled chicken, nutmeg"
                                     value={this.state.ingredients}
                                     onChange={this.onChange}>
@@ -103,10 +107,10 @@ class AddRecipe extends React.Component {
 
                                 <div className="form-group">
                                     <label htmlFor="cook-directions">Directions to cook:</label>
-                                    <textarea className="form-control" 
+                                    <textarea className="form-control"
                                     name="directions"
-                                    id="cook-directionss" 
-                                    rows="3" 
+                                    id="cook-directionss"
+                                    rows="3"
                                     placeholder="dice tomatoes, tear chicken, boil onions, mix with nutmeg"
                                     value={this.state.directions}
                                     onChange={this.onChange}></textarea>
@@ -115,17 +119,15 @@ class AddRecipe extends React.Component {
                                 {/* <div className="form-group">
                                     <button type="button" className="btn btn-primary" name="recipeImage" id="recipeImage">Add Image</button>
                                 </div> */}
-                                
+
                                 <div className="form-group">
                                     <label htmlFor="recipeImage">Recipe Image</label>
-                                    <input type="file" 
+                                    <input type="file"
                                     className="form-control-file"
-                                    name="recipeImage"
+                                    name="file"
                                     id="recipeImage"
-                                    value={this.state.recipeImage} 
-                                    onChange={this.onChange}/>
+                                    onChange={this.onUpload}/>
                                 </div>
-                                <button onCLick={this.getImageName} className="btn btn-primary">check image name</button>
                                 <button className="btn btn-primary">Add Recipe</button>
                             </form>
                             </div>
