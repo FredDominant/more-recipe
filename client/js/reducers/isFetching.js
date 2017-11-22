@@ -11,6 +11,4 @@ const isFetching = (state = initialState.isFetching, action) => {
       return state;
   }
 };
-
-
 export default isFetching;

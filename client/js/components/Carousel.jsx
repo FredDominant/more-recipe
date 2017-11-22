@@ -29,24 +29,18 @@ const items = [
   }
 ];
 
-class Carousel extends React.Component {
-    constructor(props){
-        super(props);
-    }
-    render() {
-        return (
-            <div className="carousels container">
-                <UncontrolledCarousel items={items} />
-            </div>
-            
-        );
-    }
-}
+const Carousel = () => (
+  <div className="carousels container">
+    <UncontrolledCarousel items={items} />
+  </div>
+
+);
+
 // UncontrolledCarousel.propTypes = {
 //     items: PropTypes.array,isRequired,
 //     indicators: PropTypes.bool, // default: true
 //     controls: PropTypes.bool, // default: true
 //     autoPlay: PropTypes.bool, // default: true
 //   };
-  
+
 export default Carousel;

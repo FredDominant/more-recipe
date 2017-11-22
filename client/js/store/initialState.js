@@ -3,6 +3,7 @@ const initialState = {
     isAuthenticated: !!localStorage.getItem('token')
   },
   isFetching: false,
+  isUploading: false,
   recipes: {
   }
 };

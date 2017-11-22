@@ -1,14 +1,6 @@
 import initialState from '../store/initialState';
 import { RECIEVE_AUTH, AUTH_ERROR } from '../actions/actionTypes';
 
-/*
-{
-  isAuthenticated
-  errorMessage
-  user
-  token
-}
-*/
 const auth = (state = initialState.auth, action) => {
   switch (action.type) {
     case RECIEVE_AUTH:

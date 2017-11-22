@@ -5,3 +5,8 @@ export const RECIEVE_AUTH = 'RECIEVE_AUTH';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_ALL_RECIPES_ERROR = 'GET_ALL_RECIPES_ERROR';
+
+export const UPLOADING = 'UPLOADING';
+export const END_UPLOADING = 'END_UPLOADING';
+export const ADD_RECIPE = 'ADD_RECIPE';
+export const RECIPE_ERROR = 'RECIPE_ERROR';
