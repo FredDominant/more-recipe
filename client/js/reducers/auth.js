@@ -11,6 +11,13 @@ const auth = (state = initialState.auth, action) => {
         user: action.user,
         token: action.token
       };
+    case 'SIGN_IN_USER':
+      return {
+        ...state,
+        isAuthenticated: true,
+        errorMessage: '',
+        user: action.user,
+      };
     case AUTH_ERROR:
       return {
         ...state,

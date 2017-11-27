@@ -1,21 +1,28 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import thunk from 'redux-thunk';
-import store from './store/store'
-import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter } from 'react-router-dom';
 
+import store from './store/store';
 import App from './components/App';
-// const store = createStore((state = {}) => state, applyMiddleware(thunk))
+import decodeToken from './utils/decodeToken';
+
+
+const user = decodeToken();
+if (user) {
+  store.dispatch({
+    type: 'SIGN_IN_USER',
+    user
+  });
+}
 
 
 ReactDOM.render(
-	<Provider store={store}>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</Provider>
-	, document.getElementById('root')
-); 
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root')
+);

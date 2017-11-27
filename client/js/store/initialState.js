@@ -1,6 +1,8 @@
+import authenticateUser from '../utils/authenticateUser';
+
 const initialState = {
   auth: {
-    isAuthenticated: !!localStorage.getItem('token')
+    isAuthenticated: authenticateUser()
   },
   isFetching: false,
   isUploading: false,

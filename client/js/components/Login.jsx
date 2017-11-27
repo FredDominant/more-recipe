@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+
 import loginValidator from '../validation/LoginValidator';
 import loginUser from '../actions/loginUser';
+
 /**
  *
  *
@@ -43,8 +46,6 @@ class Login extends React.Component {
  */
   isValid() {
     const { errors, isValid } = loginValidator(this.state);
-    console.log('errors in isValid is', errors);
-    console.log('isValid is', isValid);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -58,10 +59,10 @@ class Login extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     if (this.isValid()); {
       const { email, password } = this.state;
       this.props.dispatch(loginUser({ email, password }));
+      this.redirect();
     }
   }
   /**
@@ -71,6 +72,9 @@ class Login extends React.Component {
  */
   render() {
     const errors = this.state.errors;
+    if (this.props.authenticated) {
+      return <Redirect to="/home" />;
+    }
     return (
       <div>
         <div className="modal fade" id="login" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,7 +116,6 @@ class Login extends React.Component {
                         />
                       </div>
                       <br />
-
                       <div className="input-group">
                         <label htmlFor="#" className="control-label" /> <br />
                         <span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true" /></span>
@@ -143,6 +146,13 @@ class Login extends React.Component {
   }
 }
 Login.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool
 };
-export default connect(null)(Login);
+Login.defaultProps = {
+  authenticated: false
+};
+const mapStateToProps = state => ({
+  authenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps)(Login);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
 
-import { uploading, stopUploading } from './fetching';
+import { uploading, stopUploading } from './uploading';
 import { ADD_RECIPE, RECIPE_ERROR } from '../actions/actionTypes';
 
 const createRecipe = recipe => ({

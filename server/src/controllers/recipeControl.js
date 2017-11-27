@@ -183,7 +183,7 @@ export default class Recipe {
   static getAll(req, res) {
     if (!req.query.sort) {
       recipe.findAndCountAll().then((all) => {
-        const limit = 5;
+        const limit = 12;
         let offset = 0;
         const page = parseInt((req.query.page || 1), 10);
         const numberOfItems = all.count;

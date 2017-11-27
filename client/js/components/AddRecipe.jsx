@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
+import addRecipe from '../actions/addRecipe';
 /**
  * @description componet holds form to add recipes
  *
@@ -23,12 +25,24 @@ class AddRecipe extends React.Component {
       ingredients: '',
       directions: '',
       recipeImage: '',
-      errors: {}
+      errors: {},
+      addRecipeError: ''
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onUpload = this.onUpload.bind(this);
   }
+  /**
+   * @description component lifecycle method
+   * @returns {null} null
+   * @param {nextProp} nextProp object from store
+   * @memberof AddRecipe
+   */
+  componentWillReceiveProps(nextProp) {
+    console.log('just recieved this prop', nextProp);
+    this.setState({ addRecipeError: nextProp.addRecipeErrorMessage });
+  }
+
   /**
    *
    * @returns {null} null
@@ -68,10 +82,10 @@ class AddRecipe extends React.Component {
   addRecipe() {
     uploadImage(this.state.recipeImage)
       .then((response) => {
-        // console.log('image url after axios is', response.data.secure_url);
         this.setState({ recipeImage: response.data.secure_url });
-        // console.log('image url after updating state is', this.state.recipeImage);
         // dispatch this to store;
+        this.props.createRecipe(addRecipe(this.state));
+        // set as props
       })
       .catch((error) => {
         console.log(error);
@@ -96,6 +110,7 @@ class AddRecipe extends React.Component {
    */
   render() {
     const errors = this.state.errors;
+    const recipeError = this.state.addRecipeError;
     return (
       <div>
         <div className="modal fade" id="addRecipe" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,6 +124,7 @@ class AddRecipe extends React.Component {
               </div>
               <div className="modal-body">
                 <div className="container error-body">
+                  {recipeError && <div className="alert alert-dismissible alert-danger" role="alert">{recipeError}</div>}
                   {errors.name && <div className="alert alert-dismissible alert-danger" role="alert">{errors.name}</div>}
                   {errors.description && <div className="alert alert-dismissible alert-danger" role="alert">{errors.description}</div>}
                   {errors.ingredients && <div className="alert alert-dismissible alert-danger" role="alert">{errors.ingredients}</div>}
@@ -189,6 +205,12 @@ class AddRecipe extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-
+  errorMessage: state.addRecipeErrorMessage
 });
-export default connect(mapStateToProps)(AddRecipe);
+const mapDispatchToProps = dispatch => ({
+  createRecipe: dispatch(addRecipe())
+});
+AddRecipe.propTypes = {
+  createRecipe: PropTypes.func.isRequired,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);

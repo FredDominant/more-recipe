@@ -30,7 +30,6 @@ class RecipeBody extends React.Component {
    * @memberof RecipeBody
    */
   componentWillMount() {
-    console.log('I work');
     this.props.dispatch(getAllRecipes());
   }
   /**
@@ -43,7 +42,6 @@ class RecipeBody extends React.Component {
     this.setState({
       recipes: nextProps.recipes.allRecipes
     });
-    console.log(nextProps.recipes.allRecipes, 'I got here');
   }
   /**
  * @returns {html} html
