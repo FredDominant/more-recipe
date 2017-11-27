@@ -1,6 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import logOutUser from '../actions/logoutUser';
 /**
  *
  *
@@ -18,14 +21,36 @@ class Navbar extends React.Component {
     this.state = {};
     this.handleLogout = this.handleLogout.bind(this);
   }
+
   /**
    *
+   * @returns {null} null
+   * @memberof Navbar
+   */
+  componentWillMount() {
+    document.body.classList.remove('modal-open');
+    $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
+  }
+  /**
+   * @description this method handles user logout
+   * @returns {function} function
+   * @param {any} event
+   * @memberof Navbar
+   */
+  handleLogout(event) {
+    event.preventDefault();
+    this.props.logOutUser();
+  }
+  /**
    *
    * @returns {component} react component
    * @memberof Navbar
    */
   render() {
     if (this.props.user) {
+      if (!this.props.authenticated) {
+        return <Redirect to="/" />;
+      }
       return (
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,8 +78,10 @@ class Navbar extends React.Component {
                         <Link to="/favourites">FAVOURITES  </Link> <span className="sr-only">(current)</span></span>
                     </li>
                     <li className="nav-item active">
-                      <span className="nav-link"><span><i className="fa fa-sign-out" aria-hidden="true" /> </span>
-                        <Link to="/">LOG OUT </Link> <span className="sr-only">(current)</span></span>
+                      <a><button
+                        className="btn btn-warning"
+                        onClick={this.handleLogout}
+                      ><span><i className="fa fa-sign-out" aria-hidden="true" /> </span>LOGOUT </button></a>
                     </li>
                   </ul>
                 </div>
@@ -99,7 +126,15 @@ class Navbar extends React.Component {
   }
 }
 Navbar.propTypes = {
-  user: PropTypes.string.isRequired
+  user: PropTypes.string,
+  logOutUser: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool
 };
-
-export default Navbar;
+Navbar.defaultProps = {
+  authenticated: true,
+  user: null
+};
+const mapStateToProps = state => ({
+  authenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, { logOutUser })(Navbar);

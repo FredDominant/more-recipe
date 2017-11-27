@@ -119,7 +119,7 @@ class Signup extends React.Component {
                         <span className="input-group-addon" id="lastName-addon"><i className="fa fa-user" aria-hidden="true" /></span>
                         <input
                           type="text"
-                          alue={this.state.lastname}
+                          value={this.state.lastname}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Last Name"
@@ -151,8 +151,7 @@ class Signup extends React.Component {
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Password"
-                          a
-                          ria-label="password"
+                          aria-label="password"
                           aria-describedby="password-addon"
                           name="password"
                         />

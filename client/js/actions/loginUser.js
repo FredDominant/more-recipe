@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
-import { Redirect } from 'react-router-dom';
-
 import { setFetching, unsetFetching } from './fetching';
 import { RECIEVE_AUTH, AUTH_ERROR } from './actionTypes';
 
@@ -39,6 +37,4 @@ const loginUser = ({ email, password }) => (dispatch) => {
 };
 
 export default loginUser;
-// function(dispatch) {
-//   return dispatch(something())
-// }
+

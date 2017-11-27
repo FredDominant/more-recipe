@@ -59,7 +59,7 @@ class Login extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    if (this.isValid()) {
+    if (this.isValid()); {
       const { email, password } = this.state;
       this.props.loginUser({ email, password });
     }
@@ -76,7 +76,7 @@ class Login extends React.Component {
     }
     return (
       <div>
-        <div className="modal fade" id="login" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="login" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content container">
               <div className="row">
@@ -98,7 +98,7 @@ class Login extends React.Component {
                     </div>}
                     <br />
                   </div>
-                  <form className="form-group" onSubmit={this.handleSubmit}>
+                  <form className="form-group" >
                     <div className="container">
                       <div className="input-group">
                         <label htmlFor="#" className="control-label" /> <br />
@@ -131,7 +131,7 @@ class Login extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <button type="submit" className="form-control btn btn-primary" id="register-button"> <span className="register-text"> Log in </span> </button>
+                        <button onClick={this.handleSubmit} className="form-control btn btn-primary" id="register-button"> <span className="register-text"> Log in </span> </button>
                       </div>
                     </div>
                   </form>

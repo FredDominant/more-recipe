@@ -13,7 +13,10 @@
 #nav2 {
 	width: 100%;
 }
-
+// .modal-backdrop {
+//   z-index: 0;
+//   background-color: unset;
+// }
 #signup-title {
 	font-family: 'Berkshire Swash', cursive;
 	margin-left: 33%;
@@ -95,7 +98,7 @@ span.routes a {
 	font-size: xx-large;
 	color: brown;
 }
-.login-form, 
+.login-form,
 .signup-form {
 	width: 20%;
 }
@@ -136,7 +139,7 @@ div.carousel-inner {
 		width: 70%;
 		margin-left: 20px;
 	}
-	
+
 	.login-close {
 		width: 23%
 	}

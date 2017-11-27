@@ -38,10 +38,10 @@ class AddRecipe extends React.Component {
    * @param {nextProp} nextProp object from store
    * @memberof AddRecipe
    */
-  componentWillReceiveProps(nextProp) {
-    console.log('just recieved this prop', nextProp);
-    this.setState({ addRecipeError: nextProp.addRecipeErrorMessage });
-  }
+  // componentWillReceiveProps(nextProp) {
+  //   // console.log('just recieved this prop', nextProp);
+  //   this.setState({ addRecipeError: nextProp.addRecipeErrorMessage });
+  // }
 
   /**
    *
@@ -83,12 +83,7 @@ class AddRecipe extends React.Component {
     uploadImage(this.state.recipeImage)
       .then((response) => {
         this.setState({ recipeImage: response.data.secure_url });
-        // dispatch this to store;
-        this.props.createRecipe(addRecipe(this.state));
-        // set as props
-      })
-      .catch((error) => {
-        console.log(error);
+        this.props.addRecipe(this.state);
       });
   }
   /**
@@ -207,10 +202,7 @@ class AddRecipe extends React.Component {
 const mapStateToProps = state => ({
   errorMessage: state.addRecipeErrorMessage
 });
-const mapDispatchToProps = dispatch => ({
-  createRecipe: dispatch(addRecipe())
-});
 AddRecipe.propTypes = {
-  createRecipe: PropTypes.func.isRequired,
+  addRecipe: PropTypes.func.isRequired,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);
+export default connect(mapStateToProps, { addRecipe })(AddRecipe);
