@@ -50,7 +50,6 @@ class Recipe extends React.Component {
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
     console.log(reviews);
-    // const success = nextProps.upvotes.upvoteRecipe;
     this.setState({ recipe, reviews, owner });
   }
 
@@ -125,8 +124,7 @@ Recipe.propTypes = {
   getRecipeDetails: PropTypes.func.isRequired,
   upvoteRecipe: PropTypes.func.isRequired,
   downvoteRecipe: PropTypes.func.isRequired,
-  recipe: PropTypes.shape(),
-  // upvotes: PropTypes.bool.isRequired
+  recipe: PropTypes.shape()
 };
 Recipe.defaultProps = {
   recipe: null
