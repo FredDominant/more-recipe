@@ -16,6 +16,7 @@ export const authError = message => ({
 });
 
 const loginUser = ({ email, password }) => (dispatch) => {
+  console.log(email, 'from elsewher');
   dispatch(setFetching());
   return axios.post('/api/v1/users/signin', { email, password })
     .then((response) => {

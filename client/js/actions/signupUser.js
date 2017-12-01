@@ -15,11 +15,11 @@ const signupUser = userData => (dispatch) => {
   dispatch(setFetching());
   axios.post('/api/v1/users/signup', userData)
     .then((response) => {
-      console.log(response);
-      const { User, token } = response.data;
-      localStorage.setItem('token', token);
+      console.log('response is', response);
+      const { User, Token } = response.data;
+      localStorage.setItem('token', Token);
       dispatch(batchActions([
-        recieveAuth(User, token),
+        recieveAuth(User, Token),
         unsetFetching()
       ]));
     })

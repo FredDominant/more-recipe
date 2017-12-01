@@ -28,7 +28,7 @@ export default (sequelize, DataTypes) => {
     picture: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'none'
+      defaultValue: 'https://d13yacurqjgara.cloudfront.net/users/583390/screenshots/2517460/sob_avatar_illustration__800x600px__1.0_1x.jpg'
     }
   });
   User.associate = (models) => {

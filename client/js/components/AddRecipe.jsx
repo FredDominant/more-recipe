@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
@@ -26,7 +27,8 @@ class AddRecipe extends React.Component {
       directions: '',
       recipeImage: '',
       errors: {},
-      addRecipeError: ''
+      addRecipeError: '',
+      uploadImageError: ''
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,10 +40,10 @@ class AddRecipe extends React.Component {
    * @param {nextProp} nextProp object from store
    * @memberof AddRecipe
    */
-  // componentWillReceiveProps(nextProp) {
-  //   // console.log('just recieved this prop', nextProp);
-  //   this.setState({ addRecipeError: nextProp.addRecipeErrorMessage });
-  // }
+  componentWillReceiveProps(nextProp) {
+    console.log('nextProp is:', nextProp);
+    this.setState({ addRecipeError: nextProp.errorMessage });
+  }
 
   /**
    *
@@ -79,12 +81,26 @@ class AddRecipe extends React.Component {
    * @returns {null} null
    * @memberof AddRecipe
    */
-  addRecipe() {
-    uploadImage(this.state.recipeImage)
-      .then((response) => {
-        this.setState({ recipeImage: response.data.secure_url });
-        this.props.addRecipe(this.state);
-      });
+  addNewRecipe() {
+    const { name, description, ingredients, directions, recipeImage } = this.state;
+    console.log(this.state);
+    console.log('recipe image name is', recipeImage.name);
+    if (recipeImage.name) {
+      // return `recipeImage is ${recipeImage}`;
+      return uploadImage(recipeImage)
+        .then((response) => {
+          const recipeUrl = response.data.secure_url;
+          this.setState({ recipeImage: recipeUrl });
+          this.props.createRecipe(this.state);
+          console.log('image url is', recipeUrl);
+          console.log('done uploading', recipeImage);
+        })
+        .catch((error) => {
+          this.setState({ uploadImageError: error.error.message });
+        });
+    }
+    // return 'i run here';
+    return this.props.createRecipe({ name, description, ingredients, directions });
   }
   /**
  *
@@ -95,7 +111,7 @@ class AddRecipe extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.isValid()) {
-      this.addRecipe();
+      this.addNewRecipe();
     }
   }
   /**
@@ -105,7 +121,6 @@ class AddRecipe extends React.Component {
    */
   render() {
     const errors = this.state.errors;
-    const recipeError = this.state.addRecipeError;
     return (
       <div>
         <div className="modal fade" id="addRecipe" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,7 +134,8 @@ class AddRecipe extends React.Component {
               </div>
               <div className="modal-body">
                 <div className="container error-body">
-                  {recipeError && <div className="alert alert-dismissible alert-danger" role="alert">{recipeError}</div>}
+                  {this.state.addRecipeError && <div className="alert alert-dismissible alert-danger" role="alert">{this.props.errorMessage}</div>}
+                  {this.state.uploadImageError && <div className="alert alert-dismissible alert-danger" role="alert">{'Error while uploading image'}</div>}
                   {errors.name && <div className="alert alert-dismissible alert-danger" role="alert">{errors.name}</div>}
                   {errors.description && <div className="alert alert-dismissible alert-danger" role="alert">{errors.description}</div>}
                   {errors.ingredients && <div className="alert alert-dismissible alert-danger" role="alert">{errors.ingredients}</div>}
@@ -200,9 +216,19 @@ class AddRecipe extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  errorMessage: state.addRecipeErrorMessage
+  errorMessage: state.addRecipe.addRecipeErrorMessage
 });
+
+const mapDispatchToProps = dispatch => ({
+  createRecipe: recipe => dispatch(addRecipe(recipe))
+});
+
 AddRecipe.propTypes = {
-  addRecipe: PropTypes.func.isRequired,
+  createRecipe: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
 };
-export default connect(mapStateToProps, { addRecipe })(AddRecipe);
+AddRecipe.defaultProps = {
+  errorMessage: null
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);
+

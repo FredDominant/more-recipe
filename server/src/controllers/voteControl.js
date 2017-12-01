@@ -16,15 +16,14 @@ export default class Vote {
    *
    * @param {any} req
    * @param {any} res
-   * @returns {obj}status code and message
+   * @returns {obj} status code and message
    * @memberof Vote
    */
   static upvote(req, res) {
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {
-          return res.status(404)
-            .json({ message: 'recipe not found, ensure you typed correct recipe Id' });
+          return res.status(404).json({ Message: 'recipe not found, ensure you typed correct recipe Id' });
         }
         if (foundRecipe) {
           upvote.findOne({
@@ -35,7 +34,6 @@ export default class Vote {
             attributes: ['id', 'recipeId', 'userId']
           }).then((foundUpvote) => {
             if (!foundUpvote) {
-            // find if recipe has been downvoted by same user
               downvote.findOne({
                 where: {
                   recipeId: req.params.recipeId,
@@ -44,7 +42,6 @@ export default class Vote {
                 attributes: ['id', 'recipeId', 'userId']
               }).then((foundDownvote) => {
                 if (!foundDownvote) {
-                // create upvote
                   const newUpvote = {
                     recipeId: req.params.recipeId,
                     userId: req.decoded.id
@@ -53,24 +50,20 @@ export default class Vote {
                     recipe.findById(req.params.recipeId)
                       .then((found) => {
                         if (!found) {
-                          return res.status(500)
-                            .json({ Message: 'couldn\'t upvote recipe' });
+                          return res.status(500).json({ Message: 'couldn\'t upvote recipe' });
                         }
                         if (found) {
                           found.increment('upvote');
-                          return res.status(201)
-                            .json({ Message: 'upvoted!' });
+                          recipe.findOne({
+                            where: { id: req.params.recipeId },
+                            include: [
+                              { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                              { model: models.Review, attributes: ['content'] }
+                            ]
+                          }).then(Recipe => res.status(201).json({ Message: 'new upvote', Recipe }));
                         }
-                      }).catch(() => {
-                        // unable to increment recipe value
-                        return res.status(500)
-                          .json({ Message: 'Server error. Unable to complete vote' });
-                      });
-                  }).catch(() => {
-                  // can't create upvote
-                    return res.status(500)
-                      .json({ Message: 'Server error. Unable to complete vote'  });
-                  });
+                      }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
+                  }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                 }
                 if (foundDownvote) {
                   downvote.destroy({
@@ -91,50 +84,61 @@ export default class Vote {
                             if (existingRecipe) {
                               existingRecipe.increment('upvote');
                               existingRecipe.decrement('downvote');
-                              return res.status(201)
-                                .json({ Message: 'recipe upvoted' });
+                              recipe.findOne({
+                                where: { id: req.params.recipeId },
+                                include: [
+                                  { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                                  { model: models.Review, attributes: ['content'] }
+                                ]
+                              }).then(Recipe => res.status(200).json({ Message: 'new upvote after destroying down', Recipe }));
+                              // const upvotedRecipe = {
+                              //   name: existingRecipe.dataValues.name,
+                              //   description: existingRecipe.dataValues.description,
+                              //   ingredients: existingRecipe.dataValues.ingredients,
+                              //   directions: existingRecipe.dataValues.directions,
+                              //   picture: existingRecipe.dataValues.picture,
+                              //   upvote: (existingRecipe.dataValues.upvote + 1),
+                              //   downvote: (existingRecipe.dataValues.downvote - 1),
+                              //   views: existingRecipe.dataValues.views
+                              // };
+                              // return res.status(201)
+                              //   .json({ Message: 'recipe upvoted', Recipe: upvotedRecipe });
                             }
                             if (!existingRecipe) {
-                              return res.status(500)
-                                .json({ Message: 'Can\'t find recipe to increment after creation' });
+                              return res.status(500).json({ Message: 'Can\'t find recipe to increment after creation' });
                             }
-                          }).catch(() => {
-                            // error can't find recipe after destroying downvote
-                            return res.status(500)
-                              .json({ Message: 'Server error. Unable to complete vote' });
-                          });
-                      }).catch((error) => {
-                        // error creating upvote after destroying in downvote
-                        return res.status(500)
-                          .json({ Message: error });
-                      });
-                  }).catch(() => {
-                  // couldn't destroy in downvote
-                    return res.status(500)
-                      .json({ Message: 'Server error. Unable to complete vote'  });
-                  });
+                          }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
+                      }).catch(error => res.status(500).json({ Message: error }));
+                  }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                 }
-              }).catch(() => {
-              // can't find in downvote
-                return res.status(500)
-                  .json({ Message: 'Server error. Unable to complete vote' });
-              });
+              }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
             }
             if (foundUpvote) {
-              return res.status(403)
-                .json({ Message: 'You already upvoted this recipe' });
+              console.log('user already upvoted this');
+              upvote.destroy({
+                where: { userId: req.decoded.id },
+                $and: { recipeId: req.params.recipeId }
+              })
+                .then(() => {
+                  recipe.findById(req.params.recipeId)
+                    .then((updatedRecipe) => {
+                      updatedRecipe.decrement('upvote');
+                      console.log('decremented upvote');
+                      recipe.findOne({
+                        where: { id: req.params.recipeId },
+                        include: [
+                          { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                          { model: models.Review, attributes: ['content'] }
+                        ]
+                      }).then(Recipe => res.status(200).json({ Message: 'deleted upvote and decremented', Recipe }));
+                    }).catch(() => res.status.json({ Message: 'Internal server error' }));
+                }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
+              // return res.status(403)
+              //   .json({ Message: 'You already upvoted this recipe' });
             }
-          }).catch(() => {
-          // can't find recipe in upvote
-            return res.status(500)
-              .json({ Message: 'Server error. Unable to complete vote' });
-          });
+          }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
         }
-      }).catch(() => {
-      // can't find recipe
-        return res.status(500)
-          .json({ Message: 'Server error. Unable to complete vote' });
-      });
+      }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
   }
   /**
    *
@@ -161,7 +165,7 @@ export default class Vote {
             attributes: ['id', 'recipeId', 'userId']
           }).then((foundDownvote) => {
             if (!foundDownvote) {
-            // find if recipe has been upvoted by user
+              // find if recipe has been upvoted by user
               upvote.findOne({
                 where: {
                   recipeId: req.params.recipeId,
@@ -169,9 +173,9 @@ export default class Vote {
                 },
                 attributes: ['id', 'recipeId', 'userId']
               }).then((foundUpvote) => {
-              // if recipe has not been upvoted by user
+                // if recipe has not been upvoted by user
                 if (!foundUpvote) {
-                // create new downvote
+                  // create new downvote
                   const newDownvote = {
                     recipeId: req.params.recipeId,
                     userId: req.decoded.id
@@ -185,19 +189,26 @@ export default class Vote {
                         }
                         if (found) {
                           found.increment('downvote');
-                          return res.status(201)
-                            .json({ Message: 'downvoted!' });
+                          recipe.findOne({
+                            where: { id: req.params.recipeId },
+                            include: [
+                              { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                              { model: models.Review, attributes: ['content'] }
+                            ]
+                          }).then(Recipe => res.status(201).json({ Message: 'created downvote', Recipe }));
+                          // return res.status(201)
+                          //   .json({ Message: 'downvoted!' });
                         }
-                      }).catch(() => {
-                        // cant find after creating downvote
-                        return res.status(500)
-                          .json({ Message: 'Server error. Unable to complete vote'  });
-                      });
-                    }).catch(() => {
-                      // can't create new new downvote
-                      return res.status(500)
-                        .json({ Message: 'Server error. Unable to complete vote' });
-                    });
+                      }).catch(() =>
+                      // cant find after creating downvote
+                        res.status(500)
+                          .json({ Message: 'Server error. Unable to complete vote' })
+                      );
+                    }).catch(() =>
+                    // can't create new new downvote
+                      res.status(500)
+                        .json({ Message: 'Server error. Unable to complete vote' })
+                    );
                 }
                 if (foundUpvote) {
                   upvote.destroy({
@@ -217,49 +228,75 @@ export default class Vote {
                             if (found) {
                               found.increment('downvote');
                               found.decrement('upvote');
-                              return res.status(201)
-                                .json({ Message: 'recipe downvoted' });
+                              recipe.findOne({
+                                where: { id: req.params.recipeId },
+                                include: [
+                                  { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                                  { model: models.Review, attributes: ['content'] }
+                                ]
+                              }).then(Recipe => res.status(200).json({ Message: 'incremented downvote after destroying up', Recipe }));
+                              // return res.status(201)
+                              //   .json({ Message: 'recipe downvoted' });
                             }
                             if (!found) {
                               return res.status(500)
                                 .json({ Message: 'Can\'t find recipe to increment after creation' });
                             }
-                          }).catch(() => {
-                          // error can't find recipe after destroying downvote
-                            return res.status(500)
-                              .json({ Message: 'Server error. Unable to complete vote' });
-                          });
-                      }).catch(() => {
-                        // cant create after destroying
-                        return res.status(500)
-                          .json({ Message: 'Server error. Unable to complete vote' });
-                      });
-                  }).catch(() => {
-                  // cant destroy upvote
-                    return res.status(500)
-                      .json({ Message: 'Server error. Unable to complete vote' });
-                  });
+                          }).catch(() =>
+                            // error can't find recipe after destroying downvote
+                            res.status(500)
+                              .json({ Message: 'Server error. Unable to complete vote' })
+                          );
+                      }).catch(() =>
+                      // cant create after destroying
+                        res.status(500)
+                          .json({ Message: 'Server error. Unable to complete vote' })
+                      );
+                  }).catch(() =>
+                    // cant destroy upvote
+                    res.status(500)
+                      .json({ Message: 'Server error. Unable to complete vote' })
+                  );
                 }
-              }).catch(() => {
-              // can't find in upvote
-                return res.status(500)
-                  .json({ Message: 'Server error. Unable to complete vote' });
-              });
+              }).catch(() =>
+                // can't find in upvote
+                res.status(500)
+                  .json({ Message: 'Server error. Unable to complete vote' })
+              );
             }
             if (foundDownvote) {
-              return res.status(403)
-                .json({ Message: 'You already downvoted this recipe' });
+              console.log('user already downvoted this');
+              downvote.destroy({
+                where: { userId: req.decoded.id },
+                $and: { recipeId: req.params.recipeId }
+              })
+                .then(() => {
+                  recipe.findById(req.params.recipeId)
+                    .then((updatedRecipe) => {
+                      updatedRecipe.decrement('downvote');
+                      console.log('decremented downvote');
+                      recipe.findOne({
+                        where: { id: req.params.recipeId },
+                        include: [
+                          { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                          { model: models.Review, attributes: ['content'] }
+                        ]
+                      }).then(Recipe => res.status(200).json({ Message: 'deleted downvote and decremented', Recipe }));
+                    }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
+                }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
+              // return res.status(403)
+              //   .json({ Message: 'You already downvoted this recipe' });
             }
-          }).catch(() => {
-          // can't find user voted recipe in downvote
-            return res.status(500)
-              .json({ Message: 'Server error. Unable to complete vote' });
-          });
+          }).catch(() =>
+            // can't find user voted recipe in downvote
+            res.status(500)
+              .json({ Message: 'Server error. Unable to complete vote' })
+          );
         }
-      }).catch(() => {
-      // check if recipe exists
-        return res.status(500)
-          .json({ Message: 'Server error. Unable to complete vote' });
-      });
+      }).catch(() =>
+        // check if recipe exists
+        res.status(500)
+          .json({ Message: 'Server error. Unable to complete vote' })
+      );
   }
 }

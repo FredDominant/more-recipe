@@ -56,13 +56,15 @@ class Navbar extends React.Component {
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-6">
-                <a className="navbar-brand"><span id="title"><h3 title="More Recipes and cooking tips">More Recipes</h3></span></a>
+                <span id="title" className="navbar-brand">
+                  <Link to="/home"><h2 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h2></Link>
+                </span>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon" />
                 </button>
               </div>
 
-              <div className="col-sm-6" >
+              <div className="col-sm-6" id="navigation-icons">
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">

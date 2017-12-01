@@ -39,7 +39,7 @@ export default (sequelize, DataTypes) => {
     picture: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'none'
+      defaultValue: 'https://www.impaktovisual.com.br/3661-large_default/display-cupcake.jpg'
     }
   });
   Recipe.associate = (models) => {

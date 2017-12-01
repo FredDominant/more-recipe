@@ -27,7 +27,7 @@ const addRecipe = recipe => (dispatch) => {
   })
     .then((response) => {
       dispatch(batchActions([
-        createRecipe(response),
+        createRecipe(response.data),
         stopUploading()
       ]));
     })

@@ -193,7 +193,7 @@ export default class Recipe {
           limit,
           offset,
           order: [
-            ['id', 'ASC']
+            ['id', 'DESC']
           ],
           include: [
             { model: models.User, attributes: ['firstname', 'lastname'] }

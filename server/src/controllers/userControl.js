@@ -44,11 +44,14 @@ export default class User {
           }).then((newUser) => {
             const token = jwt.sign({
               id: newUser.id,
+              firstname: newUser.firstname,
+              lastname: newUser.lastname,
+              email: newUser.email,
               notify: newUser.notify
             }, secret, { expiresIn: 86400 });
             return res.status(201)
               .json({
-                token,
+                Token: token,
                 User: {
                   FirstName: newUser.email,
                   LastName: newUser.lastname,
@@ -57,9 +60,9 @@ export default class User {
                 Message: 'Account created'
               });
           }).catch(() => res.status(500)
-              .json({
-                Message: 'Unable to create new user. Please try again later'
-              }));
+            .json({
+              Message: 'Unable to create new user. Please try again later'
+            }));
         } else {
           return res.status(401)
             .json({
@@ -150,21 +153,21 @@ export default class User {
             lastname: lastname ? lastname.trim() : foundUser.dataValues.lastname
           };
           foundUser.update(newData)
-            .then((updatedData) => res.status(200)
-                .json({
-                  Message: 'Profile update successful',
-                  NewDetails: {
-                    FirstName: updatedData.dataValues.firstname,
-                    LastName: updatedData.dataValues.lastname,
-                    Email: updatedData.dataValues.email
-                  }
-                }))
+            .then(updatedData => res.status(200)
+              .json({
+                Message: 'Profile update successful',
+                NewDetails: {
+                  FirstName: updatedData.dataValues.firstname,
+                  LastName: updatedData.dataValues.lastname,
+                  Email: updatedData.dataValues.email
+                }
+              }))
             .catch(() => res.status(500)
-                .json({ Message: 'Internal server error. Unable to update profile' }));
+              .json({ Message: 'Internal server error. Unable to update profile' }));
         }
       })
       .catch(() => res.status(500)
-          .json({ Message: 'Internal server error. Unable to update profile' }));
+        .json({ Message: 'Internal server error. Unable to update profile' }));
   }
   /**
    * This function deletes a user
@@ -204,13 +207,13 @@ export default class User {
             $and: { password: encryptedPassword }
           }
         }).then(() => res.status(200)
-            .json({ Message: 'Account deleted' })).catch(() => res.status(500)
-            .json({ Message: 'Internal server error' }));
+          .json({ Message: 'Account deleted' })).catch(() => res.status(500)
+          .json({ Message: 'Internal server error' }));
       } else {
         return res.status(401)
           .json({ Message: 'Passwords do not match' });
       }
     }).catch(() => res.status(500)
-        .json({ Message: 'Unable to complete request' }));
+      .json({ Message: 'Unable to complete request' }));
   }
 }

@@ -11,6 +11,8 @@ const Body = () => (
     <Route path="/" exact component={Home} />
     <Route path="/home" exact component={UserHome} />
     <Route path="/profile" component={Profile} />
+    <Route path="/recipe/:recipeId" component={Recipe} />
+    <Route path="/user/:userId" component={Profile} />
     <Route component={Recipe} />
   </Switch>
 );

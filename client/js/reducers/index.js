@@ -5,6 +5,8 @@ import isFetching from './isFetching';
 import allRecipes from './allRecipes';
 import isUploading from './isUploading';
 import addRecipe from '../reducers/addRecipe';
+import getOneRecipe from '../reducers/getOneRecipe';
+// import upvoteReducer from '../reducers/upvoteReducer';
 // import signupReducer from './signupReducer';
 
 const reducers = combineReducers({
@@ -12,7 +14,9 @@ const reducers = combineReducers({
   isFetching,
   allRecipes,
   isUploading,
-  addRecipe
+  addRecipe,
+  getOneRecipe,
+  // upvoteReducer
 });
 
 export default reducers;

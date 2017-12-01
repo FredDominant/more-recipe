@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import signupValidator from '../validation/SignupValidator';
 import signupUser from '../actions/signupUser';
@@ -49,9 +50,8 @@ class Signup extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     if (this.isValid()) {
-      this.setState({ errors: {} });
       const { firstname, lastname, email, password, confirmPassword } = this.state;
-      this.props.dispatch(signupUser({ firstname, lastname, email, password, confirmPassword }));
+      this.props.signup({ firstname, lastname, email, password, confirmPassword });
     }
   }
   /**
@@ -74,6 +74,9 @@ class Signup extends React.Component {
    */
   render() {
     const { errors } = this.state;
+    if (this.props.authenticated) {
+      return <Redirect to="/home" />;
+    }
     return (
       <div>
         <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,11 +96,24 @@ class Signup extends React.Component {
               <div className="modal-body">
                 <div>
                   <div className="container">
-                    {errors.firstname && <div className="alert alert-danger" role="alert">{errors.firstname}</div>}
-                    {errors.lastname && <div className="alert alert-danger" role="alert">{errors.lastname}</div>}
-                    {errors.email && <div className="alert alert-danger" role="alert">{errors.email}</div>}
-                    {errors.password && <div className="alert alert-danger" role="alert">{errors.password}</div>}
-                    {errors.confirmPassword && <div className="alert alert-danger" role="alert">{errors.confirmPassword}</div>}
+                    {this.props.errorMessage && <div className="alert alert-danger" role="alert">{this.props.errorMessage}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {errors.firstname && <div className="alert alert-danger" role="alert">{errors.firstname}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {errors.lastname && <div className="alert alert-danger" role="alert">{errors.lastname}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {errors.email && <div className="alert alert-danger" role="alert">{errors.email}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {errors.password && <div className="alert alert-danger" role="alert">{errors.password}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {errors.confirmPassword && <div className="alert alert-danger" role="alert">{errors.confirmPassword}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
                     <div className="container">
@@ -187,7 +203,22 @@ class Signup extends React.Component {
 }
 
 Signup.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  signup: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+  authenticated: PropTypes.bool
+};
+Signup.defaultProps = {
+  errorMessage: '',
+  authenticated: false
 };
 
-export default connect(null)(Signup);
+const mapStateToProps = state => ({
+  errorMessage: state.auth.errorMessage,
+  authenticated: state.auth.isAuthenticated
+});
+
+const mapDispatchToProps = dispatch => ({
+  signup: user => dispatch((signupUser(user)))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import {
   Card,
@@ -34,10 +35,12 @@ class RecipeItem extends React.Component {
     return (
       <div className="recipeCard">
         <Card>
-          <CardImg src="https://s3.amazonaws.com/libapps/accounts/7712/images/veggie-heart.jpg" alt="recipeName" />
+          <CardImg src={this.props.image} alt={this.props.recipeName} />
           <CardBody>
             <CardTitle>
-              <span className="recipe-title">{this.props.recipeName}</span>
+              <span className="recipe-title">
+                <Link to={`/recipe/${this.props.recipeId}`}> {this.props.recipeName} </Link>
+              </span>
               <br />
             </CardTitle>
             <h6 className="recipe-owner"><span><i className="fa fa-user-circle-o" aria-hidden="true" /> </span>{this.props.owner}</h6>
@@ -63,7 +66,12 @@ RecipeItem.propTypes = {
   description: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
-  views: PropTypes.number.isRequired
+  views: PropTypes.number.isRequired,
+  recipeId: PropTypes.number.isRequired,
+  image: PropTypes.string
+};
+RecipeItem.defaultProps = {
+  image: 'https://s3.amazonaws.com/libapps/accounts/7712/images/veggie-heart.jpg'
 };
 
 export default RecipeItem;

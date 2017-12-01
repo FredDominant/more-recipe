@@ -4,6 +4,8 @@ const initialState = {
   auth: {
     isAuthenticated: authenticateUser()
   },
+  recipe: {
+  },
   isFetching: false,
   isUploading: false,
   recipes: {

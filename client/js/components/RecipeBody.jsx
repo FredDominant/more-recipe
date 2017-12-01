@@ -54,6 +54,8 @@ class RecipeBody extends React.Component {
       (
         <div key={recipe.id} className="col-sm-4">
           <RecipeItem
+            image={recipe.picture}
+            recipeId={recipe.id}
             recipeName={capitalize(recipe.name)}
             description={capitalize(recipe.description)}
             upvotes={recipe.upvote}

@@ -15,7 +15,7 @@ import AddRecipe from './AddRecipe';
 const UserHome = () => (
   <div>
     <Navbar user={'registered'} />
-    {/* <AddRecipe /> */}
+    <AddRecipe />
     <Search />
     <div className="container-fluid">
       <Carousel />

@@ -61,7 +61,7 @@ class Login extends React.Component {
     event.preventDefault();
     if (this.isValid()) {
       const { email, password } = this.state;
-      this.props.loginUser({ email, password });
+      this.props.login({ email, password });
     }
   }
   /**
@@ -93,8 +93,13 @@ class Login extends React.Component {
                 <div>
                   <div className="container error-body">
                     {errors.email && <div className="alert alert-danger alert-dismissible" role="alert">{errors.email}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
+                    </div>}
+                    {this.props.errorMessage && <div className="alert alert-danger alert-dismissible" role="alert">{this.props.errorMessage}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.password && <div className="alert alert-danger alert-dismissible" role="alert">{errors.password}
+                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     <br />
                   </div>
@@ -146,12 +151,18 @@ class Login extends React.Component {
 }
 Login.propTypes = {
   authenticated: PropTypes.bool,
-  loginUser: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
 };
 Login.defaultProps = {
-  authenticated: false
+  authenticated: false,
+  errorMessage: null
 };
 const mapStateToProps = state => ({
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  errorMessage: state.auth.errorMessage
 });
-export default connect(mapStateToProps, { loginUser })(Login);
+const mapDispatchToProps = dispatch => ({
+  login: user => dispatch(loginUser(user))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
