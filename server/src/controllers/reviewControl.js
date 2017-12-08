@@ -45,35 +45,24 @@ export default class Review {
                   recipeId: req.params.recipeId
                 };
                 review.create(newReview)
-                  .then((createdReview) => {
-                    return res.status(201)
-                      .json({
-                        Review: createdReview
-                      });
-                  })
-                  .catch(() => {
-                    return res.status(500)
-                      .json({
-                        Message: 'Fail. Unable to add review'
-                      });
+                  .then(() => {
+                    recipe.findOne({
+                      where: { id: req.params.recipeId },
+                      include: [
+                        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                        { model: models.Review, attributes: ['content'] }
+                      ]
+                    }).then(Recipe => res.status(201).json({ Message: 'Review Added', Recipe }));
                   });
               }
-              if (foundReview) {
-                return res.status(403)
-                  .json({ Message: 'You\'ve posted a review for this recipe already' });
-              }
             })
-            .catch(() => {
-              return res.status(500)
-                .json({
-                  Message: 'Fail. Unable to add review'
-                });
-            });
+            .catch(() => res.status(500)
+              .json({
+                Message: 'Unable to add review'
+              }));
         }
       })
-      .catch(() => {
-        return res.status(500)
-          .json({ Message: 'Internal error ocurred. Please try again later' });
-      });
+      .catch(() => res.status(500)
+        .json({ Message: 'Internal error ocurred. Please try again later' }));
   }
 }

@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
 import downvoteRecipe from '../actions/downvote';
+import ViewReviews from '../components/ViewReviews';
+import AddReview from '../components/AddReview';
 /**
  *
  *
@@ -22,7 +24,7 @@ class Recipe extends React.Component {
     super(props);
     this.state = {
       recipe: '',
-      review: '',
+      reviews: [],
       owner: ''
     };
     this.handleUpvote = this.handleUpvote.bind(this);
@@ -49,7 +51,7 @@ class Recipe extends React.Component {
     const recipe = nextProps.recipe;
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
-    console.log(reviews);
+    console.log('reviews are', reviews);
     this.setState({ recipe, reviews, owner });
   }
 
@@ -91,6 +93,17 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    const { reviews } = this.state;
+    console.log(reviews);
+    const allReviews = reviews.map((review, i) => (
+      <div key={`review ${i + 1}`} className="container">
+        <ViewReviews
+          // firstname={review.User.firstname}
+          // lastname={review.User.lastname}
+          content={review.content}
+        />
+      </div>
+    ));
     return (
       <div>
         <Navbar user="registered" />
@@ -110,9 +123,11 @@ class Recipe extends React.Component {
           </div>
           <hr />
           <div className="container">
-            <h5>
-              {this.state.review}
-            </h5>
+            <div className="add-review-form">
+              <AddReview recipeId={this.state.recipe.id} />
+            </div>
+            {allReviews}
+            <h3>recipesssss reviews....</h3>
           </div>
         </div>
       </div>

@@ -14,17 +14,6 @@ import capitalize from '../utils/capitalize';
  */
 class RecipeBody extends React.Component {
   /**
-     * Creates an instance of RecipeBody.
-     * @param {any} props
-     * @memberof RecipeBody
-     */
-  constructor(props) {
-    super(props);
-    this.state = {
-      recipes: []
-    };
-  }
-  /**
    *
    * @returns {dispatch} dispatch
    * @memberof RecipeBody
@@ -32,24 +21,14 @@ class RecipeBody extends React.Component {
   componentWillMount() {
     this.props.dispatch(getAllRecipes());
   }
-  /**
- *
- * @returns {null} null
- * @param {any} nextProps
- * @memberof RecipeBody
- */
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      recipes: nextProps.recipes.allRecipes
-    });
-  }
+
   /**
  * @returns {html} html
  *
  * @memberof RecipeBody
  */
   render() {
-    const { recipes } = this.state;
+    const recipes = (this.props.recipes) ? this.props.recipes : [];
     const allRecipes = recipes.map(recipe =>
       (
         <div key={recipe.id} className="col-sm-4">
@@ -73,10 +52,14 @@ class RecipeBody extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  recipes: state.allRecipes
+  recipes: state.recipes.allRecipes
 });
+
 RecipeBody.propTypes = {
-  recipes: PropTypes.object.isRequired,
+  recipes: PropTypes.arrayOf(PropTypes.shape()),
   dispatch: PropTypes.func.isRequired
+};
+RecipeBody.defaultProps = {
+  recipes: []
 };
 export default connect(mapStateToProps)(RecipeBody);

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import auth from './auth';
 import isFetching from './isFetching';
-import allRecipes from './allRecipes';
+import recipes from './recipes';
 import isUploading from './isUploading';
 import addRecipe from '../reducers/addRecipe';
 import getOneRecipe from '../reducers/getOneRecipe';
@@ -12,7 +12,7 @@ import getOneRecipe from '../reducers/getOneRecipe';
 const reducers = combineReducers({
   auth,
   isFetching,
-  allRecipes,
+  recipes,
   isUploading,
   addRecipe,
   getOneRecipe,

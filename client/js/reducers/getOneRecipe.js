@@ -1,5 +1,14 @@
 import initialState from '../store/initialState';
-import { GET_ONE_RECIPE, GET_ONE_RECIPE_ERROR, UPVOTE_SUCCESS, UPVOTE_FAILURE, DOWNVOTE_SUCCESS, DOWNVOTE_FAILURE } from '../actions/actionTypes';
+import {
+  GET_ONE_RECIPE,
+  GET_ONE_RECIPE_ERROR,
+  UPVOTE_SUCCESS,
+  UPVOTE_FAILURE,
+  DOWNVOTE_SUCCESS,
+  DOWNVOTE_FAILURE,
+  ADD_REVIEW_SUCCESS,
+  ADD_REVIEW_FAILURE
+} from '../actions/actionTypes';
 
 const getOneRecipe = (state = initialState.recipe, action) => {
   switch (action.type) {
@@ -36,6 +45,16 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         errorMessage: action.message
+      };
+    case ADD_REVIEW_SUCCESS:
+      return {
+        ...state,
+        singleRecipe: action.review
+      };
+    case ADD_REVIEW_FAILURE:
+      return {
+        ...state.singleRecipe,
+        addReviewError: action.message
       };
     default:
       return state;

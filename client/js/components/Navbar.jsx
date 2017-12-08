@@ -71,9 +71,13 @@ class Navbar extends React.Component {
                       <span className="nav-link"><span><i className="fa fa-user fa-lg" aria-hidden="true" /> </span>
                         <Link to="/profile">PROFILE </Link> <span className="sr-only">(current)</span></span>
                     </li>
-                    <li className="nav-item active">
+                    {/* <li className="nav-item active">
                       <span className="nav-link" data-toggle="modal" data-target="#addRecipe"href="#"><span><i className="fa fa-plus-square" aria-hidden="true" /> </span>
                         ADD RECIPE<span className="sr-only">(current)</span></span>
+                    </li> */}
+                    <li className="nav-item active">
+                      <span className="nav-link"><span><i className="fa fa-plus-square" aria-hidden="true" /> </span>
+                        <Link to="/add-recipe">ADD RECIPE  </Link> <span className="sr-only">(current)</span></span>
                     </li>
                     <li className="nav-item active">
                       <span className="nav-link"><span><i className="fa fa-heart" aria-hidden="true" /> </span>
