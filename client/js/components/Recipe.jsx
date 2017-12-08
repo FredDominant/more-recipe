@@ -51,7 +51,7 @@ class Recipe extends React.Component {
     const recipe = nextProps.recipe;
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
-    console.log('reviews are', reviews);
+    // console.log('reviews are', reviews);
     this.setState({ recipe, reviews, owner });
   }
 
