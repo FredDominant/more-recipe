@@ -12,6 +12,7 @@ const ViewReviews = props => (
       <div className="col-sm-9">
         <div className="content">
           <h6> {props.content} </h6>
+          <h6> - <small>{`${props.firstname} ${props.lastname}`} </small> </h6>
         </div>
       </div>
     </div>
@@ -20,7 +21,9 @@ const ViewReviews = props => (
 );
 
 ViewReviews.propTypes = {
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired
 };
 
 export default ViewReviews;

@@ -104,8 +104,8 @@ class Recipe extends React.Component {
     const allReviews = sortedReviews.map((review, i) => (
       <div key={`review ${i + 1}`} className="container">
         <ViewReviews
-          // firstname={review.User.firstname}
-          // lastname={review.User.lastname}
+          firstname={review.User.firstname}
+          lastname={review.User.lastname}
           content={review.content}
         />
       </div>
@@ -133,7 +133,6 @@ class Recipe extends React.Component {
               <AddReview recipeId={this.state.recipe.id} />
             </div>
             {allReviews}
-            <h3>recipesssss reviews....</h3>
           </div>
         </div>
       </div>
@@ -153,7 +152,6 @@ Recipe.defaultProps = {
 
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
-  reviews: state.getOneRecipe.singleRecipe
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -58,7 +58,11 @@ export default class Vote {
                             where: { id: req.params.recipeId },
                             include: [
                               { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                              { model: models.Review, attributes: ['id', 'content'] }
+                              { model: models.Review,
+                                attributes: ['id', 'content'],
+                                include: [
+                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                ] }
                             ]
                           }).then(Recipe => res.status(201).json({ Message: 'new upvote', Recipe }));
                         }
@@ -88,7 +92,11 @@ export default class Vote {
                                 where: { id: req.params.recipeId },
                                 include: [
                                   { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                                  { model: models.Review, attributes: ['id', 'content'] }
+                                  { model: models.Review,
+                                    attributes: ['id', 'content'],
+                                    include: [
+                                      { model: models.User, attributes: ['firstname', 'lastname'] }
+                                    ] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'new upvote after destroying down', Recipe }));
                               // const upvotedRecipe = {
@@ -114,7 +122,6 @@ export default class Vote {
               }).catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
             }
             if (foundUpvote) {
-              console.log('user already upvoted this');
               upvote.destroy({
                 where: { userId: req.decoded.id },
                 $and: { recipeId: req.params.recipeId }
@@ -123,12 +130,15 @@ export default class Vote {
                   recipe.findById(req.params.recipeId)
                     .then((updatedRecipe) => {
                       updatedRecipe.decrement('upvote');
-                      console.log('decremented upvote');
                       recipe.findOne({
                         where: { id: req.params.recipeId },
                         include: [
                           { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                          { model: models.Review, attributes: ['id', 'content'] }
+                          { model: models.Review,
+                            attributes: ['id', 'content'],
+                            include: [
+                              { model: models.User, attributes: ['firstname', 'lastname'] }
+                            ] }
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted upvote and decremented', Recipe }));
                     }).catch(() => res.status.json({ Message: 'Internal server error' }));
@@ -193,7 +203,11 @@ export default class Vote {
                             where: { id: req.params.recipeId },
                             include: [
                               { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                              { model: models.Review, attributes: ['id', 'content'] }
+                              { model: models.Review,
+                                attributes: ['id', 'content'],
+                                include: [
+                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                ] }
                             ]
                           }).then(Recipe => res.status(201).json({ Message: 'created downvote', Recipe }));
                           // return res.status(201)
@@ -232,7 +246,11 @@ export default class Vote {
                                 where: { id: req.params.recipeId },
                                 include: [
                                   { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                                  { model: models.Review, attributes: ['id', 'content'] }
+                                  { model: models.Review,
+                                    attributes: ['id', 'content'],
+                                    include: [
+                                      { model: models.User, attributes: ['firstname', 'lastname'] }
+                                    ] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'incremented downvote after destroying up', Recipe }));
                               // return res.status(201)
@@ -265,7 +283,6 @@ export default class Vote {
               );
             }
             if (foundDownvote) {
-              console.log('user already downvoted this');
               downvote.destroy({
                 where: { userId: req.decoded.id },
                 $and: { recipeId: req.params.recipeId }
@@ -274,12 +291,15 @@ export default class Vote {
                   recipe.findById(req.params.recipeId)
                     .then((updatedRecipe) => {
                       updatedRecipe.decrement('downvote');
-                      console.log('decremented downvote');
                       recipe.findOne({
                         where: { id: req.params.recipeId },
                         include: [
                           { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                          { model: models.Review, attributes: ['id', 'content'] }
+                          { model: models.Review,
+                            attributes: ['id', 'content'],
+                            include: [
+                              { model: models.User, attributes: ['firstname', 'lastname'] }
+                            ] }
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted downvote and decremented', Recipe }));
                     }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
