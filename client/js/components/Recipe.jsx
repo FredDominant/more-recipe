@@ -23,7 +23,7 @@ class Recipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipe: '',
+      recipe: {},
       reviews: [],
       owner: ''
     };
@@ -47,10 +47,11 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps, 'nextprops');
+    console.log('nextprops is -->', nextProps);
     const recipe = nextProps.recipe;
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
+    // console.log('owner is', owner);
     // console.log('reviews are', reviews);
     this.setState({ recipe, reviews, owner });
   }
@@ -93,9 +94,14 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    // console.log('current props is -->', this.props.recipe);
+    // console.log('reviews are', this.props.reviews);
+    // console.log('user is', this.props.user);
     const { reviews } = this.state;
-    console.log(reviews);
-    const allReviews = reviews.map((review, i) => (
+    // console.log(reviews);
+    const sortedReviews = reviews.sort((a, b) => (b.id - a.id));
+    console.log('sorted reviews is', sortedReviews);
+    const allReviews = sortedReviews.map((review, i) => (
       <div key={`review ${i + 1}`} className="container">
         <ViewReviews
           // firstname={review.User.firstname}
@@ -142,11 +148,12 @@ Recipe.propTypes = {
   recipe: PropTypes.shape()
 };
 Recipe.defaultProps = {
-  recipe: null
+  recipe: {}
 };
 
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
+  reviews: state.getOneRecipe.singleRecipe
 });
 
 const mapDispatchToProps = dispatch => ({

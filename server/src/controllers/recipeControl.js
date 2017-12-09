@@ -261,7 +261,7 @@ export default class Recipe {
       include: [
         { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
         { model: models.Review,
-          attributes: ['content'],
+          attributes: ['id', 'content'],
           include: [
             { model: models.User, attributes: ['firstname', 'lastname'] }
           ] }

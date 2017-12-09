@@ -50,7 +50,7 @@ export default class Review {
                       where: { id: req.params.recipeId },
                       include: [
                         { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                        { model: models.Review, attributes: ['content'] }
+                        { model: models.Review, attributes: ['id', 'content'] }
                       ]
                     }).then(Recipe => res.status(201).json({ Message: 'Review Added', Recipe }));
                   });
