@@ -6,7 +6,9 @@ const Profile = () => (
   <div>
     <Navbar user="registered" />
     <div className="container-fluid">
-      <h3>Profile Page</h3>
+      <div className="row">
+        <div className="col-sm-3" />
+      </div>
     </div>
   </div>
 );
