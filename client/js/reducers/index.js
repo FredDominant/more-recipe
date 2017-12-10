@@ -6,6 +6,7 @@ import recipes from './recipes';
 import isUploading from './isUploading';
 import addRecipe from '../reducers/addRecipe';
 import getOneRecipe from '../reducers/getOneRecipe';
+import currentUserProfile from '../reducers/currentUserProfile';
 // import upvoteReducer from '../reducers/upvoteReducer';
 // import signupReducer from './signupReducer';
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   isUploading,
   addRecipe,
   getOneRecipe,
+  currentUserProfile
   // upvoteReducer
 });
 

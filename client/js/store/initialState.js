@@ -9,6 +9,9 @@ const initialState = {
   isFetching: false,
   isUploading: false,
   recipes: {
+  },
+  user: {
+
   }
 };
 export default initialState;

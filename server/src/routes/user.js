@@ -10,6 +10,7 @@ import Validate from '../functions/validate';
  * @param {server} app server
  */
 export default function userRoutes(app) {
+  app.get('/api/v1/users/profile', authorize, User.userProfile);
   app.post('/api/v1/users/signup', Validate.userSignup, User.createUser); // user signup route
   app.post('/api/v1/users/signin', Validate.userLogin, User.userLogin); // user login route
   app.put('/api/v1/users/update', authorize, Validate.updateUser, User.updateUser); // user update profile

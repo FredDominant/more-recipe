@@ -173,3 +173,65 @@ div.carousel-inner {
 		width: 23%
 	}
 }
+
+#profile-box {
+  margin-top: 40px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+// #profile-body {
+//   margin-bottom: 40%;
+// }
+
+#profile-navigation-links {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+// #navigation-part {
+//   margin-left: 20px;
+//   margin-right: 20px;
+// }
+
+#changing-part {
+  border-style: solid;
+  border-color: grey;
+  border-left-width: 1px;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+}
+ #changing-component {
+   margin-top: 20px;
+   margin-left: 20px;
+ }
+
+ #update-profile-form {
+  //  background-color: #f2f2f2;
+   width: 60%;
+   margin-top: 40px;
+   border-style: solid;
+   border-color: grey;
+   border-width: 1px;
+ }
+ #update-profile-body {
+   width: 60%;
+   margin-top: 20px;
+   margin-left: 150px;
+   margin-bottom: 20px;
+ }
+
+ .profile-image {
+  min-width: 150px;
+ }
+
+ #user-image-container {
+   width: 50%;
+ }
+img#update-profile-picture {
+  width: 50%;
+  height: 50%
+}

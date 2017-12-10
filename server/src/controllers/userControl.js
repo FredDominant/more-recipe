@@ -216,4 +216,22 @@ export default class User {
     }).catch(() => res.status(500)
       .json({ Message: 'Unable to complete request' }));
   }
+  /**
+   *
+   * @returns {null} null
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @memberof User
+   */
+  static userProfile(req, res) {
+    user.findOne({
+      where: {
+        id: req.decoded.id
+      },
+      attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
+    })
+      .then(currentUser => res.status(200).json({ User: currentUser }))
+      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+  }
 }

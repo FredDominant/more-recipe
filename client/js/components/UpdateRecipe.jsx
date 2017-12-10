@@ -7,7 +7,7 @@ import React from 'react';
  * @class UpdateRecipe
  * @extends {React.Component}
  */
-class UpdateRecipe extends React.COmponent {
+class UpdateRecipe extends React.Component {
   /**
  * Creates an instance of UpdateRecipe.
  * @param {any} props
