@@ -22,6 +22,8 @@ export default class Review {
    */
   static addReview(req, res) {
     const content = req.body.content;
+    console.log(content);
+    console.log(req.params.recipeId);
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {
