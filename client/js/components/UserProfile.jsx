@@ -27,6 +27,7 @@ class UserProfile extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onUpload = this.onUpload.bind(this);
   }
   /**
    *
@@ -45,6 +46,19 @@ class UserProfile extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { firstname, lastname, email, picture } = nextProps.userDetails;
     this.setState({ firstname, lastname, email, picture });
+  }
+  /**
+   *
+   * @returns {null} null
+   * @param {any} event
+   * @memberof UserProfile
+   */
+  onUpload(event) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({ picture: e.target.result });
+    };
+    reader.readAsDataURL(event.target.files[0]);
   }
   /**
    *
