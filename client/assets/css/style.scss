@@ -70,8 +70,12 @@ span.icons {
 div.col-sm-4 {
 	margin-top: 10px;
 }
+// img.card-img{
+// 	height: 150px;
+// }
 img.card-img{
-	height: 150px;
+  height: 300px;
+  width: 350px;
 }
 .signup-text {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
@@ -235,3 +239,16 @@ img#update-profile-picture {
   width: 50%;
   height: 50%
 }
+
+img#reviewer-image {
+  width: 100%;
+  height: 30%;
+}
+#review-body {
+  text-align: left;
+}
+
+.add-review-form {
+  margin-left: 40px;
+}
+

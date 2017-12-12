@@ -98,12 +98,13 @@ class Recipe extends React.Component {
     // console.log('reviews are', this.props.reviews);
     // console.log('user is', this.props.user);
     const { reviews } = this.state;
-    // console.log(reviews);
+    console.log(reviews);
     const sortedReviews = reviews.sort((a, b) => (b.id - a.id));
     console.log('sorted reviews is', sortedReviews);
     const allReviews = sortedReviews.map((review, i) => (
       <div key={`review ${i + 1}`} className="container">
         <ViewReviews
+          image={review.User.picture}
           firstname={review.User.firstname}
           lastname={review.User.lastname}
           content={review.content}
@@ -128,9 +129,10 @@ class Recipe extends React.Component {
             <button onClick={this.handleFavourite} className="btn btn-success">favourite</button>
           </div>
           <hr />
-          <div className="container">
+          <div className="container-fluid" id="review-body">
             <div className="add-review-form">
               <AddReview recipeId={this.state.recipe.id} />
+              <br />
             </div>
             {allReviews}
           </div>

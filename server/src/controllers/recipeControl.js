@@ -196,7 +196,7 @@ export default class Recipe {
             ['id', 'DESC']
           ],
           include: [
-            { model: models.User, attributes: ['firstname', 'lastname'] }
+            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
           ]
         })
           .then((recipes) => {
@@ -263,7 +263,7 @@ export default class Recipe {
         { model: models.Review,
           attributes: ['id', 'content'],
           include: [
-            { model: models.User, attributes: ['firstname', 'lastname'] }
+            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
           ] }
       ]
     })
