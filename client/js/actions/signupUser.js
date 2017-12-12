@@ -22,6 +22,8 @@ const signupUser = userData => (dispatch) => {
         recieveAuth(User, Token),
         unsetFetching()
       ]));
+      document.body.classList.remove('modal-open');
+      $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
     })
     .catch((error) => {
       const message = error.response.data.Message;

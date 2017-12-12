@@ -26,6 +26,8 @@ const loginUser = ({ email, password }) => (dispatch) => {
         recieveAuth(User, Token),
         unsetFetching()
       ]));
+      document.body.classList.remove('modal-open');
+      $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
     })
     .catch((error) => {
       console.log('this is the error:', error.response.data.Message);

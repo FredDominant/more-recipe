@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, Redirect } from 'react-redux';
 
 import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -8,6 +8,8 @@ import upvoteRecipe from '../actions/upvote';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 /**
  *
  *
@@ -86,7 +88,6 @@ class Recipe extends React.Component {
   handleFavourite() {
     console.log('favouriting recipe with id', this.state.recipe.id);
   }
-
   /**
    *
    *
@@ -94,6 +95,9 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    if (!this.props.authenticated) {
+      return <Redirect to="/" />;
+    }
     // console.log('current props is -->', this.props.recipe);
     // console.log('reviews are', this.props.reviews);
     // console.log('user is', this.props.user);
@@ -113,7 +117,9 @@ class Recipe extends React.Component {
     ));
     return (
       <div>
-        <Navbar user="registered" />
+        <Navbar />
+        <Login />
+        <Signup />
         <div className="container">
           <h3>Recipe Name: {this.state.recipe.name}</h3>
           {/* <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3> */}
@@ -123,15 +129,16 @@ class Recipe extends React.Component {
           <h3>Upvotes: {this.state.recipe.upvote}</h3>
           <h3>Downvotes: {this.state.recipe.downvote}</h3>
           <hr />
-          <div className="actions">
+          {this.props.authenticated && <div className="actions">
             <button onClick={this.handleUpvote} className="btn btn-primary">upvote</button>
             <button onClick={this.handleDownvote} className="btn btn-warning">downvote</button>
             <button onClick={this.handleFavourite} className="btn btn-success">favourite</button>
-          </div>
+          </div> }
           <hr />
           <div className="container-fluid" id="review-body">
+            <h5>Reviews</h5>
             <div className="add-review-form">
-              <AddReview recipeId={this.state.recipe.id} />
+              {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
               <br />
             </div>
             {allReviews}
@@ -146,7 +153,8 @@ Recipe.propTypes = {
   getRecipeDetails: PropTypes.func.isRequired,
   upvoteRecipe: PropTypes.func.isRequired,
   downvoteRecipe: PropTypes.func.isRequired,
-  recipe: PropTypes.shape()
+  recipe: PropTypes.shape(),
+  authenticated: PropTypes.bool.isRequired
 };
 Recipe.defaultProps = {
   recipe: {}
@@ -154,6 +162,7 @@ Recipe.defaultProps = {
 
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
+  authenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = dispatch => ({

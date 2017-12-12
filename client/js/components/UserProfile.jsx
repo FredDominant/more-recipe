@@ -23,11 +23,13 @@ class UserProfile extends React.Component {
       lastname: '',
       email: '',
       password: '',
-      picture: ''
+      picture: '',
+      disabled: true
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onUpload = this.onUpload.bind(this);
+    this.onEdit = this.onEdit.bind(this);
   }
   /**
    *
@@ -75,6 +77,16 @@ class UserProfile extends React.Component {
    * @param {any} event
    * @memberof UserProfile
    */
+  onEdit(event) {
+    event.preventDefault();
+    this.setState({ disabled: !this.state.disabled });
+  }
+  /**
+   *
+   * @returns {null} null
+   * @param {any} event
+   * @memberof UserProfile
+   */
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
@@ -87,7 +99,7 @@ class UserProfile extends React.Component {
   render() {
     return (
       <div >
-        <NavBar user={'registered'} />
+        <NavBar />
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
             <form onSubmit={this.handleSubmit}>
@@ -98,12 +110,12 @@ class UserProfile extends React.Component {
                       <img className="img-thumbnail" id="update-profile-picture" src={this.state.picture} alt={this.state.firstname} srcSet="" />
                     </div>
                     <br />
-                    {/* <label htmlFor="upload" className="file-upload__label">upload image</label> */}
                     <input
                       type="file"
                       name="file"
                       id="profile-upload"
                       onChange={this.onUpload}
+                      disabled={this.state.disabled}
                     />
                   </div>
                   <br />
@@ -117,6 +129,7 @@ class UserProfile extends React.Component {
                       name="firstname"
                       value={this.state.firstname}
                       onChange={this.onChange}
+                      disabled={this.state.disabled}
                     />
                   </div>
 
@@ -129,6 +142,7 @@ class UserProfile extends React.Component {
                       name="lastname"
                       value={this.state.lastname}
                       onChange={this.onChange}
+                      disabled={this.state.disabled}
                     />
                   </div>
 
@@ -141,6 +155,7 @@ class UserProfile extends React.Component {
                       name="email"
                       value={this.state.email}
                       onChange={this.onChange}
+                      disabled={this.state.disabled}
                     />
                   </div>
 
@@ -153,11 +168,19 @@ class UserProfile extends React.Component {
                       name="password"
                       value={this.state.password}
                       onChange={this.onChange}
+                      disabled={this.state.disabled}
                     />
                   </div>
 
                   <div className="form-group">
-                    <button className="btn btn-primary">Update Profile</button>
+                    <div className="row">
+                      <div className="col-sm-2">
+                        <button className="btn btn-success" disabled={this.state.disabled}>Update Profile</button></div>
+                      <div className="col-sm-2" />
+                      <div className="col-sm-2">
+                        <button className="btn btn-primary" onClick={this.onEdit}>Edit Profile</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

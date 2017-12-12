@@ -14,7 +14,7 @@ import UpdateRecipe from './UpdateRecipe';
 
 const UserHome = () => (
   <div>
-    <Navbar user={'registered'} />
+    <Navbar />
     <UpdateRecipe />
     <Search />
     <div className="container-fluid">

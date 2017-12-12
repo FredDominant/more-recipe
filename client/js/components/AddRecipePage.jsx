@@ -89,7 +89,7 @@ class AddRecipePage extends React.Component {
  */
   addNewRecipe() {
     const { recipeImage, name, description, directions, ingredients } = this.state;
-    if (recipeImage.length) {
+    if (recipeImage.length && this.isValid()) {
       return uploadImage(recipeImage)
         .then((response) => {
           const recipeUrl = response.data.secure_url;
@@ -129,7 +129,7 @@ class AddRecipePage extends React.Component {
     const errors = this.state.errors;
     return (
       <div className="container-fluid">
-        <Navbar user={'registered'} />
+        <Navbar />
         <div id="add-recipe-form" className="container">
           <div className="container error-body">
             {this.state.addRecipeError && <div className="alert alert-dismissible alert-danger" role="alert">{this.props.errorMessage}</div>}

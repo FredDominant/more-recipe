@@ -29,7 +29,7 @@ class Profile extends React.Component {
     console.log('This.props.children is', this.props.children);
     return (
       <div>
-        <Navbar user="registered" />
+        <Navbar />
         <div className="container">
           <div id="profile-box">
             <div className="row" id="profile-body">
