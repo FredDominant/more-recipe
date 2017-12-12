@@ -62,8 +62,13 @@ class AddRecipePage extends React.Component {
 * @memberof AddRecipe
 */
   onUpload(event) {
-    const image = event.target.files[0];
-    this.setState({ recipeImage: image });
+    // const image = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({ recipeImage: e.target.result });
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    // this.setState({ recipeImage: image });
   }
   /**
 *
@@ -84,9 +89,7 @@ class AddRecipePage extends React.Component {
  */
   addNewRecipe() {
     const { recipeImage, name, description, directions, ingredients } = this.state;
-    // console.log('recipe Image is', recipeImage);
-    // console.log('recipe image name is', recipeImage.name);
-    if (recipeImage.name) {
+    if (recipeImage.length) {
       return uploadImage(recipeImage)
         .then((response) => {
           const recipeUrl = response.data.secure_url;
@@ -96,6 +99,7 @@ class AddRecipePage extends React.Component {
           console.log('done uploading', recipeImage);
         })
         .catch((error) => {
+          console.log('upload error is....');
           this.setState({ uploadImageError: error.error.message });
         });
     }

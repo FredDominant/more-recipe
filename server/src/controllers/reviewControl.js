@@ -30,44 +30,30 @@ export default class Review {
           return res.status(404)
             .json({ Message: `No recipe with id ${req.params.recipeId}` });
         }
-        if (foundRecipe) {
-          review.findOne({
-            where: {
-              id: req.params.recipeId,
-              $and: {
-                userId: req.decoded.id
-              }
-            }
-          })
-            .then((foundReview) => {
-              if (!foundReview) {
-                const newReview = {
-                  content,
-                  userId: req.decoded.id,
-                  recipeId: req.params.recipeId
-                };
-                review.create(newReview)
-                  .then(() => {
-                    recipe.findOne({
-                      where: { id: req.params.recipeId },
-                      include: [
-                        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                        { model: models.Review,
-                          attributes: ['id', 'content'],
-                          include: [
-                            { model: models.User, attributes: ['firstname', 'lastname'] }
-                          ]
-                        }
-                      ]
-                    }).then(Recipe => res.status(201).json({ Message: 'Review Added', Recipe }));
-                  });
-              }
+
+        const newReview = {
+          content,
+          userId: req.decoded.id,
+          recipeId: req.params.recipeId
+        };
+
+        review.create(newReview)
+          .then(() => {
+            recipe.findOne({
+              where: { id: req.params.recipeId },
+              include: [
+                { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+                { model: models.Review,
+                  attributes: ['id', 'content'],
+                  include: [
+                    { model: models.User, attributes: ['firstname', 'lastname'] }
+                  ]
+                }
+              ]
             })
-            .catch(() => res.status(500)
-              .json({
-                Message: 'Unable to add review'
-              }));
-        }
+              .then(fullRecipe => res.status(201).json({ Message: 'created', Recipe: fullRecipe }));
+          })
+          .catch(() => res.status(500).json({ Message: 'An error ocurred' }));
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal error ocurred. Please try again later' }));
