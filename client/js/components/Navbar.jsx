@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 import logOutUser from '../actions/logoutUser';
 /**
  *
@@ -48,6 +49,58 @@ class Navbar extends React.Component {
    * @memberof Navbar
    */
   render() {
+    if (this.props.authenticated) {
+      return (
+        <div className="container-fluid">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="row" id="nav2">
+              <div className="col-sm-6">
+                <span id="title" className="navbar-brand">
+                  <Link to="/home"><h2 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h2></Link>
+                </span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon" />
+                </button>
+              </div>
+              <div className="col-sm-6" id="navigation-icons">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  {this.props.authenticated && <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                      <span className="nav-link"><span><i className="fas fa-user" /> </span>
+                        <Link to="/profile">PROFILE </Link> <span className="sr-only">(current)</span></span>
+                    </li>
+                    <li className="nav-item active">
+                      <span className="nav-link"><span><i className="fas fa-plus-circle" /> </span>
+                        <Link to="/add-recipe">ADD RECIPE  </Link> <span className="sr-only">(current)</span></span>
+                    </li>
+                    <li className="nav-item active">
+                      <span className="nav-link"><span><i className="fab fa-gratipay" /> </span>
+                        <Link to="/favourites">FAVOURITES  </Link> <span className="sr-only">(current)</span></span>
+                    </li>
+                    <li className="nav-item active">
+                      <a><button
+                        className="btn btn-warning"
+                        onClick={this.handleLogout}
+                      ><span><i className="fas fa-sign-out-alt" /> </span>LOGOUT </button></a>
+                    </li>
+                  </ul>}
+                  {!this.props.authenticated && <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                      <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
+                    </li>
+                    <li className="nav-item active">
+                      <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
+                    </li>
+                  </ul>}
+                </div>
+              </div>
+            </div>
+          </nav>
+          {/* <Login />
+          <Signup /> */}
+        </div>
+      );
+    }
     return (
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -62,38 +115,22 @@ class Navbar extends React.Component {
             </div>
             <div className="col-sm-6" id="navigation-icons">
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                {this.props.authenticated && <ul className="navbar-nav mr-auto">
+                <ul className="navbar-nav mr-auto">
                   <li className="nav-item active">
-                    <span className="nav-link"><span><i className="fa fa-user fa-lg" aria-hidden="true" /> </span>
-                      <Link to="/profile">PROFILE </Link> <span className="sr-only">(current)</span></span>
+                    <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
                   </li>
                   <li className="nav-item active">
-                    <span className="nav-link"><span><i className="fa fa-plus-square" aria-hidden="true" /> </span>
-                      <Link to="/add-recipe">ADD RECIPE  </Link> <span className="sr-only">(current)</span></span>
+                    <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
                   </li>
-                  <li className="nav-item active">
-                    <span className="nav-link"><span><i className="fa fa-heart" aria-hidden="true" /> </span>
-                      <Link to="/favourites">FAVOURITES  </Link> <span className="sr-only">(current)</span></span>
-                  </li>
-                  <li className="nav-item active">
-                    <a><button
-                      className="btn btn-warning"
-                      onClick={this.handleLogout}
-                    ><span><i className="fa fa-sign-out" aria-hidden="true" /> </span>LOGOUT </button></a>
-                  </li>
-                </ul>}
-                {!this.props.authenticated && <ul className="navbar-nav mr-auto">
-                  <li className="nav-item active">
-                    <a className="nav-link" data-toggle="modal" data-target="#register">REGISTER<span className="sr-only">(current)</span></a>
-                  </li>
-                  <li className="nav-item active">
-                    <a className="nav-link" data-toggle="modal" data-target="#login">LOGIN<span className="sr-only">(current)</span></a>
-                  </li>
-                </ul>}
+                </ul>
+                <Login />
+                <Signup />
               </div>
             </div>
           </div>
         </nav>
+        {/* <Login />
+      <Signup /> */}
       </div>
     );
   }

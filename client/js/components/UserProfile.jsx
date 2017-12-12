@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import NavBar from './Navbar';
 import userProfile from '../actions/userProfile';
+import updateProfile from '../actions/editProfile';
+import uploadImage from '../utils/uploadImage';
 /**
  *
  *
@@ -24,7 +26,9 @@ class UserProfile extends React.Component {
       email: '',
       password: '',
       picture: '',
-      disabled: true
+      disabled: true,
+      uploadImageError: '',
+      selectedImage: false
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,6 +65,7 @@ class UserProfile extends React.Component {
       this.setState({ picture: e.target.result });
     };
     reader.readAsDataURL(event.target.files[0]);
+    this.setState({ selectedImage: true });
   }
   /**
    *
@@ -88,8 +93,20 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   handleSubmit(event) {
+    const { firstname, lastname, email, picture } = this.state;
     event.preventDefault();
-    console.log(this.state);
+    if (this.state.selectedImage) {
+      return uploadImage(picture)
+        .then((response) => {
+          const url = response.data.secure_url;
+          this.setState({ picture: url });
+          this.props.updateProfile(this.state);
+        })
+        .catch((error) => {
+          this.setState({ uploadImageError: error.error.message });
+        });
+    }
+    this.props.updateProfile({ firstname, lastname, email, picture });
   }
   /**
    *
@@ -97,9 +114,13 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   render() {
+    console.log(this.props.updateSuccess);
     return (
       <div >
         <NavBar />
+        {this.props.updateSuccess && <div className="container">
+          <div className="alert alert-success alert-dismissible" role="alert">Profile updated</div>
+        </div>}
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
             <form onSubmit={this.handleSubmit}>
@@ -175,10 +196,10 @@ class UserProfile extends React.Component {
                   <div className="form-group">
                     <div className="row">
                       <div className="col-sm-2">
-                        <button className="btn btn-success" disabled={this.state.disabled}>Update Profile</button></div>
-                      <div className="col-sm-2" />
+                        <button className="btn btn-success" disabled={this.state.disabled}>Update</button></div>
+                      <div className="col-sm-1" />
                       <div className="col-sm-2">
-                        <button className="btn btn-primary" onClick={this.onEdit}>Edit Profile</button>
+                        <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
                       </div>
                     </div>
                   </div>
@@ -186,27 +207,30 @@ class UserProfile extends React.Component {
               </div>
             </form>
           </div>
-
         </div>
       </div>
-
     );
   }
 }
 const mapDispatchToprops = dispatch => ({
-  viewProfile: () => dispatch(userProfile())
+  viewProfile: () => dispatch(userProfile()),
+  updateProfile: updateDetails => dispatch(updateProfile(updateDetails))
 });
 
 const mapStateToProps = state => ({
-  userDetails: state.currentUserProfile.User
+  userDetails: state.currentUserProfile.User,
+  updateSuccess: state.currentUserProfile.UpdateSuccess
 });
 
 UserProfile.propTypes = {
   viewProfile: PropTypes.func.isRequired,
-  userDetails: PropTypes.shape()
+  userDetails: PropTypes.shape(),
+  updateProfile: PropTypes.func.isRequired,
+  updateSuccess: PropTypes.bool
 };
 UserProfile.defaultProps = {
-  userDetails: {}
+  userDetails: {},
+  updateSuccess: false
 };
 
 export default connect(mapStateToProps, mapDispatchToprops)(UserProfile);

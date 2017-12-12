@@ -6,12 +6,13 @@ const currentUserProfile = (state = initialState.user, action) => {
     case VIEW_PROFILE:
       return {
         ...state,
-        User: action.user
+        User: action.user,
       };
     case EDIT_PROFILE:
       return {
         ...state,
-        User: action.user
+        User: action.user,
+        UpdateSuccess: true
       };
     default:
       return state;

@@ -135,6 +135,7 @@ export default class User {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    const picture = req.body.picture;
     user.findOne({
       where: {
         id: req.decoded.id
@@ -150,20 +151,22 @@ export default class User {
             email: email ? email.trim() : foundUser.dataValues.email,
             password: password ? helper.hashPassword(password) : foundUser.dataValues.password,
             firstname: firstname ? firstname.trim() : foundUser.dataValues.firstname,
-            lastname: lastname ? lastname.trim() : foundUser.dataValues.lastname
+            lastname: lastname ? lastname.trim() : foundUser.dataValues.lastname,
+            picture: picture ? picture.trim() : foundUser.dataValues.picture
           };
           foundUser.update(newData)
-            .then(updatedData => res.status(200)
-              .json({
-                Message: 'Profile update successful',
-                NewDetails: {
-                  FirstName: updatedData.dataValues.firstname,
-                  LastName: updatedData.dataValues.lastname,
-                  Email: updatedData.dataValues.email
-                }
-              }))
-            .catch(() => res.status(500)
-              .json({ Message: 'Internal server error. Unable to update profile' }));
+            .then(() => {
+              user.findOne({
+                where: {
+                  id: req.decoded.id
+                },
+                attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
+              })
+                .then(currentUser => res.status(200).json({ User: currentUser }))
+                .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+            })
+            .catch(e => res.status(500)
+              .json({ Message: 'Internal server error. Unable to update profile', e }));
         }
       })
       .catch(() => res.status(500)

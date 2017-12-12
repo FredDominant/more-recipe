@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect, Redirect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -40,6 +40,7 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillMount() {
+    console.log('propssssssss is', this.props);
     this.props.getRecipeDetails(this.props.match.params.recipeId);
   }
   /**
@@ -95,10 +96,7 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
-    if (!this.props.authenticated) {
-      return <Redirect to="/" />;
-    }
-    // console.log('current props is -->', this.props.recipe);
+    console.log('current props is -->', this.props);
     // console.log('reviews are', this.props.reviews);
     // console.log('user is', this.props.user);
     const { reviews } = this.state;
@@ -118,8 +116,6 @@ class Recipe extends React.Component {
     return (
       <div>
         <Navbar />
-        <Login />
-        <Signup />
         <div className="container">
           <h3>Recipe Name: {this.state.recipe.name}</h3>
           {/* <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3> */}
@@ -130,9 +126,9 @@ class Recipe extends React.Component {
           <h3>Downvotes: {this.state.recipe.downvote}</h3>
           <hr />
           {this.props.authenticated && <div className="actions">
-            <button onClick={this.handleUpvote} className="btn btn-primary">upvote</button>
-            <button onClick={this.handleDownvote} className="btn btn-warning">downvote</button>
-            <button onClick={this.handleFavourite} className="btn btn-success">favourite</button>
+            <button onClick={this.handleUpvote} className="btn btn-primary"><i className="fas fa-thumbs-up" /> {this.state.recipe.upvote}</button>
+            <button onClick={this.handleDownvote} className="btn btn-warning"><i className="fas fa-thumbs-down" /> {this.state.recipe.downvote}</button>
+            <button onClick={this.handleFavourite} className="btn btn-success"><i className="fas fa-thumbs-up" /></button>
           </div> }
           <hr />
           <div className="container-fluid" id="review-body">
@@ -149,7 +145,7 @@ class Recipe extends React.Component {
   }
 }
 Recipe.propTypes = {
-  match: PropTypes.shape().isRequired,
+  // match: PropTypes.shape().isRequired,
   getRecipeDetails: PropTypes.func.isRequired,
   upvoteRecipe: PropTypes.func.isRequired,
   downvoteRecipe: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import { batchActions } from 'redux-batched-actions';
 import { EDIT_PROFILE, EDIT_PROFILE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
-const updateProfileSUccess = userDetails => ({
+const updateProfileSuccess = userDetails => ({
   type: EDIT_PROFILE,
   user: userDetails
 });
@@ -18,6 +18,7 @@ const updateProfile = userData => (dispatch) => {
   const token = localStorage.getItem('token');
   axios({
     method: 'PUT',
+    url: '/api/v1/users/update',
     data: userData,
     headers: {
       'x-access-token': token
@@ -25,11 +26,17 @@ const updateProfile = userData => (dispatch) => {
   })
     .then((response) => {
       const { User } = response.data;
-      dispatch(updateProfileSUccess(User));
+      console.log('User from response is', User);
+      dispatch(batchActions([
+        updateProfileSuccess(User)
+      ]));
     })
     .catch((error) => {
-      const { Message } = error.response.data;
-      dispatch(updateProfileFail(Message));
+      console.log('error from server is', error);
+      // const { Message } = error.response.data;
+      // dispatch(batchActions([
+      //   updateProfileFail(Message)
+      // ]));
     });
 };
 export default updateProfile;

@@ -52,6 +52,7 @@ class Signup extends React.Component {
     if (this.isValid()) {
       const { firstname, lastname, email, password, confirmPassword } = this.state;
       this.props.signup({ firstname, lastname, email, password, confirmPassword });
+      this.context.router.history.push('/home');
     }
   }
   /**
@@ -74,9 +75,9 @@ class Signup extends React.Component {
    */
   render() {
     const { errors } = this.state;
-    if (this.props.authenticated) {
-      return <Redirect to="/home" />;
-    }
+    // if (this.props.authenticated) {
+    //   return <Redirect to="/home" />;
+    // }
     return (
       <div>
         <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -205,11 +206,11 @@ class Signup extends React.Component {
 Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
-  authenticated: PropTypes.bool
+  authenticated: PropTypes.bool.isRequired
 };
+
 Signup.defaultProps = {
   errorMessage: '',
-  authenticated: false
 };
 
 const mapStateToProps = state => ({

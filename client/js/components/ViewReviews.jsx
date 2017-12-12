@@ -9,7 +9,7 @@ const ViewReviews = props => (
           <img src={props.image} alt={props.firstname} className="img-thumbnail" id="reviewer-image" />
         </div>
       </div>
-      <div className="col-sm-3">
+      <div className="col-sm-8">
         <div className="content">
           <h6> <strong> {`${props.firstname} ${props.lastname}`} </strong> </h6>
           <h6> <small> {props.content} </small> </h6>

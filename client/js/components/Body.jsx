@@ -22,8 +22,6 @@ const Body = () => (
     <Route path="/home" exact component={checkAuth(UserHome)} />
     <Route path="/add-recipe" exact component={checkAuth(AddRecipePage)} />
     <Route path="/profile" component={checkAuth(UserProfile)} />
-    {/* <Route path="/user/recipes" component={UserRecipes} /> */}
-    {/* <Route path="/user/favourites" component={UserFavourites} /> */}
     <Route path="/recipe/:recipeId" component={Recipe} />
     <Route path="/user/:userId" component={Profile} />
     <Route component={Recipe} />

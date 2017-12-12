@@ -62,6 +62,9 @@ class Login extends React.Component {
     if (this.isValid()) {
       const { email, password } = this.state;
       this.props.login({ email, password });
+      if (this.props.authenticated) {
+        this.context.router.history.push('/home');
+      }
     }
   }
   /**
@@ -150,13 +153,15 @@ class Login extends React.Component {
   }
 }
 Login.propTypes = {
-  authenticated: PropTypes.bool,
   login: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  authenticated: PropTypes.bool.isRequired
 };
 Login.defaultProps = {
-  authenticated: false,
   errorMessage: null
+};
+Login.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,

@@ -61,7 +61,7 @@ export default class Vote {
                               { model: models.Review,
                                 attributes: ['id', 'content'],
                                 include: [
-                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                  { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                                 ] }
                             ]
                           }).then(Recipe => res.status(201).json({ Message: 'new upvote', Recipe }));
@@ -95,7 +95,7 @@ export default class Vote {
                                   { model: models.Review,
                                     attributes: ['id', 'content'],
                                     include: [
-                                      { model: models.User, attributes: ['firstname', 'lastname'] }
+                                      { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                                     ] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'new upvote after destroying down', Recipe }));
@@ -137,7 +137,7 @@ export default class Vote {
                           { model: models.Review,
                             attributes: ['id', 'content'],
                             include: [
-                              { model: models.User, attributes: ['firstname', 'lastname'] }
+                              { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                             ] }
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted upvote and decremented', Recipe }));
@@ -206,7 +206,7 @@ export default class Vote {
                               { model: models.Review,
                                 attributes: ['id', 'content'],
                                 include: [
-                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                  { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                                 ] }
                             ]
                           }).then(Recipe => res.status(201).json({ Message: 'created downvote', Recipe }));
@@ -249,7 +249,7 @@ export default class Vote {
                                   { model: models.Review,
                                     attributes: ['id', 'content'],
                                     include: [
-                                      { model: models.User, attributes: ['firstname', 'lastname'] }
+                                      { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                                     ] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'incremented downvote after destroying up', Recipe }));
@@ -298,7 +298,7 @@ export default class Vote {
                           { model: models.Review,
                             attributes: ['id', 'content'],
                             include: [
-                              { model: models.User, attributes: ['firstname', 'lastname'] }
+                              { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                             ] }
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted downvote and decremented', Recipe }));
