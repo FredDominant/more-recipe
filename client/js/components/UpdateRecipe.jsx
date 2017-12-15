@@ -1,5 +1,10 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import Navbar from '../components/Navbar';
+import getOneRecipe from '../actions/getOneRecipe';
+
 // import PropTypes from 'prop-types';
 /**
  *
@@ -20,6 +25,17 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
+   * @returns {null} null
+   * @memberof UpdateRecipe
+   */
+  componentWillMount() {
+    // console.log('props is', this.props);
+    const recipeId = this.props.match.params.recipeId;
+    // console.log(recipeId);
+    this.props.getRecipeDetails(recipeId);
+  }
+  /**
+   *
    *
    * @returns {null} null
    * @memberof UpdateRecipe
@@ -27,91 +43,100 @@ class UpdateRecipe extends React.Component {
   render() {
     return (
       <div>
-        <div className="modal fade" id="update-recipe-modal" tabIndex="-1" role="dialog" aria-labelledby="update-recipe-modal" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="updateRecipe">Update Recipe</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+        <Navbar />
+        <br />
+        <div className="container">
+          <form>
+            <div className="row">
+              <div className="col-sm-4">
+                <div className="recipe-image">
+                  <img className="img-thumbnail" src="" alt="" srcSet="" />
+                </div>
+                <br />
+                <label htmlFor="upload" className="file-upload__label">upload image</label>
+                <input
+                  type="file"
+                  name="file"
+                  id="file-upload"
+                  onChange=""
+                />
               </div>
-              <div className="modal-body">
-                <div id="update-recipe-form">
-                  <form onSubmit={this.onSubmit}>
-                    <div className="row">
-                      <div className="col-xs-3">
-                        <div id="update-recipe-image">
-                          <img src={this.state.recipeImage} alt="" className="img-rounded" />
-                        </div>
-                        <input
-                          type="file"
-                          name="file"
-                          id="update-recipe-upload"
-                          onChange={this.onUpload}
-                        />
-                      </div>
-                      <div className="col-xs-6" />
-                      <div className="form-group">
-                        <label htmlFor="recipeName">Recipe Name</label>
-                        <input
-                          id="recipeName"
-                          type="text"
-                          className="form-control"
-                          name="name"
-                          value={this.state.name}
-                          onChange={this.onChange}
-                        />
-                      </div>
+              <div className="col-sm-8">
+                <div className="form-group">
+                  <label htmlFor="recipeName">Recipe Name</label>
+                  <input
+                    type="text"
+                    id="recipeName"
+                    className="form-control"
+                    placeholder="Michael's Awesome Sauce"
+                    name="name"
+                    value=""
+                    onChange=""
+                  />
+                </div>
 
-                      <div className="form-group">
-                        <label htmlFor="recipeDescription">Recipe Description</label>
-                        <input
-                          id="recipeDescription"
-                          type="text"
-                          className="form-control"
-                          name="name"
-                          value={this.state.description}
-                          onChange={this.onChange}
-                        />
-                      </div>
+                <div className="form-group">
+                  <label htmlFor="recipeDescription">Recipe Description</label>
+                  <input
+                    type="text"
+                    id="recipeDescription"
+                    className="form-control"
+                    placeholder="An awesome sauce by Michael"
+                    name="description"
+                    value=""
+                    onChange=""
+                  />
+                </div>
 
-                      <div className="form-group">
-                        <label htmlFor="update-recipeDirections">Recipe Directions</label>
-                        <input
-                          id="update-recipeDirections"
-                          type="text"
-                          className="form-control"
-                          name="directions"
-                          value={this.state.directions}
-                          onChange={this.onChange}
-                        />
-                      </div>
+                <div className="form-group">
+                  <label htmlFor="recipeDirections">Recipe Directions</label>
+                  <textarea
+                    type="text"
+                    rows="5"
+                    id="recipeDescription"
+                    className="form-control"
+                    placeholder="Michael's Awesome Sauce"
+                    name="directions"
+                    value=""
+                    onChange=""
+                  />
+                </div>
 
-                      <div className="form-group">
-                        <label htmlFor="update-recipeIngredients">Recipe Ingredients</label>
-                        <input
-                          id="update-recipeIngredients"
-                          type="text"
-                          className="form-control"
-                          name="ingredients"
-                          value={this.state.ingredients}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <button className="btn btn-primary">Create Recipe</button>
-                      </div>
-                    </div>
-                  </form>
+                <div className="form-group">
+                  <label htmlFor="recipeingredients">Ingredients</label>
+                  <textarea
+                    type="text"
+                    rows="5"
+                    id="recipeIngredients"
+                    className="form-control"
+                    placeholder="Michael's Ingredient list"
+                    name="ingredients"
+                    value=""
+                    onChange=""
+                  />
+                </div>
+
+                <div className="form-group">
+                  <button className="btn btn-primary">Create Recipe</button>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  recipeDetails: state
+});
 
-export default UpdateRecipe;
+const mapDispatchToProps = dispatch => ({
+  getRecipeDetails: id => dispatch(getOneRecipe(id))
+});
+
+UpdateRecipe.propTypes = {
+  match: PropTypes.shape().isRequired,
+  getRecipeDetails: PropTypes.func.isRequired
+};
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateRecipe);

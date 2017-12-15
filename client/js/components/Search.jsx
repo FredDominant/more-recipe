@@ -60,7 +60,7 @@ class Search extends React.Component {
                 onChange={this.onChange}
               />
               <span className="input-group-btn">
-                <button className="btn btn-warning" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
+                <button className="btn btn-danger" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
               </span>
             </div>
           </form>

@@ -13,7 +13,9 @@ const Home = () => (
     <Navbar />
     <Login />
     <Signup />
+    <br />
     <Search />
+    <br />
     <Carousel />
     <div className="container recipes">
       <RecipeBody />

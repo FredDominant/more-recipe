@@ -1,4 +1,7 @@
-.search-body {
+a:hover {
+  text-decoration: none
+}
+search-body {
 	width: 100%;
 	margin: auto;
 	margin-top: 30px;
@@ -255,4 +258,11 @@ img#reviewer-image {
 #add-review-button {
   display: block;
   margin-left: auto
+}
+
+button a {
+  color: red;
+}
+button a :hover {
+  color: white;
 }

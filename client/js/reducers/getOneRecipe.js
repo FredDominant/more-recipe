@@ -7,7 +7,9 @@ import {
   DOWNVOTE_SUCCESS,
   DOWNVOTE_FAILURE,
   ADD_REVIEW_SUCCESS,
-  ADD_REVIEW_FAILURE
+  ADD_REVIEW_FAILURE,
+  EDIT_RECIPE,
+  EDIT_RECIPE_ERROR
 } from '../actions/actionTypes';
 
 const getOneRecipe = (state = initialState.recipe, action) => {
@@ -53,8 +55,19 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       };
     case ADD_REVIEW_FAILURE:
       return {
-        ...state.singleRecipe,
+        ...state,
         addReviewError: action.message
+      };
+    case EDIT_RECIPE:
+      return {
+        ...state,
+        singleRecipe: action.recipes,
+        editRecipeError: false
+      };
+    case EDIT_RECIPE_ERROR:
+      return {
+        ...state,
+        editRecipeError: true
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import Search from './Search';
 import Navbar from './Navbar';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
-import UpdateRecipe from './UpdateRecipe';
 /**
  *
  * @description
@@ -15,8 +14,9 @@ import UpdateRecipe from './UpdateRecipe';
 const UserHome = () => (
   <div>
     <Navbar />
-    <UpdateRecipe />
+    <br />
     <Search />
+    <br />
     <div className="container-fluid">
       <Carousel />
       <div className="container recipes">

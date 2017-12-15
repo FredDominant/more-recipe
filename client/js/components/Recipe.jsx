@@ -8,8 +8,8 @@ import upvoteRecipe from '../actions/upvote';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
+// import Login from '../components/Login';
+// import Signup from '../components/Signup';
 /**
  *
  *
