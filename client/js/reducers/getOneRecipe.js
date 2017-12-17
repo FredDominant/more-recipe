@@ -61,8 +61,8 @@ const getOneRecipe = (state = initialState.recipe, action) => {
     case EDIT_RECIPE:
       return {
         ...state,
-        singleRecipe: action.recipes,
-        editRecipeError: false
+        singleRecipe: action.recipe,
+        editRecipeSuccess: true
       };
     case EDIT_RECIPE_ERROR:
       return {

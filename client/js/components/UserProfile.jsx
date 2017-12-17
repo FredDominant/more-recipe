@@ -114,7 +114,6 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   render() {
-    console.log(this.props.updateSuccess);
     return (
       <div >
         <NavBar />

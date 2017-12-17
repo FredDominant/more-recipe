@@ -87,10 +87,10 @@ export default class Recipe {
       .then((foundRecipe) => {
         if (foundRecipe) {
           const newRecipe = {
-            name: name ? name.toLowerCase() : foundRecipe.dataValues.name,
-            description: description ? description.toLowerCase() : foundRecipe.dataValues.description,
-            ingredients: ingredients ? ingredients.toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ? directions.toLowerCase() : foundRecipe.dataValues.directions,
+            name: name ? req.body.name.trim().toLowerCase() : foundRecipe.dataValues.name,
+            description: description ? description.trim().toLowerCase() : foundRecipe.dataValues.description,
+            ingredients: ingredients ? ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
+            directions: directions ? directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
             picture: picture ? picture.trim() : foundRecipe.dataValues.picture
           };
           foundRecipe.update(newRecipe)
@@ -99,10 +99,12 @@ export default class Recipe {
                 Message: 'Update successful',
                 Recipe: updatedRecipe
               }))
-            .catch(() => res.status(500)
-              .json({
-                Message: 'Internal server error.'
-              }));
+            .catch(() => {
+              res.status(500)
+                .json({
+                  Message: 'Internal server error.'
+                });
+            });
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -111,10 +113,12 @@ export default class Recipe {
             });
         }
       })
-      .catch(() => res.status(500)
-        .json({
-          Message: 'Internal server error. Unable to complete request'
-        }));
+      .catch(() => {
+        res.status(500)
+          .json({
+            Message: 'Internal server error. Unable to complete request'
+          });
+      });
   }
   /**
    * This method deletes a recipe
@@ -313,7 +317,7 @@ export default class Recipe {
     }).then((allUser) => {
       const page = parseInt((req.query.page || 1), 10);
       const numberOfItems = allUser.count;
-      const limit = 3;
+      const limit = 12;
       const pages = Math.ceil(numberOfItems / limit);
       let offset = 0;
       offset = limit * (page - 1);
@@ -327,7 +331,7 @@ export default class Recipe {
         limit,
         offset,
         order: [
-          ['id', 'ASC']
+          ['id', 'DESC']
         ]
       })
         .then((allUserRecipes) => {

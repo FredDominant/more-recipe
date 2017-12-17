@@ -5,29 +5,31 @@ import { EDIT_RECIPE, EDIT_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
 const updateRecipeSuccess = recipe => ({
-  action: EDIT_RECIPE,
+  type: EDIT_RECIPE,
   recipe
 });
 
 const updateRecipeFail = () => ({
-  action: EDIT_RECIPE_ERROR
+  type: EDIT_RECIPE_ERROR
 });
 
 const updateRecipe = (recipe, recipeId) => (dispatch) => {
+  const { name, description, directions, ingredients, picture } = recipe;
   const token = localStorage.getItem('token');
   dispatch(setFetching());
   axios({
     method: 'PUT',
-    url: `api/v1/recipes/${recipeId}`,
+    url: `/api/v1/recipes/${recipeId}`,
     headers: {
       'x-access-token': token
     },
     data: {
-      recipe
+      name, description, directions, picture, ingredients
     }
   })
     .then((response) => {
       const { Recipe } = response.data;
+      console.log('update response is', Recipe);
       dispatch(batchActions([
         updateRecipeSuccess(Recipe),
         unsetFetching()

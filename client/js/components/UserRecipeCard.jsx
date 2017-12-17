@@ -14,17 +14,19 @@ const UserRecipeCard = props => (
     <Card>
       <CardImg src={props.image} />
       <CardBody>
-        <CardTitle><Link to={`/recipe/edit/${props.id}`}>{props.name}</Link></CardTitle>
+        <CardTitle><Link to={`/recipe/${props.id}`}>{props.name}</Link></CardTitle>
         <CardText>{props.description}</CardText>
         <div className="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"
+            title="view this recipe"
             className="btn btn-outline-danger"
             onClick={() => { props.onView(props.id); }}
           ><i className="fas fa-angle-double-right" /></button>
 
           <button
             type="button"
+            title="edit this recipe"
             className="btn btn-outline-danger"
           >
             <Link to={`/recipe/edit/${props.id}`}> <i className="far fa-edit" /> </Link>
@@ -32,6 +34,7 @@ const UserRecipeCard = props => (
 
           <button
             type="button"
+            title="delete this recipe"
             className="btn btn-outline-danger"
             onClick={() => { props.onDelete(props.id); }}
           ><i className="far fa-trash-alt" /></button>
