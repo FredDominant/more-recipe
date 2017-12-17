@@ -1,5 +1,10 @@
 import initialState from '../store/initialState';
-import { GET_USER_RECIPES, GET_USER_RECIPES_ERROR } from '../actions/actionTypes';
+import {
+  GET_USER_RECIPES,
+  GET_USER_RECIPES_ERROR,
+  DELETE_RECIPE,
+  DELETE_RECIPE_ERROR
+} from '../actions/actionTypes';
 
 const getUserRecipe = (state = initialState.recipe, action) => {
   switch (action.type) {
@@ -14,6 +19,14 @@ const getUserRecipe = (state = initialState.recipe, action) => {
         ...state,
         userRecipes: [],
         getUserRecipe: true
+      };
+    case DELETE_RECIPE:
+      return {
+        ...state
+      };
+    case DELETE_RECIPE_ERROR:
+      return {
+        ...state
       };
     default:
       return state;
