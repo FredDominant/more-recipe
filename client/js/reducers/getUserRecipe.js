@@ -22,7 +22,8 @@ const getUserRecipe = (state = initialState.recipe, action) => {
       };
     case DELETE_RECIPE:
       return {
-        ...state
+        ...state,
+        userRecipes: state.userRecipes.filter(recipe => recipe.id !== action.recipeId)
       };
     case DELETE_RECIPE_ERROR:
       return {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
 
 import getUserRecipes from '../actions/getUserRecipes';
+import deleteRecipe from '../actions/deleteRecipe';
 import Navbar from '../components/Navbar';
 import UserRecipeCard from '../components/UserRecipeCard';
 
@@ -33,30 +33,12 @@ class UserRecipePage extends React.Component {
   }
   /**
    *
-   *
-   * @param {any} id
-   * @memberof UserRecipePage
-   */
-  onUpdate(id) {
-    console.log('updating recipe with id', id);
-  }
-  /**
-   *
-   *
+   * @return {null} null
    * @param {any} id
    * @memberof UserRecipePage
    */
   onDelete(id) {
-    console.log('deleting recipe with id', id);
-  }
-  /**
-   *
-   *
-   * @param {any} id
-   * @memberof UserRecipePage
-   */
-  onView(id) {
-    console.log('viewing recipe with id', id);
+    this.props.deleteRecipe(id);
   }
   /**
    *
@@ -73,9 +55,7 @@ class UserRecipePage extends React.Component {
           name={recipe.name}
           description={recipe.description}
           id={recipe.id}
-          onUpdate={this.onUpdate}
-          onView={this.onView}
-          onDelete={this.onDelete}
+          onDelete={this.props.deleteRecipe}
         />
       </div>
     ));
@@ -96,12 +76,14 @@ const mapStateToProps = state => ({
   userRecipes: state.getUserRecipe.userRecipes
 });
 const mapDispatchToProps = dispatch => ({
-  getAllUserRecipes: () => dispatch(getUserRecipes())
+  getAllUserRecipes: () => dispatch(getUserRecipes()),
+  deleteRecipe: recipeId => dispatch(deleteRecipe(recipeId))
 });
 
 UserRecipePage.propTypes = {
   userRecipes: PropTypes.arrayOf(PropTypes.shape()),
-  getAllUserRecipes: PropTypes.func.isRequired
+  getAllUserRecipes: PropTypes.func.isRequired,
+  deleteRecipe: PropTypes.func.isRequired
 };
 
 UserRecipePage.defaultProps = {

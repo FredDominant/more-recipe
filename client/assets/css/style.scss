@@ -259,13 +259,18 @@ img#reviewer-image {
   display: block;
   margin-left: auto
 }
+a :hover {
+  color: none;
+}
 
 button a {
   color: red;
 }
+
 button a :hover {
   color: white;
 }
+
 a, button {
   cursor: pointer;
 }

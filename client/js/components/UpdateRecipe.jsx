@@ -51,7 +51,6 @@ class UpdateRecipe extends React.Component {
    * @memberof UpdateRecipe
    */
   componentWillReceiveProps(nextProps) {
-    console.log('next props is', nextProps);
     const { id, name, description, directions, ingredients, picture } = nextProps.recipeDetails;
     const { editRecipeSuccess, editRecipeError } = nextProps;
     this.setState({ id, name, directions, description, ingredients, picture, editRecipeSuccess, editRecipeError });
@@ -84,9 +83,7 @@ class UpdateRecipe extends React.Component {
   onEdit(event) {
     event.preventDefault();
     const { id, name, description, directions, ingredients, picture } = this.state;
-    // console.log(this.state);
     this.props.updateRecipe({ name, description, directions, ingredients, picture }, id);
-    console.log('called update Recipe function');
   }
   /**
    *
@@ -95,7 +92,6 @@ class UpdateRecipe extends React.Component {
    * @memberof UpdateRecipe
    */
   render() {
-    console.log(this.state.editRecipeSuccess);
     return (
       <div>
         <Navbar />

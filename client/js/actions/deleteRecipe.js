@@ -19,13 +19,12 @@ const deleteRecipe = recipeId => (dispatch) => {
   dispatch(setFetching());
   axios({
     method: 'DELETE',
-    url: `api/v1/recipes/${recipeId}`,
+    url: `/api/v1/recipes/${recipeId}`,
     headers: {
       'x-access-token': token
     }
   })
-    .then((response) => {
-      console.log('response on delete is', response);
+    .then(() => {
       dispatch(batchActions([
         deleteRecipeSuccess(recipeId),
         unsetFetching()

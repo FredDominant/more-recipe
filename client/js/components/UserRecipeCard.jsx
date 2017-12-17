@@ -17,12 +17,6 @@ const UserRecipeCard = props => (
         <CardTitle><Link to={`/recipe/${props.id}`}>{props.name}</Link></CardTitle>
         <CardText>{props.description}</CardText>
         <div className="btn-group" role="group" aria-label="Basic example">
-          <button
-            type="button"
-            title="view this recipe"
-            className="btn btn-outline-danger"
-            onClick={() => { props.onView(props.id); }}
-          ><i className="fas fa-angle-double-right" /></button>
 
           <button
             type="button"
@@ -50,8 +44,6 @@ UserRecipeCard.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onView: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
 };
 
 export default UserRecipeCard;
