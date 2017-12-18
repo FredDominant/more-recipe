@@ -139,7 +139,7 @@ class Login extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <button type="submit" className="form-control btn btn-primary" id="register-button"> <span className="register-text"> Log in </span> </button>
+                        <button type="submit" className="form-control btn btn-primary register-button"> <span className="register-text"> Log in </span> </button>
                       </div>
                     </div>
                   </form>

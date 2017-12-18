@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
 import updateRecipe from '../actions/updateRecipe';
+import uploadImage from '../utils/uploadImage';
 // import PropTypes from 'prop-types';
 /**
  *
@@ -29,11 +30,13 @@ class UpdateRecipe extends React.Component {
       picture: '',
       editRecipeSuccess: '',
       editRecipeError: '',
+      selectedImage: false,
       toggleEdit: true
     };
     this.onChange = this.onChange.bind(this);
     this.onToggleEdit = this.onToggleEdit.bind(this);
-    this.onEdit = this.onEdit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onUpload = this.onUpload.bind(this);
   }
   /**
    *
@@ -61,6 +64,20 @@ class UpdateRecipe extends React.Component {
    * @param {any} event
    * @memberof UpdateRecipe
    */
+  onUpload(event) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({ picture: e.target.result });
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    this.setState({ selectedImage: true });
+  }
+  /**
+   *
+   * @returns {null} null
+   * @param {any} event
+   * @memberof UpdateRecipe
+   */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -80,10 +97,25 @@ class UpdateRecipe extends React.Component {
    * @param {any} event
    * @memberof UpdateRecipe
    */
-  onEdit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     const { id, name, description, directions, ingredients, picture } = this.state;
+    if (this.state.selectedImage) {
+      console.log('selected image');
+      return uploadImage(picture)
+        .then((response) => {
+          const url = response.data.secure_url;
+          console.log('response is', url);
+          this.setState({ picture: url });
+          console.log('picture is', this.state.picture);
+          this.props.updateRecipe(this.state, id);
+        })
+        .catch((error) => {
+          this.setState({ uploadImageError: error.error.message });
+        });
+    }
     this.props.updateRecipe({ name, description, directions, ingredients, picture }, id);
+    console.log('no file chosen');
   }
   /**
    *
@@ -100,7 +132,7 @@ class UpdateRecipe extends React.Component {
           <div className="container">
             {this.state.editRecipeSuccess && <div className="alert alert-success alert-dismissible" role="alert">Recipe Updated</div>}
           </div>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-sm-4">
                 <div className="recipe-image">
@@ -112,6 +144,7 @@ class UpdateRecipe extends React.Component {
                   type="file"
                   name="file"
                   id="file-upload"
+                  onChange={this.onUpload}
                   disabled={this.state.toggleEdit}
                 />
               </div>
@@ -177,7 +210,7 @@ class UpdateRecipe extends React.Component {
                 <div className="form-group">
                   <button
                     className="btn btn-primary"
-                    onClick={this.onEdit}
+                    disabled={this.state.toggleEdit}
                   >Update Recipe</button>
                   <button
                     className="btn btn-success"

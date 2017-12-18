@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
+import addFavourites from '../actions/addFavourites';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
-// import Login from '../components/Login';
-// import Signup from '../components/Signup';
 /**
  *
  *
@@ -40,7 +39,6 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillMount() {
-    console.log('propssssssss is', this.props);
     this.props.getRecipeDetails(this.props.match.params.recipeId);
   }
   /**
@@ -50,12 +48,9 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
-    console.log('nextprops is -->', nextProps);
     const recipe = nextProps.recipe;
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
-    // console.log('owner is', owner);
-    // console.log('reviews are', reviews);
     this.setState({ recipe, reviews, owner });
   }
 
@@ -66,7 +61,6 @@ class Recipe extends React.Component {
  */
   handleUpvote() {
     const recipeId = this.props.recipe.id;
-    console.log('upvoting recipe with id', recipeId);
     this.props.upvoteRecipe(recipeId);
   }
 
@@ -77,7 +71,6 @@ class Recipe extends React.Component {
  */
   handleDownvote() {
     const recipeId = this.props.recipe.id;
-    console.log('downvoting recipe with id', this.state.recipe.id);
     this.props.downvoteRecipe(recipeId);
   }
 
@@ -87,7 +80,9 @@ class Recipe extends React.Component {
  * @memberof Recipe
  */
   handleFavourite() {
-    console.log('favouriting recipe with id', this.state.recipe.id);
+    const recipeId = this.props.recipe.id;
+    this.props.favourite(recipeId);
+    console.log('favourited');
   }
   /**
    *
@@ -96,13 +91,8 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
-    console.log('current props is -->', this.props);
-    // console.log('reviews are', this.props.reviews);
-    // console.log('user is', this.props.user);
     const { reviews } = this.state;
-    console.log(reviews);
     const sortedReviews = reviews.sort((a, b) => (b.id - a.id));
-    console.log('sorted reviews is', sortedReviews);
     const allReviews = sortedReviews.map((review, i) => (
       <div key={`review ${i + 1}`} className="container">
         <ViewReviews
@@ -118,7 +108,7 @@ class Recipe extends React.Component {
         <Navbar />
         <div className="container">
           <h3>Recipe Name: {this.state.recipe.name}</h3>
-          {/* <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3> */}
+          <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3>
           <h3>Recipe Description: {this.state.recipe.description}</h3>
           <h3>Recipe Ingredients: {this.state.recipe.ingredients}</h3>
           <h3>Recipe Directions: {this.state.recipe.directions}</h3>
@@ -126,9 +116,29 @@ class Recipe extends React.Component {
           <h3>Downvotes: {this.state.recipe.downvote}</h3>
           <hr />
           {this.props.authenticated && <div className="actions">
-            <button onClick={this.handleUpvote} className="btn btn-primary"><i className="fas fa-thumbs-up" /> {this.state.recipe.upvote}</button>
-            <button onClick={this.handleDownvote} className="btn btn-warning"><i className="fas fa-thumbs-down" /> {this.state.recipe.downvote}</button>
-            <button onClick={this.handleFavourite} className="btn btn-success"><i className="fas fa-thumbs-up" /></button>
+            <div className="btn-group" role="group" >
+
+              <button
+                type="button"
+                title="upvote this recipe"
+                className="btn btn-outline-danger"
+                onClick={this.handleUpvote}
+              ><i className="far fa-thumbs-up" /></button>
+
+              <button
+                type="button"
+                title="downvote this recipe"
+                className="btn btn-outline-danger"
+                onClick={this.handleDownvote}
+              ><i className="far fa-thumbs-down" /></button>
+
+              <button
+                type="button"
+                title="add to your favourites"
+                className="btn btn-outline-danger"
+                onClick={this.handleFavourite}
+              ><i className="fab fa-gratipay" /></button>
+            </div>
           </div> }
           <hr />
           <div className="container-fluid" id="review-body">
@@ -145,10 +155,11 @@ class Recipe extends React.Component {
   }
 }
 Recipe.propTypes = {
-  // match: PropTypes.shape().isRequired,
+  match: PropTypes.shape().isRequired,
   getRecipeDetails: PropTypes.func.isRequired,
   upvoteRecipe: PropTypes.func.isRequired,
   downvoteRecipe: PropTypes.func.isRequired,
+  favourite: PropTypes.func.isRequired,
   recipe: PropTypes.shape(),
   authenticated: PropTypes.bool.isRequired
 };
@@ -164,7 +175,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getRecipeDetails: recipeId => dispatch(getOneRecipe(recipeId)),
   upvoteRecipe: recipeId => dispatch(upvoteRecipe(recipeId)),
-  downvoteRecipe: recipeId => dispatch(downvoteRecipe(recipeId))
+  downvoteRecipe: recipeId => dispatch(downvoteRecipe(recipeId)),
+  favourite: recipeId => dispatch(addFavourites(recipeId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipe);

@@ -108,6 +108,7 @@ class UserProfile extends React.Component {
     }
     this.props.updateProfile({ firstname, lastname, email, picture });
   }
+
   /**
    *
    * @returns {null} null

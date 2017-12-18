@@ -71,7 +71,7 @@ class AddReview extends React.Component {
                   value={this.state.content}
                 />
                 <br />
-                <button className="btn btn-primary" id="add-review-button"> <span><i className="fa fa-paper-plane-o" aria-hidden="true" /></span>comment</button>
+                <button className="btn btn-primary" id="add-review-button"> <span><i className="fas fa-comment-alt" /> </span>comment</button>
               </form>
             </div>
           </div>

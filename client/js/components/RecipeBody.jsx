@@ -63,6 +63,7 @@ class RecipeBody extends React.Component {
             views={recipe.views}
             owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
           />
+          <br />
         </div>)
     );
     return (

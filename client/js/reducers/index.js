@@ -8,18 +8,18 @@ import addRecipe from '../reducers/addRecipe';
 import getOneRecipe from '../reducers/getOneRecipe';
 import currentUserProfile from '../reducers/currentUserProfile';
 import getUserRecipe from '../reducers/getUserRecipe';
-// import signupReducer from './signupReducer';
+import getFavourites from '../reducers/getFavourites';
 
 const reducers = combineReducers({
   auth,
   isFetching,
   recipes,
-  getUserRecipe,
-  isUploading,
   addRecipe,
   getOneRecipe,
+  getUserRecipe,
+  getFavourites,
+  isUploading,
   currentUserProfile
-  // upvoteReducer
 });
 
 export default reducers;

@@ -10,6 +10,7 @@ import AddRecipePage from '../components/AddRecipePage';
 import UserProfile from '../components/UserProfile';
 import UserRecipePage from '../components/UserRecipePage';
 import UpdateRecipe from '../components/UpdateRecipe';
+import Favourites from '../components/Favourites';
 
 const checkAuth = (Component) => {
   if (!store.getState().auth.isAuthenticated) {
@@ -23,6 +24,7 @@ const Body = () => (
     <Route path="/home" exact component={checkAuth(UserHome)} />
     <Route path="/add-recipe" exact component={checkAuth(AddRecipePage)} />
     <Route path="/profile" exact component={checkAuth(UserProfile)} />
+    <Route path="/favourites" exact component={checkAuth(Favourites)} />
     <Route path="/user/recipes" exact component={checkAuth(UserRecipePage)} />
     <Route path="/recipe/:recipeId" exact component={Recipe} />
     <Route path="/recipe/edit/:recipeId" exact component={checkAuth(UpdateRecipe)} />

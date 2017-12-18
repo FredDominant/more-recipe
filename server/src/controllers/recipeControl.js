@@ -75,7 +75,7 @@ export default class Recipe {
     const description = req.body.description;
     const directions = req.body.directions;
     const ingredients = req.body.ingredients;
-    const picture = req.body.recipeImage;
+    const picture = req.body.picture;
     recipe.findOne({
       where: {
         id: req.params.recipeId,

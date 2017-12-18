@@ -23,6 +23,7 @@ const router = (app) => {
   app.post('/api/v1/recipes/:recipeId/review', authorize, Validate.Id, Validate.review, Review.addReview); // auth user can add review to recipe
   app.get('/api/v1/recipes/user/all', authorize, Recipe.getAllUser); // user can get all recipes by them
   app.post('/api/v1/recipes/:recipeId/favourite', authorize, Validate.Id, Favourite.addFavourite); // User can add recipe as favourite
+  app.delete('/api/v1/favourites/:recipeId/delete', authorize, Validate.Id, Favourite.delete); // User can delete recipe from favourites
   app.get('/api/v1/recipes?sort=up&order=des', Recipe.getAll); // user can get recipe with most upvotes
   app.post('/api/v1/recipes/:recipeId/upvote', authorize, Validate.Id, Vote.upvote); // user can upvote recipe
   app.post('/api/v1/recipes/:recipeId/downvote', authorize, Validate.Id, Vote.downVote); // user can downvote recipe

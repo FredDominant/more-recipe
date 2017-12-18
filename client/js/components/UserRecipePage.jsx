@@ -49,7 +49,7 @@ class UserRecipePage extends React.Component {
   render() {
     const userRecipes = (this.props.userRecipes) ? this.props.userRecipes : [];
     const allUserRecipes = userRecipes.map(recipe => (
-      <div key={'recipe ' + `${recipe.id}`} >
+      <div key={'recipe ' + `${recipe.id}`} className="col-sm-6 col-md-4" >
         <UserRecipeCard
           image={recipe.picture}
           name={recipe.name}
@@ -57,6 +57,7 @@ class UserRecipePage extends React.Component {
           id={recipe.id}
           onDelete={this.props.deleteRecipe}
         />
+        <br />
       </div>
     ));
     return (

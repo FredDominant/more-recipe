@@ -189,7 +189,7 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <button type="submit" className="form-control btn btn-primary signup-form" id="register-button"> <span className="register-text"> Register </span> </button>
+                        <button type="submit" className="form-control btn btn-primary signup-form register-button"> <span className="register-text"> Register </span> </button>
                       </div>
                     </div>
                   </form>
