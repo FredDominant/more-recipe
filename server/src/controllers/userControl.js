@@ -31,8 +31,8 @@ export default class User {
     user.findOne({
       where: { email }
     })
-      .catch(() => res.status(500)
-        .json({ Message: 'A server error ocurred, Please try again later' }))
+      // .catch(() => res.status(500)
+      //   .json({ Message: 'A server error ocurred, Please try again later' }))
       .then((existingUser) => {
         if (!existingUser) {
           const Password = helper.hashPassword(password);
@@ -120,7 +120,8 @@ export default class User {
               Message: 'Invalid login credentials'
             });
         }
-      });
+      })
+      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
   }
   /**
    * @description This takes in reques, and response to update a user's details
@@ -162,62 +163,15 @@ export default class User {
                 },
                 attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
               })
-                .then(currentUser => res.status(200).json({ User: currentUser }))
-                .catch(() => res.status(500).json({ Message: 'Internal server error' }));
-            })
-            .catch(e => res.status(500)
-              .json({ Message: 'Internal server error. Unable to update profile', e }));
+                .then(currentUser => res.status(200).json({ User: currentUser }));
+              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+            });
+          // .catch(e => res.status(500)
+          //   .json({ Message: 'Internal server error. Unable to update profile', e }));
         }
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal server error. Unable to update profile' }));
-  }
-  /**
-   * This function deletes a user
-   * @static
-   *
-   * @param {request} req HTTP request parameter
-   * @param {response} res HTTP response parameter
-   * @returns {object} JSON
-   * @memberof User
-   */
-  static deleteUser(req, res) {
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
-    if (!password) {
-      return res.status(400).json({ Message: 'enter a password' });
-    }
-    if (!confirmPassword) {
-      return res.status(400).json({ Message: 'confirm Password field is empty' });
-    }
-    if (password !== confirmPassword) {
-      return res.status(400).json({ Message: 'Password\'s do not match' });
-    }
-    user.findOne({
-      where: {
-        id: req.decoded.id
-      }
-    }).then((foundUser) => {
-      if (!foundUser) {
-        return res.status(404)
-          .json({ Message: 'You\'re Unauthorized to perform this operation' });
-      }
-      const encryptedPassword = helper.hashPassword(password);
-      if (foundUser.password === encryptedPassword) {
-        user.destroy({
-          where: {
-            id: req.decoded.id,
-            $and: { password: encryptedPassword }
-          }
-        }).then(() => res.status(200)
-          .json({ Message: 'Account deleted' })).catch(() => res.status(500)
-          .json({ Message: 'Internal server error' }));
-      } else {
-        return res.status(401)
-          .json({ Message: 'Passwords do not match' });
-      }
-    }).catch(() => res.status(500)
-      .json({ Message: 'Unable to complete request' }));
   }
   /**
    *

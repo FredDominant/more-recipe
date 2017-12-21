@@ -52,7 +52,9 @@ class Signup extends React.Component {
     if (this.isValid()) {
       const { firstname, lastname, email, password, confirmPassword } = this.state;
       this.props.signup({ firstname, lastname, email, password, confirmPassword });
-      this.context.router.history.push('/home');
+      if (this.props.authenticated) {
+        this.context.router.history.push('/home');
+      }
     }
   }
   /**
@@ -211,6 +213,10 @@ Signup.propTypes = {
 
 Signup.defaultProps = {
   errorMessage: '',
+};
+
+Signup.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

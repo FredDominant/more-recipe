@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false
     },
     ingredients: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     directions: {
@@ -37,7 +37,7 @@ export default (sequelize, DataTypes) => {
       defaultValue: 0
     },
     picture: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
       defaultValue: 'https://www.impaktovisual.com.br/3661-large_default/display-cupcake.jpg'
     }

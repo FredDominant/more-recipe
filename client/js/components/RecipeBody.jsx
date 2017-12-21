@@ -79,7 +79,6 @@ class RecipeBody extends React.Component {
         <div className="container">
           <br />
           <div className="emptyContent">
-            <br />
             <h2>There are currently no recipes in the catalogue</h2>
           </div>
         </div>

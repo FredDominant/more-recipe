@@ -48,11 +48,11 @@ export default class Recipe {
             .then(newRecipe => res.status(201)
               .json({
                 Recipe: newRecipe
-              }))
-            .catch(() => res.status(500)
-              .json({
-                Message: 'Internal server error. Unable to complete'
               }));
+          // .catch(() => res.status(500)
+          //   .json({
+          //     Message: 'Internal server error. Unable to complete'
+          //   }));
         }
       })
       .catch(() => res.status(500)
@@ -98,13 +98,13 @@ export default class Recipe {
               .json({
                 Message: 'Update successful',
                 Recipe: updatedRecipe
-              }))
-            .catch(() => {
-              res.status(500)
-                .json({
-                  Message: 'Internal server error.'
-                });
-            });
+              }));
+          // .catch(() => {
+          //   res.status(500)
+          //     .json({
+          //       Message: 'Internal server error.'
+          //     });
+          // });
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -158,16 +158,16 @@ export default class Recipe {
             .then(() => res.status(200)
               .json({
                 Message: 'recipe deleted'
-              }))
-            .catch(() => res.status(500)
-              .json({ Message: 'Internal server error' }));
+              }));
+          // .catch(() => res.status(500)
+          //   .json({ Message: 'Internal server error' }));
         }
-        if (!foundRecipe) {
-          return res.status(404)
-            .json({
-              Message: `Can't find recipe with id ${req.params.recipeId} by you`
-            });
-        }
+        // if (!foundRecipe) {
+        //   return res.status(404)
+        //     .json({
+        //       Message: `Can't find recipe with id ${req.params.recipeId} by you`
+        //     });
+        // }
       })
       .catch(() => res.status(500)
         .json({
@@ -218,11 +218,12 @@ export default class Recipe {
                   Recipes: recipes
                 });
             }
-          })
-          .catch(() => res.status(500)
-            .json({
-              Message: 'Unable to complete request. Internal server error.'
-            }));
+          });
+        // .catch(error => res.status(500)
+        //   .json({
+        //     Message: 'Unable to complete request. Internal server error.',
+        //     error
+        //   }));
       }).catch(() => res.status(500)
         .json({ Message: 'Internal server' }));
     }

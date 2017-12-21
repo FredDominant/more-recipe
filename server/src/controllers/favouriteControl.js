@@ -43,8 +43,8 @@ export default class Favourite {
                   }
                 }
               })
-                .then(() => res.status(200).json({ Message: 'Removed from favourites' }))
-                .catch(() => res.status(500).json({ Message: 'Unable to complete' }));
+                .then(() => res.status(200).json({ Message: 'Removed from favourites' }));
+              // .catch(() => res.status(500).json({ Message: 'Unable to complete' }));
               return;
             }
             favourite.create({
@@ -55,12 +55,12 @@ export default class Favourite {
                 .json({
                   Message: 'Recipe added to favourites',
                   Favourite: newFavourite
-                }))
-              .catch(() => res.status(500)
-                .json({ Message: 'Unable to add to favourites due to server error' }));
-          })
-          .catch(() => res.status(500)
-            .json({ Message: 'a server error ocurred' }));
+                }));
+            // .catch(() => res.status(500)
+            //   .json({ Message: 'Unable to add to favourites due to server error' }));
+          });
+        // .catch(() => res.status(500)
+        //   .json({ Message: 'a server error ocurred' }));
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal server error, please try again later' }));
@@ -128,8 +128,8 @@ export default class Favourite {
                   userId: req.decoded.id
                 }
               })
-                .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }))
-                .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+                .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }));
+              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
               return;
             }
             if (!foundFavourite) {

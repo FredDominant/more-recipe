@@ -21,7 +21,7 @@ module.exports = {
       allowNull: false
     },
     ingredients: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     directions: {
@@ -44,7 +44,7 @@ module.exports = {
       defaultValue: 0
     },
     picture: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: true,
       defaultValue: 'none'
     },
