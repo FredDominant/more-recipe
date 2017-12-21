@@ -9,6 +9,7 @@ import addFavourites from '../actions/addFavourites';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
+import capitalize from '../utils/capitalize';
 /**
  *
  *
@@ -91,6 +92,12 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
+    console.log('ingredients is', ingredients);
+    const splitIngredients = ingredients.split(',').map((item, i) => (
+      <li key={`${i}`}>{item}</li>
+    ));
+
     const { reviews } = this.state;
     const sortedReviews = reviews.sort((a, b) => (b.id - a.id));
     const allReviews = sortedReviews.map((review, i) => (
@@ -104,50 +111,71 @@ class Recipe extends React.Component {
       </div>
     ));
     return (
-      <div>
+      <div >
         <Navbar />
         <div className="container">
-          <h3>Recipe Name: {this.state.recipe.name}</h3>
-          <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3>
-          <h3>Recipe Description: {this.state.recipe.description}</h3>
-          <h3>Recipe Ingredients: {this.state.recipe.ingredients}</h3>
-          <h3>Recipe Directions: {this.state.recipe.directions}</h3>
-          <h3>Upvotes: {this.state.recipe.upvote}</h3>
-          <h3>Downvotes: {this.state.recipe.downvote}</h3>
-          <hr />
-          {this.props.authenticated && <div className="actions">
-            <div className="btn-group" role="group" >
-
-              <button
-                type="button"
-                title="upvote this recipe"
-                className="btn btn-outline-danger"
-                onClick={this.handleUpvote}
-              ><i className="far fa-thumbs-up" /></button>
-
-              <button
-                type="button"
-                title="downvote this recipe"
-                className="btn btn-outline-danger"
-                onClick={this.handleDownvote}
-              ><i className="far fa-thumbs-down" /></button>
-
-              <button
-                type="button"
-                title="add to your favourites"
-                className="btn btn-outline-danger"
-                onClick={this.handleFavourite}
-              ><i className="fab fa-gratipay" /></button>
+          <div className="container">
+            <br />
+            <div className="row">
+              <div className="col-md-6 col-sm-8">
+                <div className="image-container">
+                  <img src={this.state.recipe.picture} alt="" height="50" width="50" className="img-thumbnail" />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <h2>{this.state.recipe.name ? capitalize(this.state.recipe.name) : '' }</h2>
+                <h5>{this.state.recipe.description ? capitalize(this.state.recipe.description) : '' }</h5>
+                <ul>
+                  {splitIngredients}
+                </ul>
+              </div>
             </div>
-          </div> }
-          <hr />
-          <div className="container-fluid" id="review-body">
-            <h5>Reviews</h5>
-            <div className="add-review-form">
-              {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
-              <br />
+            <br />
+
+            <h3>Ingredients: {this.state.recipe.ingredients}</h3>
+            <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3>
+            <h3>Recipe Directions: {this.state.recipe.directions}</h3>
+            <h3>Upvotes: {this.state.recipe.upvote}</h3>
+            <h3>Downvotes: {this.state.recipe.downvote}</h3>
+            <hr />
+            {this.props.authenticated && <div className="actions">
+              <div className="btn-group" role="group" >
+
+                <button
+                  type="button"
+                  title="upvote this recipe"
+                  className="btn btn-outline-danger"
+                  onClick={this.handleUpvote}
+                ><i className="far fa-thumbs-up" /></button>
+
+                <button
+                  type="button"
+                  title="downvote this recipe"
+                  className="btn btn-outline-danger"
+                  onClick={this.handleDownvote}
+                ><i className="far fa-thumbs-down" /></button>
+
+                <button
+                  type="button"
+                  title="add to your favourites"
+                  className="btn btn-outline-danger"
+                  onClick={this.handleFavourite}
+                ><i className="fab fa-gratipay" /></button>
+              </div>
+            </div> }
+            <div className="container-fluid" id="review-body">
+              <h5>Reviews</h5>
+              <div className="add-review-form">
+                {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
+                <br />
+              </div>
+              { allReviews.length > 0 && <div>
+                {allReviews}
+              </div>}
+              { !allReviews.length && <div className="emptyContent">
+                <h2>There are currently no reviews for this recipe.</h2>
+              </div>}
             </div>
-            {allReviews}
           </div>
         </div>
       </div>

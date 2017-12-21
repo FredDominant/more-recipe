@@ -50,6 +50,7 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
+    console.log('next Props is', nextProps);
     const { firstname, lastname, email, picture } = nextProps.userDetails;
     this.setState({ firstname, lastname, email, picture });
   }
@@ -124,87 +125,87 @@ class UserProfile extends React.Component {
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
             <form onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="container">
-                  <div id="user-image-container">
-                    <div className="profile-image">
-                      <img className="img-thumbnail" id="update-profile-picture" src={this.state.picture} alt={this.state.firstname} srcSet="" />
-                    </div>
-                    <br />
-                    <input
-                      type="file"
-                      name="file"
-                      id="profile-upload"
-                      onChange={this.onUpload}
-                      disabled={this.state.disabled}
-                    />
+              {/* <div className="row"> */}
+              <div className="">
+                <div id="user-image-container">
+                  <div className="profile-image">
+                    <img className="img-thumbnail" id="update-profile-picture" src={this.state.picture} alt={this.state.firstname} srcSet="" />
                   </div>
                   <br />
+                  <input
+                    type="file"
+                    name="file"
+                    id="profile-upload"
+                    onChange={this.onUpload}
+                    disabled={this.state.disabled}
+                  />
+                </div>
+                <br />
 
-                  <div className="form-group">
-                    <label htmlFor="profile-firstname">First Name</label>
-                    <input
-                      type="text"
-                      id="profile-firstname"
-                      className="form-control"
-                      name="firstname"
-                      value={this.state.firstname}
-                      onChange={this.onChange}
-                      disabled={this.state.disabled}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="profile-firstname">First Name</label>
+                  <input
+                    type="text"
+                    id="profile-firstname"
+                    className="form-control"
+                    name="firstname"
+                    value={this.state.firstname}
+                    onChange={this.onChange}
+                    disabled={this.state.disabled}
+                  />
+                </div>
 
-                  <div className="form-group">
-                    <label htmlFor="profile-lastname">Last Name</label>
-                    <input
-                      type="text"
-                      id="profile-lastname"
-                      className="form-control"
-                      name="lastname"
-                      value={this.state.lastname}
-                      onChange={this.onChange}
-                      disabled={this.state.disabled}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="profile-lastname">Last Name</label>
+                  <input
+                    type="text"
+                    id="profile-lastname"
+                    className="form-control"
+                    name="lastname"
+                    value={this.state.lastname}
+                    onChange={this.onChange}
+                    disabled={this.state.disabled}
+                  />
+                </div>
 
-                  <div className="form-group">
-                    <label htmlFor="profile-email">Email</label>
-                    <input
-                      type="email"
-                      id="profile-email"
-                      className="form-control"
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.onChange}
-                      disabled={this.state.disabled}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="profile-email">Email</label>
+                  <input
+                    type="email"
+                    id="profile-email"
+                    className="form-control"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    disabled={this.state.disabled}
+                  />
+                </div>
 
-                  <div className="form-group">
-                    <label htmlFor="profile-password">Password</label>
-                    <input
-                      type="text"
-                      id="profile-password"
-                      className="form-control"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.onChange}
-                      disabled={this.state.disabled}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="profile-password">Password</label>
+                  <input
+                    type="text"
+                    id="profile-password"
+                    className="form-control"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    disabled={this.state.disabled}
+                  />
+                </div>
 
-                  <div className="form-group">
-                    <div className="row">
-                      <div className="col-sm-2">
-                        <button className="btn btn-success" disabled={this.state.disabled}>Update</button></div>
-                      <div className="col-sm-1" />
-                      <div className="col-sm-2">
-                        <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
-                      </div>
+                <div className="form-group">
+                  <div className="row">
+                    <div className="col-sm-2">
+                      <button className="btn btn-success" disabled={this.state.disabled}>Update</button></div>
+                    <div className="col-sm-1" />
+                    <div className="col-sm-2">
+                      <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* </div> */}
             </form>
           </div>
         </div>

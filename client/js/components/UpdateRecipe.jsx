@@ -99,23 +99,19 @@ class UpdateRecipe extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    const { id, name, description, directions, ingredients, picture } = this.state;
+    const { picture, id } = this.state;
     if (this.state.selectedImage) {
-      console.log('selected image');
       return uploadImage(picture)
         .then((response) => {
           const url = response.data.secure_url;
-          console.log('response is', url);
           this.setState({ picture: url });
-          console.log('picture is', this.state.picture);
           this.props.updateRecipe(this.state, id);
         })
         .catch((error) => {
           this.setState({ uploadImageError: error.error.message });
         });
     }
-    this.props.updateRecipe({ name, description, directions, ingredients, picture }, id);
-    console.log('no file chosen');
+    this.props.updateRecipe(this.state, id);
   }
   /**
    *
@@ -136,7 +132,7 @@ class UpdateRecipe extends React.Component {
             <div className="row">
               <div className="col-sm-4">
                 <div className="recipe-image">
-                  <img className="img-thumbnail" src={this.state.picture} alt="" srcSet="" />
+                  <img className="img-thumbnail img-responsive" src={this.state.picture} alt="" srcSet="" />
                 </div>
                 <br />
                 <label htmlFor="upload" className="file-upload__label">upload image</label>

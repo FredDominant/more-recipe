@@ -66,9 +66,23 @@ class RecipeBody extends React.Component {
           <br />
         </div>)
     );
+    if (allRecipes.length) {
+      return (
+        <div className="row recipes-body">
+          { allRecipes }
+        </div>
+      );
+    }
     return (
-      <div className="row recipes-body">
-        { allRecipes }
+      <div className="">
+        <br />
+        <div className="container">
+          <br />
+          <div className="emptyContent">
+            <br />
+            <h2>There are currently no recipes in the catalogue</h2>
+          </div>
+        </div>
       </div>
     );
   }

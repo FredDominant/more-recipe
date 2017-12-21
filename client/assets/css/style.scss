@@ -43,9 +43,16 @@ img.img-thumbnail {
 .more-recipes {
   color: brown;
 }
+#recipe-images {
+  width: 400px;
+  height: 250px;
+}
+#recipe-title {
+  margin-top: 10px;
+}
 
 .recipe-title {
-	font-family: 'Berkshire Swash', cursive;
+  font-family: 'Berkshire Swash', cursive;
 }
 .recipe-owner {
 	margin-top: 10px;
@@ -205,6 +212,7 @@ div.carousel-inner {
    margin-top: 40px;
    border-style: solid;
    border-color: grey;
+   border-radius: 5px;
    border-width: 1px;
  }
  #update-profile-body {
@@ -213,7 +221,26 @@ div.carousel-inner {
    margin-left: 150px;
    margin-bottom: 20px;
  }
-
+ @media (min-width: 320px) and (max-width: 640px) {
+  #update-profile-form {
+     margin-top: 40px;
+     border-style: solid;
+     border-color: grey;
+     border-radius: 5px;
+     border-width: 1px;
+     width: 100%;
+   }
+   #update-profile-body {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    width: 100%;
+  }
+  #recipe-images {
+    width: 500px;
+    height: 250px;
+  }
+ }
  .profile-image {
   min-width: 150px;
  }
@@ -256,4 +283,11 @@ button a :hover {
 
 a, button {
   cursor: pointer;
+}
+
+.emptyContent {
+  font-family: 'Berkshire Swash', cursive;
+	// margin-left: 33%;
+	color: brown;
+	margin-top: 20px;
 }

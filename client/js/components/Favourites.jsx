@@ -69,13 +69,28 @@ class Favourites extends React.Component {
       </div>
     )
     );
+    if (allFavourites.length) {
+      return (
+        <div>
+          <Navbar />
+          <br />
+          <div className="container">
+            <div className="row">
+              {allFavourites}
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
-      <div>
+      <div className="">
         <Navbar />
         <br />
         <div className="container">
-          <div className="row">
-            {allFavourites}
+          <br />
+          <div className="emptyContent">
+            <br />
+            <h2>You currently have no favourite recipes. Add recipes as favourites</h2>
           </div>
         </div>
       </div>

@@ -60,13 +60,28 @@ class UserRecipePage extends React.Component {
         <br />
       </div>
     ));
+    if (userRecipes.length) {
+      return (
+        <div>
+          <Navbar />
+          <br />
+          <div className="container" >
+            <div className="row">
+              {allUserRecipes}
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
-      <div>
+      <div className="">
         <Navbar />
         <br />
-        <div className="container" >
-          <div className="row">
-            {allUserRecipes}
+        <div className="container">
+          <br />
+          <div className="emptyContent">
+            <br />
+            <h2>You currently have no Recipes. Add new recipes... </h2>
           </div>
         </div>
       </div>

@@ -89,6 +89,7 @@ class AddRecipePage extends React.Component {
  */
   addNewRecipe() {
     const { recipeImage, name, description, directions, ingredients } = this.state;
+    console.log(this.state);
     if (recipeImage.length && this.isValid()) {
       return uploadImage(recipeImage)
         .then((response) => {
