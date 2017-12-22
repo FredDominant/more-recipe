@@ -4,7 +4,7 @@ node_js:
 services:
 - postgresql
 before_script:
-  - psql -c 'create database recipesTest;' -U postgres
+  - createdb recipesTest --username=postgres
   - NODE_ENV=test sequelize db:migrate
 env:
   global:
