@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
 import Navbar from '../components/Navbar';
-import UserRecipeCard from '../components/UserRecipeCard';
+// import UserRecipeCard from '../components/UserRecipeCard';
+import RecipeItem from '../components/RecipeItem';
 
 /**
  *
@@ -49,13 +50,17 @@ class UserRecipePage extends React.Component {
   render() {
     const userRecipes = (this.props.userRecipes) ? this.props.userRecipes : [];
     const allUserRecipes = userRecipes.map(recipe => (
-      <div key={'recipe ' + `${recipe.id}`} className="col-sm-6 col-md-4" >
-        <UserRecipeCard
+      <div key={`${recipe.id}`} className="col-sm-6 col-md-4" >
+        <RecipeItem
           image={recipe.picture}
-          name={recipe.name}
+          recipeName={recipe.name}
+          recipeId={recipe.id}
           description={recipe.description}
-          id={recipe.id}
+          userRecipeCard={'user'}
           onDelete={this.props.deleteRecipe}
+          upvote={recipe.upvote}
+          downvote={recipe.downvote}
+          views={recipe.views}
         />
         <br />
       </div>

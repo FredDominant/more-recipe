@@ -70,7 +70,14 @@ const RecipeItem = props =>
               title="remove from favourites"
               className="btn btn-outline-danger"
               onClick={() => { props.removeRecipe(props.recipeId); }}
-            ><i className="fas fa-trash-alt" /> <span id="views">{props.views} </span></button>}
+            ><i className="fas fa-trash-alt" /> <span id="removeFavourite">{props.views} </span></button>}
+
+            {props.userRecipeCard && <button
+              type="button"
+              title="delete this recipe"
+              className="btn btn-outline-danger"
+              onClick={() => { props.onDelete(props.recipeId); }}
+            ><i className="fas fa-trash-alt" /> <span id="removeRecipe">{props.views} </span></button>}
           </div>
         </CardBody>
       </Card>
@@ -86,12 +93,16 @@ RecipeItem.propTypes = {
   recipeId: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   favouriteCard: PropTypes.string,
-  removeRecipe: PropTypes.func
+  userRecipeCard: PropTypes.string,
+  removeRecipe: PropTypes.func,
+  onDelete: PropTypes.func
 };
 RecipeItem.defaultProps = {
   views: null,
   favouriteCard: null,
-  removeRecipe: null
+  removeRecipe: null,
+  userRecipeCard: null,
+  onDelete: null
 };
 
 export default RecipeItem;
