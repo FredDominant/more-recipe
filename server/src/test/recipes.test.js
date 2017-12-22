@@ -177,6 +177,7 @@ describe('Test for', () => {
     });
   });
   it('not delete if user doesn`t own recipe', (done) => {
+    console.log(userToken, '///////');
     chai.request(app)
       .delete('/api/v1/recipes/11')
       .set('x-access-token', userToken)

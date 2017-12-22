@@ -1,6 +1,13 @@
 import faker from 'faker';
 
 export default {
+  validUser: {
+    firstname: 'fred',
+    lastname: 'freddy',
+    email: 'fredadewole@email.com',
+    password: '123456',
+    confirmPassword: '123456'
+  },
   validSignup: {
     firstname: faker.name.firstName(),
     lastname: faker.name.lastName(),

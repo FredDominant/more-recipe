@@ -2,7 +2,6 @@ import chaiHttp from 'chai-http';
 import chai from 'chai';
 
 import app from '../../app';
-import models from '../models';
 import fakeData from './faker/users.faker';
 
 // const helper = new passwordHelper.default();
@@ -11,17 +10,18 @@ chai.use(chaiHttp);
 let userToken;
 
 describe('Test for Users', () => {
-  after((done) => {
-    models.User.destroy({ where: { id: { $notIn: [1] } } });
-    done();
-  });
   before((done) => {
     chai.request(app)
-      .post('/api/v1/users/signin')
-      .send(fakeData.validLogin)
-      .end((err, res) => {
-        userToken = res.body.Token;
-        done();
+      .post('/api/v1/users/signup')
+      .send(fakeData.validUser)
+      .end(() => {
+        chai.request(app)
+          .post('/api/v1/users/signin')
+          .send(fakeData.validLogin)
+          .end((err, res) => {
+            userToken = res.body.Token;
+            done();
+          });
       });
   });
 
