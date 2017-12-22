@@ -102,7 +102,7 @@
     "coverage:dev": "nyc npm test  && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration": "sequelize db:migrate",
-    "postinstall": "npm run migration"
+    "postinstall": "[ \"NODE_ENV\" != production ] && exit 0; npm run migration"
   },
   "repository": {
     "type": "git",
