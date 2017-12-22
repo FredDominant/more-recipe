@@ -5,7 +5,7 @@ services:
 - postgresql
 before_script:
   - psql -c 'create database recipesTest;' -U postgres
-  - sequelize db:migrate
+  - NODE_ENV=test sequelize db:migrate
 env:
   global:
     - CC_TEST_REPORTER_ID=06e5cd10a0ad068c1ee97e1ff4ea4c35fa2ba46853828ecb3983236a34ada53b
