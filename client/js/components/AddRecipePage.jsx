@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router-dom';
+import toastr from 'toastr';
 
 import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
@@ -128,18 +128,31 @@ class AddRecipePage extends React.Component {
    */
   render() {
     const errors = this.state.errors;
+    if (this.props.errorMessage) {
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error(this.props.errorMessage, 'Unable to add new Recipe');
+      console.log('toast error');
+    }
+    if (this.props.addRecipeSuccess && !this.props.errorMessage) {
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Recipe Added');
+      console.log('toast success');
+    }
     return (
       <div className="container-fluid">
         <Navbar />
         <div id="add-recipe-form" className="container">
-          <div className="container error-body">
-            {this.state.addRecipeError && <div className="alert alert-dismissible alert-danger" role="alert">{this.props.errorMessage}</div>}
+          {/* <div className="container error-body">
             {this.state.uploadImageError && <div className="alert alert-dismissible alert-danger" role="alert">{'Error while uploading image'}</div>}
             {errors.name && <div className="alert alert-dismissible alert-danger" role="alert">{errors.name}</div>}
             {errors.description && <div className="alert alert-dismissible alert-danger" role="alert">{errors.description}</div>}
             {errors.ingredients && <div className="alert alert-dismissible alert-danger" role="alert">{errors.ingredients}</div>}
             {errors.directions && <div className="alert alert-dismissible alert-danger" role="alert">{errors.directions}</div>}
-          </div>
+          </div> */}
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-sm-4">
@@ -167,6 +180,9 @@ class AddRecipePage extends React.Component {
                     value={this.state.name}
                     onChange={this.onChange}
                   />
+                  {errors.name && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.name} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
@@ -180,6 +196,9 @@ class AddRecipePage extends React.Component {
                     value={this.state.description}
                     onChange={this.onChange}
                   />
+                  {errors.description && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.description} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
@@ -194,6 +213,9 @@ class AddRecipePage extends React.Component {
                     value={this.state.directions}
                     onChange={this.onChange}
                   />
+                  {errors.directions && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.directions} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
@@ -208,6 +230,9 @@ class AddRecipePage extends React.Component {
                     value={this.state.ingredients}
                     onChange={this.onChange}
                   />
+                  {errors.ingredients && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.ingredients} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
@@ -222,7 +247,8 @@ class AddRecipePage extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  errorMessage: state.addRecipe.addRecipeErrorMessage
+  errorMessage: state.addRecipe.addRecipeErrorMessage,
+  addRecipeSuccess: state.addRecipe.addRecipeSuccess
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -231,10 +257,12 @@ const mapDispatchToProps = dispatch => ({
 
 AddRecipePage.propTypes = {
   createRecipe: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  addRecipeSuccess: PropTypes.string
 };
 AddRecipePage.defaultProps = {
-  errorMessage: null
+  errorMessage: null,
+  addRecipeSuccess: null
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecipePage);
 

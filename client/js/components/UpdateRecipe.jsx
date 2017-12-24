@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import toastr from 'toastr';
 
 import Navbar from '../components/Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -28,8 +29,6 @@ class UpdateRecipe extends React.Component {
       ingredients: '',
       directions: '',
       picture: '',
-      editRecipeSuccess: '',
-      editRecipeError: '',
       selectedImage: false,
       toggleEdit: true
     };
@@ -55,8 +54,7 @@ class UpdateRecipe extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     const { id, name, description, directions, ingredients, picture } = nextProps.recipeDetails;
-    const { editRecipeSuccess, editRecipeError } = nextProps;
-    this.setState({ id, name, directions, description, ingredients, picture, editRecipeSuccess, editRecipeError });
+    this.setState({ id, name, directions, description, ingredients, picture });
   }
   /**
    *
@@ -120,6 +118,15 @@ class UpdateRecipe extends React.Component {
    * @memberof UpdateRecipe
    */
   render() {
+    toastr.options = {
+      closeButton: true
+    };
+    if (this.props.updateSuccess) {
+      toastr.success('Recipe updated');
+    }
+    if (this.props.updateError) {
+      toastr.error('Unable to update recipe');
+    }
     return (
       <div>
         <Navbar />
@@ -223,7 +230,9 @@ class UpdateRecipe extends React.Component {
 }
 const mapStateToProps = state => ({
   recipeDetails: state.getOneRecipe.singleRecipe,
-  errorMessage: state.getOneRecipe.errorMessage
+  errorMessage: state.getOneRecipe.errorMessage,
+  updateSuccess: state.getOneRecipe.editRecipeSuccess,
+  updateError: state.getOneRecipe.editRecipeError
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -236,14 +245,14 @@ UpdateRecipe.propTypes = {
   getRecipeDetails: PropTypes.func.isRequired,
   recipeDetails: PropTypes.shape(),
   updateRecipe: PropTypes.func.isRequired,
-  editRecipeSuccess: PropTypes.bool,
-  editRecipeError: PropTypes.bool
+  updateSuccess: PropTypes.string,
+  updateError: PropTypes.string
 };
 
 UpdateRecipe.defaultProps = {
-  editRecipeSuccess: false,
-  editRecipeError: false,
-  recipeDetails: {}
+  recipeDetails: {},
+  updateSuccess: '',
+  updateError: ''
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateRecipe);

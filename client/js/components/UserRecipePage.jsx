@@ -58,9 +58,10 @@ class UserRecipePage extends React.Component {
           description={recipe.description}
           userRecipeCard={'user'}
           onDelete={this.props.deleteRecipe}
-          upvote={recipe.upvote}
-          downvote={recipe.downvote}
+          upvotes={recipe.upvote}
+          downvotes={recipe.downvote}
           views={recipe.views}
+          owner={'you'}
         />
         <br />
       </div>

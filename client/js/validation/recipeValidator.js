@@ -25,7 +25,7 @@ const recipeValidator = (recipe) => {
     errors.ingredients = 'Ingredients should have at least 1 item';
   }
   if (!Validator.isLength(recipe.ingredients, { min: 5 })) {
-    errors.ingredients = 'Recipe should have cook directions';
+    errors.ingredients = 'Recipe should have ingredients to cook';
   }
   return {
     errors,

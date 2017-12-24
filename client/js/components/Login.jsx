@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import toastr from 'toastr';
 
 import loginValidator from '../validation/LoginValidator';
 import loginUser from '../actions/loginUser';
@@ -61,7 +62,12 @@ class Login extends React.Component {
     event.preventDefault();
     if (this.isValid()) {
       const { email, password } = this.state;
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('You are now logged in');
       this.props.login({ email, password });
+
       if (this.props.authenticated) {
         this.context.router.history.push('/home');
       }
@@ -121,6 +127,7 @@ class Login extends React.Component {
                           aria-label="email"
                           aria-describedby="email-addon"
                         />
+
                       </div>
                       <br />
                       <div className="input-group">

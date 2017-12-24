@@ -40,7 +40,7 @@ export default class Review {
               include: [
                 { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
                 { model: models.Review,
-                  attributes: ['id', 'content'],
+                  attributes: ['id', 'content', 'createdAt'],
                   include: [
                     { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                   ]

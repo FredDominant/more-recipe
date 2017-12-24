@@ -8,9 +8,17 @@ search-body {
 	margin-bottom: 10px;
 	text-align: center;
 }
-
+.error-text {
+  font-style: italic;
+  color: red;
+}
 .icons {
 	margin-left: 7%;
+}
+
+#review-date {
+  font-style: italic;
+  font-weight: lighter;
 }
 
 .recipe-image {

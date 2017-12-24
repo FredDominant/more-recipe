@@ -13,6 +13,7 @@ const ViewReviews = props => (
         <div className="content">
           <h6> <strong> {`${props.firstname} ${props.lastname}`} </strong> </h6>
           <h6> <small> {props.content} </small> </h6>
+          <h6> <small id="review-date"> about {props.created} </small> </h6>
         </div>
       </div>
     </div>
@@ -24,7 +25,8 @@ ViewReviews.propTypes = {
   content: PropTypes.string.isRequired,
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired
+  image: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired
 };
 
 export default ViewReviews;

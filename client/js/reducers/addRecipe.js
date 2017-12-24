@@ -7,6 +7,7 @@ const addRecipe = (state = initialState.recipes, action) => {
       return {
         ...state,
         addRecipeErrorMessage: null,
+        addRecipeSuccess: 'Recipe Added',
         newRecipe: action.newRecipe
       };
     case RECIPE_ERROR:

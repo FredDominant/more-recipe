@@ -62,12 +62,12 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         singleRecipe: action.recipe,
-        editRecipeSuccess: true
+        editRecipeSuccess: 'Recipe Updated'
       };
     case EDIT_RECIPE_ERROR:
       return {
         ...state,
-        editRecipeError: true
+        editRecipeError: 'Unable to update recipe'
       };
     default:
       return state;

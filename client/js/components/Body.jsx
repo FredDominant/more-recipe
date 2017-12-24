@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import store from '../store/store';
 import Home from './Home';
-import Profile from './Profile';
 import Recipe from './Recipe';
 import UserHome from './UserHome';
 import AddRecipePage from '../components/AddRecipePage';
@@ -28,7 +27,6 @@ const Body = () => (
     <Route path="/user/recipes" exact component={checkAuth(UserRecipePage)} />
     <Route path="/recipe/:recipeId" exact component={Recipe} />
     <Route path="/recipe/edit/:recipeId" exact component={checkAuth(UpdateRecipe)} />
-    <Route path="/user/:userId" exact component={Profile} />
     <Route component={Recipe} />
   </Switch>
 );

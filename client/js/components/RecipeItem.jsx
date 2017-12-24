@@ -38,6 +38,7 @@ const RecipeItem = props =>
             </div>
           </CardTitle>
           <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {props.owner}</h6>
+          {props.home && <small> Created {props.created}</small>}
           <hr />
           <CardText>
             <span className="recipe-description">
@@ -64,20 +65,27 @@ const RecipeItem = props =>
               className="btn btn-outline-danger"
               disabled
             ><i className="fas fa-eye" /> <span id="views">{props.views} </span></span>
-
+            {props.userRecipeCard && <button
+              type="button"
+              title="edit this recipe"
+              className="btn btn-outline-danger"
+            >
+              <Link to={`/recipe/edit/${props.recipeId}`}> <i className="far fa-edit" /> </Link>
+            </button>
+            }
             {props.favouriteCard && <button
               type="button"
               title="remove from favourites"
               className="btn btn-outline-danger"
               onClick={() => { props.removeRecipe(props.recipeId); }}
-            ><i className="fas fa-trash-alt" /> <span id="removeFavourite">{props.views} </span></button>}
+            ><i className="fas fa-trash-alt" /></button>}
 
             {props.userRecipeCard && <button
               type="button"
               title="delete this recipe"
               className="btn btn-outline-danger"
               onClick={() => { props.onDelete(props.recipeId); }}
-            ><i className="fas fa-trash-alt" /> <span id="removeRecipe">{props.views} </span></button>}
+            ><i className="fas fa-trash-alt" /> </button>}
           </div>
         </CardBody>
       </Card>
@@ -95,14 +103,18 @@ RecipeItem.propTypes = {
   favouriteCard: PropTypes.string,
   userRecipeCard: PropTypes.string,
   removeRecipe: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  created: PropTypes.string,
+  home: PropTypes.string
 };
 RecipeItem.defaultProps = {
   views: null,
   favouriteCard: null,
   removeRecipe: null,
   userRecipeCard: null,
-  onDelete: null
+  onDelete: null,
+  created: null,
+  home: null
 };
 
 export default RecipeItem;

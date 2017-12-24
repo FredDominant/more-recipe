@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import toastr from 'toastr';
 
 import signupValidator from '../validation/SignupValidator';
 import signupUser from '../actions/signupUser';
@@ -52,6 +52,10 @@ class Signup extends React.Component {
     if (this.isValid()) {
       const { firstname, lastname, email, password, confirmPassword } = this.state;
       this.props.signup({ firstname, lastname, email, password, confirmPassword });
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('You are now signed in');
       if (this.props.authenticated) {
         this.context.router.history.push('/home');
       }

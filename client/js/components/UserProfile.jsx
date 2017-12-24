@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import toastr from 'toastr';
 
 import NavBar from './Navbar';
 import userProfile from '../actions/userProfile';
@@ -116,12 +117,18 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   render() {
+    if (this.props.updateSuccess) {
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Profile updated!');
+    }
     return (
       <div >
         <NavBar />
-        {this.props.updateSuccess && <div className="container">
+        {/* {this.props.updateSuccess && <div className="container">
           <div className="alert alert-success alert-dismissible" role="alert">Profile updated</div>
-        </div>}
+        </div>} */}
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
             <form onSubmit={this.handleSubmit}>

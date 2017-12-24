@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -49,6 +50,7 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
+    console.log('review props is', nextProps);
     const recipe = nextProps.recipe;
     const reviews = nextProps.recipe.Reviews;
     const owner = nextProps.recipe.User;
@@ -95,7 +97,7 @@ class Recipe extends React.Component {
     const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
     console.log('ingredients is', ingredients);
     const splitIngredients = ingredients.split(',').map((item, i) => (
-      <li key={`${i}`}>{item}</li>
+      <li key={`ingredient ${i + 1}`}>{item}</li>
     ));
 
     const { reviews } = this.state;
@@ -107,6 +109,7 @@ class Recipe extends React.Component {
           firstname={review.User.firstname}
           lastname={review.User.lastname}
           content={review.content}
+          created={moment(review.createdAt, 'YYYYMMDD').startOf('hour').fromNow()}
         />
       </div>
     ));
