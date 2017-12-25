@@ -135,11 +135,11 @@ class Recipe extends React.Component {
             </div>
             <br />
 
-            <h3>Ingredients: {this.state.recipe.ingredients}</h3>
+            {/* <h3>Ingredients: {this.state.recipe.ingredients}</h3>
             <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3>
             <h3>Recipe Directions: {this.state.recipe.directions}</h3>
             <h3>Upvotes: {this.state.recipe.upvote}</h3>
-            <h3>Downvotes: {this.state.recipe.downvote}</h3>
+            <h3>Downvotes: {this.state.recipe.downvote}</h3> */}
             <hr />
             {this.props.authenticated && <div className="actions">
               <div className="btn-group" role="group" >
