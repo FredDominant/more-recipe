@@ -1,0 +1,1092 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for UserHome component should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <UserHome
+        dispatch={[MockFunction]}
+        isFetching={false}
+      >
+        <div>
+          <Connect(Navbar)>
+            <Navbar
+              authenticated={false}
+              logOutUser={[Function]}
+            >
+              <div
+                className="container-fluid"
+              >
+                <nav
+                  className="navbar navbar-expand-lg navbar-light bg-light"
+                >
+                  <div
+                    className="row"
+                    id="nav2"
+                  >
+                    <div
+                      className="col-sm-9"
+                    >
+                      <span
+                        className="navbar-brand"
+                        id="title"
+                      >
+                        <Link
+                          replace={false}
+                          to="/home"
+                        >
+                          <a
+                            href="/home"
+                            onClick={[Function]}
+                          >
+                            <h2
+                              className="more-recipes"
+                              title="More Recipes and cooking tips"
+                            >
+                              More Recipes
+                            </h2>
+                          </a>
+                        </Link>
+                      </span>
+                      <button
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        className="navbar-toggler"
+                        data-target="#navbarSupportedContent"
+                        data-toggle="collapse"
+                        type="button"
+                      >
+                        <span
+                          className="navbar-toggler-icon"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      className="col-sm-3"
+                      id="navigation-icons"
+                    >
+                      <div
+                        className="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                      >
+                        <ul
+                          className="navbar-nav mr-auto"
+                        >
+                          <li
+                            className="nav-item active"
+                          >
+                            <a
+                              className="nav-link"
+                              data-target="#register"
+                              data-toggle="modal"
+                            >
+                              <span>
+                                <i
+                                  className="fas fa-user-plus"
+                                />
+                              </span>
+                               REGISTER
+                              <span
+                                className="sr-only"
+                              >
+                                (current)
+                              </span>
+                            </a>
+                          </li>
+                          <li
+                            className="nav-item active"
+                          >
+                            <a
+                              className="nav-link"
+                              data-target="#login"
+                              data-toggle="modal"
+                            >
+                              <span>
+                                <i
+                                  className="fas fa-sign-in-alt"
+                                />
+                              </span>
+                               LOGIN
+                              <span
+                                className="sr-only"
+                              >
+                                (current)
+                              </span>
+                            </a>
+                          </li>
+                        </ul>
+                        <Connect(Login)>
+                          <Login
+                            authenticated={false}
+                            errorMessage={null}
+                            login={[Function]}
+                          >
+                            <div>
+                              <div
+                                aria-hidden="true"
+                                aria-labelledby="exampleModalLabel"
+                                className="modal fade"
+                                data-backdrop="static"
+                                id="login"
+                                role="dialog"
+                              >
+                                <div
+                                  className="modal-dialog"
+                                  role="document"
+                                >
+                                  <div
+                                    className="modal-content container"
+                                  >
+                                    <div
+                                      className="row"
+                                    >
+                                      <div
+                                        className="col-sm-8 login-head"
+                                      >
+                                        <span>
+                                          <h1
+                                            className="modal-title"
+                                            id="login-title"
+                                          >
+                                            More Recipes
+                                          </h1>
+                                        </span>
+                                      </div>
+                                      <div
+                                        className="col-sm-4 login-close"
+                                      >
+                                        <button
+                                          aria-label="Close"
+                                          className="close cancel-login"
+                                          data-dismiss="modal"
+                                          type="button"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            ×
+                                          </span>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="modal-body"
+                                    >
+                                      <div>
+                                        <div
+                                          className="container error-body"
+                                        >
+                                          <br />
+                                        </div>
+                                        <form
+                                          className="form-group"
+                                          onSubmit={[Function]}
+                                        >
+                                          <div
+                                            className="container"
+                                          >
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <label
+                                                className="control-label"
+                                                htmlFor="#"
+                                              />
+                                               
+                                              <br />
+                                              <span
+                                                className="input-group-addon"
+                                                id="email-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-envelope"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="email-addon"
+                                                aria-label="email"
+                                                className="form-control login-form"
+                                                name="email"
+                                                onChange={[Function]}
+                                                placeholder="Email "
+                                                type="email"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <label
+                                                className="control-label"
+                                                htmlFor="#"
+                                              />
+                                               
+                                              <br />
+                                              <span
+                                                className="input-group-addon"
+                                                id="password-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-key"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="password-addon"
+                                                aria-label="password"
+                                                className="form-control login-form"
+                                                name="password"
+                                                onChange={[Function]}
+                                                placeholder="Password"
+                                                type="password"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <button
+                                                className="form-control btn btn-primary register-button"
+                                                type="submit"
+                                              >
+                                                 
+                                                <span
+                                                  className="register-text"
+                                                >
+                                                   Log in 
+                                                </span>
+                                                 
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Login>
+                        </Connect(Login)>
+                        <Connect(Signup)>
+                          <Signup
+                            authenticated={false}
+                            errorMessage=""
+                            signup={[Function]}
+                          >
+                            <div>
+                              <div
+                                aria-hidden="true"
+                                aria-labelledby="exampleModalLabel"
+                                className="modal fade"
+                                id="register"
+                                role="dialog"
+                              >
+                                <div
+                                  className="modal-dialog"
+                                  role="document"
+                                >
+                                  <div
+                                    className="modal-content container"
+                                  >
+                                    <div
+                                      className="row"
+                                    >
+                                      <div
+                                        className="col-md-9"
+                                      >
+                                        <span>
+                                          <h1
+                                            className="modal-title"
+                                            id="signup-title"
+                                          >
+                                            More Recipes
+                                          </h1>
+                                        </span>
+                                        <span>
+                                          <h6
+                                            className="signup-text"
+                                          >
+                                            Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.
+                                          </h6>
+                                        </span>
+                                      </div>
+                                      <div
+                                        className="col-md-3"
+                                      >
+                                        <button
+                                          aria-label="Close"
+                                          className="close cancel-signup"
+                                          data-dismiss="modal"
+                                          type="button"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            ×
+                                          </span>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="modal-body"
+                                    >
+                                      <div>
+                                        <div
+                                          className="container"
+                                        />
+                                        <form
+                                          className="form-group"
+                                          onSubmit={[Function]}
+                                        >
+                                          <div
+                                            className="container"
+                                          >
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <span
+                                                className="input-group-addon"
+                                                id="firstName-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-user"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="firstName-addon"
+                                                aria-label="firstName"
+                                                className="form-control signup-form"
+                                                name="firstname"
+                                                onChange={[Function]}
+                                                placeholder="First Name"
+                                                type="text"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <span
+                                                className="input-group-addon"
+                                                id="lastName-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-user"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="lastName-addon"
+                                                aria-label="lastName"
+                                                className="form-control signup-form"
+                                                name="lastname"
+                                                onChange={[Function]}
+                                                placeholder="Last Name"
+                                                type="text"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <span
+                                                className="input-group-addon"
+                                                id="email-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-envelope"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="email-addon"
+                                                aria-label="email"
+                                                className="form-control signup-form"
+                                                name="email"
+                                                onChange={[Function]}
+                                                placeholder="Email "
+                                                type="email"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <span
+                                                className="input-group-addon"
+                                                id="password-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-key"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="password-addon"
+                                                aria-label="password"
+                                                className="form-control signup-form"
+                                                name="password"
+                                                onChange={[Function]}
+                                                placeholder="Password"
+                                                type="password"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <span
+                                                className="input-group-addon"
+                                                id="confirmPassword-addon"
+                                              >
+                                                <i
+                                                  aria-hidden="true"
+                                                  className="fa fa-key"
+                                                />
+                                              </span>
+                                              <input
+                                                aria-describedby="confirmPassword-addon"
+                                                aria-label="confirmPassword"
+                                                className="form-control signup-form"
+                                                name="confirmPassword"
+                                                onChange={[Function]}
+                                                placeholder="Confirm password"
+                                                type="password"
+                                                value=""
+                                              />
+                                            </div>
+                                            <br />
+                                            <div
+                                              className="input-group"
+                                            >
+                                              <button
+                                                className="form-control btn btn-primary signup-form register-button"
+                                                type="submit"
+                                              >
+                                                 
+                                                <span
+                                                  className="register-text"
+                                                >
+                                                   Register 
+                                                </span>
+                                                 
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Signup>
+                        </Connect(Signup)>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </Navbar>
+          </Connect(Navbar)>
+          <br />
+          <Search>
+            <div
+              className="container"
+            >
+              <div
+                className="search-body"
+              >
+                <form
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="input-group"
+                  >
+                    <span
+                      id="search-intro"
+                    >
+                       
+                      <h5>
+                        Find a recipe: 
+                      </h5>
+                        
+                    </span>
+                    <input
+                      aria-label="Search for..."
+                      className="form-control"
+                      id="search-box"
+                      name="search"
+                      onChange={[Function]}
+                      placeholder="Search Recipe name or ingredient"
+                      type="text"
+                      value=""
+                    />
+                    <span
+                      className="input-group-btn"
+                    >
+                      <button
+                        className="btn btn-danger"
+                        type="submit"
+                      >
+                        <i
+                          aria-hidden="true"
+                          className="fa fa-search"
+                        />
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </Search>
+          <br />
+          <div
+            className="container-fluid"
+          >
+            <Carousel>
+              <div
+                className="carousels container"
+              >
+                <UncontrolledCarousel
+                  autoPlay={true}
+                  controls={true}
+                  indicators={true}
+                  items={
+                    Array [
+                      Object {
+                        "altText": "Awesome sauce!",
+                        "caption": "Name is Image 1",
+                        "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
+                      },
+                      Object {
+                        "altText": "Edible catering!",
+                        "caption": "Image 2",
+                        "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
+                      },
+                      Object {
+                        "altText": "Nahh!!!",
+                        "caption": "Image 3",
+                        "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
+                      },
+                      Object {
+                        "altText": "Foood",
+                        "caption": "Image 4",
+                        "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
+                      },
+                      Object {
+                        "altText": "Eaattt",
+                        "caption": "Image 5",
+                        "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
+                      },
+                    ]
+                  }
+                >
+                  <Carousel
+                    activeIndex={0}
+                    interval={5000}
+                    keyboard={true}
+                    next={[Function]}
+                    pause="hover"
+                    previous={[Function]}
+                    ride="carousel"
+                    slide={true}
+                  >
+                    <div
+                      className="carousel slide"
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <CarouselIndicators
+                        activeIndex={0}
+                        items={
+                          Array [
+                            Object {
+                              "altText": "Awesome sauce!",
+                              "caption": "Name is Image 1",
+                              "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
+                            },
+                            Object {
+                              "altText": "Edible catering!",
+                              "caption": "Image 2",
+                              "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
+                            },
+                            Object {
+                              "altText": "Nahh!!!",
+                              "caption": "Image 3",
+                              "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
+                            },
+                            Object {
+                              "altText": "Foood",
+                              "caption": "Image 4",
+                              "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
+                            },
+                            Object {
+                              "altText": "Eaattt",
+                              "caption": "Image 5",
+                              "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
+                            },
+                          ]
+                        }
+                        onClickHandler={[Function]}
+                      >
+                        <ol
+                          className="carousel-indicators"
+                        >
+                          <li
+                            className="active"
+                            key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpgName is Image 1Awesome sauce!"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16Image 2Edible catering!"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpegImage 3Nahh!!!"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpgImage 4Foood"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpgImage 5Eaattt"
+                            onClick={[Function]}
+                          />
+                        </ol>
+                      </CarouselIndicators>
+                      <div
+                        className="carousel-inner"
+                        role="listbox"
+                      >
+                        <CarouselItem
+                          altText="Awesome sauce!"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={true}
+                          key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={true}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item active"
+                            >
+                              <img
+                                alt="Awesome sauce!"
+                                className="d-block img-fluid"
+                                src="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader="Name is Image 1"
+                                captionText="Name is Image 1"
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3>
+                                    Name is Image 1
+                                  </h3>
+                                  <p>
+                                    Name is Image 1
+                                  </p>
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Edible catering!"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Edible catering!"
+                                className="d-block img-fluid"
+                                src="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                              />
+                              <CarouselCaption
+                                captionHeader="Image 2"
+                                captionText="Image 2"
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3>
+                                    Image 2
+                                  </h3>
+                                  <p>
+                                    Image 2
+                                  </p>
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Nahh!!!"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Nahh!!!"
+                                className="d-block img-fluid"
+                                src="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                              />
+                              <CarouselCaption
+                                captionHeader="Image 3"
+                                captionText="Image 3"
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3>
+                                    Image 3
+                                  </h3>
+                                  <p>
+                                    Image 3
+                                  </p>
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Foood"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Foood"
+                                className="d-block img-fluid"
+                                src="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader="Image 4"
+                                captionText="Image 4"
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3>
+                                    Image 4
+                                  </h3>
+                                  <p>
+                                    Image 4
+                                  </p>
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Eaattt"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Eaattt"
+                                className="d-block img-fluid"
+                                src="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader="Image 5"
+                                captionText="Image 5"
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3>
+                                    Image 5
+                                  </h3>
+                                  <p>
+                                    Image 5
+                                  </p>
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                      </div>
+                      <CarouselControl
+                        direction="prev"
+                        directionText="Previous"
+                        onClickHandler={[Function]}
+                      >
+                        <a
+                          className="carousel-control-prev"
+                          onClick={[Function]}
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="carousel-control-prev-icon"
+                          />
+                          <span
+                            className="sr-only"
+                          >
+                            Previous
+                          </span>
+                        </a>
+                      </CarouselControl>
+                      <CarouselControl
+                        direction="next"
+                        directionText="Next"
+                        onClickHandler={[Function]}
+                      >
+                        <a
+                          className="carousel-control-next"
+                          onClick={[Function]}
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="carousel-control-next-icon"
+                          />
+                          <span
+                            className="sr-only"
+                          >
+                            Next
+                          </span>
+                        </a>
+                      </CarouselControl>
+                    </div>
+                  </Carousel>
+                </UncontrolledCarousel>
+              </div>
+            </Carousel>
+            <div
+              className="container recipes"
+            >
+              <Connect(RecipeBody)>
+                <RecipeBody
+                  dispatch={[Function]}
+                  recipes={Array []}
+                >
+                  <div
+                    className=""
+                  >
+                    <br />
+                    <div
+                      className="container"
+                    >
+                      <br />
+                      <div
+                        className="emptyContent"
+                      >
+                        <h2>
+                          There are currently no recipes in the catalogue
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                </RecipeBody>
+              </Connect(RecipeBody)>
+            </div>
+          </div>
+        </div>
+      </UserHome>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
