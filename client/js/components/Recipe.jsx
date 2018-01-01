@@ -149,14 +149,14 @@ class Recipe extends React.Component {
                   title="upvote this recipe"
                   className="btn btn-outline-danger"
                   onClick={this.handleUpvote}
-                ><i className="far fa-thumbs-up" /></button>
+                ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
 
                 <button
                   type="button"
                   title="downvote this recipe"
                   className="btn btn-outline-danger"
                   onClick={this.handleDownvote}
-                ><i className="far fa-thumbs-down" /></button>
+                ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
 
                 <button
                   type="button"

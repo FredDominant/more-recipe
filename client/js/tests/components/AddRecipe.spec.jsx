@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { mount, shallow } from 'enzyme';
 
 import store from '../../store/store';
-import UserHome from '../../components/UserHome';
+import AddRecipePage from '../../components/AddRecipePage';
 /**
  *
  *
@@ -14,11 +15,11 @@ const setup = () => {
     dispatch: jest.fn(),
     isFetching: false
   };
-  const shallowWrapper = shallow(<UserHome {...props} />);
+  const shallowWrapper = shallow(<AddRecipePage {...props} />);
   const mountedWrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <UserHome {...props} />
+        <AddRecipePage {...props} store={store} />
       </BrowserRouter>
     </Provider>
   );
@@ -29,10 +30,9 @@ const setup = () => {
     props
   };
 };
-
-describe('Test for UserHome component', () => {
+const { mountedWrapper } = setup();
+describe('Test for AddRecipePage component', () => {
   it('should render correctly', () => {
-    const { mountedWrapper } = setup();
     expect(mountedWrapper).toMatchSnapshot();
   });
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Search from './Search';
 import Navbar from './Navbar';
@@ -11,16 +10,29 @@ import RecipeBody from './RecipeBody';
 const Home = () => (
   <div>
     <Navbar />
-    <Login />
-    <Signup />
     <br />
     <Search />
     <br />
-    <Carousel />
-    <div className="container recipes">
-      <RecipeBody />
+    <div className="container-fluid">
+      <Carousel />
+      <div className="container recipes">
+        <RecipeBody />
+      </div>
     </div>
   </div>
+  // <div>
+  //   <Navbar />
+  //   <Login />
+  //   <Signup />
+  //   <br />
+  //   <Search />
+  //   <br />
+  //   <Carousel />
+  //   <div className="container recipes">
+  //     <RecipeBody />
+  //   </div>
+  // </div>
 );
 
-export default connect(null)(Home);
+// export default connect(null)(Home);
+export default Home;

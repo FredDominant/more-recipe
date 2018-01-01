@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import store from '../../store/store';
-import UserHome from '../../components/UserHome';
+import Home from '../../components/Home';
 /**
  *
  *
@@ -14,11 +14,11 @@ const setup = () => {
     dispatch: jest.fn(),
     isFetching: false
   };
-  const shallowWrapper = shallow(<UserHome {...props} />);
+  const shallowWrapper = shallow(<Home {...props} />);
   const mountedWrapper = mount(
     <Provider store={store}>
       <BrowserRouter>
-        <UserHome {...props} />
+        <Home {...props} />
       </BrowserRouter>
     </Provider>
   );
@@ -30,7 +30,7 @@ const setup = () => {
   };
 };
 
-describe('Test for UserHome component', () => {
+describe('Test for Home component', () => {
   it('should render correctly', () => {
     const { mountedWrapper } = setup();
     expect(mountedWrapper).toMatchSnapshot();
