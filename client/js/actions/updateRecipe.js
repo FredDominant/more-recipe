@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { EDIT_RECIPE, EDIT_RECIPE_ERROR } from '../actions/actionTypes';
@@ -29,17 +30,24 @@ const updateRecipe = (recipe, recipeId) => (dispatch) => {
   })
     .then((response) => {
       const { Recipe } = response.data;
-      console.log('update response is', Recipe);
       dispatch(batchActions([
         updateRecipeSuccess(Recipe),
         unsetFetching()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Recipe updated');
     })
     .catch(() => {
       dispatch(batchActions([
         updateRecipeFail(),
         unsetFetching()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('Unable to update recipe');
     });
 };
 

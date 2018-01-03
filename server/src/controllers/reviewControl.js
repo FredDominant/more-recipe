@@ -49,7 +49,6 @@ export default class Review {
             })
               .then(fullRecipe => res.status(201).json({ Message: 'created', Recipe: fullRecipe }));
           });
-        // .catch(() => res.status(500).json({ Message: 'An error ocurred' }));
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal error ocurred. Please try again later' }));

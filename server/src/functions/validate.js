@@ -261,11 +261,7 @@ export default class Validate {
    * @memberof Validate
    */
   static updateUser(req, res, next) {
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const picture = req.body.recipeImage;
+    const { email, password, firstname, lastname, picture } = req.body.email;
     const userUpdateData = {
       email,
       password,
@@ -281,6 +277,61 @@ export default class Validate {
       picture: 'string'
     };
     const validation = new Validator(userUpdateData, userUpdateRules);
+    if (validation.passes()) {
+      next();
+    } else {
+      const errors = validation.errors.all();
+      return res.status(400)
+        .json({ Message: errors });
+    }
+  }
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @param {any} next
+   * @memberof Validate
+   * @returns {Response} HTTP Response
+   */
+  static recoverEmail(req, res, next) {
+    const { email } = req.body;
+    const validateRules = {
+      email: 'string|email'
+    };
+    const validation = new Validator(email, validateRules);
+    if (validation.passes()) {
+      next();
+    } else {
+      const errors = validation.errors.all();
+      return res.status(400)
+        .json({ Message: errors });
+    }
+  }
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @param {any} next
+   * @memberof Validate
+   * @returns {Response} HTTP Response
+   */
+  static resetPassword(req, res, next) {
+    const { password, confirmPassword } = req.body;
+    if (password !== confirmPassword) {
+      return res.status(400)
+        .json({ Message: 'Passwords don\'t match' });
+    }
+    const resetPasswordDetails = {
+      password,
+      confirmPassword
+    };
+    const validateRules = {
+      password: 'string|min:6',
+      confirmPassword: 'string|min:6'
+    };
+    const validation = new Validator(resetPasswordDetails, validateRules);
     if (validation.passes()) {
       next();
     } else {

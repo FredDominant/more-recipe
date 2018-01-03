@@ -35,6 +35,7 @@ class UserProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onUpload = this.onUpload.bind(this);
     this.onEdit = this.onEdit.bind(this);
+    this.onSelectImage = this.onSelectImage.bind(this);
   }
   /**
    *
@@ -51,7 +52,6 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
-    console.log('next Props is', nextProps);
     const { firstname, lastname, email, picture } = nextProps.userDetails;
     this.setState({ firstname, lastname, email, picture });
   }
@@ -89,6 +89,15 @@ class UserProfile extends React.Component {
     this.setState({ disabled: !this.state.disabled });
   }
   /**
+   * @description selects image
+   * @memberof UserProfile
+   * @returns {null} null
+   */
+  onSelectImage() {
+    $('input[type=file]').click();
+    console.log(this);
+  }
+  /**
    *
    * @returns {null} null
    * @param {any} event
@@ -110,7 +119,6 @@ class UserProfile extends React.Component {
     }
     this.props.updateProfile({ firstname, lastname, email, picture });
   }
-
   /**
    *
    * @returns {null} null
@@ -135,14 +143,26 @@ class UserProfile extends React.Component {
               {/* <div className="row"> */}
               <div className="">
                 <div id="user-image-container">
-                  <div className="profile-image">
-                    <img className="img-thumbnail" id="update-profile-picture" src={this.state.picture} alt={this.state.firstname} srcSet="" />
+                  <div
+                    className="profile-image"
+                    id="user-profile-image-container"
+                    onClick={this.onSelectImage}
+                    role="presentation"
+                  >
+                    <img
+                      className="img-thumbnail"
+                      id="update-profile-picture"
+                      src={this.state.picture}
+                      alt={this.state.firstname}
+                      srcSet=""
+                    />
                   </div>
                   <br />
                   <input
                     type="file"
                     name="file"
                     id="profile-upload"
+                    style={{ display: 'none' }}
                     onChange={this.onUpload}
                     disabled={this.state.disabled}
                   />

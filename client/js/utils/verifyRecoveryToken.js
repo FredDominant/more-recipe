@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const authenticateUser = () => {
-  const token = localStorage.getItem('token');
+const verifyRecoveryToken = (token) => {
   if (token) {
     return jwt.verify(token, 'ARSENAL', ((error) => {
       if (error) {
@@ -12,4 +11,4 @@ const authenticateUser = () => {
   }
   return false;
 };
-export default authenticateUser;
+export default verifyRecoveryToken;

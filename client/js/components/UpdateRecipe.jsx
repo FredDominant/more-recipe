@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toastr from 'toastr';
 
 import Navbar from '../components/Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -118,15 +117,6 @@ class UpdateRecipe extends React.Component {
    * @memberof UpdateRecipe
    */
   render() {
-    toastr.options = {
-      closeButton: true
-    };
-    if (this.props.updateSuccess) {
-      toastr.success('Recipe updated');
-    }
-    if (this.props.updateError) {
-      toastr.error('Unable to update recipe');
-    }
     return (
       <div>
         <Navbar />
@@ -245,8 +235,6 @@ UpdateRecipe.propTypes = {
   getRecipeDetails: PropTypes.func.isRequired,
   recipeDetails: PropTypes.shape(),
   updateRecipe: PropTypes.func.isRequired,
-  updateSuccess: PropTypes.string,
-  updateError: PropTypes.string
 };
 
 UpdateRecipe.defaultProps = {

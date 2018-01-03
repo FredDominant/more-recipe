@@ -46,7 +46,7 @@ module.exports = {
     picture: {
       type: Sequelize.TEXT,
       allowNull: true,
-      defaultValue: 'none'
+      defaultValue: 'https://www.impaktovisual.com.br/3661-large_default/display-cupcake.jpg'
     },
     createdAt: {
       allowNull: false,

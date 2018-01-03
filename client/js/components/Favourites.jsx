@@ -42,7 +42,7 @@ class Favourites extends React.Component {
  */
   componentWillReceiveProps(nextProps) {
     const favourites = nextProps.favourites;
-    console.log(favourites);
+    console.log('favourites are', favourites);
     this.setState({ userFavourites: favourites });
   }
   /**

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
+import MDSpinner from 'react-md-spinner';
 
 import signupValidator from '../validation/SignupValidator';
 import signupUser from '../actions/signupUser';
@@ -55,9 +56,9 @@ class Signup extends React.Component {
       toastr.options = {
         closeButton: true
       };
-      toastr.success('You are now signed in');
       if (this.props.authenticated) {
         this.context.router.history.push('/home');
+        toastr.success('You are now signed in');
       }
     }
   }
@@ -195,7 +196,14 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <button type="submit" className="form-control btn btn-primary signup-form register-button"> <span className="register-text"> Register </span> </button>
+                        <button
+                          type="submit"
+                          className="form-control btn btn-primary signup-form register-button"
+                        >
+                          <span className="register-text">
+                          Register
+                            {this.props.fetching && <span> <MDSpinner /></span>}
+                          </span> </button>
                       </div>
                     </div>
                   </form>
@@ -212,7 +220,8 @@ class Signup extends React.Component {
 Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 
 Signup.defaultProps = {
@@ -225,7 +234,8 @@ Signup.contextTypes = {
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.errorMessage,
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  fetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

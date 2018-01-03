@@ -1,6 +1,7 @@
 import models from '../models';
 
 const recipe = models.Recipe;
+const favourite = models.Favourite;
 /**
  *
  *
@@ -155,19 +156,19 @@ export default class Recipe {
               }
             }
           })
-            .then(() => res.status(200)
-              .json({
-                Message: 'recipe deleted'
-              }));
-          // .catch(() => res.status(500)
-          //   .json({ Message: 'Internal server error' }));
+            .then(() => {
+              favourite.destroy({
+                where: {
+                  recipeId: req.params.recipeId
+                }
+              })
+                .then(() => res.status(200).json({ Message: 'recipe deleted' }));
+              // res.status(200)
+              //   .json({
+              //     Message: 'recipe deleted'
+              //   });
+            });
         }
-        // if (!foundRecipe) {
-        //   return res.status(404)
-        //     .json({
-        //       Message: `Can't find recipe with id ${req.params.recipeId} by you`
-        //     });
-        // }
       })
       .catch(() => res.status(500)
         .json({

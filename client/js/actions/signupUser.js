@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { setFetching, unsetFetching } from './fetching';
@@ -15,7 +16,6 @@ const signupUser = userData => (dispatch) => {
   dispatch(setFetching());
   axios.post('/api/v1/users/signup', userData)
     .then((response) => {
-      console.log('response is', response);
       const { User, Token } = response.data;
       localStorage.setItem('token', Token);
       dispatch(batchActions([
@@ -24,6 +24,10 @@ const signupUser = userData => (dispatch) => {
       ]));
       document.body.classList.remove('modal-open');
       $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Welcome. You`re now signed in');
     })
     .catch((error) => {
       const message = error.response.data.Message;

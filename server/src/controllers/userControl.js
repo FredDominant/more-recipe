@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import models from '../models';
 import * as passwordHelper from '../functions/encrypt';
+import sendEmail from '../functions/sendEmail';
 
 const helper = new passwordHelper.default();
 const user = models.User;
@@ -31,8 +32,6 @@ export default class User {
     user.findOne({
       where: { email }
     })
-      // .catch(() => res.status(500)
-      //   .json({ Message: 'A server error ocurred, Please try again later' }))
       .then((existingUser) => {
         if (!existingUser) {
           const Password = helper.hashPassword(password);
@@ -164,10 +163,7 @@ export default class User {
                 attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
               })
                 .then(currentUser => res.status(200).json({ User: currentUser }));
-              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
             });
-          // .catch(e => res.status(500)
-          //   .json({ Message: 'Internal server error. Unable to update profile', e }));
         }
       })
       .catch(() => res.status(500)
@@ -189,6 +185,68 @@ export default class User {
       attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
     })
       .then(currentUser => res.status(200).json({ User: currentUser }))
+      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+  }
+  /**
+   * @description checks if email sent is registered/in database
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @memberof User
+   * @returns {res} HTTP Response
+   */
+  static verifyEmail(req, res) {
+    user.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+      .then((foundUser) => {
+        if (foundUser) {
+          const token = jwt.sign({
+            id: foundUser.dataValues.id
+          }, secret, { expiresIn: 86400 });
+          foundUser.update({ token })
+            .then(() => {
+              const url = `http://${req.headers.host}/user/password-reset/${token}`;
+              sendEmail(url, foundUser.dataValues.email, res);
+            });
+        } else {
+          return res.status(404).json({ Message: 'Email not found' });
+        }
+      })
+      .catch(() => res.status(500).json({ Message: 'Internal Server Error. Plaease try again' }));
+  }
+  /**
+   *
+   * @returns {null} null
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @memberof User
+   */
+  static ResetPassword(req, res) {
+    const { password } = req.body;
+    user.findOne({
+      where: {
+        id: req.decoded.id
+      }
+    })
+      .then((foundUser) => {
+        if (!foundUser) {
+          return res.status(400).json({ Message: 'User not found' });
+        }
+        if (foundUser.dataValues.token === req.headers['x-access-token']) {
+          const updateDetails = {
+            password: helper.hashPassword(password),
+            token: null
+          };
+          foundUser.update(updateDetails)
+            .then(() => res.status(200).json({ Message: 'Password reset successful' }));
+        } else {
+          return res.status(403).json({ Message: 'You`re unauthorized to perform this action' });
+        }
+      })
       .catch(() => res.status(500).json({ Message: 'Internal server error' }));
   }
 }

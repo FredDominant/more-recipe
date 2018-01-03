@@ -35,7 +35,11 @@ module.exports = {
     picture: {
       type: Sequelize.TEXT,
       allowNull: true,
-      defaultValue: 'none'
+      defaultValue: 'https://d13yacurqjgara.cloudfront.net/users/583390/screenshots/2517460/sob_avatar_illustration__800x600px__1.0_1x.jpg'
+    },
+    token: {
+      type: Sequelize.TEXT,
+      allowNull: true
     },
     createdAt: {
       allowNull: false,

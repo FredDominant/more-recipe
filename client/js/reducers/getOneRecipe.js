@@ -24,7 +24,7 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         singleRecipe: null,
-        errorMessage: action.error
+        errorMessage: true
       };
     case UPVOTE_SUCCESS:
       return {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
 import { UPVOTE_SUCCESS, UPVOTE_FAILURE } from '../actions/actionTypes';
 
@@ -12,7 +13,6 @@ const upvoteFail = message => ({
   message
 });
 
-// return axios.post(`/api/v1/recipes/${recipeId}/upvote`)
 const upvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   axios({
@@ -23,13 +23,20 @@ const upvoteRecipe = recipeId => (dispatch) => {
     }
   })
     .then((response) => {
-      console.log('response on upvote is', response.data.Recipe);
       const { Recipe } = response.data;
       dispatch(upvoteSuccess(Recipe));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Upvoted!');
     })
     .catch((error) => {
       const { Message } = error;
       dispatch(upvoteFail(Message));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('Unable to upvote recipe');
     });
 };
 export default upvoteRecipe;
