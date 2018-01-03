@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
+import search from '../actions/search';
 /**
  *
  * @export
@@ -14,9 +17,10 @@ class Search extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.state = { search: '' };
+    this.state = { searchParam: '' };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
   /**
    *
@@ -26,6 +30,15 @@ class Search extends React.Component {
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    const { searchParam } = this.state;
+    this.props.search(searchParam);
+  }
+  /**
+   * @memberof Search
+   * @returns {null} null
+   */
+  onFocus() {
+    this.context.router.history.push('/search');
   }
   /**
    *
@@ -35,7 +48,8 @@ class Search extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    const { searchParam } = this.state;
+    this.props.search(searchParam);
   }
   /**
    *
@@ -51,13 +65,14 @@ class Search extends React.Component {
               <span id="search-intro"> <h5>Find a recipe: </h5>  </span>
               <input
                 type="text"
-                name="search"
+                name="searchParam"
                 id="search-box"
                 className="form-control"
                 placeholder="Search Recipe name or ingredient"
                 aria-label="Search for..."
                 value={this.state.search}
                 onChange={this.onChange}
+                onFocus={this.onFocus}
               />
               <span className="input-group-btn">
                 <button className="btn btn-danger" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
@@ -69,4 +84,13 @@ class Search extends React.Component {
     );
   }
 }
-export default Search;
+Search.propTypes = {
+  search: PropTypes.func.isRequired
+};
+Search.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+const mapDispatchToProps = dispatch => ({
+  search: searchParam => (dispatch(search(searchParam)))
+});
+export default connect(null, mapDispatchToProps)(Search);

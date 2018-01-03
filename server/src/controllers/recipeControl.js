@@ -381,7 +381,7 @@ export default class Recipe {
       }
     }).then((allSearch) => {
       let offset = 0;
-      const limit = 3;
+      const limit = 6;
       const numberOfItems = allSearch.count;
       const page = parseInt((req.query.page || 1), 10);
       const pages = Math.ceil(numberOfItems / limit);
@@ -391,6 +391,9 @@ export default class Recipe {
           $or:
             queryIngredient.concat(queryName)
         },
+        include: [
+          { model: models.User, attributes: ['firstname', 'lastname'] }
+        ],
         limit,
         offset,
         order: [

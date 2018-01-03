@@ -45,7 +45,7 @@ const addRecipe = recipe => (dispatch) => {
       toastr.options = {
         closeButton: true
       };
-      toastr.error('message');
+      toastr.error(message);
     });
 };
 export default addRecipe;

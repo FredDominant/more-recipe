@@ -91,7 +91,7 @@ const RecipeItem = props =>
   );
 RecipeItem.propTypes = {
   recipeName: PropTypes.string.isRequired,
-  owner: PropTypes.string.isRequired,
+  owner: PropTypes.string,
   description: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
@@ -112,7 +112,9 @@ RecipeItem.defaultProps = {
   userRecipeCard: null,
   onDelete: null,
   created: null,
-  home: null
+  home: null,
+  owner: null
+
 };
 
 export default RecipeItem;
