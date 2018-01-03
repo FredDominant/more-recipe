@@ -110,13 +110,10 @@ class Login extends React.Component {
                 <div id="login-form">
                   <div className="container error-body">
                     {errors.email && <div className="alert alert-danger alert-dismissible" role="alert">{errors.email}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {this.props.errorMessage && <div className="alert alert-danger alert-dismissible" role="alert">{this.props.errorMessage}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.password && <div className="alert alert-danger alert-dismissible" role="alert">{errors.password}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     <br />
                   </div>

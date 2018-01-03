@@ -40,7 +40,6 @@ class RecipeBody extends React.Component {
    * @memberof RecipeBody
    */
   componentWillReceiveProps(nextProps) {
-    // console.log('nextProps in get all recipes is', nextProps);
     this.setState({ recipes: nextProps.recipes });
   }
   /**
@@ -49,7 +48,6 @@ class RecipeBody extends React.Component {
  * @memberof RecipeBody
  */
   render() {
-    // const recipes = (this.props.recipes) ? this.props.recipes : [];
     const { recipes } = this.state;
     const allRecipes = recipes.map(recipe =>
       (

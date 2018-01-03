@@ -42,10 +42,8 @@ class AddReview extends React.Component {
     const { content } = this.state;
     const recipeId = this.props.recipeId;
     event.preventDefault();
-    console.log(`submitting ${content} for recipe with id ${recipeId}`);
     if (content.trim().length) {
       this.props.postReview(content, recipeId);
-      console.log(`posted review for recipe with id  ${recipeId}`);
     }
   }
   /**

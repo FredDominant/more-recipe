@@ -22,16 +22,6 @@ class Navbar extends React.Component {
     this.state = {};
     this.handleLogout = this.handleLogout.bind(this);
   }
-
-  // /**
-  //  *
-  //  * @returns {null} null
-  //  * @memberof Navbar
-  //  */
-  // componentWillMount() {
-  //   // document.body.classList.remove('modal-open');
-  //   // $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
-  // }
   /**
    * @description this method handles user logout
    * @returns {function} function
@@ -119,8 +109,6 @@ class Navbar extends React.Component {
               </div>
             </div>
           </nav>
-          {/* <Login />
-          <Signup /> */}
         </div>
       );
     }
@@ -152,8 +140,6 @@ class Navbar extends React.Component {
             </div>
           </div>
         </nav>
-        {/* <Login />
-      <Signup /> */}
       </div>
     );
   }
@@ -163,7 +149,6 @@ Navbar.contextTypes = {
 };
 
 Navbar.propTypes = {
-  // user: PropTypes.string,
   logOutUser: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired
 };

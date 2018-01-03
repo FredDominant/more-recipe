@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import {
   Card,
-  // CardImg,
   CardText,
   CardBody,
   CardTitle
@@ -19,7 +18,6 @@ const RecipeItem = props =>
   (
     <div className="recipeCard container">
       <Card>
-        {/* <CardImg src={this.props.image} alt={this.props.recipeName} /> */}
         <CardBody>
           <CardTitle>
             <img

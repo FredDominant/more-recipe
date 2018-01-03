@@ -125,22 +125,12 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   render() {
-    if (this.props.updateSuccess) {
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Profile updated!');
-    }
     return (
       <div >
         <NavBar />
-        {/* {this.props.updateSuccess && <div className="container">
-          <div className="alert alert-success alert-dismissible" role="alert">Profile updated</div>
-        </div>} */}
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
             <form onSubmit={this.handleSubmit}>
-              {/* <div className="row"> */}
               <div className="">
                 <div id="user-image-container">
                   <div
@@ -232,7 +222,6 @@ class UserProfile extends React.Component {
                   </div>
                 </div>
               </div>
-              {/* </div> */}
             </form>
           </div>
         </div>
@@ -254,7 +243,6 @@ UserProfile.propTypes = {
   viewProfile: PropTypes.func.isRequired,
   userDetails: PropTypes.shape(),
   updateProfile: PropTypes.func.isRequired,
-  updateSuccess: PropTypes.bool
 };
 UserProfile.defaultProps = {
   userDetails: {},

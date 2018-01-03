@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import toastr from 'toastr';
 import MDSpinner from 'react-md-spinner';
 
 import signupValidator from '../validation/SignupValidator';
@@ -53,12 +52,8 @@ class Signup extends React.Component {
     if (this.isValid()) {
       const { firstname, lastname, email, password, confirmPassword } = this.state;
       this.props.signup({ firstname, lastname, email, password, confirmPassword });
-      toastr.options = {
-        closeButton: true
-      };
       if (this.props.authenticated) {
         this.context.router.history.push('/home');
-        toastr.success('You are now signed in');
       }
     }
   }
@@ -82,9 +77,6 @@ class Signup extends React.Component {
    */
   render() {
     const { errors } = this.state;
-    // if (this.props.authenticated) {
-    //   return <Redirect to="/home" />;
-    // }
     return (
       <div>
         <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,22 +97,16 @@ class Signup extends React.Component {
                 <div>
                   <div className="container">
                     {this.props.errorMessage && <div className="alert alert-danger" role="alert">{this.props.errorMessage}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.firstname && <div className="alert alert-danger" role="alert">{errors.firstname}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.lastname && <div className="alert alert-danger" role="alert">{errors.lastname}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.email && <div className="alert alert-danger" role="alert">{errors.email}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.password && <div className="alert alert-danger" role="alert">{errors.password}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.confirmPassword && <div className="alert alert-danger" role="alert">{errors.confirmPassword}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
