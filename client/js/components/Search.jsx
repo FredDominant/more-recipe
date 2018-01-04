@@ -30,8 +30,7 @@ class Search extends React.Component {
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    const { searchParam } = this.state;
-    this.props.search(searchParam);
+    this.props.search(event.target.value);
   }
   /**
    * @memberof Search

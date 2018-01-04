@@ -19,7 +19,8 @@ class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      recipes: [],
+      searchErrors: false
     };
   }
   /**
@@ -28,8 +29,8 @@ class SearchPage extends React.Component {
    * @returns {null} null
    */
   componentWillReceiveProps(nextProps) {
-    const { recipes } = nextProps;
-    this.setState({ recipes });
+    const { recipes, searchErrors } = nextProps;
+    this.setState({ recipes, searchErrors });
   }
   /**
    * @returns {jsx} React component
@@ -61,6 +62,9 @@ class SearchPage extends React.Component {
           <br />
           <div className="row">
             {recipes}
+            { this.state.searchErrors && <div className="col-sm-6">
+              <h5>No match(es) found</h5>
+            </div>}
           </div>
         </div>
       </div>
@@ -68,13 +72,16 @@ class SearchPage extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  recipes: state.recipes.allRecipes
+  recipes: state.recipes.allRecipes,
+  searchErrors: state.recipes.failure
 });
 SearchPage.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.shape())
+  recipes: PropTypes.arrayOf(PropTypes.shape()),
+  searchErrors: PropTypes.bool
 };
 SearchPage.defaultProps = {
-  recipes: []
+  recipes: [],
+  searchErrors: false
 };
 
 export default connect(mapStateToProps, {})(SearchPage);
