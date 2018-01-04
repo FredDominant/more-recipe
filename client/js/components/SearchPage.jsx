@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
     super(props);
     this.state = {
       recipes: [],
-      searchErrors: false
+      searchErrors: false,
     };
   }
   /**
@@ -56,16 +56,19 @@ class SearchPage extends React.Component {
     return (
       <div>
         <Navbar />
-        <br />
-        <div className="container">
-          <Search />
+        <div className="container" id="search-body-result">
+          <h1 className="text-center" id="search-header">Search New Awesome Recipes</h1>
+          <br />
+          <Search autofocus />
+          <br />
+          {recipes.length > 0 && <h4 className="text-center" id="search-results"> Search results</h4>}
           <br />
           <div className="row">
             {recipes}
-            { this.state.searchErrors && <div className="col-sm-6">
-              <h5>No match(es) found</h5>
-            </div>}
           </div>
+          { this.state.searchErrors && <div className="">
+            <h5 className="text-center" id="no-match-found"> No match(es) found</h5>
+          </div>}
         </div>
       </div>
     );
