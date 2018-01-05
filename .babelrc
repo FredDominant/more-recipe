@@ -2,6 +2,6 @@
     "plugins": ["babel-plugin-inline-import"],
     "presets": [
       ["es2015", { "modules": false }],
-      ["react", { "modules": false }]
+      "react"
   ]
 }
