@@ -106,7 +106,8 @@
   "scripts": {
     "build:client": "webpack -d && webpack-dev-server --content-base client --inline --hot",
     "build": "babel --presets es2015 server -d lib",
-    "start": "npm run build && node lib/bin/www.js",
+    "start:stuff": "npm run build && node lib/bin/www.js",
+    "start": "babel-node -- server/bin/www.js",
     "server": "nodemon --watch server --exec babel-node -- server/bin/www.js",
     "start:dev": "babel-node server/bin/www.js",
     "client": "jest",
