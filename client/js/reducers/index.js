@@ -9,6 +9,7 @@ import getOneRecipe from '../reducers/getOneRecipe';
 import currentUserProfile from '../reducers/currentUserProfile';
 import getUserRecipe from '../reducers/getUserRecipe';
 import getFavourites from '../reducers/getFavourites';
+import pageInfo from '../reducers/pageInfo';
 
 const reducers = combineReducers({
   auth,
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   getUserRecipe,
   getFavourites,
   isUploading,
-  currentUserProfile
+  currentUserProfile,
+  pageInfo
 });
 
 export default reducers;

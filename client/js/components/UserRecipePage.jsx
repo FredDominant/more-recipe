@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactPaginate from 'react-paginate';
 
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
@@ -22,6 +23,7 @@ class UserRecipePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.onPageChange = this.onPageChange.bind(this);
   }
   /**
    *
@@ -30,6 +32,15 @@ class UserRecipePage extends React.Component {
    */
   componentDidMount() {
     this.props.getAllUserRecipes();
+  }
+  /**
+   * @param {any} current
+   * @returns {null} null
+   * @memberof RecipeBody
+   */
+  onPageChange(current) {
+    current.selected += 1;
+    this.props.getAllUserRecipes(current.selected);
   }
   /**
    *
@@ -47,6 +58,7 @@ class UserRecipePage extends React.Component {
    * @memberof UserRecipePage
    */
   render() {
+    const { pages } = this.props.pageInfo;
     const userRecipes = (this.props.userRecipes) ? this.props.userRecipes : [];
     const allUserRecipes = userRecipes.map(recipe => (
       <div key={`${recipe.id}`} className="col-sm-6 col-md-4" >
@@ -74,6 +86,26 @@ class UserRecipePage extends React.Component {
             <div className="row">
               {allUserRecipes}
             </div>
+            <div className="container">
+              <ReactPaginate
+                pageCount={pages}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={3}
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                breakClassName={'text-center'}
+                initialPage={0}
+                containerClassName={'container pagination justify-content-center'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                activeClassName={'page-item active'}
+                previousClassName={'page-item'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                previousLinkClassName={'page-link'}
+                onPageChange={this.onPageChange}
+              />
+            </div>
           </div>
         </div>
       );
@@ -94,17 +126,20 @@ class UserRecipePage extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  userRecipes: state.getUserRecipe.userRecipes
+  userRecipes: state.getUserRecipe.userRecipes,
+  pageInfo: state.pageInfo
 });
 const mapDispatchToProps = dispatch => ({
-  getAllUserRecipes: () => dispatch(getUserRecipes()),
+  getAllUserRecipes: page => dispatch(getUserRecipes(page)),
   deleteRecipe: recipeId => dispatch(deleteRecipe(recipeId))
 });
 
 UserRecipePage.propTypes = {
   userRecipes: PropTypes.arrayOf(PropTypes.shape()),
   getAllUserRecipes: PropTypes.func.isRequired,
-  deleteRecipe: PropTypes.func.isRequired
+  deleteRecipe: PropTypes.func.isRequired,
+  pageInfo: PropTypes.shape().isRequired
+
 };
 
 UserRecipePage.defaultProps = {

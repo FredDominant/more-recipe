@@ -45,12 +45,18 @@ class Navbar extends React.Component {
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-10 col-xs-6">
-                <span id="title" className="navbar-brand">
-                  <Link to="/home"><h2 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h2></Link>
-                </span>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon" />
-                </button>
+                <div className="row">
+                  <div className="col-sm-auto col-md-auto col-xs-auto">
+                    <span id="title" className="navbar-brand col-sm-6 col-md-6 col-xs-6">
+                      <Link to="/home"><h2 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h2></Link>
+                    </span>
+                  </div>
+                  <div className="col-sm-auto col-md-auto col-xs-auto">
+                    <button className="navbar-toggler" id="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span className="navbar-toggler-icon" />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className="col-sm-2 col-xs-6" id="navigation-icons">
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

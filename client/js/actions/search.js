@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
+import { getPageDetails } from '../actions/getAllRecipes';
 
 import { setFetching, unsetFetching } from './fetching';
 import { SEARCH_RECIPES, SEARCH_RECIPES_ERROR } from '../actions/actionTypes';
@@ -13,19 +14,22 @@ const searchFailure = () => ({
   type: SEARCH_RECIPES_ERROR
 });
 
-const search = searchParams => (dispatch) => {
+const search = (searchParams, page) => (dispatch) => {
+  page = page || 1;
   dispatch(setFetching());
   return axios({
     method: 'POST',
-    url: '/api/v1/search',
+    url: `/api/v1/search?page=${page}`,
     data: {
       search: searchParams
     }
   })
     .then((response) => {
-      const { Recipe } = response.data;
+      const { CurrentPage, Limit, NumberOfItems, Pages, Recipe } = response.data;
+      const paginationInfo = { CurrentPage, Limit, NumberOfItems, Pages };
       dispatch(batchActions([
         searchSuccess(Recipe),
+        getPageDetails(paginationInfo),
         unsetFetching()
       ]));
     })
