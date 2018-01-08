@@ -1,12 +1,17 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
 
-import { GET_ALL_RECIPES, GET_ALL_RECIPES_ERROR } from './actionTypes';
+import { GET_ALL_RECIPES, GET_ALL_RECIPES_ERROR, GET_PAGE_DETAILS } from './actionTypes';
 import { setFetching, unsetFetching } from './fetching';
 
 export const allRecipes = recipes => ({
   type: GET_ALL_RECIPES,
-  recipes
+  recipes,
+});
+
+export const getPageDetails = details => ({
+  type: GET_PAGE_DETAILS,
+  details
 });
 
 export const allRecipesError = message => ({
@@ -14,13 +19,16 @@ export const allRecipesError = message => ({
   message
 });
 
-const getAllRecipes = () => (dispatch) => {
+const getAllRecipes = page => (dispatch) => {
+  page = page || 1;
   dispatch(setFetching());
-  return axios.get('/api/v1/recipes')
+  return axios.get(`/api/v1/recipes?page=${page}`)
     .then((response) => {
-      const { Recipes } = response.data;
+      const { CurrentPage, Limit, NumberOfItems, Pages, Recipes } = response.data;
+      const paginationInfo = { CurrentPage, Limit, NumberOfItems, Pages };
       dispatch(batchActions([
         allRecipes(Recipes),
+        getPageDetails(paginationInfo),
         unsetFetching()
       ]));
     })

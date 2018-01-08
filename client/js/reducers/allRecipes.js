@@ -1,5 +1,5 @@
 import initialState from '../store/initialState';
-import { GET_ALL_RECIPES, GET_ALL_RECIPES_ERROR, SEARCH_RECIPES, SEARCH_RECIPES_ERROR } from '../actions/actionTypes';
+import { GET_ALL_RECIPES, GET_ALL_RECIPES_ERROR, SEARCH_RECIPES, SEARCH_RECIPES_ERROR, GET_PAGE_DETAILS } from '../actions/actionTypes';
 
 const allRecipes = (state = initialState.recipes, action) => {
   switch (action.type) {
@@ -13,6 +13,12 @@ const allRecipes = (state = initialState.recipes, action) => {
       return {
         ...state,
         failure: action.message
+      };
+    case GET_PAGE_DETAILS:
+      return {
+        ...state,
+        page: action.details,
+        failure: ''
       };
     case SEARCH_RECIPES:
       return {

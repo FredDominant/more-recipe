@@ -117,7 +117,8 @@ class Recipe extends React.Component {
           firstname={review.User.firstname}
           lastname={review.User.lastname}
           content={review.content}
-          created={moment(review.createdAt, 'YYYYMMDD').startOf('hour').fromNow()}
+          created={moment(new Date(review.createdAt)).fromNow()}
+
         />
       </div>
     ));

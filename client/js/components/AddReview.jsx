@@ -44,6 +44,7 @@ class AddReview extends React.Component {
     event.preventDefault();
     if (content.trim().length) {
       this.props.postReview(content, recipeId);
+      this.setState({ content: '' });
     }
   }
   /**

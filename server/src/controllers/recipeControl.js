@@ -188,7 +188,7 @@ export default class Recipe {
   static getAll(req, res) {
     if (!req.query.sort) {
       recipe.findAndCountAll().then((all) => {
-        const limit = 12;
+        const limit = 6;
         let offset = 0;
         const page = parseInt((req.query.page || 1), 10);
         const numberOfItems = all.count;
@@ -220,11 +220,6 @@ export default class Recipe {
                 });
             }
           });
-        // .catch(error => res.status(500)
-        //   .json({
-        //     Message: 'Unable to complete request. Internal server error.',
-        //     error
-        //   }));
       }).catch(() => res.status(500)
         .json({ Message: 'Internal server' }));
     }
@@ -319,7 +314,7 @@ export default class Recipe {
     }).then((allUser) => {
       const page = parseInt((req.query.page || 1), 10);
       const numberOfItems = allUser.count;
-      const limit = 12;
+      const limit = 6;
       const pages = Math.ceil(numberOfItems / limit);
       let offset = 0;
       offset = limit * (page - 1);
@@ -346,7 +341,7 @@ export default class Recipe {
               .json({
                 NumberOfItems: numberOfItems,
                 Limit: limit,
-                NumberOfPages: pages,
+                Pages: pages,
                 CurrentPage: page,
                 Recipes: allUserRecipes
               });
@@ -409,7 +404,7 @@ export default class Recipe {
         return res.status(200)
           .json({
             NumberOfItems: numberOfItems,
-            NumberOfPages: pages,
+            Pages: pages,
             CurrentPage: page,
             Limit: limit,
             Recipe: foundRecipe
