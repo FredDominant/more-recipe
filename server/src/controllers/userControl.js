@@ -42,11 +42,7 @@ export default class User {
             password: Password
           }).then((newUser) => {
             const token = jwt.sign({
-              id: newUser.id,
-              firstname: newUser.firstname,
-              lastname: newUser.lastname,
-              email: newUser.email,
-              notify: newUser.notify
+              id: newUser.id
             }, secret, { expiresIn: 86400 });
             return res.status(201)
               .json({
@@ -91,11 +87,7 @@ export default class User {
           const result = helper.decrypt(password, foundUser.dataValues.password);
           if (result) {
             const token = jwt.sign({
-              id: foundUser.dataValues.id,
-              firstname: foundUser.dataValues.firstname,
-              lastname: foundUser.dataValues.lastname,
-              email: foundUser.dataValues.email,
-              notify: foundUser.dataValues.notify
+              id: foundUser.dataValues.id
             }, secret, { expiresIn: 86400 });
             res.status(200)
               .json({

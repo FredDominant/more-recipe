@@ -86,6 +86,10 @@ class Search extends React.Component {
 Search.propTypes = {
   search: PropTypes.func.isRequired,
 };
+Search.defaultProps = {
+  page: 1
+};
+
 Search.contextTypes = {
   router: PropTypes.object.isRequired
 };
