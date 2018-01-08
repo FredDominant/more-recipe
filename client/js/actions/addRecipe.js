@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
+import toastr from 'toastr';
 
 import { uploading, stopUploading } from './uploading';
 import { ADD_RECIPE, RECIPE_ERROR } from '../actions/actionTypes';
@@ -30,6 +31,10 @@ const addRecipe = recipe => (dispatch) => {
         createRecipe(response.data),
         stopUploading()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Recipe added');
     })
     .catch((error) => {
       const message = error.response.data.Message;
@@ -37,6 +42,10 @@ const addRecipe = recipe => (dispatch) => {
         recipeError(message),
         stopUploading()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error(message);
     });
 };
 export default addRecipe;

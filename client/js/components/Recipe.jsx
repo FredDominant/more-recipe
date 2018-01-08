@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import Navbar from './Navbar';
 import getOneRecipe from '../actions/getOneRecipe';
@@ -27,7 +28,7 @@ class Recipe extends React.Component {
     this.state = {
       recipe: {},
       reviews: [],
-      owner: ''
+      owner: '',
     };
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
@@ -49,9 +50,9 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
-    const recipe = nextProps.recipe;
-    const reviews = nextProps.recipe.Reviews;
-    const owner = nextProps.recipe.User;
+    const recipe = (nextProps.recipe) ? (nextProps.recipe) : {};
+    const reviews = (recipe.Reviews) ? (recipe.Reviews) : [];
+    const owner = (recipe.User) ? (recipe.User) : {};
     this.setState({ recipe, reviews, owner });
   }
 
@@ -83,7 +84,6 @@ class Recipe extends React.Component {
   handleFavourite() {
     const recipeId = this.props.recipe.id;
     this.props.favourite(recipeId);
-    console.log('favourited');
   }
   /**
    *
@@ -92,10 +92,20 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    if (!this.state.recipe.id) {
+      return (
+        <div>
+          <Navbar />
+          <div className="container">
+            <br />
+            <h4>This recipe has been taken off the catalogue</h4>
+          </div>
+        </div>
+      );
+    }
     const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
-    console.log('ingredients is', ingredients);
     const splitIngredients = ingredients.split(',').map((item, i) => (
-      <li key={`${i}`}>{item}</li>
+      <li key={`ingredient ${i + 1}`}>{item}</li>
     ));
 
     const { reviews } = this.state;
@@ -107,6 +117,7 @@ class Recipe extends React.Component {
           firstname={review.User.firstname}
           lastname={review.User.lastname}
           content={review.content}
+          created={moment(review.createdAt, 'YYYYMMDD').startOf('hour').fromNow()}
         />
       </div>
     ));
@@ -131,12 +142,6 @@ class Recipe extends React.Component {
               </div>
             </div>
             <br />
-
-            <h3>Ingredients: {this.state.recipe.ingredients}</h3>
-            <h3>Recipe Owner: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</h3>
-            <h3>Recipe Directions: {this.state.recipe.directions}</h3>
-            <h3>Upvotes: {this.state.recipe.upvote}</h3>
-            <h3>Downvotes: {this.state.recipe.downvote}</h3>
             <hr />
             {this.props.authenticated && <div className="actions">
               <div className="btn-group" role="group" >
@@ -146,14 +151,14 @@ class Recipe extends React.Component {
                   title="upvote this recipe"
                   className="btn btn-outline-danger"
                   onClick={this.handleUpvote}
-                ><i className="far fa-thumbs-up" /></button>
+                ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
 
                 <button
                   type="button"
                   title="downvote this recipe"
                   className="btn btn-outline-danger"
                   onClick={this.handleDownvote}
-                ><i className="far fa-thumbs-down" /></button>
+                ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
 
                 <button
                   type="button"
@@ -189,15 +194,16 @@ Recipe.propTypes = {
   downvoteRecipe: PropTypes.func.isRequired,
   favourite: PropTypes.func.isRequired,
   recipe: PropTypes.shape(),
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
 };
 Recipe.defaultProps = {
-  recipe: {}
+  recipe: {},
 };
 
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  error: state.getOneRecipe.errorMessage
 });
 
 const mapDispatchToProps = dispatch => ({

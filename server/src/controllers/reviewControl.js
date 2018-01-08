@@ -40,7 +40,7 @@ export default class Review {
               include: [
                 { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
                 { model: models.Review,
-                  attributes: ['id', 'content'],
+                  attributes: ['id', 'content', 'createdAt'],
                   include: [
                     { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
                   ]
@@ -49,7 +49,6 @@ export default class Review {
             })
               .then(fullRecipe => res.status(201).json({ Message: 'created', Recipe: fullRecipe }));
           });
-        // .catch(() => res.status(500).json({ Message: 'An error ocurred' }));
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal error ocurred. Please try again later' }));

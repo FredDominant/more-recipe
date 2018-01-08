@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import MDSpinner from 'react-md-spinner';
 
 import signupValidator from '../validation/SignupValidator';
 import signupUser from '../actions/signupUser';
@@ -77,9 +77,6 @@ class Signup extends React.Component {
    */
   render() {
     const { errors } = this.state;
-    // if (this.props.authenticated) {
-    //   return <Redirect to="/home" />;
-    // }
     return (
       <div>
         <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -100,22 +97,16 @@ class Signup extends React.Component {
                 <div>
                   <div className="container">
                     {this.props.errorMessage && <div className="alert alert-danger" role="alert">{this.props.errorMessage}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.firstname && <div className="alert alert-danger" role="alert">{errors.firstname}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.lastname && <div className="alert alert-danger" role="alert">{errors.lastname}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.email && <div className="alert alert-danger" role="alert">{errors.email}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.password && <div className="alert alert-danger" role="alert">{errors.password}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                     {errors.confirmPassword && <div className="alert alert-danger" role="alert">{errors.confirmPassword}
-                      {/* <span aria-hidden="true" className="close" data-dismiss="alert" aria-label="Close">&times;</span> */}
                     </div>}
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
@@ -191,7 +182,14 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <button type="submit" className="form-control btn btn-primary signup-form register-button"> <span className="register-text"> Register </span> </button>
+                        <button
+                          type="submit"
+                          className="form-control btn btn-primary signup-form register-button"
+                        >
+                          <span className="register-text">
+                          Register
+                            {this.props.fetching && <span> <MDSpinner /></span>}
+                          </span> </button>
                       </div>
                     </div>
                   </form>
@@ -208,7 +206,8 @@ class Signup extends React.Component {
 Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 
 Signup.defaultProps = {
@@ -221,7 +220,8 @@ Signup.contextTypes = {
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.errorMessage,
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  fetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

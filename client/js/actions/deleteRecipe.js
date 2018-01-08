@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
+import toastr from 'toastr';
 
 import { DELETE_RECIPE, DELETE_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
@@ -29,12 +30,20 @@ const deleteRecipe = recipeId => (dispatch) => {
         deleteRecipeSuccess(recipeId),
         unsetFetching()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Recipe deleted');
     })
     .catch(() => {
       dispatch(batchActions([
         deleteRecipeError(recipeId),
         unsetFetching()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('Unable to delete recipe');
     });
 };
 export default deleteRecipe;

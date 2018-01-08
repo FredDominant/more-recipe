@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
 import { DOWNVOTE_SUCCESS, DOWNVOTE_FAILURE } from '../actions/actionTypes';
 
@@ -23,13 +24,20 @@ const downvoteRecipe = recipeId => (dispatch) => {
     }
   })
     .then((response) => {
-      console.log('response on downvote is', response.data.Recipe);
       const { Recipe } = response.data;
       dispatch(downvoteSuccess(Recipe));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Downvoted!');
     })
     .catch((error) => {
       const { Message } = error;
       dispatch(downvoteFail(Message));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('Unable to downvote!');
     });
 };
 export default downvoteRecipe;

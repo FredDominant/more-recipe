@@ -129,7 +129,6 @@ export default class Favourite {
                 }
               })
                 .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }));
-              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
               return;
             }
             if (!foundFavourite) {

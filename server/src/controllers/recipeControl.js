@@ -1,6 +1,7 @@
 import models from '../models';
 
 const recipe = models.Recipe;
+const favourite = models.Favourite;
 /**
  *
  *
@@ -155,19 +156,19 @@ export default class Recipe {
               }
             }
           })
-            .then(() => res.status(200)
-              .json({
-                Message: 'recipe deleted'
-              }));
-          // .catch(() => res.status(500)
-          //   .json({ Message: 'Internal server error' }));
+            .then(() => {
+              favourite.destroy({
+                where: {
+                  recipeId: req.params.recipeId
+                }
+              })
+                .then(() => res.status(200).json({ Message: 'recipe deleted' }));
+              // res.status(200)
+              //   .json({
+              //     Message: 'recipe deleted'
+              //   });
+            });
         }
-        // if (!foundRecipe) {
-        //   return res.status(404)
-        //     .json({
-        //       Message: `Can't find recipe with id ${req.params.recipeId} by you`
-        //     });
-        // }
       })
       .catch(() => res.status(500)
         .json({
@@ -266,7 +267,7 @@ export default class Recipe {
       include: [
         { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
         { model: models.Review,
-          attributes: ['id', 'content'],
+          attributes: ['id', 'content', 'createdAt'],
           include: [
             { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
           ] }
@@ -380,7 +381,7 @@ export default class Recipe {
       }
     }).then((allSearch) => {
       let offset = 0;
-      const limit = 3;
+      const limit = 6;
       const numberOfItems = allSearch.count;
       const page = parseInt((req.query.page || 1), 10);
       const pages = Math.ceil(numberOfItems / limit);
@@ -390,6 +391,9 @@ export default class Recipe {
           $or:
             queryIngredient.concat(queryName)
         },
+        include: [
+          { model: models.User, attributes: ['firstname', 'lastname'] }
+        ],
         limit,
         offset,
         order: [

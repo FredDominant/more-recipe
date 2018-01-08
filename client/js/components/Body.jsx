@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import store from '../store/store';
 import Home from './Home';
-import Profile from './Profile';
 import Recipe from './Recipe';
 import UserHome from './UserHome';
 import AddRecipePage from '../components/AddRecipePage';
@@ -11,6 +10,8 @@ import UserProfile from '../components/UserProfile';
 import UserRecipePage from '../components/UserRecipePage';
 import UpdateRecipe from '../components/UpdateRecipe';
 import Favourites from '../components/Favourites';
+import ChangePassword from '../components/ChangePassword';
+import SearchPage from '../components/SearchPage';
 
 const checkAuth = (Component) => {
   if (!store.getState().auth.isAuthenticated) {
@@ -27,8 +28,9 @@ const Body = () => (
     <Route path="/favourites" exact component={checkAuth(Favourites)} />
     <Route path="/user/recipes" exact component={checkAuth(UserRecipePage)} />
     <Route path="/recipe/:recipeId" exact component={Recipe} />
+    <Route path="/search" exact component={SearchPage} />
     <Route path="/recipe/edit/:recipeId" exact component={checkAuth(UpdateRecipe)} />
-    <Route path="/user/:userId" exact component={Profile} />
+    <Route path="/user/password-reset/:token" exact component={ChangePassword} />
     <Route component={Recipe} />
   </Switch>
 );

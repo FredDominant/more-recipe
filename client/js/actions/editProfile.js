@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { EDIT_PROFILE, EDIT_PROFILE_ERROR } from '../actions/actionTypes';
@@ -16,6 +17,7 @@ const updateProfileFail = error => ({
 
 const updateProfile = userData => (dispatch) => {
   const token = localStorage.getItem('token');
+  dispatch(setFetching());
   axios({
     method: 'PUT',
     url: '/api/v1/users/update',
@@ -26,17 +28,25 @@ const updateProfile = userData => (dispatch) => {
   })
     .then((response) => {
       const { User } = response.data;
-      console.log('User from response is', User);
       dispatch(batchActions([
-        updateProfileSuccess(User)
+        updateProfileSuccess(User),
+        unsetFetching()
       ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Profile Updated!');
     })
     .catch((error) => {
-      console.log('error from server is', error);
-      // const { Message } = error.response.data;
-      // dispatch(batchActions([
-      //   updateProfileFail(Message)
-      // ]));
+      const { Message } = error.response.data;
+      dispatch(batchActions([
+        updateProfileFail(Message),
+        unsetFetching()
+      ]));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('Unable to update profile');
     });
 };
 export default updateProfile;

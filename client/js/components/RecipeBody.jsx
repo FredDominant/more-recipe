@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import RecipeItem from './RecipeItem';
 import getAllRecipes from '../actions/getAllRecipes';
@@ -39,7 +40,6 @@ class RecipeBody extends React.Component {
    * @memberof RecipeBody
    */
   componentWillReceiveProps(nextProps) {
-    // console.log('nextProps in get all recipes is', nextProps);
     this.setState({ recipes: nextProps.recipes });
   }
   /**
@@ -48,12 +48,12 @@ class RecipeBody extends React.Component {
  * @memberof RecipeBody
  */
   render() {
-    // const recipes = (this.props.recipes) ? this.props.recipes : [];
     const { recipes } = this.state;
     const allRecipes = recipes.map(recipe =>
       (
         <div key={recipe.id} className="col-sm-4">
           <RecipeItem
+            home={'home'}
             image={recipe.picture}
             recipeId={recipe.id}
             recipeName={capitalize(recipe.name)}
@@ -62,6 +62,7 @@ class RecipeBody extends React.Component {
             downvotes={recipe.downvote}
             views={recipe.views}
             owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
+            created={moment(recipe.createdAt, 'YYYYMMDD').fromNow()}
           />
           <br />
         </div>)

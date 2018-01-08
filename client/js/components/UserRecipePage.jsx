@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
 import Navbar from '../components/Navbar';
-// import UserRecipeCard from '../components/UserRecipeCard';
 import RecipeItem from '../components/RecipeItem';
 
 /**
@@ -58,9 +57,10 @@ class UserRecipePage extends React.Component {
           description={recipe.description}
           userRecipeCard={'user'}
           onDelete={this.props.deleteRecipe}
-          upvote={recipe.upvote}
-          downvote={recipe.downvote}
+          upvotes={recipe.upvote}
+          downvotes={recipe.downvote}
           views={recipe.views}
+          owner={'you'}
         />
         <br />
       </div>
@@ -86,7 +86,7 @@ class UserRecipePage extends React.Component {
           <br />
           <div className="emptyContent">
             <br />
-            <h2>You currently have no Recipes. Add new recipes... </h2>
+            <h3>You currently have no Recipes. Add new recipes... </h3>
           </div>
         </div>
       </div>

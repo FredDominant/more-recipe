@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
 import { ADD_REVIEW_SUCCESS, ADD_REVIEW_FAILURE } from '../actions/actionTypes';
 
@@ -23,14 +24,20 @@ const addReview = (review, recipeId) => (dispatch) => {
     data: { content: review }
   })
     .then((response) => {
-      console.log('response from server is', response);
       const { Recipe } = response.data;
-      console.log('Review in addReview is', Recipe);
       dispatch(addReviewSuccess(Recipe));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.success('Review added');
     })
     .catch(() => {
       const Message = 'an error occurred';
       dispatch(addReviewFailure(Message));
+      toastr.options = {
+        closeButton: true
+      };
+      toastr.error('unable to add review');
     });
 };
 
