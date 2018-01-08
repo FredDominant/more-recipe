@@ -76,11 +76,11 @@ class SearchPage extends React.Component {
 }
 const mapStateToProps = state => ({
   recipes: state.recipes.allRecipes,
-  searchErrors: state.recipes.failure
+  searchErrors: state.recipes.failure,
 });
 SearchPage.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.shape()),
-  searchErrors: PropTypes.bool
+  searchErrors: PropTypes.bool,
 };
 SearchPage.defaultProps = {
   recipes: [],
