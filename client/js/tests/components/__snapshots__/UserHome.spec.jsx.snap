@@ -1904,6 +1904,7 @@ exports[`Test for UserHome component should render correctly 1`] = `
           <br />
           <Connect(Search)>
             <Search
+              page={1}
               search={[Function]}
             >
               <div
@@ -2436,6 +2437,7 @@ exports[`Test for UserHome component should render correctly 1`] = `
               <Connect(RecipeBody)>
                 <RecipeBody
                   dispatch={[Function]}
+                  pageInfo={Object {}}
                   recipes={Array []}
                 >
                   <div
