@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import store from '../store/store';
 import Home from './Home';
+import { LOGOUT } from '../actions/actionTypes';
 import Recipe from './Recipe';
 import UserHome from './UserHome';
 import AddRecipePage from '../components/AddRecipePage';
@@ -12,24 +13,31 @@ import UpdateRecipe from '../components/UpdateRecipe';
 import Favourites from '../components/Favourites';
 import ChangePassword from '../components/ChangePassword';
 import SearchPage from '../components/SearchPage';
+// import decodeToken from '../utils/decodeToken';
+import CheckAuth from '../components/CheckAuth';
 
-const checkAuth = (Component) => {
-  if (!store.getState().auth.isAuthenticated) {
-    return () => <Redirect to="/" />;
-  }
-  return props => <Component {...props} />;
-};
+// const checkAuth = (Component) => {
+//   if (!store.getState().auth.isAuthenticated) {
+//     return () => <Redirect to="/" />;
+//   }
+//   if (!decodeToken()) {
+//     return store.dispatch({
+//       type: LOGOUT
+//     });
+//   }
+//   return props => <Component {...props} />;
+// };
 const Body = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/home" exact component={checkAuth(UserHome)} />
-    <Route path="/add-recipe" exact component={checkAuth(AddRecipePage)} />
-    <Route path="/profile" exact component={checkAuth(UserProfile)} />
-    <Route path="/favourites" exact component={checkAuth(Favourites)} />
-    <Route path="/user/recipes" exact component={checkAuth(UserRecipePage)} />
+    <Route path="/home" exact component={CheckAuth(UserHome)} />
+    <Route path="/add-recipe" exact component={CheckAuth(AddRecipePage)} />
+    <Route path="/profile" exact component={CheckAuth(UserProfile)} />
+    <Route path="/favourites" exact component={CheckAuth(Favourites)} />
+    <Route path="/user/recipes" exact component={CheckAuth(UserRecipePage)} />
     <Route path="/recipe/:recipeId" exact component={Recipe} />
     <Route path="/search" exact component={SearchPage} />
-    <Route path="/recipe/edit/:recipeId" exact component={checkAuth(UpdateRecipe)} />
+    <Route path="/recipe/edit/:recipeId" exact component={CheckAuth(UpdateRecipe)} />
     <Route path="/user/password-reset/:token" exact component={ChangePassword} />
     <Route component={Recipe} />
   </Switch>
