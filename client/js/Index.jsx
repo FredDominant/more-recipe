@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import 'toastr/build/toastr.min.css';
 
-import './utils/init';
 import store from './store/store';
 import App from './components/App';
 import decodeToken from './utils/decodeToken';

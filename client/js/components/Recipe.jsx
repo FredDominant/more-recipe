@@ -175,7 +175,7 @@ class Recipe extends React.Component {
                 {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
                 <br />
               </div>
-              { allReviews.length > 0 && <div>
+              { allReviews.length > 0 && <div className="review-body">
                 {allReviews}
               </div>}
               { !allReviews.length && <div className="emptyContent">

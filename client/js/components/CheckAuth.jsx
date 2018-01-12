@@ -34,14 +34,6 @@ const AuthenticateRoutes = (component) => {
     }
     /**
      *
-     * @returns {null} null
-     * @memberof CheckAuth
-     */
-    componentWillReceiveProps() {
-
-    }
-    /**
-     *
      * @returns {jsx} jsx
      * @memberof CheckAuth
      */
