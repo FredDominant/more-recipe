@@ -11,6 +11,7 @@ import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
 import capitalize from '../utils/capitalize';
+import Loading from '../components/Loading';
 /**
  *
  *
@@ -92,6 +93,15 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    if (this.props.fetching) {
+      return (
+        <div className="container" id="loading-icon-container">
+          <div className="text-center mt-30" id="loading-icon">
+            <Loading size={100} />
+          </div>
+        </div>
+      );
+    }
     if (!this.state.recipe.id) {
       return (
         <div>
@@ -196,6 +206,7 @@ Recipe.propTypes = {
   favourite: PropTypes.func.isRequired,
   recipe: PropTypes.shape(),
   authenticated: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 Recipe.defaultProps = {
   recipe: {},
@@ -204,7 +215,8 @@ Recipe.defaultProps = {
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
   authenticated: state.auth.isAuthenticated,
-  error: state.getOneRecipe.errorMessage
+  error: state.getOneRecipe.errorMessage,
+  fetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

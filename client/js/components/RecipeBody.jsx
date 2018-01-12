@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactPaginate from 'react-paginate';
 
 import RecipeItem from './RecipeItem';
+import Loading from '../components/Loading';
 import getAllRecipes from '../actions/getAllRecipes';
 import capitalize from '../utils/capitalize';
 
@@ -125,13 +126,16 @@ class RecipeBody extends React.Component {
 }
 const mapStateToProps = state => ({
   recipes: state.recipes.allRecipes,
-  pageInfo: state.pageInfo
+  pageInfo: state.pageInfo,
+  fetching: state.isFetching
 });
 
 RecipeBody.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.shape()),
   dispatch: PropTypes.func.isRequired,
-  pageInfo: PropTypes.shape().isRequired
+  pageInfo: PropTypes.shape().isRequired,
+  fetching: PropTypes.bool.isRequired
+
 };
 RecipeBody.defaultProps = {
   recipes: []

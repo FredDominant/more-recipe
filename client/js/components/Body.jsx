@@ -14,20 +14,7 @@ import Favourites from '../components/Favourites';
 import ChangePassword from '../components/ChangePassword';
 import SearchPage from '../components/SearchPage';
 import CheckAuth from '../utils/checkAuth.jsx';
-// import decodeToken from '../utils/decodeToken';
-// import CheckAuth from '../components/CheckAuth';
 
-// const CheckAuth = (Component) => {
-//   if (!store.getState().auth.isAuthenticated) {
-//     return () => <Redirect to="/" />;
-//   }
-//   if (!decodeToken()) {
-//     return store.dispatch({
-//       type: LOGOUT
-//     });
-//   }
-//   return props => <Component {...props} />;
-// };
 const Body = () => (
   <Switch>
     <Route path="/" exact component={Home} />
