@@ -187,6 +187,7 @@ class Signup extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn btn-primary signup-form register-button"
+                          disabled={this.props.fetching}
                         >
                           <span className="register-text">
                           Register
