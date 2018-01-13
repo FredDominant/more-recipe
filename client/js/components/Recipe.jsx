@@ -94,7 +94,7 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
-    if (this.props.fetching) {
+    if ((this.props.fetching) && !(this.state.recipe.id)) {
       return (
         <div className="container loading-icon-container">
           <div className="text-center mt-30 loading-icon">
