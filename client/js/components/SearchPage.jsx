@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Footer from './Footer';
 import Navbar from '../components/Navbar';
 import Search from '../components/Search';
 import RecipeItem from '../components/RecipeItem';
@@ -70,6 +71,7 @@ class SearchPage extends React.Component {
             <h5 className="text-center" id="no-match-found"> No match(es) found</h5>
           </div>}
         </div>
+        <Footer />
       </div>
     );
   }

@@ -41,7 +41,7 @@ class Navbar extends React.Component {
   render() {
     if (this.props.authenticated) {
       return (
-        <div className="container-fluid">
+        <div className="">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-10 col-xs-6">
@@ -116,7 +116,7 @@ class Navbar extends React.Component {
       );
     }
     return (
-      <div className="container-fluid">
+      <div className="">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="row" id="nav2">
             <div className="col-sm-9" id="nav-button">

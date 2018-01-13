@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
 import verifyRecoveryToken from '../utils/verifyRecoveryToken';
 import resetPasswordValidator from '../validation/resetPasswordValidator';
 import resetPassword from '../actions/resetPassword';
@@ -130,6 +131,7 @@ class ChangePassword extends React.Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

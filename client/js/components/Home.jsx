@@ -4,6 +4,7 @@ import Search from './Search';
 import Navbar from './Navbar';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
+import Footer from './Footer';
 
 const Home = () => (
   <div>
@@ -17,6 +18,7 @@ const Home = () => (
         <RecipeBody />
       </div>
     </div>
+    <Footer />
   </div>
 );
 

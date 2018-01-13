@@ -343,14 +343,14 @@ a, button {
 
 .close-signup {
   position: absolute;
-  right: 25px
+  right: 25px;
 }
 #navbar-button {
   position: relative;
 }
 #nav-toggler {
   position: absolute;
-  right: 0px;
+  right: 0;
 }
 .review-body {
   height: 400px;
@@ -360,4 +360,13 @@ a, button {
 .loading-icon-container {
   background-color: white;
   margin-top: 20%;
+}
+
+nav.footer {
+  background-color: #f8f9fa;
+  padding: 5px;
+}
+.footer-title {
+  color: brown;
+  font-family: 'Berkshire Swash', cursive;
 }

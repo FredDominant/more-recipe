@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
+import Footer from './Footer';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
 import Navbar from '../components/Navbar';
@@ -107,6 +108,7 @@ class UserRecipePage extends React.Component {
               />
             </div>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -119,8 +121,10 @@ class UserRecipePage extends React.Component {
           <div className="emptyContent">
             <br />
             <h3>You currently have no Recipes. Add new recipes... </h3>
+            <br />
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

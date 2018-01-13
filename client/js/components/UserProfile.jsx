@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toastr from 'toastr';
 
 import NavBar from './Navbar';
+import Footer from './Footer';
 import userProfile from '../actions/userProfile';
 import updateProfile from '../actions/editProfile';
 import uploadImage from '../utils/uploadImage';
@@ -225,6 +225,7 @@ class UserProfile extends React.Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

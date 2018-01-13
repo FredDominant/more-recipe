@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import updateRecipe from '../actions/updateRecipe';
 import uploadImage from '../utils/uploadImage';
@@ -214,6 +215,7 @@ class UpdateRecipe extends React.Component {
             </div>
           </form>
         </div>
+        <Footer />
       </div>
     );
   }

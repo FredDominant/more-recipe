@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
 import RecipeItem from '../components/RecipeItem';
 import getFavourites from '../actions/getFavourites';
 import removeFavourite from '../actions/removeFavourite';
@@ -88,6 +89,7 @@ class Favourites extends React.Component {
               {allFavourites}
             </div>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -104,6 +106,7 @@ class Favourites extends React.Component {
             </h3>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

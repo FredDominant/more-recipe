@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
 
 const NotFoundPage = () => (
   <div>
@@ -14,6 +15,7 @@ const NotFoundPage = () => (
         The resource you are looking for does not exist, or has been taken off the catalogue
       </h3>
     </div>
+    <Footer />
   </div>
 );
 export default NotFoundPage;

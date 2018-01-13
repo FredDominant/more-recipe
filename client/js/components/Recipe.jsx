@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import Navbar from './Navbar';
+import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
 import addFavourites from '../actions/addFavourites';
@@ -189,10 +190,12 @@ class Recipe extends React.Component {
               </div>}
               { !allReviews.length && <div className="emptyContent">
                 <h2 className="text-center">There are currently no reviews for this recipe.</h2>
+                <br />
               </div>}
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
