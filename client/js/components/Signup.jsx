@@ -190,7 +190,7 @@ class Signup extends React.Component {
                         >
                           <span className="register-text">
                           Register
-                            {this.props.fetching && <span> <MDSpinner /></span>}
+                            {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
                           </span> </button>
                       </div>
                     </div>

@@ -154,7 +154,10 @@ class Login extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn btn-primary register-button"
-                        > <span className="register-text"> Log in  {this.props.fetching && <span> <MDSpinner /></span>}</span>
+                        >
+                          <span className="register-text">
+                         Log in  {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                          </span>
                         </button>
                       </div>
                       <br />
