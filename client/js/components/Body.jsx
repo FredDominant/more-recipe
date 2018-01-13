@@ -1,9 +1,7 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import store from '../store/store';
 import Home from './Home';
-import { LOGOUT } from '../actions/actionTypes';
 import Recipe from './Recipe';
 import UserHome from './UserHome';
 import AddRecipePage from '../components/AddRecipePage';
@@ -13,6 +11,7 @@ import UpdateRecipe from '../components/UpdateRecipe';
 import Favourites from '../components/Favourites';
 import ChangePassword from '../components/ChangePassword';
 import SearchPage from '../components/SearchPage';
+import NotFoundPage from '../components/NotFoundPage';
 import CheckAuth from '../utils/checkAuth.jsx';
 
 const Body = () => (
@@ -27,7 +26,7 @@ const Body = () => (
     <Route path="/search" exact component={SearchPage} />
     <Route path="/recipe/edit/:recipeId" exact component={CheckAuth(UpdateRecipe)} />
     <Route path="/user/password-reset/:token" exact component={ChangePassword} />
-    <Route component={Recipe} />
+    <Route component={NotFoundPage} />
   </Switch>
 );
 export default Body;

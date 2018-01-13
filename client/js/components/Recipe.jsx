@@ -10,6 +10,7 @@ import addFavourites from '../actions/addFavourites';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
+import NotFoundPage from '../components/NotFoundPage';
 import capitalize from '../utils/capitalize';
 import Loading from '../components/Loading';
 /**
@@ -93,22 +94,14 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
+    if (!this.state.recipe.id) {
+      return <NotFoundPage />;
+    }
     if (this.props.fetching) {
       return (
         <div className="container" id="loading-icon-container">
           <div className="text-center mt-30" id="loading-icon">
             <Loading size={100} />
-          </div>
-        </div>
-      );
-    }
-    if (!this.state.recipe.id) {
-      return (
-        <div>
-          <Navbar />
-          <div className="container">
-            <br />
-            <h4>This recipe has been taken off the catalogue</h4>
           </div>
         </div>
       );
@@ -141,7 +134,13 @@ class Recipe extends React.Component {
             <div className="row">
               <div className="col-md-6 col-sm-8">
                 <div className="image-container">
-                  <img src={this.state.recipe.picture} alt="" height="50" width="50" className="img-thumbnail" />
+                  <img
+                    className="img-thumbnail"
+                    src={this.state.recipe.picture}
+                    alt={this.state.recipe.name}
+                    height="50"
+                    width="50"
+                  />
                 </div>
               </div>
               <div className="col-md-6">
@@ -189,7 +188,7 @@ class Recipe extends React.Component {
                 {allReviews}
               </div>}
               { !allReviews.length && <div className="emptyContent">
-                <h2>There are currently no reviews for this recipe.</h2>
+                <h2 className="text-center">There are currently no reviews for this recipe.</h2>
               </div>}
             </div>
           </div>
