@@ -65,7 +65,7 @@ class RecipeBody extends React.Component {
     const { recipes } = this.state;
     const allRecipes = recipes.map(recipe =>
       (
-        <div key={recipe.id} className="col-sm-4">
+        <div key={recipe.id} className="col-xs-8 col-sm-8 col-md-4">
           <RecipeItem
             home={'home'}
             image={recipe.picture}
@@ -79,7 +79,6 @@ class RecipeBody extends React.Component {
             created={moment(new Date(recipe.createdAt)).fromNow()}
           />
           <br />
-          <div className="container" />
         </div>)
     );
     if (allRecipes.length) {

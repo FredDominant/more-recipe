@@ -11,7 +11,7 @@ const NotFoundPage = () => (
       </h1>
       <br />
       <h3 className="text-center">
-        The resource you are looking for has been taken off the catalogue
+        The resource you are looking for does not exist, or has been taken off the catalogue
       </h3>
     </div>
   </div>

@@ -94,17 +94,17 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
-    if (!this.state.recipe.id) {
-      return <NotFoundPage />;
-    }
     if (this.props.fetching) {
       return (
-        <div className="container" id="loading-icon-container">
-          <div className="text-center mt-30" id="loading-icon">
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
             <Loading size={100} />
           </div>
         </div>
       );
+    }
+    if (!this.state.recipe.id) {
+      return <NotFoundPage />;
     }
     const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
     const splitIngredients = ingredients.split(',').map((item, i) => (

@@ -7,6 +7,7 @@ import RecipeItem from '../components/RecipeItem';
 import getFavourites from '../actions/getFavourites';
 import removeFavourite from '../actions/removeFavourite';
 import capitalize from '../utils/capitalize';
+import Loading from '../components/Loading';
 
 /**
  *
@@ -51,8 +52,17 @@ class Favourites extends React.Component {
    * @memberof Favourites
    */
   render() {
+    if (this.props.fetching) {
+      return (
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
+          </div>
+        </div>
+      );
+    }
     const allFavourites = this.state.userFavourites.map(recipe => (
-      <div key={recipe.id} className="col-sm-2 col-md-4">
+      <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
         <RecipeItem
           favouriteCard={'true'}
           image={recipe.Recipe.picture}
@@ -82,14 +92,16 @@ class Favourites extends React.Component {
       );
     }
     return (
-      <div className="">
+      <div>
         <Navbar />
         <br />
         <div className="container">
           <br />
           <div className="emptyContent">
             <br />
-            <h2>You currently have no favourite recipes. Add recipes as favourites</h2>
+            <h3 className="text-center">
+            You currently have no favourite recipes. Add recipes as favourites
+            </h3>
           </div>
         </div>
       </div>
@@ -97,7 +109,8 @@ class Favourites extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  favourites: state.getFavourites.userFavourites
+  favourites: state.getFavourites.userFavourites,
+  fetching: state.isFetching
 });
 
 const mapDispatchToprops = dispatch => ({
@@ -108,7 +121,8 @@ const mapDispatchToprops = dispatch => ({
 Favourites.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.shape()),
   getAllFavourites: PropTypes.func.isRequired,
-  removeFromFavourite: PropTypes.func.isRequired
+  removeFromFavourite: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 Favourites.defaultProps = {
   favourites: []

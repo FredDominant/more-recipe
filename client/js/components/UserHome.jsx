@@ -19,7 +19,7 @@ const UserHome = () => (
     <br />
     <div className="container-fluid">
       <Carousel />
-      <div className="container recipes">
+      <div className="recipes">
         <RecipeBody />
       </div>
     </div>

@@ -44,46 +44,48 @@ const RecipeItem = props =>
             </span>
             <br />
           </CardText>
-          <div className="btn-group" role="group" >
+          <div className="all-buttons">
+            <div className="btn-group" role="group" >
 
-            <span
-              title="upvote this recipe"
-              className="btn btn-outline-danger"
-              disabled
-            ><i className="far fa-thumbs-up" /> <span id="likes">{props.upvotes} </span></span>
+              <span
+                title="upvote this recipe"
+                className="btn btn-outline-danger"
+                disabled
+              ><i className="far fa-thumbs-up" /> <span id="likes">{props.upvotes} </span></span>
 
-            <span
-              title="downvote this recipe"
-              className="btn btn-outline-danger"
-              disabled
-            ><i className="far fa-thumbs-down" /> <span id="unlikes">{props.downvotes} </span></span>
+              <span
+                title="downvote this recipe"
+                className="btn btn-outline-danger"
+                disabled
+              ><i className="far fa-thumbs-down" /> <span id="unlikes">{props.downvotes} </span></span>
 
-            <span
-              title="add to your favourites"
-              className="btn btn-outline-danger"
-              disabled
-            ><i className="fas fa-eye" /> <span id="views">{props.views} </span></span>
-            {props.userRecipeCard && <button
-              type="button"
-              title="edit this recipe"
-              className="btn btn-outline-danger"
-            >
-              <Link to={`/recipe/edit/${props.recipeId}`}> <i className="far fa-edit" /> </Link>
-            </button>
-            }
-            {props.favouriteCard && <button
-              type="button"
-              title="remove from favourites"
-              className="btn btn-outline-danger"
-              onClick={() => { props.removeRecipe(props.recipeId); }}
-            ><i className="fas fa-trash-alt" /></button>}
+              <span
+                title="add to your favourites"
+                className="btn btn-outline-danger"
+                disabled
+              ><i className="fas fa-eye" /> <span id="views">{props.views} </span></span>
+              {props.userRecipeCard && <button
+                type="button"
+                title="edit this recipe"
+                className="btn btn-outline-danger"
+              >
+                <Link to={`/recipe/edit/${props.recipeId}`}> <i className="far fa-edit" /> </Link>
+              </button>
+              }
+              {props.favouriteCard && <button
+                type="button"
+                title="remove from favourites"
+                className="btn btn-outline-danger"
+                onClick={() => { props.removeRecipe(props.recipeId); }}
+              ><i className="fas fa-trash-alt" /></button>}
 
-            {props.userRecipeCard && <button
-              type="button"
-              title="delete this recipe"
-              className="btn btn-outline-danger"
-              onClick={() => { props.onDelete(props.recipeId); }}
-            ><i className="fas fa-trash-alt" /> </button>}
+              {props.userRecipeCard && <button
+                type="button"
+                title="delete this recipe"
+                className="btn btn-outline-danger"
+                onClick={() => { props.onDelete(props.recipeId); }}
+              ><i className="fas fa-trash-alt" /> </button>}
+            </div>
           </div>
         </CardBody>
       </Card>
