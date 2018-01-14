@@ -89,7 +89,7 @@ export default class Favourite {
             model: models.Recipe,
             attributes: ['name', 'ingredients', 'directions', 'description', 'picture', 'upvote', 'downvote'],
             include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
-          },
+          }
         ],
         limit,
         offset,
@@ -112,7 +112,8 @@ export default class Favourite {
                 Favourites: foundFavourites
               });
           }
-        });
+        }).catch(() => res.status(500)
+          .json({ Message: 'Unable to get favourites, internal server error' }));
     })
       .catch(() => res.status(500)
         .json({ Message: 'Unable to get favourites, internal server error' }));

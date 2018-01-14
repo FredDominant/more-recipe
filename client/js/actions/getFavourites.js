@@ -18,7 +18,7 @@ const getFavourites = page => (dispatch) => {
   page = page || 1;
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'GET',
     url: `/api/v1/users/favourites?page=${page}`,
     headers: {

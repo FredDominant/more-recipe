@@ -26,7 +26,8 @@ class Favourites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userFavourites: []
+      userFavourites: [],
+      pageInfo: {}
     };
     this.onPageChange = this.onPageChange.bind(this);
   }
@@ -46,7 +47,8 @@ class Favourites extends React.Component {
  */
   componentWillReceiveProps(nextProps) {
     const favourites = nextProps.favourites;
-    this.setState({ userFavourites: favourites });
+    const { pageInfo } = nextProps;
+    this.setState({ userFavourites: favourites, pageInfo });
   }
   /**
    * @param {any} current
@@ -64,17 +66,8 @@ class Favourites extends React.Component {
    * @memberof Favourites
    */
   render() {
-    const { pages } = this.props.pageInfo;
+    const { pages } = this.state.pageInfo;
     console.log('pages ----', pages);
-    if (this.props.fetching) {
-      return (
-        <div className="container loading-icon-container">
-          <div className="text-center mt-30 loading-icon">
-            <Loading size={100} />
-          </div>
-        </div>
-      );
-    }
     const allFavourites = this.state.userFavourites.map(recipe => (
       <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
         <RecipeItem
@@ -92,6 +85,15 @@ class Favourites extends React.Component {
       </div>
     )
     );
+    // if (this.props.fetching) {
+    //   return (
+    //     <div className="container loading-icon-container">
+    //       <div className="text-center mt-30 loading-icon">
+    //         <Loading size={100} />
+    //       </div>
+    //     </div>
+    //   );
+    // }
     if (allFavourites.length) {
       return (
         <div>
@@ -118,11 +120,20 @@ class Favourites extends React.Component {
                 nextClassName={'page-item'}
                 nextLinkClassName={'page-link'}
                 previousLinkClassName={'page-link'}
-                // onPageChange={this.onPageChange}
+                onPageChange={this.onPageChange}
               />
             </div>
           </div>
           <Footer />
+        </div>
+      );
+    }
+    if (this.props.fetching) {
+      return (
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
+          </div>
         </div>
       );
     }
