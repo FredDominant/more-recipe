@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
-import ConfirmDelete from './ConfirmDelete';
 import Footer from './Footer';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
@@ -121,7 +120,9 @@ class UserRecipePage extends React.Component {
           <br />
           <div className="emptyContent">
             <br />
-            <h3 className="mt-5 mb-5 text-center">You currently have no Recipes. Add new recipes... </h3>
+            <h3 className="mt-5 mb-5 text-center">
+            You currently have no Recipes. Add new recipes...
+            </h3>
             <br />
           </div>
         </div>

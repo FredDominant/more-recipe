@@ -17,7 +17,13 @@ import ConfirmDelete from './ConfirmDelete';
 const RecipeItem = props =>
   (
     <div className="recipeCard container">
-      <ConfirmDelete recipeId={props.recipeId} removeRecipe={props.onDelete} />
+      <ConfirmDelete
+        recipeId={props.recipeId}
+        removeRecipe={props.onDelete}
+        removeFavourite={props.removeRecipe}
+        recipeCard={props.userRecipeCard}
+        favouriteCard={props.favouriteCard}
+      />
       <Card>
         <CardBody>
           <CardTitle>
@@ -77,7 +83,9 @@ const RecipeItem = props =>
                 type="button"
                 title="remove from favourites"
                 className="btn btn-outline-danger"
-                onClick={() => { props.removeRecipe(props.recipeId); }}
+                data-toggle="modal"
+                data-target="#confirmDelete"
+                // onClick={() => { props.removeRecipe(props.recipeId); }}
               ><i className="fas fa-trash-alt" /></button>}
 
               {props.userRecipeCard && <button
@@ -86,8 +94,6 @@ const RecipeItem = props =>
                 className="btn btn-outline-danger"
                 data-toggle="modal"
                 data-target="#confirmDelete"
-                onClick={() => { console.log('i was clicked'); }}
-                // props.onDelete(props.recipeId);
               ><i className="fas fa-trash-alt" /> </button>}
             </div>
           </div>

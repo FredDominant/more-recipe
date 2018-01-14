@@ -7,13 +7,19 @@ const ConfirmDelete = props => (
       <div className="modal-content">
         <div className="modal-body">
           <h5 className="text-center mt-3 mb-4">Are you sure you want to delete this recipe ?</h5>
-          <div className="container text-center">
+          <div className="container text-center mb-4">
             <button
               type="button"
               className="btn btn-danger mr-5"
               data-dismiss="modal"
-              // onClick={() => { console.log('recipe Id is', props.recipeId); }}
-              onClick={() => { props.removeRecipe(props.recipeId); }}
+              onClick={() => {
+                if (props.recipeCard) {
+                  return props.removeRecipe(props.recipeId);
+                }
+                if (props.favouriteCard) {
+                  return props.removeFavourite(props.recipeId);
+                }
+              }}
             >Delete</button>
             <button
               type="button"
@@ -27,8 +33,17 @@ const ConfirmDelete = props => (
   </div>
 );
 ConfirmDelete.propTypes = {
-  removeRecipe: PropTypes.func.isRequired,
-  recipeId: PropTypes.number.isRequired
+  removeRecipe: PropTypes.func,
+  recipeId: PropTypes.number.isRequired,
+  removeFavourite: PropTypes.func,
+  recipeCard: PropTypes.string,
+  favouriteCard: PropTypes.string
+};
+ConfirmDelete.defaultProps = {
+  recipeCard: null,
+  favouriteCard: null,
+  removeRecipe: () => {},
+  removeFavourite: () => {}
 };
 export default ConfirmDelete;
 
