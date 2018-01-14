@@ -67,7 +67,6 @@ class Favourites extends React.Component {
    */
   render() {
     const { pages } = this.state.pageInfo;
-    console.log('pages ----', pages);
     const allFavourites = this.state.userFavourites.map(recipe => (
       <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
         <RecipeItem
@@ -85,15 +84,6 @@ class Favourites extends React.Component {
       </div>
     )
     );
-    // if (this.props.fetching) {
-    //   return (
-    //     <div className="container loading-icon-container">
-    //       <div className="text-center mt-30 loading-icon">
-    //         <Loading size={100} />
-    //       </div>
-    //     </div>
-    //   );
-    // }
     if (allFavourites.length) {
       return (
         <div>

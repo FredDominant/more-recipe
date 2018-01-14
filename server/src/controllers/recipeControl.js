@@ -100,12 +100,6 @@ export default class Recipe {
                 Message: 'Update successful',
                 Recipe: updatedRecipe
               }));
-          // .catch(() => {
-          //   res.status(500)
-          //     .json({
-          //       Message: 'Internal server error.'
-          //     });
-          // });
         }
         if (!foundRecipe) {
           return res.status(404)
@@ -163,10 +157,6 @@ export default class Recipe {
                 }
               })
                 .then(() => res.status(200).json({ Message: 'recipe deleted' }));
-              // res.status(200)
-              //   .json({
-              //     Message: 'recipe deleted'
-              //   });
             });
         }
       })

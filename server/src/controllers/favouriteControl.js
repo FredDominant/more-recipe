@@ -75,7 +75,7 @@ export default class Favourite {
       }
     }).then((allFavourites) => {
       let offset = 0;
-      const limit = 2;
+      const limit = 6;
       const numberOfItems = allFavourites.count;
       const page = parseInt((req.query.page || 1), 10);
       const pages = Math.ceil(numberOfItems / limit);
