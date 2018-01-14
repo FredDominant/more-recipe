@@ -16,8 +16,11 @@ const Home = () => (
       <Carousel />
       <div className="recipes">
         <RecipeBody />
+        <br />
       </div>
+      <br />
     </div>
+    <br />
     <Footer />
   </div>
 );

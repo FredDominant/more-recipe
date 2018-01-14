@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
 import Navbar from '../components/Navbar';
 import Footer from './Footer';
@@ -27,6 +28,7 @@ class Favourites extends React.Component {
     this.state = {
       userFavourites: []
     };
+    this.onPageChange = this.onPageChange.bind(this);
   }
   /**
    *
@@ -47,12 +49,23 @@ class Favourites extends React.Component {
     this.setState({ userFavourites: favourites });
   }
   /**
+   * @param {any} current
+   * @returns {null} null
+   * @memberof RecipeBody
+   */
+  onPageChange(current) {
+    current.selected += 1;
+    this.props.getAllFavourites(current.selected);
+  }
+  /**
    *
    *
    * @returns {null} null
    * @memberof Favourites
    */
   render() {
+    const { pages } = this.props.pageInfo;
+    console.log('pages ----', pages);
     if (this.props.fetching) {
       return (
         <div className="container loading-icon-container">
@@ -84,9 +97,29 @@ class Favourites extends React.Component {
         <div>
           <Navbar />
           <br />
-          <div className="container">
+          <div className="container favourite-body">
             <div className="row">
               {allFavourites}
+            </div>
+            <div className="container">
+              <ReactPaginate
+                pageCount={pages}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={3}
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                breakClassName={'text-center'}
+                initialPage={0}
+                containerClassName={'container pagination justify-content-center'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                activeClassName={'page-item active'}
+                previousClassName={'page-item'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                previousLinkClassName={'page-link'}
+                // onPageChange={this.onPageChange}
+              />
             </div>
           </div>
           <Footer />
@@ -97,7 +130,7 @@ class Favourites extends React.Component {
       <div>
         <Navbar />
         <br />
-        <div className="container">
+        <div className="container favourite-body">
           <br />
           <div className="emptyContent">
             <br />
@@ -113,11 +146,12 @@ class Favourites extends React.Component {
 }
 const mapStateToProps = state => ({
   favourites: state.getFavourites.userFavourites,
-  fetching: state.isFetching
+  fetching: state.isFetching,
+  pageInfo: state.pageInfo
 });
 
 const mapDispatchToprops = dispatch => ({
-  getAllFavourites: () => dispatch(getFavourites()),
+  getAllFavourites: page => dispatch(getFavourites(page)),
   removeFromFavourite: recipeId => dispatch(removeFavourite(recipeId))
 });
 
@@ -125,7 +159,8 @@ Favourites.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.shape()),
   getAllFavourites: PropTypes.func.isRequired,
   removeFromFavourite: PropTypes.func.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  pageInfo: PropTypes.shape().isRequired
 };
 Favourites.defaultProps = {
   favourites: []

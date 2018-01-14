@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 const ViewReviews = props => (
   <div className="container">
     <div className="row">
-      <div className="col-sm-1">
+      <div className="col-xs-4 col-sm-4 col-md-4 col-lg-1">
         <div className="reviewer-image">
-          <img src={props.image} alt={props.firstname} className="img-thumbnail" id="reviewer-image" />
+          <img src={props.image} alt={props.firstname} className="rounded float-left img-fluid" id="reviewer-image" />
         </div>
       </div>
-      <div className="col-sm-8">
-        <div className="content">
-          <h6> <strong> {`${props.firstname} ${props.lastname}`} </strong> </h6>
-          <h6> <small> {props.content} </small> </h6>
-          <h6> <small id="review-date"> about {props.created} </small> </h6>
+      <div className="col-xs-4 col-sm-4 col-md-4 col-lg-9">
+        <div className="content text-left mb-5">
+          <h5 className="reviewer-name"> {`${props.firstname} ${props.lastname}`} </h5>
+          <h6> {props.content} </h6>
+          <h6> <small id="review-date">{props.created} </small> </h6>
         </div>
       </div>
     </div>
-    <hr />
   </div>
 );
 

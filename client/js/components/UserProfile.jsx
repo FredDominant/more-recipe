@@ -126,7 +126,7 @@ class UserProfile extends React.Component {
    */
   render() {
     return (
-      <div >
+      <div className="profile-body">
         <NavBar />
         <div className="container" id="update-profile-form">
           <div id="update-profile-body">
@@ -225,6 +225,7 @@ class UserProfile extends React.Component {
             </form>
           </div>
         </div>
+        <br />
         <Footer />
       </div>
     );

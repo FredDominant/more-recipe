@@ -44,7 +44,6 @@ export default class Favourite {
                 }
               })
                 .then(() => res.status(200).json({ Message: 'Removed from favourites' }));
-              // .catch(() => res.status(500).json({ Message: 'Unable to complete' }));
               return;
             }
             favourite.create({
@@ -56,11 +55,7 @@ export default class Favourite {
                   Message: 'Recipe added to favourites',
                   Favourite: newFavourite
                 }));
-            // .catch(() => res.status(500)
-            //   .json({ Message: 'Unable to add to favourites due to server error' }));
           });
-        // .catch(() => res.status(500)
-        //   .json({ Message: 'a server error ocurred' }));
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal server error, please try again later' }));
@@ -74,30 +69,51 @@ export default class Favourite {
    * @memberof Favourite
    */
   static getAll(req, res) {
-    favourite.findAll({
+    favourite.findAndCountAll({
       where: {
         userId: req.decoded.id
-      },
-      include: [
-        {
-          model: models.Recipe,
-          attributes: ['name', 'ingredients', 'directions', 'description', 'picture', 'upvote', 'downvote'],
-          include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
+      }
+    }).then((allFavourites) => {
+      let offset = 0;
+      const limit = 2;
+      const numberOfItems = allFavourites.count;
+      const page = parseInt((req.query.page || 1), 10);
+      const pages = Math.ceil(numberOfItems / limit);
+      offset = limit * (page - 1);
+      favourite.findAll({
+        where: {
+          userId: req.decoded.id
         },
-      ]
-    })
-      .then((foundFavourites) => {
-        if (foundFavourites) {
-          if (foundFavourites.length < 1) {
-            return res.status(404)
-              .json({ Message: 'You have no favourites. Add recipes to favourite' });
-          }
-          return res.status(200)
-            .json({
-              Favourites: foundFavourites
-            });
-        }
+        include: [
+          {
+            model: models.Recipe,
+            attributes: ['name', 'ingredients', 'directions', 'description', 'picture', 'upvote', 'downvote'],
+            include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
+          },
+        ],
+        limit,
+        offset,
+        order: [
+          ['id', 'DESC']
+        ]
       })
+        .then((foundFavourites) => {
+          if (foundFavourites) {
+            if (foundFavourites.length < 1) {
+              return res.status(404)
+                .json({ Message: 'You have no favourites. Add recipes to favourite' });
+            }
+            return res.status(200)
+              .json({
+                NumberOfItems: numberOfItems,
+                Pages: pages,
+                CurrentPage: page,
+                Limit: limit,
+                Favourites: foundFavourites
+              });
+          }
+        });
+    })
       .catch(() => res.status(500)
         .json({ Message: 'Unable to get favourites, internal server error' }));
   }

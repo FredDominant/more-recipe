@@ -137,7 +137,9 @@ span.routes a {
 
 .register-button {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	cursor: pointer;
+  cursor: pointer;
+  color: white;
+  background-color: brown;
 }
 
 .register-text {
@@ -273,7 +275,9 @@ img#reviewer-image {
 
 #add-review-button {
   display: block;
-  margin-left: auto
+  margin-left: auto;
+  background-color: brown;
+  color: white;
 }
 a :hover {
   color: none;
@@ -309,6 +313,8 @@ a, button {
 }
 #recover-password-button {
   width: 100%;
+  color: white;
+  background-color: brown;
 }
 .reset-password {
   width: 50%;
@@ -362,11 +368,22 @@ a, button {
   margin-top: 20%;
 }
 
-nav.footer {
+.footer {
   background-color: #f8f9fa;
-  padding: 5px;
 }
 .footer-title {
   color: brown;
   font-family: 'Berkshire Swash', cursive;
+}
+.recipe-details-name {
+  font-family: 'Berkshire Swash', cursive;
+}
+.recipe-detail-user {
+  font-weight: lighter;
+}
+.favourite-body,
+.notFound-body,
+.search-page-body,
+.profile-body {
+  height: 600px;
 }
