@@ -67,9 +67,7 @@ export default class Vote {
                           }).then(Recipe => res.status(201).json({ Message: 'new upvote', Recipe }));
                         }
                       });
-                    // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                   });
-                  // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                 }
                 if (foundDownvote) {
                   downvote.destroy({
@@ -106,14 +104,10 @@ export default class Vote {
                               return res.status(500).json({ Message: 'Can\'t find recipe to increment after creation' });
                             }
                           });
-                        // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                       });
-                    // .catch(error => res.status(500).json({ Message: error }));
                   });
-                  // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
                 }
               });
-              // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
             }
             if (foundUpvote) {
               upvote.destroy({
@@ -136,12 +130,9 @@ export default class Vote {
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted upvote and decremented', Recipe }));
                     });
-                  // .catch(() => res.status.json({ Message: 'Internal server error' }));
                 });
-              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
             }
           });
-          // .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
         }
       })
       .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
@@ -253,30 +244,10 @@ export default class Vote {
                                 .json({ Message: 'Can\'t find recipe to increment after creation' });
                             }
                           });
-                        // .catch(() =>
-                        //   // error can't find recipe after destroying downvote
-                        //   res.status(500)
-                        //     .json({ Message: 'Server error. Unable to complete vote' })
-                        // );
                       });
-                    // .catch(() =>
-                    // // cant create after destroying
-                    //   res.status(500)
-                    //     .json({ Message: 'Server error. Unable to complete vote' })
-                    // );
                   });
-                  // .catch(() =>
-                  //   // cant destroy upvote
-                  //   res.status(500)
-                  //     .json({ Message: 'Server error. Unable to complete vote' })
-                  // );
                 }
               });
-              // .catch(() =>
-              //   // can't find in upvote
-              //   res.status(500)
-              //     .json({ Message: 'Server error. Unable to complete vote' })
-              // );
             }
             if (foundDownvote) {
               downvote.destroy({
@@ -299,19 +270,11 @@ export default class Vote {
                         ]
                       }).then(Recipe => res.status(200).json({ Message: 'deleted downvote and decremented', Recipe }));
                     });
-                  // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
                 });
-              // .catch(() => res.status(500).json({ Message: 'Internal server error' }));
             }
           });
-          // .catch(() =>
-          //   // can't find user voted recipe in downvote
-          //   res.status(500)
-          //     .json({ Message: 'Server error. Unable to complete vote' })
-          // );
         }
       }).catch(() =>
-        // check if recipe exists
         res.status(500)
           .json({ Message: 'Server error. Unable to complete vote' })
       );
