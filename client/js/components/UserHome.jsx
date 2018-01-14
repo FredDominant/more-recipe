@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Search from './Search';
-import Navbar from './Navbar';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
 import Footer from './Footer';
@@ -14,7 +13,6 @@ import Footer from './Footer';
 
 const UserHome = () => (
   <div>
-    <Navbar />
     <br />
     <Search />
     <br />

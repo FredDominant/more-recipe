@@ -87,7 +87,6 @@ class Favourites extends React.Component {
     if (allFavourites.length) {
       return (
         <div>
-          <Navbar />
           <br />
           <div className="container favourite-body">
             <div className="row">
@@ -129,7 +128,6 @@ class Favourites extends React.Component {
     }
     return (
       <div>
-        <Navbar />
         <br />
         <div className="container favourite-body">
           <br />

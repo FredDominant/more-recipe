@@ -1,10 +1,8 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Footer from './Footer';
 
 const NotFoundPage = () => (
   <div >
-    <Navbar />
     <div className="container notFound-body">
       <br />
       <h1 className="text-center">

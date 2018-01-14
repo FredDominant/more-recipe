@@ -42,7 +42,6 @@ class Errorboundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div>
-          <Navbar />
           <br />
           <div className="container">
             <h3>An Error has ocurred. Please try again later</h3>

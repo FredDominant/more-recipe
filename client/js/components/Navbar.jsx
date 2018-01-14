@@ -113,6 +113,7 @@ class Navbar extends React.Component {
               </div>
             </div>
           </nav>
+          {this.props.children}
         </div>
       );
     }
@@ -144,6 +145,7 @@ class Navbar extends React.Component {
             </div>
           </div>
         </nav>
+        {this.props.children}
       </div>
     );
   }

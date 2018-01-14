@@ -82,7 +82,6 @@ class ChangePassword extends React.Component {
     const { errors } = this.state;
     return (
       <div>
-        <Navbar />
         <br />
         <div className="container">
           <div className="change-password">

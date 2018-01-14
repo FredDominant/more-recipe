@@ -6,7 +6,6 @@ import ReactPaginate from 'react-paginate';
 import Footer from './Footer';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
-import Navbar from '../components/Navbar';
 import RecipeItem from '../components/RecipeItem';
 
 /**
@@ -81,7 +80,6 @@ class UserRecipePage extends React.Component {
     if (userRecipes.length) {
       return (
         <div>
-          <Navbar />
           <br />
           <div className="container" >
             <div className="row">
@@ -114,7 +112,6 @@ class UserRecipePage extends React.Component {
     }
     return (
       <div className="">
-        <Navbar />
         <br />
         <div className="container">
           <br />

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Footer from './Footer';
-import Navbar from '../components/Navbar';
 import Search from '../components/Search';
 import RecipeItem from '../components/RecipeItem';
 import capitalize from '../utils/capitalize';
@@ -59,7 +58,6 @@ class SearchPage extends React.Component {
     );
     return (
       <div>
-        <Navbar />
         <div className="container search-page-body" id="search-body-result">
           <h1 className="text-center" id="search-header">Search Awesome Recipes</h1>
           <br />

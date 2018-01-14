@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import toastr from 'toastr';
+import MDSpinner from 'react-md-spinner';
 
 import Footer from './Footer';
 import userProfile from '../actions/userProfile';
@@ -26,6 +28,7 @@ class UserProfile extends React.Component {
       email: '',
       password: '',
       picture: '',
+      isUploading: false,
       disabled: true,
       uploadImageError: '',
       selectedImage: false
@@ -106,14 +109,19 @@ class UserProfile extends React.Component {
     const { firstname, lastname, email, picture } = this.state;
     event.preventDefault();
     if (this.state.selectedImage) {
+      this.setState({ isUploading: true });
       return uploadImage(picture)
         .then((response) => {
           const url = response.data.secure_url;
           this.setState({ picture: url });
           this.props.updateProfile(this.state);
         })
-        .catch((error) => {
-          this.setState({ uploadImageError: error.error.message });
+        .catch(() => {
+          this.setState({ isUploading: false, uploadImageError: 'Unable to upload image. profile not updated' });
+          toastr.options = {
+            closeButton: true
+          };
+          toastr.error(this.state.uploadImageError);
         });
     }
     this.props.updateProfile({ firstname, lastname, email, picture });
@@ -211,10 +219,19 @@ class UserProfile extends React.Component {
 
                 <div className="form-group">
                   <div className="row">
-                    <div className="col-sm-2">
-                      <button className="btn btn-success" disabled={this.state.disabled}>Update</button></div>
-                    <div className="col-sm-1" />
-                    <div className="col-sm-2">
+                    <div className="col-xs-3 col-md-3">
+                      <button
+                        className="btn btn-success"
+                        disabled={this.state.disabled}
+                      >
+                       Update
+                        {/* {
+                          this.props.fetching && <span> <MDSpinner /></span>
+                        } */}
+                      </button>
+                    </div>
+                    <div className="col-xs-3 col-md-3" />
+                    <div className="col-xs-3 col-md-3">
                       <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
                     </div>
                   </div>
@@ -236,13 +253,15 @@ const mapDispatchToprops = dispatch => ({
 
 const mapStateToProps = state => ({
   userDetails: state.currentUserProfile.User,
-  updateSuccess: state.currentUserProfile.UpdateSuccess
+  updateSuccess: state.currentUserProfile.UpdateSuccess,
+  fetching: state.isFetching
 });
 
 UserProfile.propTypes = {
   viewProfile: PropTypes.func.isRequired,
   userDetails: PropTypes.shape(),
   updateProfile: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 UserProfile.defaultProps = {
   userDetails: {},
@@ -250,3 +269,4 @@ UserProfile.defaultProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToprops)(UserProfile);
+

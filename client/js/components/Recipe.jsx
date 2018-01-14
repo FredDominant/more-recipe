@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import Navbar from './Navbar';
 import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
@@ -128,7 +127,6 @@ class Recipe extends React.Component {
     const { directions } = this.state.recipe;
     return (
       <div >
-        <Navbar />
         <div className="container">
           <div className="container">
             <br />
