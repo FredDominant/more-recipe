@@ -128,14 +128,6 @@ export default class User {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const picture = req.body.picture;
-    user.findOne({ where: { email } })
-      .then((foundUser) => {
-        if (foundUser) {
-          return res.staus(403).json({ Message: 'Email already in use' });
-        }
-      })
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
-
     user.findOne({
       where: {
         id: req.decoded.id
