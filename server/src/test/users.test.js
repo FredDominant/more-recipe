@@ -4,7 +4,6 @@ import chai from 'chai';
 import app from '../../app';
 import fakeData from './faker/users.faker';
 
-// const helper = new passwordHelper.default();
 const expect = chai.expect;
 chai.use(chaiHttp);
 let userToken;
@@ -54,6 +53,15 @@ describe('Test for Users', () => {
           done();
         });
     });
+    it('return 401 for incorrect password', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/signin')
+        .send({ email: 'fredadewole@email.com', password: '1111111111' })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
     it('return 400 if email is already in use', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
@@ -90,6 +98,66 @@ describe('Test for Users', () => {
         .send(fakeData.invalidLogin)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('Message');
+          done();
+        });
+    });
+  });
+  describe('Verify email', () => {
+    it('should not return 404 when registered user resets password', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/recover-email')
+        .set('x-access-token', userToken)
+        .send({ email: 'fredadewole@email.com' })
+        .end((err, res) => {
+          expect(res.status).to.not.equal(404);
+          expect(res.body).to.haveOwnProperty('Message');
+          done();
+        });
+    });
+    it('should return 404 when an uregistered user resets password', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/recover-email')
+        .set('x-access-token', userToken)
+        .send({ email: 'random@email.com' })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('Message');
+          done();
+        });
+    });
+  });
+  describe('Endpoint to reset password', () => {
+    it('should return 400 if passwords don\'t match', (done) => {
+      chai.request(app)
+        .put('/api/users/reset-password')
+        .set('x-access-token', userToken)
+        .send({ password: '111111', confirmPassword: '123456' })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('Message');
+          done();
+        });
+    });
+    it('should return 400 if passwords are less than 6 characters', (done) => {
+      chai.request(app)
+        .put('/api/users/reset-password')
+        .set('x-access-token', userToken)
+        .send({ password: '11', confirmPassword: '11' })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('Message');
+          done();
+        });
+    });
+    it('should not give an error if passwords match', (done) => {
+      chai.request(app)
+        .put('/api/users/reset-password')
+        .set('x-access-token', userToken)
+        .send({ password: '123456', confirmPassword: '123456' })
+        .end((err, res) => {
+          expect(res.status).to.not.equal(401);
+          expect(res.status).to.not.equal(400);
           expect(res.body).to.haveOwnProperty('Message');
           done();
         });

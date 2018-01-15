@@ -134,10 +134,6 @@ export default class User {
       }
     })
       .then((foundUser) => {
-        if (!foundUser) {
-          return res.status(401)
-            .json({ Message: 'You\'re not authorized to perform this operation' });
-        }
         if (foundUser) {
           const newData = {
             email: email ? email.trim() : foundUser.dataValues.email,
@@ -225,9 +221,6 @@ export default class User {
       }
     })
       .then((foundUser) => {
-        if (!foundUser) {
-          return res.status(400).json({ Message: 'User not found' });
-        }
         if (foundUser.dataValues.token === req.headers['x-access-token']) {
           const updateDetails = {
             password: helper.hashPassword(password),

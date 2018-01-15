@@ -4,9 +4,7 @@ import chai from 'chai';
 import app from '../../app';
 import models from '../models';
 import fakeUsers from './faker/users.faker';
-import fakeReviews from './faker/reviews.faker';
 
-// const helper = new passwordHelper.default();
 const expect = chai.expect;
 chai.use(chaiHttp);
 let userToken;

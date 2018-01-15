@@ -332,9 +332,7 @@ export default class Recipe {
                 Recipes: allUserRecipes
               });
           }
-        })
-        .catch(() => res.status(500)
-          .json({ Message: 'Unable to find all recipes by you' }));
+        });
     }).catch(() => res.status(500)
       .json({
         Message: 'Internal server error'

@@ -7,6 +7,12 @@ export default {
     directions: faker.lorem.words(),
     ingredients: faker.lorem.words()
   },
+  secondValidRecipe: {
+    name: faker.lorem.words(),
+    description: faker.lorem.words(),
+    directions: faker.lorem.words(),
+    ingredients: faker.lorem.words()
+  },
   namelessRecipe: {
     description: faker.lorem.words(),
     directions: faker.lorem.words(),

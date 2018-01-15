@@ -2,17 +2,15 @@ import bcrypt from 'bcrypt';
 
 
 /**
- * 
- * 
+ *
  * @export
  * @class PasswordHelper
  */
 export default class PasswordHelper {
   /**
-   * 
-   * 
-   * @param {any} password 
-   * @returns hash
+   * @description hashes password
+   * @param {any} password
+   * @returns {hash} hashed password
    * @memberof PasswordHelper
    */
   hashPassword(password) {
@@ -22,13 +20,12 @@ export default class PasswordHelper {
   }
 
   /**
-	 * 
-	 * 
-	 * @param {any} password
-	 * @param {any} hash
-	 * @returns {boolean} true or false
-	 * @memberof PasswordHelper
-	 */
+ * @description compares password to hash
+ * @param {any} password
+ * @param {any} hash
+ * @returns {boolean} true or false
+ * @memberof PasswordHelper
+ */
   decrypt(password, hash) {
     this.status = bcrypt.compareSync(password, hash);
     return this.status;

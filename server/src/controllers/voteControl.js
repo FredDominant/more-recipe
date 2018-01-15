@@ -50,7 +50,7 @@ export default class Vote {
                     recipe.findById(req.params.recipeId)
                       .then((found) => {
                         if (!found) {
-                          return res.status(500).json({ Message: 'couldn\'t upvote recipe' });
+                          return res.status(404).json({ Message: 'recipe not found' });
                         }
                         if (found) {
                           found.increment('upvote');

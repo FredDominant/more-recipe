@@ -3,18 +3,16 @@ import chai from 'chai';
 
 import app from '../../app';
 import models from '../models';
-// import * as passwordHelper from '../functions/encrypt';
 import fakeUsers from './faker/users.faker';
 import fakeRecipes from './faker/recipes.faker';
 
-// const helper = new passwordHelper.default();
 const expect = chai.expect;
 chai.use(chaiHttp);
 let userToken;
 
 describe('Test for', () => {
   after((done) => {
-    models.Recipe.destroy({ where: { id: { $notIn: [1] } } });
+    models.Recipe.destroy({ where: { id: { $notIn: [1, 2] } } });
     done();
   });
   before((done) => {
@@ -27,7 +25,7 @@ describe('Test for', () => {
       });
   });
 
-  describe('endpoint to add recipes should', () => {
+  describe('endpoint for recipes should', () => {
     it('allow users add recipe with valid details', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
@@ -35,6 +33,16 @@ describe('Test for', () => {
         .send(fakeRecipes.validRecipe)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          done();
+        });
+    });
+    it('not allow users add recipe with the same name', (done) => {
+      chai.request(app)
+        .post('/api/v1/recipes')
+        .set('x-access-token', userToken)
+        .send(fakeRecipes.validRecipe)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
           done();
         });
     });
@@ -51,6 +59,16 @@ describe('Test for', () => {
   });
 
   describe('endpoint to update recipe should', () => {
+    it('should return 400 if recipe name is too short', (done) => {
+      chai.request(app)
+        .put('/api/v1/recipes/1')
+        .set('x-access-token', userToken)
+        .send({ name: 'a' })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
     it('allow users update recipes they added', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1')
@@ -79,6 +97,14 @@ describe('Test for', () => {
         .get('/api/v1/recipes/1')
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it('not allow for recipes that don\'t exist', (done) => {
+      chai.request(app)
+        .get('/api/v1/recipes/11')
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
           done();
         });
     });
@@ -121,7 +147,7 @@ describe('Test for', () => {
   });
 
   describe('endpoint to get all recipes by a user should', () => {
-    it('returan all recipes  y the user', (done) => {
+    it('returan all recipes  by the user', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/user/all')
         .set('x-access-token', userToken)
@@ -177,13 +203,27 @@ describe('Test for', () => {
     });
   });
   it('not delete if user doesn`t own recipe', (done) => {
-    console.log(userToken, '///////');
     chai.request(app)
       .delete('/api/v1/recipes/11')
       .set('x-access-token', userToken)
       .end((err, res) => {
         expect(res.status).to.equal(404);
         done();
+      });
+  });
+  it('delete if user owns recipe', (done) => {
+    chai.request(app)
+      .post('/api/v1/recipes')
+      .set('x-access-token', userToken)
+      .send(fakeRecipes.secondValidRecipe)
+      .end(() => {
+        chai.request(app)
+          .delete('/api/v1/recipes/2')
+          .set('x-access-token', userToken)
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            done();
+          });
       });
   });
 });

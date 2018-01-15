@@ -112,31 +112,7 @@ export default class Validate {
         .json({ Message: errors });
     }
   }
-  /**
-   * @description This method validates a search box
-   *
-   * @static
-   *
-   * @param {any} req HTTP request
-   * @param {any} res HTTP response
-   * @param {any} next middleware function
-   *
-   * @returns {any} next or HTTP Status code
-   * @memberof Validate
-   */
-  static searchRecipe(req, res, next) {
-    const search = req.body.search;
-    const searchData = { search };
-    const searchRules = { search: 'required|string' };
-    const validation = new Validator(searchData, searchRules);
-    if (validation.passes()) {
-      next();
-    } else {
-      const errors = validation.errors.all();
-      return res.status(400)
-        .json({ Message: errors });
-    }
-  }
+
   /**
    * This method validates reviews
    * @static

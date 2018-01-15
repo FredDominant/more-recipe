@@ -37,10 +37,10 @@ export default (sequelize, DataTypes) => {
   });
   User.associate = (models) => {
     // associations can be defined here
-    User.hasMany(models.Recipe, { foreignKey: 'userId' });
-    User.hasMany(models.Review, { foreignKey: 'userId' });
-    User.hasMany(models.Upvote, { foreignKey: 'userId' });
-    User.hasMany(models.Downvote, { foreignKey: 'userId' });
+    User.hasMany(models.Recipe, { foreignKey: 'userId', onDelete: 'CASCADE' });
+    User.hasMany(models.Review, { foreignKey: 'userId', onDelete: 'CASCADE' });
+    User.hasMany(models.Upvote, { foreignKey: 'userId', onDelete: 'CASCADE' });
+    User.hasMany(models.Downvote, { foreignKey: 'userId', onDelete: 'CASCADE' });
   };
   return User;
 };
