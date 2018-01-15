@@ -212,7 +212,10 @@ class UserProfile extends React.Component {
                 <div className="form-group">
                   <div className="row">
                     <div className="col-sm-2">
-                      <button className="btn btn-success" disabled={this.state.disabled}>Update</button></div>
+                      <button
+                        className="btn btn-success"
+                        disabled={this.state.disabled}
+                      >Update</button></div>
                     <div className="col-sm-1" />
                     <div className="col-sm-2">
                       <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>

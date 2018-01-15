@@ -50,10 +50,6 @@ export default class Recipe {
               .json({
                 Recipe: newRecipe
               }));
-          // .catch(() => res.status(500)
-          //   .json({
-          //     Message: 'Internal server error. Unable to complete'
-          //   }));
         }
       })
       .catch(() => res.status(500)

@@ -6,7 +6,8 @@ import ReactPaginate from 'react-paginate';
 import Footer from './Footer';
 import getUserRecipes from '../actions/getUserRecipes';
 import deleteRecipe from '../actions/deleteRecipe';
-import RecipeItem from '../components/RecipeItem';
+import RecipeItem from './RecipeItem';
+import Loading from './Loading';
 
 /**
  *
@@ -110,6 +111,15 @@ class UserRecipePage extends React.Component {
         </div>
       );
     }
+    if (this.props.fetching) {
+      return (
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="">
         <br />
@@ -130,7 +140,8 @@ class UserRecipePage extends React.Component {
 }
 const mapStateToProps = state => ({
   userRecipes: state.getUserRecipe.userRecipes,
-  pageInfo: state.pageInfo
+  pageInfo: state.pageInfo,
+  fetching: state.isFetching
 });
 const mapDispatchToProps = dispatch => ({
   getAllUserRecipes: page => dispatch(getUserRecipes(page)),
@@ -141,8 +152,8 @@ UserRecipePage.propTypes = {
   userRecipes: PropTypes.arrayOf(PropTypes.shape()),
   getAllUserRecipes: PropTypes.func.isRequired,
   deleteRecipe: PropTypes.func.isRequired,
-  pageInfo: PropTypes.shape().isRequired
-
+  pageInfo: PropTypes.shape().isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 
 UserRecipePage.defaultProps = {
