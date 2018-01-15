@@ -131,10 +131,11 @@ export default class User {
     user.findOne({ where: { email } })
       .then((foundUser) => {
         if (foundUser) {
-          return res.sttaus(403).json({ Message: 'Email already in use' });
+          return res.staus(403).json({ Message: 'Email already in use' });
         }
       })
       .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+
     user.findOne({
       where: {
         id: req.decoded.id
