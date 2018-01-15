@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import Navbar from './Navbar';
+import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
 import addFavourites from '../actions/addFavourites';
@@ -108,7 +108,7 @@ class Recipe extends React.Component {
     }
     const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
     const splitIngredients = ingredients.split(',').map((item, i) => (
-      <li key={`ingredient ${i + 1}`}>{item}</li>
+      <li className="list-group-item text-left" key={`ingredient ${i + 1}`}>{capitalize(item)}</li>
     ));
 
     const { reviews } = this.state;
@@ -121,13 +121,12 @@ class Recipe extends React.Component {
           lastname={review.User.lastname}
           content={review.content}
           created={moment(new Date(review.createdAt)).fromNow()}
-
         />
       </div>
     ));
+    const { directions } = this.state.recipe;
     return (
       <div >
-        <Navbar />
         <div className="container">
           <div className="container">
             <br />
@@ -135,7 +134,7 @@ class Recipe extends React.Component {
               <div className="col-md-6 col-sm-8">
                 <div className="image-container">
                   <img
-                    className="img-thumbnail"
+                    className="img-thumbnail img-fluid"
                     src={this.state.recipe.picture}
                     alt={this.state.recipe.name}
                     height="50"
@@ -143,44 +142,52 @@ class Recipe extends React.Component {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
-                <h2>{this.state.recipe.name ? capitalize(this.state.recipe.name) : '' }</h2>
-                <h5>{this.state.recipe.description ? capitalize(this.state.recipe.description) : '' }</h5>
-                <ul>
+              <div className="col-md-6 container">
+                <h2 className="text-left recipe-details-name ml-5">{this.state.recipe.name ? capitalize(this.state.recipe.name) : '' }</h2>
+                <h5 className="text-left recipe-details-description ml-5">{this.state.recipe.description ? capitalize(this.state.recipe.description) : '' }</h5>
+                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</small></h5>
+                {this.props.authenticated && <div className="actions ml-5 mb-3">
+                  <div className="btn-group" role="group" >
+
+                    <button
+                      type="button"
+                      title="upvote this recipe"
+                      className="btn btn-outline-danger"
+                      onClick={this.handleUpvote}
+                    ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
+
+                    <button
+                      type="button"
+                      title="downvote this recipe"
+                      className="btn btn-outline-danger"
+                      onClick={this.handleDownvote}
+                    ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
+
+                    <button
+                      type="button"
+                      title="add to your favourites"
+                      className="btn btn-outline-danger"
+                      onClick={this.handleFavourite}
+                    ><i className="fab fa-gratipay" /></button>
+                  </div>
+                </div> }
+                <br />
+                <h5 className="text-left ml-5 mb-3">INGREDIENTS</h5>
+                <hr />
+                <ul className="align-left container">
                   {splitIngredients}
                 </ul>
               </div>
+              <div className="container mt-3 mb-3 text-left">
+                <h5 className="text-left ">DIRECTIONS</h5>
+                <hr />
+                {capitalize(directions)}
+              </div>
             </div>
             <br />
-            <hr />
-            {this.props.authenticated && <div className="actions">
-              <div className="btn-group" role="group" >
-
-                <button
-                  type="button"
-                  title="upvote this recipe"
-                  className="btn btn-outline-danger"
-                  onClick={this.handleUpvote}
-                ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
-
-                <button
-                  type="button"
-                  title="downvote this recipe"
-                  className="btn btn-outline-danger"
-                  onClick={this.handleDownvote}
-                ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
-
-                <button
-                  type="button"
-                  title="add to your favourites"
-                  className="btn btn-outline-danger"
-                  onClick={this.handleFavourite}
-                ><i className="fab fa-gratipay" /></button>
-              </div>
-            </div> }
             <div className="container-fluid" id="review-body">
-              <h5>Reviews</h5>
-              <div className="add-review-form">
+              <h5 className="text-left mt-3 mb-3 ml-5">REVIEWS</h5>
+              <div className="add-review-form align-center">
                 {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
                 <br />
               </div>
@@ -189,10 +196,12 @@ class Recipe extends React.Component {
               </div>}
               { !allReviews.length && <div className="emptyContent">
                 <h2 className="text-center">There are currently no reviews for this recipe.</h2>
+                <br />
               </div>}
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

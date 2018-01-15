@@ -103,7 +103,7 @@ class PasswordRecoveryForm extends React.Component {
             <br />
             <button
               id="recover-password-button"
-              className="btn btn-primary"
+              className="btn"
               onClick={this.onSubmit}
             >
             Recover password

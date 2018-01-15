@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
 import RecipeItem from '../components/RecipeItem';
 import getFavourites from '../actions/getFavourites';
 import removeFavourite from '../actions/removeFavourite';
@@ -24,8 +26,10 @@ class Favourites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userFavourites: []
+      userFavourites: [],
+      pageInfo: {}
     };
+    this.onPageChange = this.onPageChange.bind(this);
   }
   /**
    *
@@ -43,7 +47,17 @@ class Favourites extends React.Component {
  */
   componentWillReceiveProps(nextProps) {
     const favourites = nextProps.favourites;
-    this.setState({ userFavourites: favourites });
+    const { pageInfo } = nextProps;
+    this.setState({ userFavourites: favourites, pageInfo });
+  }
+  /**
+   * @param {any} current
+   * @returns {null} null
+   * @memberof RecipeBody
+   */
+  onPageChange(current) {
+    current.selected += 1;
+    this.props.getAllFavourites(current.selected);
   }
   /**
    *
@@ -52,15 +66,7 @@ class Favourites extends React.Component {
    * @memberof Favourites
    */
   render() {
-    if (this.props.fetching) {
-      return (
-        <div className="container loading-icon-container">
-          <div className="text-center mt-30 loading-icon">
-            <Loading size={100} />
-          </div>
-        </div>
-      );
-    }
+    const { pages } = this.state.pageInfo;
     const allFavourites = this.state.userFavourites.map(recipe => (
       <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
         <RecipeItem
@@ -81,21 +87,49 @@ class Favourites extends React.Component {
     if (allFavourites.length) {
       return (
         <div>
-          <Navbar />
           <br />
-          <div className="container">
+          <div className="container favourite-body">
             <div className="row">
               {allFavourites}
             </div>
+            <div className="container">
+              <ReactPaginate
+                pageCount={pages}
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={3}
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                breakClassName={'text-center'}
+                initialPage={0}
+                containerClassName={'container pagination justify-content-center'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                activeClassName={'page-item active'}
+                previousClassName={'page-item'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                previousLinkClassName={'page-link'}
+                onPageChange={this.onPageChange}
+              />
+            </div>
+          </div>
+          <Footer />
+        </div>
+      );
+    }
+    if (this.props.fetching) {
+      return (
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
           </div>
         </div>
       );
     }
     return (
       <div>
-        <Navbar />
         <br />
-        <div className="container">
+        <div className="container favourite-body">
           <br />
           <div className="emptyContent">
             <br />
@@ -104,17 +138,19 @@ class Favourites extends React.Component {
             </h3>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
   favourites: state.getFavourites.userFavourites,
-  fetching: state.isFetching
+  fetching: state.isFetching,
+  pageInfo: state.pageInfo
 });
 
 const mapDispatchToprops = dispatch => ({
-  getAllFavourites: () => dispatch(getFavourites()),
+  getAllFavourites: page => dispatch(getFavourites(page)),
   removeFromFavourite: recipeId => dispatch(removeFavourite(recipeId))
 });
 
@@ -122,7 +158,8 @@ Favourites.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.shape()),
   getAllFavourites: PropTypes.func.isRequired,
   removeFromFavourite: PropTypes.func.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  pageInfo: PropTypes.shape().isRequired
 };
 Favourites.defaultProps = {
   favourites: []

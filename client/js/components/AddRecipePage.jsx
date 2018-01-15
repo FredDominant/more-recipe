@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
+import toastr from 'toastr';
 
 import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
@@ -26,6 +27,7 @@ class AddRecipePage extends React.Component {
       description: '',
       ingredients: '',
       directions: '',
+      isUploading: false,
       recipeImage: '/images/noImage.png',
       errors: {},
       addRecipeError: '',
@@ -62,13 +64,11 @@ class AddRecipePage extends React.Component {
 * @memberof AddRecipe
 */
   onUpload(event) {
-    // const image = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
       this.setState({ recipeImage: e.target.result });
     };
     reader.readAsDataURL(event.target.files[0]);
-    // this.setState({ recipeImage: image });
   }
   /**
 *
@@ -89,24 +89,23 @@ class AddRecipePage extends React.Component {
  */
   addNewRecipe() {
     const { recipeImage, name, description, directions, ingredients } = this.state;
-    console.log(this.state);
     if (recipeImage !== '/images/noImage.png') {
+      this.setState({ isUploading: true });
       return uploadImage(recipeImage)
         .then((response) => {
           const recipeUrl = response.data.secure_url;
-          this.setState({ recipeImage: recipeUrl });
+          this.setState({ recipeImage: recipeUrl, isUploading: false });
           this.props.createRecipe(this.state);
-          console.log('image url is', recipeUrl);
-          console.log('done uploading', recipeImage);
         })
-        .catch((error) => {
-          console.log('upload error is....');
-          this.setState({ uploadImageError: error.error.message });
+        .catch(() => {
+          this.setState({ isUploading: false, uploadImageError: 'Could not upload image. Recipe not added' });
+          toastr.options = {
+            closeButton: true
+          };
+          toastr.error(this.state.uploadImageError);
         });
     }
-    console.log('adding recipe without image');
     this.props.createRecipe({ name, directions, ingredients, description });
-    console.log('added recipe without image');
   }
   /**
 *
@@ -140,7 +139,6 @@ class AddRecipePage extends React.Component {
     const errors = this.state.errors;
     return (
       <div className="container-fluid">
-        <Navbar />
         <div id="add-recipe-form" className="container">
           <form onSubmit={this.handleSubmit}>
             <div className="row">
@@ -149,7 +147,6 @@ class AddRecipePage extends React.Component {
                   <img className="img-thumbnail" src={this.state.recipeImage} alt="" srcSet="" id="add-recipe-image" />
                 </div>
                 <br />
-                {/* <label htmlFor="upload" className="file-upload__label">upload image</label> */}
                 <input
                   style={{ display: 'none' }}
                   type="file"
@@ -165,7 +162,6 @@ class AddRecipePage extends React.Component {
                     type="text"
                     id="recipeName"
                     className="form-control"
-                    placeholder="Michael's Awesome Sauce"
                     name="name"
                     value={this.state.name}
                     onChange={this.onChange}
@@ -181,7 +177,6 @@ class AddRecipePage extends React.Component {
                     type="text"
                     id="recipeDescription"
                     className="form-control"
-                    placeholder="An awesome sauce by Michael"
                     name="description"
                     value={this.state.description}
                     onChange={this.onChange}
@@ -198,7 +193,6 @@ class AddRecipePage extends React.Component {
                     rows="5"
                     id="recipeDescription"
                     className="form-control"
-                    placeholder="Michael's Awesome Sauce"
                     name="directions"
                     value={this.state.directions}
                     onChange={this.onChange}
@@ -215,7 +209,7 @@ class AddRecipePage extends React.Component {
                     rows="5"
                     id="recipeIngredients"
                     className="form-control"
-                    placeholder="Michael's Ingredient list"
+                    placeholder="Comma separated list of ingredients"
                     name="ingredients"
                     value={this.state.ingredients}
                     onChange={this.onChange}
@@ -226,7 +220,17 @@ class AddRecipePage extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary">Create Recipe {this.props.uploading && <span> <MDSpinner /></span>}</button>
+                  <button className="btn btn-primary">
+                    {
+                      !this.state.isUploading && <h6 className="text-center"> Add Recipe </h6>
+                    }
+                    {
+                      this.state.isUploading && <h6 className="text-center"> Uploading Image... </h6>
+                    }
+                    {
+                      this.props.loading && <span> <MDSpinner /></span>
+                    }
+                  </button>
                 </div>
               </div>
             </div>
@@ -239,7 +243,7 @@ class AddRecipePage extends React.Component {
 const mapStateToProps = state => ({
   errorMessage: state.addRecipe.addRecipeErrorMessage,
   addRecipeSuccess: state.addRecipe.addRecipeSuccess,
-  uploading: state.isUploading
+  loading: state.isUploading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -248,7 +252,7 @@ const mapDispatchToProps = dispatch => ({
 
 AddRecipePage.propTypes = {
   createRecipe: PropTypes.func.isRequired,
-  uploading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired
 };
 AddRecipePage.defaultProps = {
   errorMessage: null,

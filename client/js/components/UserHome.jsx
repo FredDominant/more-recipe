@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Search from './Search';
-import Navbar from './Navbar';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
+import Footer from './Footer';
 /**
  *
  * @description
@@ -13,7 +13,6 @@ import RecipeBody from './RecipeBody';
 
 const UserHome = () => (
   <div>
-    <Navbar />
     <br />
     <Search />
     <br />
@@ -21,8 +20,12 @@ const UserHome = () => (
       <Carousel />
       <div className="recipes">
         <RecipeBody />
+        <br />
       </div>
+      <br />
     </div>
+    <br />
+    <Footer />
   </div>
 );
 export default UserHome;

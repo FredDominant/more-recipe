@@ -14,16 +14,14 @@ const resetPassword = userData => (dispatch) => {
     },
     data: { password, confirmPassword }
   })
-    .then((response) => {
-      console.log('response from reset is', response);
+    .then(() => {
       dispatch(unsetFetching());
       toastr.options = {
         closeButton: true
       };
       toastr.success('Password reset. Proceed to login');
     })
-    .catch((error) => {
-      console.log('error is', error);
+    .catch(() => {
       dispatch(unsetFetching());
       toastr.options = {
         closeButton: true

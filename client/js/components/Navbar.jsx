@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 import logOutUser from '../actions/logoutUser';
@@ -41,7 +42,7 @@ class Navbar extends React.Component {
   render() {
     if (this.props.authenticated) {
       return (
-        <div className="container-fluid">
+        <div className="">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-10 col-xs-6">
@@ -112,11 +113,12 @@ class Navbar extends React.Component {
               </div>
             </div>
           </nav>
+          {this.props.children}
         </div>
       );
     }
     return (
-      <div className="container-fluid">
+      <div className="">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="row" id="nav2">
             <div className="col-sm-9" id="nav-button">
@@ -143,6 +145,7 @@ class Navbar extends React.Component {
             </div>
           </div>
         </nav>
+        {this.props.children}
       </div>
     );
   }

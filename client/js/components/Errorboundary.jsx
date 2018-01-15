@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Navbar from '../components/Navbar';
+import Footer from './Footer';
+
 /**
  *
  *
@@ -26,8 +28,7 @@ class Errorboundary extends React.Component {
    * @param {any} info
    * @memberof Errorboundary
    */
-  componentDidCatch(error, info) {
-    console.log(`Error ${info} has occured`);
+  componentDidCatch() {
     this.setState({
       hasError: true
     });
@@ -41,11 +42,11 @@ class Errorboundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div>
-          <Navbar />
           <br />
           <div className="container">
             <h3>An Error has ocurred. Please try again later</h3>
           </div>
+          <Footer />
         </div>
       );
     }

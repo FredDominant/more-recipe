@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import {
   Card,
   CardText,
@@ -9,6 +8,7 @@ import {
   CardTitle
 } from 'reactstrap';
 
+import ConfirmDelete from './ConfirmDelete';
 /**
  * @description
  * @argument {props} props
@@ -17,6 +17,13 @@ import {
 const RecipeItem = props =>
   (
     <div className="recipeCard container">
+      <ConfirmDelete
+        recipeId={props.recipeId}
+        removeRecipe={props.onDelete}
+        removeFavourite={props.removeRecipe}
+        recipeCard={props.userRecipeCard}
+        favouriteCard={props.favouriteCard}
+      />
       <Card>
         <CardBody>
           <CardTitle>
@@ -76,14 +83,17 @@ const RecipeItem = props =>
                 type="button"
                 title="remove from favourites"
                 className="btn btn-outline-danger"
-                onClick={() => { props.removeRecipe(props.recipeId); }}
+                data-toggle="modal"
+                data-target="#confirmDelete"
+                // onClick={() => { props.removeRecipe(props.recipeId); }}
               ><i className="fas fa-trash-alt" /></button>}
 
               {props.userRecipeCard && <button
                 type="button"
                 title="delete this recipe"
                 className="btn btn-outline-danger"
-                onClick={() => { props.onDelete(props.recipeId); }}
+                data-toggle="modal"
+                data-target="#confirmDelete"
               ><i className="fas fa-trash-alt" /> </button>}
             </div>
           </div>

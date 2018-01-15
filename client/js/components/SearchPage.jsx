@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Navbar from '../components/Navbar';
+import Footer from './Footer';
 import Search from '../components/Search';
 import RecipeItem from '../components/RecipeItem';
 import capitalize from '../utils/capitalize';
@@ -31,12 +31,15 @@ class SearchPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { recipes, searchErrors } = nextProps;
     this.setState({ recipes, searchErrors });
+    console.log(typeof searchErrors);
   }
   /**
    * @returns {jsx} React component
    * @memberof SearchPage
    */
   render() {
+    console.log(typeof this.state.searchErrors);
+
     let recipes = (this.state.recipes) ? (this.state.recipes) : [];
     recipes = recipes.map(recipe => (
       <div key={recipe.id} className="col-sm-4">
@@ -55,13 +58,16 @@ class SearchPage extends React.Component {
     );
     return (
       <div>
-        <Navbar />
-        <div className="container" id="search-body-result">
+        <div className="container search-page-body" id="search-body-result">
           <h1 className="text-center" id="search-header">Search Awesome Recipes</h1>
           <br />
           <Search />
           <br />
-          {recipes.length > 0 && <h4 className="text-center" id="search-results"> Search results</h4>}
+          {
+            recipes.length > 0 && <h4 className="text-center" id="search-results">
+             Search results
+            </h4>
+          }
           <br />
           <div className="row">
             {recipes}
@@ -70,6 +76,7 @@ class SearchPage extends React.Component {
             <h5 className="text-center" id="no-match-found"> No match(es) found</h5>
           </div>}
         </div>
+        <Footer />
       </div>
     );
   }

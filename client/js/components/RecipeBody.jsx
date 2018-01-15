@@ -110,6 +110,15 @@ class RecipeBody extends React.Component {
         </div>
       );
     }
+    if (this.props.fetching) {
+      return (
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="">
         <br />
@@ -134,7 +143,6 @@ RecipeBody.propTypes = {
   dispatch: PropTypes.func.isRequired,
   pageInfo: PropTypes.shape().isRequired,
   fetching: PropTypes.bool.isRequired
-
 };
 RecipeBody.defaultProps = {
   recipes: []

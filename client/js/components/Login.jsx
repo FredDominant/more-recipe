@@ -153,7 +153,7 @@ class Login extends React.Component {
                       <div className="input-group">
                         <button
                           type="submit"
-                          className="form-control btn btn-primary register-button"
+                          className="form-control btn register-button"
                           disabled={this.props.fetching}
                         >
                           <span className="register-text">

@@ -55,22 +55,24 @@ class AddReview extends React.Component {
    */
   render() {
     return (
-      <div className="container">
+      <div>
         <div id="review-form">
-          <div className="row">
-            <div className="col-sm-8">
+          <div>
+            <div>
               <form onSubmit={this.handleSubmit}>
                 <input
                   type="text"
                   className="form-control"
                   name="content"
-                  rows="5"
                   placeholder="Add a review..."
                   onChange={this.onChange}
                   value={this.state.content}
                 />
                 <br />
-                <button className="btn btn-primary" id="add-review-button"> <span><i className="fas fa-comment-alt" /> </span>comment</button>
+                <button className="btn" id="add-review-button">
+                  <span><i className="fas fa-comment-alt" /> </span>
+                  Post Review
+                </button>
               </form>
             </div>
           </div>
