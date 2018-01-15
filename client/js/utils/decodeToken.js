@@ -8,7 +8,8 @@ const decodeToken = () => {
         const user = jwt.decode(userToken);
         return user;
       }
-      return localStorage.removeItem('token');
+      localStorage.removeItem('token');
+      return false;
     }));
   }
 };

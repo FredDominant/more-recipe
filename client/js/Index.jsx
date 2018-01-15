@@ -6,11 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import 'toastr/build/toastr.min.css';
 
-import './utils/init';
 import store from './store/store';
 import App from './components/App';
 import decodeToken from './utils/decodeToken';
-import { SIGN_IN_USER } from './actions/actionTypes';
+import { SIGN_IN_USER, LOGOUT } from './actions/actionTypes';
 
 
 const user = decodeToken();
@@ -21,6 +20,11 @@ if (user) {
   });
 }
 
+if (!decodeToken()) {
+  store.dispatch({
+    type: LOGOUT
+  });
+}
 
 ReactDOM.render(
   <Provider store={store}>

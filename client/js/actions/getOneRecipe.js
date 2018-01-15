@@ -16,7 +16,6 @@ const getRecipeError = error => ({
 
 const getOneRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
-
   dispatch(setFetching());
   if (token) {
     return axios({

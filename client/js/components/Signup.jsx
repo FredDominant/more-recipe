@@ -81,16 +81,18 @@ class Signup extends React.Component {
       <div>
         <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
-            <div className="modal-content container">
-              <div className="row">
-                <div className="col-md-9">
-                  <span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
-                  <span><h6 className="signup-text">Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.</h6></span>
-                </div>
-                <div className="col-md-3">
+            <div className="modal-content container register-signup">
+              <div className="row container">
+                <div className="col-xs-2">
                   <button type="button" className="close cancel-signup" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span className="close-signup" aria-hidden="true">&times;</span>
                   </button>
+                </div>
+              </div>
+              <div className="row container">
+                <div className="col-xs-12 text-center">
+                  <span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
+                  <span><h6 className="signup-text text-center">Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.</h6></span>
                 </div>
               </div>
               <div className="modal-body">
@@ -185,10 +187,11 @@ class Signup extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn btn-primary signup-form register-button"
+                          disabled={this.props.fetching}
                         >
                           <span className="register-text">
                           Register
-                            {this.props.fetching && <span> <MDSpinner /></span>}
+                            {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
                           </span> </button>
                       </div>
                     </div>

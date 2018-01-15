@@ -10,7 +10,9 @@ import addFavourites from '../actions/addFavourites';
 import downvoteRecipe from '../actions/downvote';
 import ViewReviews from '../components/ViewReviews';
 import AddReview from '../components/AddReview';
+import NotFoundPage from '../components/NotFoundPage';
 import capitalize from '../utils/capitalize';
+import Loading from '../components/Loading';
 /**
  *
  *
@@ -92,16 +94,17 @@ class Recipe extends React.Component {
    * @memberof Recipe
    */
   render() {
-    if (!this.state.recipe.id) {
+    if ((this.props.fetching) && !(this.state.recipe.id)) {
       return (
-        <div>
-          <Navbar />
-          <div className="container">
-            <br />
-            <h4>This recipe has been taken off the catalogue</h4>
+        <div className="container loading-icon-container">
+          <div className="text-center mt-30 loading-icon">
+            <Loading size={100} />
           </div>
         </div>
       );
+    }
+    if (!this.state.recipe.id) {
+      return <NotFoundPage />;
     }
     const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
     const splitIngredients = ingredients.split(',').map((item, i) => (
@@ -131,7 +134,13 @@ class Recipe extends React.Component {
             <div className="row">
               <div className="col-md-6 col-sm-8">
                 <div className="image-container">
-                  <img src={this.state.recipe.picture} alt="" height="50" width="50" className="img-thumbnail" />
+                  <img
+                    className="img-thumbnail"
+                    src={this.state.recipe.picture}
+                    alt={this.state.recipe.name}
+                    height="50"
+                    width="50"
+                  />
                 </div>
               </div>
               <div className="col-md-6">
@@ -175,11 +184,11 @@ class Recipe extends React.Component {
                 {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
                 <br />
               </div>
-              { allReviews.length > 0 && <div>
+              { allReviews.length > 0 && <div className="review-body">
                 {allReviews}
               </div>}
               { !allReviews.length && <div className="emptyContent">
-                <h2>There are currently no reviews for this recipe.</h2>
+                <h2 className="text-center">There are currently no reviews for this recipe.</h2>
               </div>}
             </div>
           </div>
@@ -196,6 +205,7 @@ Recipe.propTypes = {
   favourite: PropTypes.func.isRequired,
   recipe: PropTypes.shape(),
   authenticated: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 Recipe.defaultProps = {
   recipe: {},
@@ -204,7 +214,8 @@ Recipe.defaultProps = {
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
   authenticated: state.auth.isAuthenticated,
-  error: state.getOneRecipe.errorMessage
+  error: state.getOneRecipe.errorMessage,
+  fetching: state.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

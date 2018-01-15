@@ -97,10 +97,10 @@ class Login extends React.Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content container">
               <div className="row">
-                <div className="col-sm-8 login-head">
+                <div className="col-xs-9 login-head text-center">
                   <span><h1 className="modal-title" id="login-title">More Recipes</h1></span>
                 </div>
-                <div className="col-sm-4 login-close">
+                <div className="col-xs-3 login-close">
                   <button type="button" className="close cancel-login" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -154,7 +154,11 @@ class Login extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn btn-primary register-button"
-                        > <span className="register-text"> Log in  {this.props.fetching && <span> <MDSpinner /></span>}</span>
+                          disabled={this.props.fetching}
+                        >
+                          <span className="register-text">
+                         Log in  {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                          </span>
                         </button>
                       </div>
                       <br />

@@ -44,7 +44,6 @@ img.img-thumbnail {
 
 #signup-title {
 	font-family: 'Berkshire Swash', cursive;
-	margin-left: 33%;
 	color: brown;
 	margin-top: 20px;
 }
@@ -81,7 +80,6 @@ img.card-img{
 .signup-text {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
 	text-align: center;
-	margin-left: 30%;
 	font-size: smaller;
 }
 
@@ -337,4 +335,29 @@ a, button {
 }
 #nav-toggler {
   background-color: brown;
+}
+
+.register-signup {
+  position: relative;
+}
+
+.close-signup {
+  position: absolute;
+  right: 25px
+}
+#navbar-button {
+  position: relative;
+}
+#nav-toggler {
+  position: absolute;
+  right: 0px;
+}
+.review-body {
+  height: 400px;
+  overflow: scroll;
+}
+
+.loading-icon-container {
+  background-color: white;
+  margin-top: 20%;
 }
