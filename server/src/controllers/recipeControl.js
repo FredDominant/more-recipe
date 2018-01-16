@@ -210,7 +210,7 @@ export default class Recipe {
         .json({ Message: 'Internal server' }));
     }
     if (req.query.sort) {
-      recipe.findAll()
+      recipe.findAll({ limit: 3 })
         .then((allRecipes) => {
           if (allRecipes) {
             if (allRecipes.length < 1) {

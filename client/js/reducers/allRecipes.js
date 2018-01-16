@@ -18,13 +18,13 @@ const allRecipes = (state = initialState.recipes, action) => {
       return {
         ...state,
         allRecipes: action.recipes,
-        failure: false
+        failure: ''
       };
     case SEARCH_RECIPES_ERROR:
       return {
         ...state,
         allRecipes: [],
-        failure: true
+        failure: 'failed'
       };
     default:
       return state;

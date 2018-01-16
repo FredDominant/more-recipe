@@ -37,21 +37,23 @@ const RecipeItem = props =>
             />
             <br />
             <div id="recipe-title">
-              <span className="recipe-title">
+              <span className="recipe-title text-left">
                 <Link to={`/recipe/${props.recipeId}`}> {props.recipeName} </Link>
               </span>
             </div>
           </CardTitle>
-          <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {props.owner}</h6>
+          {
+            props.owner && <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {props.owner}</h6>
+          }
           {props.home && <small> Created {props.created}</small>}
           <hr />
           <CardText>
-            <span className="recipe-description">
+            <span className="recipe-description text-left">
               {props.description}
             </span>
             <br />
           </CardText>
-          <div className="all-buttons">
+          <div className="all-buttons text-left">
             <div className="btn-group" role="group" >
 
               <span
@@ -85,7 +87,6 @@ const RecipeItem = props =>
                 className="btn btn-outline-danger"
                 data-toggle="modal"
                 data-target="#confirmDelete"
-                // onClick={() => { props.removeRecipe(props.recipeId); }}
               ><i className="fas fa-trash-alt" /></button>}
 
               {props.userRecipeCard && <button
