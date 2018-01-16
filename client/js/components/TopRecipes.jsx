@@ -32,7 +32,7 @@ class TopRecipes extends React.Component {
     this.props.getTopRecipes();
   }
   /**
-* @returns {node} jsx component
+* @returns {node} react component
 * @memberof TopRecipes
 */
   render() {
