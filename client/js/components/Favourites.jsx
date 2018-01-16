@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 
-import Navbar from '../components/Navbar';
 import Footer from './Footer';
 import RecipeItem from '../components/RecipeItem';
 import getFavourites from '../actions/getFavourites';

@@ -20,6 +20,7 @@ class TopRecipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipes: []
     };
   }
   /**
@@ -53,12 +54,19 @@ class TopRecipes extends React.Component {
       </div>
     ));
     return (
-      <div className="container mt-3">
-        <h3 className="text-center mt-3 mb-3 allRecipes-title"> Todays Top Three Delicacies</h3>
-        <hr />
-        <div className="row">
-          {topRecipes}
-        </div>
+      <div>
+        { topRecipes.length > 0 &&
+          <div className="container mt-3">
+            <h3 className="text-center mt-3 mb-3 allRecipes-title"> Todays Top Three Delicacies</h3>
+            <hr />
+            <div className="row">
+              {topRecipes}
+            </div>
+          </div>
+        }
+        { !topRecipes.length &&
+          <div className="container mt-3" />
+        }
       </div>
     );
   }
