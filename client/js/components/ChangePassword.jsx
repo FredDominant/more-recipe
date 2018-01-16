@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import MDSpinner from 'react-md-spinner';
 
-import Navbar from '../components/Navbar';
 import Footer from './Footer';
 import verifyRecoveryToken from '../utils/verifyRecoveryToken';
 import resetPasswordValidator from '../validation/resetPasswordValidator';
@@ -84,50 +84,56 @@ class ChangePassword extends React.Component {
       <div>
         <br />
         <div className="container">
-          <div className="change-password">
-            <form className="form-group" onSubmit={this.onSubmit}>
-              <div>
-                <label htmlFor="password">Enter Password</label>
-                <input
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  className="form-control reset-password"
-                  id="password"
-                  placeholder="Password"
-                  name="password"
-                />
-                {errors.password && <small className="form-text text-muted">
-                  <span className="error-text"> {errors.password} </span>
-                </small>}
-              </div>
-              <br />
-              <div>
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                  type="password"
-                  value={this.state.confirmPassword}
-                  onChange={this.onChange}
-                  className="form-control reset-password"
-                  id="confirmPassword"
-                  placeholder="Confirm password"
-                  name="confirmPassword"
-                />
-                {errors.confirmPassword && <small className="form-text text-muted">
-                  <span className="error-text"> {errors.confirmPassword} </span>
-                </small>}
-              </div>
-              <br />
-              <div>
-                <button
-                  className="btn btn-primary"
-                  id="reset-password-button"
-                  onClick={this.onSubmit}
-                >
-                Reset Password
-                </button>
-              </div>
-            </form>
+          <div className="row">
+            <div className="col-md-4 col-xs-8 col-sm-4 col-lg-4" />
+            <div className="col-md-4 col-xs-8 col-sm-4 col-lg-4 change-password">
+              <form className="form-group" onSubmit={this.onSubmit}>
+                <div className="container reset-password-container mt-7 mb-7">
+                  <div className="">
+                    <label htmlFor="password">Enter Password</label>
+                    <input
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      className="form-control reset-password mb-2"
+                      id="password"
+                      placeholder="Password"
+                      name="password"
+                    />
+                    {errors.password && <small className="form-text text-muted">
+                      <span className="error-text"> {errors.password} </span>
+                    </small>}
+                  </div>
+                  <br />
+                  <div>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                      type="password"
+                      value={this.state.confirmPassword}
+                      onChange={this.onChange}
+                      className="form-control reset-password mb-2"
+                      id="confirmPassword"
+                      placeholder="Confirm password"
+                      name="confirmPassword"
+                    />
+                    {errors.confirmPassword && <small className="form-text text-muted">
+                      <span className="error-text"> {errors.confirmPassword} </span>
+                    </small>}
+                  </div>
+                  <br />
+                  <div>
+                    <button
+                      className="btn btn-primary reset-password mb-2"
+                      id="reset-password-button"
+                      onClick={this.onSubmit}
+                    >
+                    Reset Password { this.props.fetching && <span>  <MDSpinner /> </span>}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div className="col-md-4 col-xs-8 col-sm-4 col-lg-4" />
           </div>
         </div>
         <Footer />
@@ -138,7 +144,8 @@ class ChangePassword extends React.Component {
 ChangePassword.propTypes = {
   match: PropTypes.shape().isRequired,
   resetPassword: PropTypes.func.isRequired,
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired
 };
 const mapDispatchToProps = dispatch => ({
   resetPassword: userData => dispatch((resetPassword(userData)))
