@@ -4,6 +4,7 @@ import Search from './Search';
 import Carousel from './Carousel';
 import RecipeBody from './RecipeBody';
 import Footer from './Footer';
+import TopRecipes from './TopRecipes';
 /**
  *
  * @description
@@ -18,6 +19,9 @@ const UserHome = () => (
     <br />
     <div className="container-fluid">
       <Carousel />
+      <div className="top-recipes">
+        <TopRecipes />
+      </div>
       <div className="recipes">
         <RecipeBody />
         <br />
