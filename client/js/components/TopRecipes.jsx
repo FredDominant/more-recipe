@@ -54,7 +54,7 @@ class TopRecipes extends React.Component {
     ));
     return (
       <div className="container mt-3">
-        <h5 className="text-center mt-3 mb-3 allRecipes-title"> Top Recipes Today</h5>
+        <h3 className="text-center mt-3 mb-3 allRecipes-title"> Todays Top Three Delicacies</h3>
         <hr />
         <div className="row">
           {topRecipes}
