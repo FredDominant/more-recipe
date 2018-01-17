@@ -56,23 +56,23 @@ const RecipeItem = props =>
           <div className="all-buttons text-left">
             <div className="btn-group" role="group" >
 
-              <span
-                title="upvote this recipe"
+              <button
+                title="number of downvotes"
                 className="btn btn-outline-danger"
                 disabled
-              ><i className="far fa-thumbs-up" /> <span id="likes">{props.upvotes} </span></span>
+              ><i className="far fa-thumbs-up" /> <span id="likes">{props.upvotes} </span></button>
 
-              <span
-                title="downvote this recipe"
+              <button
+                title="number of downvotes"
                 className="btn btn-outline-danger"
                 disabled
-              ><i className="far fa-thumbs-down" /> <span id="unlikes">{props.downvotes} </span></span>
+              ><i className="far fa-thumbs-down" /> <span id="unlikes">{props.downvotes} </span></button>
 
-              <span
-                title="add to your favourites"
+              <button
+                title="number of views"
                 className="btn btn-outline-danger"
                 disabled
-              ><i className="fas fa-eye" /> <span id="views">{props.views} </span></span>
+              ><i className="fas fa-eye" /> <span id="views">{props.views} </span></button>
               {props.userRecipeCard && <button
                 type="button"
                 title="edit this recipe"
