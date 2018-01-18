@@ -293,10 +293,7 @@ export default class Recipe {
     recipe.findAndCountAll({
       where: {
         userId: req.decoded.id
-      },
-      include: [
-        { model: models.Review, attributes: ['content'] }
-      ]
+      }
     }).then((allUser) => {
       const page = parseInt((req.query.page || 1), 10);
       const numberOfItems = allUser.count;
