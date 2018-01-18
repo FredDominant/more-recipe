@@ -15,8 +15,14 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 app.use(express.static(path.join(__dirname, '../client/assets')));
 router(app);
+
+app.get('/api/documentation', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/assets/doc/index.html'));
+});
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
