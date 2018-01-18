@@ -2,7 +2,7 @@ import models from '../models';
 
 const review = models.Review;
 const recipe = models.Recipe;
-
+const user = models.User;
 /**
  *
  *
@@ -33,20 +33,14 @@ export default class Review {
           recipeId: req.params.recipeId
         };
         review.create(newReview)
-          .then(() => {
-            recipe.findOne({
-              where: { id: req.params.recipeId },
-              include: [
-                { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-                { model: models.Review,
-                  attributes: ['id', 'content', 'createdAt'],
-                  include: [
-                    { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-                  ]
-                }
-              ]
-            })
-              .then(fullRecipe => res.status(201).json({ Message: 'created', Recipe: fullRecipe }));
+          .then((reviews) => {
+            user.findOne({
+              where: { id: req.decoded.id },
+              attributes: ['firstname', 'lastname', 'email', 'picture']
+            }).then(foundUser => res.status(201).json({
+              User: foundUser,
+              Review: reviews
+            }));
           });
       })
       .catch(() => res.status(500)

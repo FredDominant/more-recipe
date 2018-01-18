@@ -6,6 +6,8 @@ import {
   UPVOTE_FAILURE,
   DOWNVOTE_SUCCESS,
   DOWNVOTE_FAILURE,
+  GET_REVIEW_SUCCESS,
+  GET_REVIEW_FAILURE,
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
   EDIT_RECIPE,
@@ -25,6 +27,18 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         ...state,
         singleRecipe: null,
         errorMessage: true
+      };
+    case GET_REVIEW_SUCCESS:
+      console.log('reviews in reducer is', action.review);
+      return {
+        ...state,
+        reviews: action.review,
+        reviewError: ''
+      };
+    case GET_REVIEW_FAILURE:
+      return {
+        ...state,
+        reviewError: action.message
       };
     case UPVOTE_SUCCESS:
       return {

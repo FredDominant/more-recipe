@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const ViewReviews = props => (
   <div className="container">
@@ -13,19 +14,25 @@ const ViewReviews = props => (
         <div className="content text-left mb-5">
           <h5 className="reviewer-name"> {`${props.firstname} ${props.lastname}`} </h5>
           <h6> {props.content} </h6>
-          <h6> <small id="review-date">{props.created} </small> </h6>
+          <h6> <small id="review-date">{props.createdAt} </small> </h6>
         </div>
       </div>
     </div>
   </div>
 );
-
 ViewReviews.propTypes = {
-  content: PropTypes.string.isRequired,
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  created: PropTypes.string.isRequired
+  image: PropTypes.string,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  content: PropTypes.string,
+  createdAt: PropTypes.string,
 };
 
+ViewReviews.defaultProps = {
+  image: '',
+  firstname: '',
+  lastname: '',
+  content: '',
+  createdAt: ''
+};
 export default ViewReviews;

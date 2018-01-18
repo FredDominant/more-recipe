@@ -246,12 +246,12 @@ export default class Recipe {
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-        { model: models.Review,
-          attributes: ['id', 'content', 'createdAt'],
-          include: [
-            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-          ] }
+        { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
+        // { model: models.Review,
+        //   attributes: ['id', 'content', 'createdAt'],
+        //   include: [
+        //     { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+        //   ] }
       ]
     })
       .then((foundRecipe) => {
