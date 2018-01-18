@@ -1,5 +1,3 @@
-import path from 'path';
-
 import authorize from '../middlewares/authorization';
 import allowUser from '../middlewares/allowUser';
 import Recipe from '../controllers/recipeControl';
@@ -14,9 +12,7 @@ const router = (app) => {
     res.status(200)
       .json({ message: 'Welcome to my api' });
   });
-  // app.get('/api/documentation', (req, res) => {
-  //   res.sendFile(path.resolve(__dirname, '../../../client/assets/doc/index.html'));
-  // });
+
   userRoutes(app);
 
   app.post('/api/v1/recipes', authorize, Validate.recipe, Recipe.addRecipe); // auth user adds recipe
@@ -26,6 +22,7 @@ const router = (app) => {
   app.get('/api/v1/recipes/:recipeId', allowUser, Validate.Id, Recipe.viewOne); // user can view a recipe
   app.get('/api/v1/recipes', Recipe.getAll); // user can get all recipes
   app.post('/api/v1/recipes/:recipeId/review', authorize, Validate.Id, Validate.review, Review.addReview); // auth user can add review to recipe
+  app.get('/api/v1/recipes/:recipeId/review', Validate.Id, Review.getReviews); // auth user can view all reviews
   app.get('/api/v1/recipes/user/all', authorize, Recipe.getAllUser); // user can get all recipes by them
   app.post('/api/v1/recipes/:recipeId/favourite', authorize, Validate.Id, Favourite.addFavourite); // User can add recipe as favourite
   app.delete('/api/v1/favourites/:recipeId/delete', authorize, Validate.Id, Favourite.delete); // User can delete recipe from favourites

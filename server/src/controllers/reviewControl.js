@@ -15,10 +15,9 @@ export default class Review {
    *
    * @param {request} req HTTP request
    * @param {response} res HTTP response
-   *
-   * @returns {object} JSON HTTP Status code
-   *
+
    * @memberof Review
+   * @returns {object} JSON HTTP Status code
    */
   static addReview(req, res) {
     const content = req.body.content;
@@ -52,5 +51,55 @@ export default class Review {
       })
       .catch(() => res.status(500)
         .json({ Message: 'Internal error ocurred. Please try again later' }));
+  }
+  /**
+   * @description returns the reviews of a particular recipe
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @memberof Review
+   * @returns {JSON} json object and HTTP Response
+   */
+  static getReviews(req, res) {
+    review.findAndCountAll({
+      where: { recipeId: req.params.recipeId },
+    }).then((allReviews) => {
+      const page = parseInt((req.query.page || 1), 10);
+      const numberOfItems = allReviews.count;
+      const limit = 6;
+      const pages = Math.ceil(numberOfItems / limit);
+      let offset = 0;
+      offset = limit * (page - 1);
+      review.findAll({
+        where: {
+          recipeId: req.params.recipeId
+        },
+        include: [
+          { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+        ],
+        limit,
+        offset,
+        order: [
+          ['id', 'DESC']
+        ]
+      })
+        .then((Reviews) => {
+          if (Reviews) {
+            if (Reviews.length < 1) {
+              return res.status(404).json({ Message: 'There are currently no reviews for this recipe' });
+            }
+            return res.status(200)
+              .json({
+                NumberOfItems: numberOfItems,
+                Limit: limit,
+                Pages: pages,
+                CurrentPage: page,
+                Reviews
+              });
+          }
+        });
+    })
+      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
   }
 }
