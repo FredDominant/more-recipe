@@ -19,7 +19,6 @@ const getReviews = recipeId => (dispatch) => {
   axios.get(`/api/v1/recipes/${recipeId}/review`)
     .then((response) => {
       const { Reviews } = response.data;
-      console.log('reviews in action is', Reviews);
       dispatch(batchActions([
         getReviewSuccess(Reviews),
         unsetFetching()

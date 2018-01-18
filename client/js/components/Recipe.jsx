@@ -180,7 +180,7 @@ class Recipe extends React.Component {
                 {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
                 <br />
               </div>
-              <div className="container">
+              <div className="container review-body">
                 <Reviews recipeId={parseInt(this.props.match.params.recipeId, 10)} />
               </div>
             </div>

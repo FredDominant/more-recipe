@@ -29,7 +29,6 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         errorMessage: true
       };
     case GET_REVIEW_SUCCESS:
-      console.log('reviews in reducer is', action.review);
       return {
         ...state,
         reviews: action.review,
@@ -39,6 +38,21 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         reviewError: action.message
+      };
+    case ADD_REVIEW_SUCCESS:
+      console.log('review in state is', action.review);
+      return {
+        ...state,
+        reviews: state.reviews.concat(action.review)
+      };
+      // return {
+      //   ...state,
+      //   singleRecipe: action.review
+      // };
+    case ADD_REVIEW_FAILURE:
+      return {
+        ...state,
+        addReviewError: action.message
       };
     case UPVOTE_SUCCESS:
       return {
@@ -62,16 +76,7 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         ...state,
         errorMessage: action.message
       };
-    case ADD_REVIEW_SUCCESS:
-      return {
-        ...state,
-        singleRecipe: action.review
-      };
-    case ADD_REVIEW_FAILURE:
-      return {
-        ...state,
-        addReviewError: action.message
-      };
+
     case EDIT_RECIPE:
       return {
         ...state,

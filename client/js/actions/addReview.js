@@ -24,8 +24,9 @@ const addReview = (review, recipeId) => (dispatch) => {
     data: { content: review }
   })
     .then((response) => {
-      const { Recipe } = response.data;
-      dispatch(addReviewSuccess(Recipe));
+      const Review = response.data;
+      console.log('Reviews from server is', Review);
+      dispatch(addReviewSuccess(Review));
       toastr.options = {
         closeButton: true
       };

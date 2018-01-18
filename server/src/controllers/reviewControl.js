@@ -33,13 +33,18 @@ export default class Review {
           recipeId: req.params.recipeId
         };
         review.create(newReview)
-          .then((reviews) => {
+          .then((reviewDetails) => {
             user.findOne({
               where: { id: req.decoded.id },
               attributes: ['firstname', 'lastname', 'email', 'picture']
             }).then(foundUser => res.status(201).json({
               User: foundUser,
-              Review: reviews
+              content: reviewDetails.content,
+              id: reviewDetails.id,
+              userid: reviewDetails.userId,
+              recipeid: reviewDetails.recipeId,
+              updatedAt: reviewDetails.updatedAt,
+              createdAt: reviewDetails.createdAt
             }));
           });
       })

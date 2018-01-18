@@ -20,7 +20,7 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Reviews: [],
+      reviews: [],
     };
   }
   /**
@@ -38,6 +38,8 @@ class Reviews extends React.Component {
    * @returns {null} null
    */
   componentWillReceiveProps(nextProps) {
+    const { reviews } = nextProps;
+    this.setState({ reviews });
     console.log('nextProps in Reviews component is', nextProps);
   }
   /**
@@ -46,7 +48,7 @@ class Reviews extends React.Component {
 * @memberof Reviews
 */
   render() {
-    const allReviews = this.props.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
+    const allReviews = this.state.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
           image={review.User.picture}
