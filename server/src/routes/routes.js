@@ -1,3 +1,5 @@
+import path from 'path';
+
 import authorize from '../middlewares/authorization';
 import allowUser from '../middlewares/allowUser';
 import Recipe from '../controllers/recipeControl';
@@ -12,6 +14,9 @@ const router = (app) => {
     res.status(200)
       .json({ message: 'Welcome to my api' });
   });
+  // app.get('/api/documentation', (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, '../../../client/assets/doc/index.html'));
+  // });
   userRoutes(app);
 
   app.post('/api/v1/recipes', authorize, Validate.recipe, Recipe.addRecipe); // auth user adds recipe
