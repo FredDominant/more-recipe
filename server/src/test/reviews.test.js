@@ -6,7 +6,6 @@ import models from '../models';
 import fakeUsers from './faker/users.faker';
 import fakeReviews from './faker/reviews.faker';
 
-// const helper = new passwordHelper.default();
 const expect = chai.expect;
 chai.use(chaiHttp);
 let userToken;
@@ -26,7 +25,7 @@ describe('Test for', () => {
       });
   });
 
-  describe('Review endpoints should', () => {
+  describe('Endpoints to add reviews should', () => {
     it('not allow unauthenticated users add reviews to recipes', (done) => {
       chai.request(app)
         .post('/api/v1/recipes/1/review')
@@ -63,6 +62,30 @@ describe('Test for', () => {
         .send(fakeReviews.validReview)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          done();
+        });
+    });
+  });
+
+  describe('Endpoints to get reviews should', () => {
+    it('allow unauthenticated users view reviews', (done) => {
+      chai.request(app)
+        .get('/api/v1/recipes/1/review')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.status).to.not.equal(401);
+          expect(res.status).to.not.equal(403);
+          done();
+        });
+    });
+    it('allow authenticated users view reviews', (done) => {
+      chai.request(app)
+        .get('/api/v1/recipes/1/review')
+        .set('x-access-token', userToken)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.status).to.not.equal(401);
+          expect(res.status).to.not.equal(403);
           done();
         });
     });

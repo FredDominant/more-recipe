@@ -14,9 +14,11 @@ export default class Review {
    * Thia method adds reviews to a recipe
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
 
    * @memberof Review
+   *
    * @returns {object} JSON HTTP Status code
    */
   static addReview(req, res) {
@@ -54,10 +56,12 @@ export default class Review {
   /**
    * @description returns the reviews of a particular recipe
    *
-   * @static
    * @param {any} req
+   *
    * @param {any} res
+   *
    * @memberof Review
+   *
    * @returns {JSON} json object and HTTP Response
    */
   static getReviews(req, res) {
