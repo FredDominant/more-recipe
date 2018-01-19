@@ -23,6 +23,9 @@ class Navbar extends React.Component {
     this.state = {};
     this.handleLogout = this.handleLogout.bind(this);
   }
+  // componentWillReceiveProps(props) {
+  //   console.log('nextProps =====>', nextProps);
+  // }
   /**
    * @description this method handles user logout
    * @returns {function} function
@@ -82,7 +85,7 @@ class Navbar extends React.Component {
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >MENU<span className="caret" /></a>
+                        >{ this.props.firstname }  <span className="caret" /> </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
@@ -122,7 +125,7 @@ class Navbar extends React.Component {
                       </span>
                     </li>
                   </ul>}
-                  {!this.props.authenticated &&
+                  {/* {!this.props.authenticated &&
                     <ul className="navbar-nav mr-auto">
                       <li className="nav-item active">
                         <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
@@ -130,7 +133,7 @@ class Navbar extends React.Component {
                       <li className="nav-item active">
                         <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
                       </li>
-                    </ul>}
+                    </ul>} */}
                 </div>
               </div>
             </div>
@@ -202,11 +205,13 @@ Navbar.contextTypes = {
 Navbar.propTypes = {
   logOutUser: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired,
+  firstname: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
 Navbar.defaultProps = {
 };
 const mapStateToProps = state => ({
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  firstname: state.auth.user.firstname
 });
 export default connect(mapStateToProps, { logOutUser })(Navbar);

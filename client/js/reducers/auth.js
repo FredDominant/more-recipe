@@ -8,14 +8,14 @@ const auth = (state = initialState.auth, action) => {
         ...state,
         isAuthenticated: true,
         errorMessage: '',
-        user: action.user,
+        user: { firstname: action.user.FirstName },
         token: action.token
       };
     case LOGOUT:
       return {
         ...state,
         isAuthenticated: false,
-        user: null,
+        user: { firstname: 'Guest' },
         token: null
       };
     case SIGN_IN_USER:
@@ -23,6 +23,7 @@ const auth = (state = initialState.auth, action) => {
         ...state,
         isAuthenticated: true,
         errorMessage: '',
+        token: action.token,
         user: action.user,
       };
     case AUTH_ERROR:

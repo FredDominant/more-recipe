@@ -88,9 +88,9 @@ class Login extends React.Component {
  */
   render() {
     const { errors } = this.state;
-    if (this.props.authenticated) {
-      return <Redirect to="/home" />;
-    }
+    // if (this.props.authenticated) {
+    //   return <Redirect to="/home" />;
+    // }
     return (
       <div>
         <div className="modal fade" id="login" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">

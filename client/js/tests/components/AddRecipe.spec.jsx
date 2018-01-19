@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { mount, shallow } from 'enzyme';
 
 import store from '../../store/store';
-import AddRecipePage from '../../components/AddRecipePage';
+import { AddRecipePage } from '../../components/AddRecipePage';
 /**
  *
  *
@@ -13,7 +13,9 @@ import AddRecipePage from '../../components/AddRecipePage';
 const setup = () => {
   const props = {
     dispatch: jest.fn(),
-    isFetching: false
+    isFetching: false,
+    createRecipe: jest.fn(() => Promise.resolve()),
+    loading: false
   };
   const shallowWrapper = shallow(<AddRecipePage {...props} />);
   const mountedWrapper = mount(
@@ -30,9 +32,11 @@ const setup = () => {
     props
   };
 };
-const { mountedWrapper } = setup();
+const { mountedWrapper, shallowWrapper } = setup();
 describe('Test for AddRecipePage component', () => {
   it('should render correctly', () => {
     expect(mountedWrapper).toMatchSnapshot();
+  });
+  it('should contain a form', () => {
   });
 });
