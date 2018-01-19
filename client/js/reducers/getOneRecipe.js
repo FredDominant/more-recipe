@@ -20,13 +20,15 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         singleRecipe: action.recipe,
-        errorMessage: ''
+        errorMessage: '',
+        reviews: []
       };
     case GET_ONE_RECIPE_ERROR:
       return {
         ...state,
         singleRecipe: null,
-        errorMessage: true
+        errorMessage: true,
+        reviews: []
       };
     case GET_REVIEW_SUCCESS:
       return {
@@ -40,15 +42,10 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         reviewError: action.message
       };
     case ADD_REVIEW_SUCCESS:
-      console.log('review in state is', action.review);
       return {
         ...state,
-        reviews: state.reviews.concat(action.review)
+        reviews: [...state.reviews, action.review]
       };
-      // return {
-      //   ...state,
-      //   singleRecipe: action.review
-      // };
     case ADD_REVIEW_FAILURE:
       return {
         ...state,

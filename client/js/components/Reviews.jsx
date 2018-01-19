@@ -46,7 +46,7 @@ class Reviews extends React.Component {
 * @memberof Reviews
 */
   render() {
-    const allReviews = this.state.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
+    const allReviews = this.props.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
           image={review.User.picture}
@@ -55,11 +55,23 @@ class Reviews extends React.Component {
           content={review.content}
           createdAt={moment(new Date(review.createdAt)).fromNow()}
         />
+
       </div>
     ));
     return (
       <div className="container">
-        {allReviews}
+        {
+          allReviews.length >= 1 && <div className="container">
+            { allReviews }
+          </div>
+        }
+        {
+          !allReviews.length && <div className="container">
+            <h4 className="text-center allRecipes-title">
+            This recipe has no reviews yet.
+            </h4>
+          </div>
+        }
       </div>
     );
   }

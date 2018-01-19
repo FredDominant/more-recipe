@@ -25,7 +25,6 @@ const addReview = (review, recipeId) => (dispatch) => {
   })
     .then((response) => {
       const Review = response.data;
-      console.log('Reviews from server is', Review);
       dispatch(addReviewSuccess(Review));
       toastr.options = {
         closeButton: true
@@ -33,12 +32,12 @@ const addReview = (review, recipeId) => (dispatch) => {
       toastr.success('Review added');
     })
     .catch(() => {
-      const Message = 'an error occurred';
+      const Message = 'unable to add review';
       dispatch(addReviewFailure(Message));
       toastr.options = {
         closeButton: true
       };
-      toastr.error('unable to add review');
+      toastr.error(Message);
     });
 };
 

@@ -38,7 +38,7 @@ export default class Review {
           .then((reviewDetails) => {
             user.findOne({
               where: { id: req.decoded.id },
-              attributes: ['firstname', 'lastname', 'email', 'picture']
+              attributes: ['firstname', 'lastname', 'picture']
             }).then(foundUser => res.status(201).json({
               User: foundUser,
               content: reviewDetails.content,
