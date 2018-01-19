@@ -189,7 +189,7 @@ export class AddRecipePage extends React.Component {
                   <textarea
                     type="text"
                     rows="5"
-                    id="recipeDescription"
+                    id="recipeDirections"
                     className="form-control"
                     name="directions"
                     value={this.state.directions}

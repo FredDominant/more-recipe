@@ -142,7 +142,7 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
                     </label>
                     <textarea
                       className="form-control"
-                      id="recipeDescription"
+                      id="recipeDirections"
                       name="directions"
                       onChange={[Function]}
                       rows="5"
