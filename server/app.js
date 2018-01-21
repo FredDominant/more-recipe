@@ -7,11 +7,34 @@ import webpackMiddleware from 'webpack-dev-middleware';
 
 import router from './src/routes/routes';
 import webpackConfig from '../webpack.config';
+import webpackProduction from '../webpack.prod';
 
 const app = express();
-const compiler = webpack(webpackConfig);
-app.use(webpackMiddleware(compiler));
-app.use(logger('dev'));
+if (process.env.NODE_ENV === 'production') {
+  const productionCompiler = webpack(webpackProduction);
+  app.use(webpackMiddleware(productionCompiler));
+} else {
+  const developmentCompiler = webpack(webpackConfig);
+  app.use(webpackMiddleware(developmentCompiler));
+  app.use(logger('dev'));
+}
+
+// if (process.env.NODE_ENV !== 'production') {
+//   app.use(webpackMiddleware(compiler, {
+//     hot: true,
+//     publicPath: webpackConfiguration.output.publicPath,
+//     noInfo: true
+//   }));
+//   app.use(webpackHotMiddleware(compiler));
+// }
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(webpackMiddleware(webpack(webpackConfigurationProd)));
+// }
+
+// const compiler = webpack(webpackConfig);
+// app.use(webpackMiddleware(compiler));
+// app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
