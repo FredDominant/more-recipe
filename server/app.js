@@ -19,23 +19,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(logger('dev'));
 }
 
-// if (process.env.NODE_ENV !== 'production') {
-//   app.use(webpackMiddleware(compiler, {
-//     hot: true,
-//     publicPath: webpackConfiguration.output.publicPath,
-//     noInfo: true
-//   }));
-//   app.use(webpackHotMiddleware(compiler));
-// }
-
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(webpackMiddleware(webpack(webpackConfigurationProd)));
-// }
-
-// const compiler = webpack(webpackConfig);
-// app.use(webpackMiddleware(compiler));
-// app.use(logger('dev'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

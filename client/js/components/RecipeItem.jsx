@@ -9,6 +9,8 @@ import {
   CardBody,
   CardTitle
 } from 'reactstrap';
+
+import capitalize from '../utils/capitalize';
 /**
  * @description renders a recipe item card
  * @class RecipeItem
@@ -81,7 +83,7 @@ class RecipeItem extends React.Component {
                 <br />
                 <div id="recipe-title">
                   <span className="recipe-title text-left">
-                    <Link to={`/recipe/${this.props.recipeId}`}> {this.props.recipeName} </Link>
+                    <Link to={`/recipe/${this.props.recipeId}`}> {capitalize(this.props.recipeName)} </Link>
                   </span>
                 </div>
               </CardTitle>
@@ -92,7 +94,7 @@ class RecipeItem extends React.Component {
               <hr />
               <CardText>
                 <span className="recipe-description text-left">
-                  {this.props.description}
+                  {capitalize(this.props.description)}
                 </span>
                 <br />
               </CardText>

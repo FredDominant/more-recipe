@@ -13,7 +13,6 @@ const downvoteFail = message => ({
   message
 });
 
-// return axios.post(`/api/v1/recipes/${recipeId}/upvote`)
 const downvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   axios({
@@ -26,10 +25,6 @@ const downvoteRecipe = recipeId => (dispatch) => {
     .then((response) => {
       const { Recipe } = response.data;
       dispatch(downvoteSuccess(Recipe));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Downvoted!');
     })
     .catch((error) => {
       const { Message } = error;
