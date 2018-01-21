@@ -100,4 +100,28 @@ describe('handleSubmit()', () => {
     expect(shallowWrapper.instance().state.errors)
       .toEqual({});
   });
+  it('should submit for recipes without images', () => {
+    const { recipeWithoutImage } = mockData;
+    const event = {
+      preventDefault: jest.fn()
+    };
+    const form = shallowWrapper.find('form');
+    shallowWrapper.setState(recipeWithoutImage);
+
+    form.simulate('submit', event);
+    expect(shallowWrapper.instance().state.errors)
+      .toEqual({});
+  });
+  it('should not submit for invalid recipes', () => {
+    const { inValidRecipe } = mockData;
+    const event = {
+      preventDefault: jest.fn()
+    };
+    const form = shallowWrapper.find('form');
+    shallowWrapper.setState(inValidRecipe);
+
+    form.simulate('submit', event);
+    expect(shallowWrapper.instance().state.errors)
+      .toEqual({});
+  });
 });
