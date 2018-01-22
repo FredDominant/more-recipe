@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const ViewReviews = props => (
   <div className="container">
-    {console.log('I got here+++++', props.content)}
     <div className="row">
       <div className="col-xs-4 col-sm-4 col-md-4 col-lg-1">
         <div className="reviewer-image">

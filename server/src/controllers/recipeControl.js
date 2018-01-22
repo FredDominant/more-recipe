@@ -243,6 +243,7 @@ export default class Recipe {
    * @memberof Recipe
    */
   static viewOne(req, res) {
+    let userFavourite;
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
@@ -263,10 +264,32 @@ export default class Recipe {
           if (!req.decoded) {
             foundRecipe.increment('views');
           }
-          return res.status(200)
-            .json({
-              Recipe: foundRecipe,
-            });
+          favourite.findOne({
+            where: {
+              userId: req.decoded.id,
+              $and: { recipeId: req.params.recipeId }
+            }
+          }).then((foundFavourite) => {
+            if (foundFavourite) {
+              userFavourite = true;
+              return res.status(200)
+                .json({
+                  Recipe: foundRecipe,
+                  userFavourited: userFavourite
+                });
+            }
+            userFavourite = false;
+            return res.status(200)
+              .json({
+                Recipe: foundRecipe,
+                userFavourited: userFavourite
+              });
+          });
+          // return res.status(200)
+          //   .json({
+          //     Recipe: foundRecipe,
+          //     userFavourited: 'userFavourite'
+          //   });
         }
       })
       .catch(() => res.status(500)

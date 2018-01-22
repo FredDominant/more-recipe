@@ -39,7 +39,8 @@ const updateRecipe = (recipe, recipeId) => (dispatch) => {
       };
       toastr.success('Recipe updated');
     })
-    .catch(() => {
+    .catch((error) => {
+      const errorMessage = error.response.data.Message;
       dispatch(batchActions([
         updateRecipeFail(),
         unsetFetching()
@@ -47,7 +48,7 @@ const updateRecipe = (recipe, recipeId) => (dispatch) => {
       toastr.options = {
         closeButton: true
       };
-      toastr.error('Unable to update recipe');
+      toastr.error(errorMessage);
     });
 };
 

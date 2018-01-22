@@ -11,7 +11,8 @@ import {
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
   EDIT_RECIPE,
-  EDIT_RECIPE_ERROR
+  EDIT_RECIPE_ERROR,
+  GET_FAVOURITE_STATUS
 } from '../actions/actionTypes';
 
 const getOneRecipe = (state = initialState.recipe, action) => {
@@ -29,6 +30,11 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         singleRecipe: null,
         errorMessage: true,
         reviews: []
+      };
+    case GET_FAVOURITE_STATUS:
+      return {
+        ...state,
+        favourited: action.favouriteStatus,
       };
     case GET_REVIEW_SUCCESS:
       return {
