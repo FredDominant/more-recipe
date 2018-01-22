@@ -79,13 +79,20 @@ describe('onChange()', () => {
     expect(shallowWrapper.instance().state.directions).toBe('My directions');
   });
 });
+// describe('handleSubmit()', () => {
+//   it('should be called when image is clicked', () => {
+//     const image = shallowWrapper.find('#add-recipe-image');
+//     const handleSelectImage = jest.fn();
+//     image.simulate('click');
+//     expect(handleSelectImage).toHaveBeenCalledWith('clicked');
+//   });
+// });
 describe('handleSubmit()', () => {
   it('should be clickable', () => {
     const event = {
       preventDefault: jest.fn()
     };
     const form = shallowWrapper.find('.btn-primary');
-
     form.simulate('submit', event);
   });
   it('should submit for valid recipes', () => {
