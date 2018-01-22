@@ -79,14 +79,24 @@ describe('onChange()', () => {
     expect(shallowWrapper.instance().state.directions).toBe('My directions');
   });
 });
-// describe('handleSubmit()', () => {
-//   it('should be called when image is clicked', () => {
-//     const image = shallowWrapper.find('#add-recipe-image');
-//     const handleSelectImage = jest.fn();
-//     image.simulate('click');
-//     expect(handleSelectImage).toHaveBeenCalledWith('clicked');
-//   });
-// });
+describe('onUpload()', () => {
+  beforeEach(() => {
+    global.FileReader = () => ({
+      readAsDataURL: () => {},
+      onload: () => {}
+    });
+  });
+  it('should select an image when clicked', () => {
+    const event = mockData.uploadImage;
+    const action = shallowWrapper.instance();
+    // const spy = jest.spyOn(action, 'onUpload');
+    action.onUpload(event);
+    action.setState({
+      recipeImage: event.target.files
+    });
+    expect(action.state.recipeImage).toBe(event.target.files);
+  });
+});
 describe('handleSubmit()', () => {
   it('should be clickable', () => {
     const event = {

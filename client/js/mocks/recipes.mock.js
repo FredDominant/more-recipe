@@ -18,10 +18,16 @@ export default {
     ingredients: 'water, oil, fire'
   },
   uploadImage: {
-    name: 'Baked.jpg',
-    lastModified: 1515159157000,
-    size: 226679,
-    type: 'image/jpeg',
-    webkitRelativePath: ''
+    target: { name: 'recipeImage',
+      files: [{
+        name: 'Baked.jpg',
+        lastModified: 1515159157000,
+        size: 226679,
+        type: 'image/jpeg',
+        webkitRelativePath: '',
+        result: 'putSomethingInTheString.'
+      }]
+    }
   }
+
 };
