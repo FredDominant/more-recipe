@@ -243,11 +243,15 @@ export default class Recipe {
    * @memberof Recipe
    */
   static viewOne(req, res) {
-    let userFavourite;
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
+        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
+        { model: models.Review,
+          attributes: ['id', 'content', 'createdAt'],
+          include: [
+            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+          ] }
       ]
     })
       .then((foundRecipe) => {
@@ -264,32 +268,18 @@ export default class Recipe {
           if (!req.decoded) {
             foundRecipe.increment('views');
           }
-          favourite.findOne({
-            where: {
-              userId: req.decoded.id,
-              $and: { recipeId: req.params.recipeId }
-            }
-          }).then((foundFavourite) => {
-            if (foundFavourite) {
-              userFavourite = true;
-              return res.status(200)
-                .json({
-                  Recipe: foundRecipe,
-                  userFavourited: userFavourite
-                });
-            }
-            userFavourite = false;
-            return res.status(200)
-              .json({
+          if (req.decoded) {
+            return favourite.findOne({ where:
+              { recipeId: req.params.recipeId, $and: { userId: req.decoded.id } } })
+              .then(foundFavourite => res.status(200).json({
                 Recipe: foundRecipe,
-                userFavourited: userFavourite
-              });
-          });
-          // return res.status(200)
-          //   .json({
-          //     Recipe: foundRecipe,
-          //     userFavourited: 'userFavourite'
-          //   });
+                userFavourited: (foundFavourite) ? true : false
+              }));
+          }
+          return res.status(200)
+            .json({
+              Recipe: foundRecipe,
+            });
         }
       })
       .catch(() => res.status(500)
