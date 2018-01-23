@@ -2,7 +2,10 @@ import authenticateUser from '../utils/authenticateUser';
 
 const initialState = {
   auth: {
-    isAuthenticated: authenticateUser()
+    isAuthenticated: authenticateUser(),
+    user: {
+      firstname: 'Guest'
+    }
   },
   recipe: {
   },

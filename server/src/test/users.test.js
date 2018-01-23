@@ -31,7 +31,9 @@ describe('Test for Users', () => {
         .send(fakeData.validSignup)
         .end((err, res) => {
           expect(res.status).to.equal(201);
-          expect(res.body).to.haveOwnProperty('Token');
+          expect(res.body).to.haveOwnProperty('Token').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('User').to.be.an('object');
+          expect(res.body).to.haveOwnProperty('Message').to.equal('Account created');
           done();
         });
     });
@@ -41,6 +43,8 @@ describe('Test for Users', () => {
         .send(fakeData.unmatchingPassword)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.not.haveOwnProperty('Token');
+          expect(res.body).to.haveOwnProperty('Message').to.not.be.a('null');
           done();
         });
     });

@@ -7,14 +7,13 @@ import toastr from 'toastr';
 import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
 import addRecipe from '../actions/addRecipe';
-import Navbar from '../components/Navbar';
 /**
  *
  *
  * @class AddRecipePage
  * @extends {React.Component}
  */
-class AddRecipePage extends React.Component {
+export class AddRecipePage extends React.Component {
 /**
  * Creates an instance of AddRecipePage.
  * @param {any} props
@@ -127,7 +126,6 @@ class AddRecipePage extends React.Component {
    */
   handleSelectImage() {
     $('input[type=file]').click();
-    console.log(this);
   }
   /**
    *
@@ -191,7 +189,7 @@ class AddRecipePage extends React.Component {
                   <textarea
                     type="text"
                     rows="5"
-                    id="recipeDescription"
+                    id="recipeDirections"
                     className="form-control"
                     name="directions"
                     value={this.state.directions}

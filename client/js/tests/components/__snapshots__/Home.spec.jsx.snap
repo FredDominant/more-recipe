@@ -40,1867 +40,6 @@ exports[`Test for Home component should render correctly 1`] = `
         isFetching={false}
       >
         <div>
-          <Connect(Navbar)>
-            <Navbar
-              authenticated={false}
-              logOutUser={[Function]}
-            >
-              <div
-                className="container-fluid"
-              >
-                <nav
-                  className="navbar navbar-expand-lg navbar-light bg-light"
-                >
-                  <div
-                    className="row"
-                    id="nav2"
-                  >
-                    <div
-                      className="col-sm-9"
-                    >
-                      <span
-                        className="navbar-brand"
-                        id="title"
-                      >
-                        <Link
-                          replace={false}
-                          to="/home"
-                        >
-                          <a
-                            href="/home"
-                            onClick={[Function]}
-                          >
-                            <h2
-                              className="more-recipes"
-                              title="More Recipes and cooking tips"
-                            >
-                              More Recipes
-                            </h2>
-                          </a>
-                        </Link>
-                      </span>
-                      <button
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        className="navbar-toggler"
-                        data-target="#navbarSupportedContent"
-                        data-toggle="collapse"
-                        type="button"
-                      >
-                        <span
-                          className="navbar-toggler-icon"
-                        />
-                      </button>
-                    </div>
-                    <div
-                      className="col-sm-3"
-                      id="navigation-icons"
-                    >
-                      <div
-                        className="collapse navbar-collapse"
-                        id="navbarSupportedContent"
-                      >
-                        <ul
-                          className="navbar-nav mr-auto"
-                        >
-                          <li
-                            className="nav-item active"
-                          >
-                            <a
-                              className="nav-link"
-                              data-target="#register"
-                              data-toggle="modal"
-                            >
-                              <span>
-                                <i
-                                  className="fas fa-user-plus"
-                                />
-                              </span>
-                               REGISTER
-                              <span
-                                className="sr-only"
-                              >
-                                (current)
-                              </span>
-                            </a>
-                          </li>
-                          <li
-                            className="nav-item active"
-                          >
-                            <a
-                              className="nav-link"
-                              data-target="#login"
-                              data-toggle="modal"
-                            >
-                              <span>
-                                <i
-                                  className="fas fa-sign-in-alt"
-                                />
-                              </span>
-                               LOGIN
-                              <span
-                                className="sr-only"
-                              >
-                                (current)
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                        <Connect(Login)>
-                          <Login
-                            authenticated={false}
-                            errorMessage={null}
-                            fetching={true}
-                            login={[Function]}
-                          >
-                            <div>
-                              <div
-                                aria-hidden="true"
-                                aria-labelledby="exampleModalLabel"
-                                className="modal fade"
-                                data-backdrop="static"
-                                id="login"
-                                role="dialog"
-                              >
-                                <div
-                                  className="modal-dialog"
-                                  role="document"
-                                >
-                                  <div
-                                    className="modal-content container"
-                                  >
-                                    <div
-                                      className="row"
-                                    >
-                                      <div
-                                        className="col-sm-8 login-head"
-                                      >
-                                        <span>
-                                          <h1
-                                            className="modal-title"
-                                            id="login-title"
-                                          >
-                                            More Recipes
-                                          </h1>
-                                        </span>
-                                      </div>
-                                      <div
-                                        className="col-sm-4 login-close"
-                                      >
-                                        <button
-                                          aria-label="Close"
-                                          className="close cancel-login"
-                                          data-dismiss="modal"
-                                          type="button"
-                                        >
-                                          <span
-                                            aria-hidden="true"
-                                          >
-                                            ×
-                                          </span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                    <div
-                                      className="modal-body"
-                                    >
-                                      <div
-                                        id="login-form"
-                                      >
-                                        <div
-                                          className="container error-body"
-                                        >
-                                          <br />
-                                        </div>
-                                        <form
-                                          className="form-group"
-                                          onSubmit={[Function]}
-                                        >
-                                          <div
-                                            className="container"
-                                          >
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <label
-                                                className="control-label"
-                                                htmlFor="#"
-                                              />
-                                               
-                                              <br />
-                                              <span
-                                                className="input-group-addon"
-                                                id="email-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-envelope"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="email-addon"
-                                                aria-label="email"
-                                                className="form-control login-form"
-                                                name="email"
-                                                onChange={[Function]}
-                                                placeholder="Email "
-                                                type="email"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <label
-                                                className="control-label"
-                                                htmlFor="#"
-                                              />
-                                               
-                                              <br />
-                                              <span
-                                                className="input-group-addon"
-                                                id="password-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-key"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="password-addon"
-                                                aria-label="password"
-                                                className="form-control login-form"
-                                                name="password"
-                                                onChange={[Function]}
-                                                placeholder="Password"
-                                                type="password"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <button
-                                                className="form-control btn btn-primary register-button"
-                                                type="submit"
-                                              >
-                                                 
-                                                <span
-                                                  className="register-text"
-                                                >
-                                                   Log in  
-                                                  <span>
-                                                     
-                                                    <MDSpinner
-                                                      color1="rgb(66, 165, 245)"
-                                                      color2="rgb(239, 83, 80)"
-                                                      color3="rgb(253, 216, 53)"
-                                                      color4="rgb(76, 175, 80)"
-                                                      duration={1333}
-                                                      size={28}
-                                                    >
-                                                      <span
-                                                        style={
-                                                          Object {
-                                                            "animation": "__react-md-spinner-animation__root-rotate 1568.235294117647ms linear infinite",
-                                                            "display": "inline-block",
-                                                            "height": 28,
-                                                            "position": "relative",
-                                                            "verticalAlign": "middle",
-                                                            "width": 28,
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          key="0"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-1-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(66, 165, 245)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(66, 165, 245) transparent transparent rgb(66, 165, 245)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(66, 165, 245) rgb(66, 165, 245) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="1"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-2-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(239, 83, 80)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(239, 83, 80) transparent transparent rgb(239, 83, 80)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(239, 83, 80) rgb(239, 83, 80) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="2"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-3-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(253, 216, 53)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(253, 216, 53) transparent transparent rgb(253, 216, 53)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(253, 216, 53) rgb(253, 216, 53) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="3"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-4-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(76, 175, 80)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(76, 175, 80) transparent transparent rgb(76, 175, 80)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(76, 175, 80) rgb(76, 175, 80) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                      </span>
-                                                    </MDSpinner>
-                                                  </span>
-                                                </span>
-                                              </button>
-                                            </div>
-                                            <br />
-                                            <small>
-                                              <h6
-                                                id="forgot-password"
-                                              >
-                                                <a
-                                                  onClick={[Function]}
-                                                  role="presentation"
-                                                >
-                                                  Forgot password? No problem
-                                                </a>
-                                              </h6>
-                                            </small>
-                                          </div>
-                                        </form>
-                                      </div>
-                                      <div
-                                        id="recover-password"
-                                      >
-                                        <Connect(PasswordRecoveryForm)>
-                                          <PasswordRecoveryForm
-                                            fetching={true}
-                                            recoverPassword={[Function]}
-                                          >
-                                            <div
-                                              className="container"
-                                            >
-                                              <div
-                                                className="recover-password"
-                                              >
-                                                <div
-                                                  className="container"
-                                                >
-                                                  <MDSpinner
-                                                    color1="rgb(66, 165, 245)"
-                                                    color2="rgb(239, 83, 80)"
-                                                    color3="rgb(253, 216, 53)"
-                                                    color4="rgb(76, 175, 80)"
-                                                    duration={1333}
-                                                    size={28}
-                                                  >
-                                                    <span
-                                                      style={
-                                                        Object {
-                                                          "animation": "__react-md-spinner-animation__root-rotate 1568.235294117647ms linear infinite",
-                                                          "display": "inline-block",
-                                                          "height": 28,
-                                                          "position": "relative",
-                                                          "verticalAlign": "middle",
-                                                          "width": 28,
-                                                        }
-                                                      }
-                                                    >
-                                                      <span
-                                                        key="0"
-                                                        style={
-                                                          Object {
-                                                            "animationDuration": "5332ms",
-                                                            "animationIterationCount": "infinite",
-                                                            "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-1-fade-in-out",
-                                                            "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                            "borderColor": "rgb(66, 165, 245)",
-                                                            "display": "flex",
-                                                            "height": "100%",
-                                                            "opacity": 1,
-                                                            "position": "absolute",
-                                                            "whiteSpace": "nowrap",
-                                                            "width": "100%",
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__left-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(66, 165, 245) transparent transparent rgb(66, 165, 245)",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": 0,
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__right-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(66, 165, 245) rgb(66, 165, 245) transparent transparent",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": "-100%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(-129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "borderRadius": "50%",
-                                                              "borderTopStyle": "solid",
-                                                              "borderWidth": 3,
-                                                              "boxSizing": "border-box",
-                                                              "left": "45%",
-                                                              "position": "absolute",
-                                                              "top": 0,
-                                                              "width": "10%",
-                                                            }
-                                                          }
-                                                        />
-                                                      </span>
-                                                      <span
-                                                        key="1"
-                                                        style={
-                                                          Object {
-                                                            "animationDuration": "5332ms",
-                                                            "animationIterationCount": "infinite",
-                                                            "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-2-fade-in-out",
-                                                            "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                            "borderColor": "rgb(239, 83, 80)",
-                                                            "display": "flex",
-                                                            "height": "100%",
-                                                            "opacity": 1,
-                                                            "position": "absolute",
-                                                            "whiteSpace": "nowrap",
-                                                            "width": "100%",
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__left-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(239, 83, 80) transparent transparent rgb(239, 83, 80)",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": 0,
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__right-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(239, 83, 80) rgb(239, 83, 80) transparent transparent",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": "-100%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(-129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "borderRadius": "50%",
-                                                              "borderTopStyle": "solid",
-                                                              "borderWidth": 3,
-                                                              "boxSizing": "border-box",
-                                                              "left": "45%",
-                                                              "position": "absolute",
-                                                              "top": 0,
-                                                              "width": "10%",
-                                                            }
-                                                          }
-                                                        />
-                                                      </span>
-                                                      <span
-                                                        key="2"
-                                                        style={
-                                                          Object {
-                                                            "animationDuration": "5332ms",
-                                                            "animationIterationCount": "infinite",
-                                                            "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-3-fade-in-out",
-                                                            "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                            "borderColor": "rgb(253, 216, 53)",
-                                                            "display": "flex",
-                                                            "height": "100%",
-                                                            "opacity": 1,
-                                                            "position": "absolute",
-                                                            "whiteSpace": "nowrap",
-                                                            "width": "100%",
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__left-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(253, 216, 53) transparent transparent rgb(253, 216, 53)",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": 0,
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__right-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(253, 216, 53) rgb(253, 216, 53) transparent transparent",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": "-100%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(-129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "borderRadius": "50%",
-                                                              "borderTopStyle": "solid",
-                                                              "borderWidth": 3,
-                                                              "boxSizing": "border-box",
-                                                              "left": "45%",
-                                                              "position": "absolute",
-                                                              "top": 0,
-                                                              "width": "10%",
-                                                            }
-                                                          }
-                                                        />
-                                                      </span>
-                                                      <span
-                                                        key="3"
-                                                        style={
-                                                          Object {
-                                                            "animationDuration": "5332ms",
-                                                            "animationIterationCount": "infinite",
-                                                            "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-4-fade-in-out",
-                                                            "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                            "borderColor": "rgb(76, 175, 80)",
-                                                            "display": "flex",
-                                                            "height": "100%",
-                                                            "opacity": 1,
-                                                            "position": "absolute",
-                                                            "whiteSpace": "nowrap",
-                                                            "width": "100%",
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__left-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(76, 175, 80) transparent transparent rgb(76, 175, 80)",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": 0,
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "display": "inline-block",
-                                                              "flexGrow": 1,
-                                                              "height": "100%",
-                                                              "overflow": "hidden",
-                                                              "position": "relative",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "animationDuration": "1333ms",
-                                                                "animationIterationCount": "infinite",
-                                                                "animationName": "__react-md-spinner-animation__right-spin",
-                                                                "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                "borderColor": "rgb(76, 175, 80) rgb(76, 175, 80) transparent transparent",
-                                                                "borderRadius": "50%",
-                                                                "borderStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "bottom": 0,
-                                                                "boxSizing": "border-box",
-                                                                "left": "-100%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "transform": "rotate(-129deg)",
-                                                                "width": "200%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          style={
-                                                            Object {
-                                                              "borderColor": "inherit",
-                                                              "borderRadius": "50%",
-                                                              "borderTopStyle": "solid",
-                                                              "borderWidth": 3,
-                                                              "boxSizing": "border-box",
-                                                              "left": "45%",
-                                                              "position": "absolute",
-                                                              "top": 0,
-                                                              "width": "10%",
-                                                            }
-                                                          }
-                                                        />
-                                                      </span>
-                                                    </span>
-                                                  </MDSpinner>
-                                                </div>
-                                                <form
-                                                  className="form-group"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    name="email"
-                                                    onChange={[Function]}
-                                                    placeholder="Type in your registered email"
-                                                    required={true}
-                                                    type="email"
-                                                    value=""
-                                                  />
-                                                  <br />
-                                                  <button
-                                                    className="btn btn-primary"
-                                                    id="recover-password-button"
-                                                    onClick={[Function]}
-                                                  >
-                                                    Recover password
-                                                  </button>
-                                                  <br />
-                                                  <div>
-                                                    <small>
-                                                      <h6
-                                                        id="proceed-to-login"
-                                                      >
-                                                        <br />
-                                                        <a
-                                                          onClick={[Function]}
-                                                          role="presentation"
-                                                        >
-                                                          Proceed to log in
-                                                        </a>
-                                                      </h6>
-                                                    </small>
-                                                  </div>
-                                                </form>
-                                              </div>
-                                            </div>
-                                          </PasswordRecoveryForm>
-                                        </Connect(PasswordRecoveryForm)>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </Login>
-                        </Connect(Login)>
-                        <Connect(Signup)>
-                          <Signup
-                            authenticated={false}
-                            errorMessage=""
-                            fetching={true}
-                            signup={[Function]}
-                          >
-                            <div>
-                              <div
-                                aria-hidden="true"
-                                aria-labelledby="exampleModalLabel"
-                                className="modal fade"
-                                id="register"
-                                role="dialog"
-                              >
-                                <div
-                                  className="modal-dialog"
-                                  role="document"
-                                >
-                                  <div
-                                    className="modal-content container"
-                                  >
-                                    <div
-                                      className="row"
-                                    >
-                                      <div
-                                        className="col-md-9"
-                                      >
-                                        <span>
-                                          <h1
-                                            className="modal-title"
-                                            id="signup-title"
-                                          >
-                                            More Recipes
-                                          </h1>
-                                        </span>
-                                        <span>
-                                          <h6
-                                            className="signup-text"
-                                          >
-                                            Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.
-                                          </h6>
-                                        </span>
-                                      </div>
-                                      <div
-                                        className="col-md-3"
-                                      >
-                                        <button
-                                          aria-label="Close"
-                                          className="close cancel-signup"
-                                          data-dismiss="modal"
-                                          type="button"
-                                        >
-                                          <span
-                                            aria-hidden="true"
-                                          >
-                                            ×
-                                          </span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                    <div
-                                      className="modal-body"
-                                    >
-                                      <div>
-                                        <div
-                                          className="container"
-                                        />
-                                        <form
-                                          className="form-group"
-                                          onSubmit={[Function]}
-                                        >
-                                          <div
-                                            className="container"
-                                          >
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <span
-                                                className="input-group-addon"
-                                                id="firstName-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-user"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="firstName-addon"
-                                                aria-label="firstName"
-                                                className="form-control signup-form"
-                                                name="firstname"
-                                                onChange={[Function]}
-                                                placeholder="First Name"
-                                                type="text"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <span
-                                                className="input-group-addon"
-                                                id="lastName-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-user"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="lastName-addon"
-                                                aria-label="lastName"
-                                                className="form-control signup-form"
-                                                name="lastname"
-                                                onChange={[Function]}
-                                                placeholder="Last Name"
-                                                type="text"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <span
-                                                className="input-group-addon"
-                                                id="email-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-envelope"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="email-addon"
-                                                aria-label="email"
-                                                className="form-control signup-form"
-                                                name="email"
-                                                onChange={[Function]}
-                                                placeholder="Email "
-                                                type="email"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <span
-                                                className="input-group-addon"
-                                                id="password-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-key"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="password-addon"
-                                                aria-label="password"
-                                                className="form-control signup-form"
-                                                name="password"
-                                                onChange={[Function]}
-                                                placeholder="Password"
-                                                type="password"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <span
-                                                className="input-group-addon"
-                                                id="confirmPassword-addon"
-                                              >
-                                                <i
-                                                  aria-hidden="true"
-                                                  className="fa fa-key"
-                                                />
-                                              </span>
-                                              <input
-                                                aria-describedby="confirmPassword-addon"
-                                                aria-label="confirmPassword"
-                                                className="form-control signup-form"
-                                                name="confirmPassword"
-                                                onChange={[Function]}
-                                                placeholder="Confirm password"
-                                                type="password"
-                                                value=""
-                                              />
-                                            </div>
-                                            <br />
-                                            <div
-                                              className="input-group"
-                                            >
-                                              <button
-                                                className="form-control btn btn-primary signup-form register-button"
-                                                type="submit"
-                                              >
-                                                <span
-                                                  className="register-text"
-                                                >
-                                                  Register
-                                                  <span>
-                                                     
-                                                    <MDSpinner
-                                                      color1="rgb(66, 165, 245)"
-                                                      color2="rgb(239, 83, 80)"
-                                                      color3="rgb(253, 216, 53)"
-                                                      color4="rgb(76, 175, 80)"
-                                                      duration={1333}
-                                                      size={28}
-                                                    >
-                                                      <span
-                                                        style={
-                                                          Object {
-                                                            "animation": "__react-md-spinner-animation__root-rotate 1568.235294117647ms linear infinite",
-                                                            "display": "inline-block",
-                                                            "height": 28,
-                                                            "position": "relative",
-                                                            "verticalAlign": "middle",
-                                                            "width": 28,
-                                                          }
-                                                        }
-                                                      >
-                                                        <span
-                                                          key="0"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-1-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(66, 165, 245)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(66, 165, 245) transparent transparent rgb(66, 165, 245)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(66, 165, 245) rgb(66, 165, 245) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="1"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-2-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(239, 83, 80)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(239, 83, 80) transparent transparent rgb(239, 83, 80)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(239, 83, 80) rgb(239, 83, 80) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="2"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-3-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(253, 216, 53)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(253, 216, 53) transparent transparent rgb(253, 216, 53)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(253, 216, 53) rgb(253, 216, 53) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                        <span
-                                                          key="3"
-                                                          style={
-                                                            Object {
-                                                              "animationDuration": "5332ms",
-                                                              "animationIterationCount": "infinite",
-                                                              "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-4-fade-in-out",
-                                                              "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                              "borderColor": "rgb(76, 175, 80)",
-                                                              "display": "flex",
-                                                              "height": "100%",
-                                                              "opacity": 1,
-                                                              "position": "absolute",
-                                                              "whiteSpace": "nowrap",
-                                                              "width": "100%",
-                                                            }
-                                                          }
-                                                        >
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__left-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(76, 175, 80) transparent transparent rgb(76, 175, 80)",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": 0,
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "display": "inline-block",
-                                                                "flexGrow": 1,
-                                                                "height": "100%",
-                                                                "overflow": "hidden",
-                                                                "position": "relative",
-                                                              }
-                                                            }
-                                                          >
-                                                            <span
-                                                              style={
-                                                                Object {
-                                                                  "animationDuration": "1333ms",
-                                                                  "animationIterationCount": "infinite",
-                                                                  "animationName": "__react-md-spinner-animation__right-spin",
-                                                                  "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
-                                                                  "borderColor": "rgb(76, 175, 80) rgb(76, 175, 80) transparent transparent",
-                                                                  "borderRadius": "50%",
-                                                                  "borderStyle": "solid",
-                                                                  "borderWidth": 3,
-                                                                  "bottom": 0,
-                                                                  "boxSizing": "border-box",
-                                                                  "left": "-100%",
-                                                                  "position": "absolute",
-                                                                  "top": 0,
-                                                                  "transform": "rotate(-129deg)",
-                                                                  "width": "200%",
-                                                                }
-                                                              }
-                                                            />
-                                                          </span>
-                                                          <span
-                                                            style={
-                                                              Object {
-                                                                "borderColor": "inherit",
-                                                                "borderRadius": "50%",
-                                                                "borderTopStyle": "solid",
-                                                                "borderWidth": 3,
-                                                                "boxSizing": "border-box",
-                                                                "left": "45%",
-                                                                "position": "absolute",
-                                                                "top": 0,
-                                                                "width": "10%",
-                                                              }
-                                                            }
-                                                          />
-                                                        </span>
-                                                      </span>
-                                                    </MDSpinner>
-                                                  </span>
-                                                </span>
-                                                 
-                                              </button>
-                                            </div>
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </Signup>
-                        </Connect(Signup)>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-            </Navbar>
-          </Connect(Navbar)>
           <br />
           <Connect(Search)>
             <Search
@@ -1973,27 +112,26 @@ exports[`Test for Home component should render correctly 1`] = `
                     Array [
                       Object {
                         "altText": "Awesome sauce!",
-                        "caption": "Name is Image 1",
+                        "caption": "",
                         "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
                       },
                       Object {
-                        "altText": "Edible catering!",
-                        "caption": "Image 2",
+                        "caption": "",
                         "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
                       },
                       Object {
                         "altText": "Nahh!!!",
-                        "caption": "Image 3",
+                        "caption": "",
                         "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
                       },
                       Object {
                         "altText": "Foood",
-                        "caption": "Image 4",
+                        "caption": "",
                         "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
                       },
                       Object {
                         "altText": "Eaattt",
-                        "caption": "Image 5",
+                        "caption": "",
                         "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
                       },
                     ]
@@ -2020,27 +158,26 @@ exports[`Test for Home component should render correctly 1`] = `
                           Array [
                             Object {
                               "altText": "Awesome sauce!",
-                              "caption": "Name is Image 1",
+                              "caption": "",
                               "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
                             },
                             Object {
-                              "altText": "Edible catering!",
-                              "caption": "Image 2",
+                              "caption": "",
                               "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
                             },
                             Object {
                               "altText": "Nahh!!!",
-                              "caption": "Image 3",
+                              "caption": "",
                               "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
                             },
                             Object {
                               "altText": "Foood",
-                              "caption": "Image 4",
+                              "caption": "",
                               "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
                             },
                             Object {
                               "altText": "Eaattt",
-                              "caption": "Image 5",
+                              "caption": "",
                               "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
                             },
                           ]
@@ -2052,27 +189,27 @@ exports[`Test for Home component should render correctly 1`] = `
                         >
                           <li
                             className="active"
-                            key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpgName is Image 1Awesome sauce!"
+                            key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpgAwesome sauce!"
                             onClick={[Function]}
                           />
                           <li
                             className=""
-                            key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16Image 2Edible catering!"
+                            key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16undefined"
                             onClick={[Function]}
                           />
                           <li
                             className=""
-                            key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpegImage 3Nahh!!!"
+                            key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpegNahh!!!"
                             onClick={[Function]}
                           />
                           <li
                             className=""
-                            key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpgImage 4Foood"
+                            key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpgFoood"
                             onClick={[Function]}
                           />
                           <li
                             className=""
-                            key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpgImage 5Eaattt"
+                            key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpgEaattt"
                             onClick={[Function]}
                           />
                         </ol>
@@ -2124,25 +261,20 @@ exports[`Test for Home component should render correctly 1`] = `
                                 src="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
                               />
                               <CarouselCaption
-                                captionHeader="Name is Image 1"
-                                captionText="Name is Image 1"
+                                captionHeader=""
+                                captionText=""
                               >
                                 <div
                                   className="carousel-caption d-none d-md-block"
                                 >
-                                  <h3>
-                                    Name is Image 1
-                                  </h3>
-                                  <p>
-                                    Name is Image 1
-                                  </p>
+                                  <h3 />
+                                  <p />
                                 </div>
                               </CarouselCaption>
                             </div>
                           </Transition>
                         </CarouselItem>
                         <CarouselItem
-                          altText="Edible catering!"
                           appear={false}
                           enter={true}
                           exit={true}
@@ -2179,23 +311,18 @@ exports[`Test for Home component should render correctly 1`] = `
                               className="carousel-item"
                             >
                               <img
-                                alt="Edible catering!"
                                 className="d-block img-fluid"
                                 src="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
                               />
                               <CarouselCaption
-                                captionHeader="Image 2"
-                                captionText="Image 2"
+                                captionHeader=""
+                                captionText=""
                               >
                                 <div
                                   className="carousel-caption d-none d-md-block"
                                 >
-                                  <h3>
-                                    Image 2
-                                  </h3>
-                                  <p>
-                                    Image 2
-                                  </p>
+                                  <h3 />
+                                  <p />
                                 </div>
                               </CarouselCaption>
                             </div>
@@ -2244,18 +371,14 @@ exports[`Test for Home component should render correctly 1`] = `
                                 src="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
                               />
                               <CarouselCaption
-                                captionHeader="Image 3"
-                                captionText="Image 3"
+                                captionHeader=""
+                                captionText=""
                               >
                                 <div
                                   className="carousel-caption d-none d-md-block"
                                 >
-                                  <h3>
-                                    Image 3
-                                  </h3>
-                                  <p>
-                                    Image 3
-                                  </p>
+                                  <h3 />
+                                  <p />
                                 </div>
                               </CarouselCaption>
                             </div>
@@ -2304,18 +427,14 @@ exports[`Test for Home component should render correctly 1`] = `
                                 src="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
                               />
                               <CarouselCaption
-                                captionHeader="Image 4"
-                                captionText="Image 4"
+                                captionHeader=""
+                                captionText=""
                               >
                                 <div
                                   className="carousel-caption d-none d-md-block"
                                 >
-                                  <h3>
-                                    Image 4
-                                  </h3>
-                                  <p>
-                                    Image 4
-                                  </p>
+                                  <h3 />
+                                  <p />
                                 </div>
                               </CarouselCaption>
                             </div>
@@ -2364,18 +483,14 @@ exports[`Test for Home component should render correctly 1`] = `
                                 src="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
                               />
                               <CarouselCaption
-                                captionHeader="Image 5"
-                                captionText="Image 5"
+                                captionHeader=""
+                                captionText=""
                               >
                                 <div
                                   className="carousel-caption d-none d-md-block"
                                 >
-                                  <h3>
-                                    Image 5
-                                  </h3>
-                                  <p>
-                                    Image 5
-                                  </p>
+                                  <h3 />
+                                  <p />
                                 </div>
                               </CarouselCaption>
                             </div>
@@ -2432,35 +547,529 @@ exports[`Test for Home component should render correctly 1`] = `
               </div>
             </Carousel>
             <div
-              className="container recipes"
+              className="top-recipes"
+            >
+              <Connect(TopRecipes)>
+                <TopRecipes
+                  getTopRecipes={[Function]}
+                  recipes={Array []}
+                >
+                  <div>
+                    <div
+                      className="container mt-3"
+                    />
+                  </div>
+                </TopRecipes>
+              </Connect(TopRecipes)>
+            </div>
+            <div
+              className="recipes"
             >
               <Connect(RecipeBody)>
                 <RecipeBody
                   dispatch={[Function]}
+                  fetching={true}
                   pageInfo={Object {}}
                   recipes={Array []}
                 >
                   <div
-                    className=""
+                    className="container loading-icon-container"
                   >
-                    <br />
                     <div
-                      className="container"
+                      className="text-center mt-30 loading-icon"
                     >
-                      <br />
-                      <div
-                        className="emptyContent"
+                      <Loading
+                        color={null}
+                        singleColor={null}
+                        size={100}
                       >
-                        <h2>
-                          There are currently no recipes in the catalogue
-                        </h2>
-                      </div>
+                        <div
+                          className="container"
+                        >
+                          <MDSpinner
+                            color={null}
+                            color1="rgb(66, 165, 245)"
+                            color2="rgb(239, 83, 80)"
+                            color3="rgb(253, 216, 53)"
+                            color4="rgb(76, 175, 80)"
+                            duration={1333}
+                            singleColor={null}
+                            size={100}
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "animation": "__react-md-spinner-animation__root-rotate 1568.235294117647ms linear infinite",
+                                  "display": "inline-block",
+                                  "height": 100,
+                                  "position": "relative",
+                                  "verticalAlign": "middle",
+                                  "width": 100,
+                                }
+                              }
+                            >
+                              <span
+                                key="0"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-1-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(66, 165, 245)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(66, 165, 245) transparent transparent rgb(66, 165, 245)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(66, 165, 245) rgb(66, 165, 245) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="1"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-2-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(239, 83, 80)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(239, 83, 80) transparent transparent rgb(239, 83, 80)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(239, 83, 80) rgb(239, 83, 80) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="2"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-3-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(253, 216, 53)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(253, 216, 53) transparent transparent rgb(253, 216, 53)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(253, 216, 53) rgb(253, 216, 53) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="3"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-4-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(76, 175, 80)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(76, 175, 80) transparent transparent rgb(76, 175, 80)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(76, 175, 80) rgb(76, 175, 80) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                            </span>
+                          </MDSpinner>
+                        </div>
+                      </Loading>
                     </div>
                   </div>
                 </RecipeBody>
               </Connect(RecipeBody)>
+              <br />
             </div>
+            <br />
           </div>
+          <br />
+          <Footer>
+            <div
+              className="footer"
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="text-center"
+                >
+                  <br />
+                  <h3
+                    className="text-center"
+                  >
+                    <span
+                      className="footer-title"
+                    >
+                      More Recipes®
+                    </span>
+                    <br />
+                  </h3>
+                  <h5
+                    className="text-center mt-2"
+                  >
+                    licensed under MIT.
+                  </h5>
+                  <h5
+                    className="text-center mt-2"
+                  >
+                    Made by Fred Adewole for Andela®
+                    <br />
+                  </h5>
+                  <h6
+                    className="text-center mt-2"
+                  >
+                    © 2018
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </Footer>
         </div>
       </Home>
     </Router>

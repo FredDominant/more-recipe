@@ -23,6 +23,7 @@ class Navbar extends React.Component {
     this.state = {};
     this.handleLogout = this.handleLogout.bind(this);
   }
+
   /**
    * @description this method handles user logout
    * @returns {function} function
@@ -42,15 +43,29 @@ class Navbar extends React.Component {
   render() {
     if (this.props.authenticated) {
       return (
-        <div className="">
+        <div>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-10 col-xs-6">
                 <div className="col-sm-9" id="nav-button">
                   <span id="title" className="navbar-brand">
-                    <Link to="/home"><h3 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h3></Link>
+                    <Link to="/home">
+                      <h3
+                        className="more-recipes"
+                        title="More Recipes and cooking tips"
+                      >
+                    More Recipes</h3></Link>
                   </span>
-                  <button className="navbar-toggler" id="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <button
+                    className="navbar-toggler"
+                    id="nav-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
                     <span className="navbar-toggler-icon" />
                   </button>
                 </div>
@@ -68,24 +83,31 @@ class Navbar extends React.Component {
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >MENU<span className="caret" /></a>
+                        >{ this.props.firstname }  <span className="caret" /> </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
                               <span className="nav-link"><span><i className="fas fa-user" /> </span>
-                                <Link to="/profile">Profile</Link> <span className="sr-only">(current)</span></span>
+                                <Link to="/profile">
+                                Profile</Link>
+                                <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span><i className="fab fa-gratipay" /> </span>
-                                <Link to="/user/recipes">My Recipes</Link> <span className="sr-only">(current)</span></span>
+                              <span className="nav-link">
+                                <span><i className="fab fa-gratipay" /> </span>
+                                <Link to="/user/recipes">
+                                My Recipes</Link>
+                                <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span><i className="fab fa-gratipay" /> </span>
-                                <Link to="/favourites">Favourites</Link> <span className="sr-only">(current)</span></span>
+                              <span className="nav-link"><span>
+                                <i className="fab fa-gratipay" /> </span> <Link to="/favourites">
+                                 Favourites</Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link"><span><i className="fas fa-plus-circle" /> </span>
-                                <Link to="/add-recipe">Add Recipe</Link> <span className="sr-only">(current)</span></span>
+                                <Link to="/add-recipe">Add Recipe
+                                </Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <hr />
                             <li className="nav-item active">
@@ -100,15 +122,6 @@ class Navbar extends React.Component {
                       </span>
                     </li>
                   </ul>}
-                  {!this.props.authenticated &&
-                    <ul className="navbar-nav mr-auto">
-                      <li className="nav-item active">
-                        <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
-                      </li>
-                      <li className="nav-item active">
-                        <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
-                      </li>
-                    </ul>}
                 </div>
               </div>
             </div>
@@ -123,9 +136,21 @@ class Navbar extends React.Component {
           <div className="row" id="nav2">
             <div className="col-sm-9" id="nav-button">
               <span id="title" className="navbar-brand">
-                <Link to="/home"><h3 className="more-recipes" title="More Recipes and cooking tips">More Recipes</h3></Link>
+                <Link to="/home"><h3
+                  className="more-recipes"
+                  title="More Recipes and cooking tips"
+                >More Recipes</h3></Link>
               </span>
-              <button className="navbar-toggler" id="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <button
+                className="navbar-toggler"
+                id="nav-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
                 <span className="navbar-toggler-icon" />
               </button>
             </div>
@@ -133,10 +158,21 @@ class Navbar extends React.Component {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item active">
-                    <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
+                    <a
+                      className="nav-link"
+                      data-toggle="modal"
+                      data-target="#register"
+                    ><span><i className="fas fa-user-plus" /></span> REGISTER
+                      <span className="sr-only">(current)</span></a>
                   </li>
                   <li className="nav-item active">
-                    <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
+                    <a
+                      className="nav-link"
+                      data-toggle="modal"
+                      data-target="#login"
+                    >
+                      <span><i className="fas fa-sign-in-alt" /></span> LOGIN
+                      <span className="sr-only">(current)</span></a>
                   </li>
                 </ul>
                 <Login />
@@ -156,11 +192,15 @@ Navbar.contextTypes = {
 
 Navbar.propTypes = {
   logOutUser: PropTypes.func.isRequired,
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  firstname: PropTypes.string,
+  children: PropTypes.node.isRequired
 };
 Navbar.defaultProps = {
+  firstname: ''
 };
 const mapStateToProps = state => ({
-  authenticated: state.auth.isAuthenticated
+  authenticated: state.auth.isAuthenticated,
+  firstname: state.auth.user.firstname
 });
 export default connect(mapStateToProps, { logOutUser })(Navbar);

@@ -128,7 +128,7 @@ class UserRecipePage extends React.Component {
           <div className="emptyContent">
             <br />
             <h3 className="mt-5 mb-5 text-center">
-            You currently have no Recipes. Add new recipes...
+            You currently have no Recipes. Add new recipes
             </h3>
             <br />
           </div>

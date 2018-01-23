@@ -25,10 +25,6 @@ const upvoteRecipe = recipeId => (dispatch) => {
     .then((response) => {
       const { Recipe } = response.data;
       dispatch(upvoteSuccess(Recipe));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Upvoted!');
     })
     .catch((error) => {
       const { Message } = error;

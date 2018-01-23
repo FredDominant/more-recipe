@@ -5,10 +5,10 @@ import { batchActions } from 'redux-batched-actions';
 import { setFetching, unsetFetching } from './fetching';
 import { RECIEVE_AUTH, AUTH_ERROR } from './actionTypes';
 
-export const recieveAuth = (user, token) => ({
+export const recieveAuth = (token, user) => ({
   type: RECIEVE_AUTH,
-  user,
-  token
+  token,
+  user
 });
 
 export const authError = message => ({
@@ -24,7 +24,7 @@ const loginUser = ({ email, password }) => (dispatch) => {
       const { Token, User } = response.data;
       localStorage.setItem('token', Token);
       dispatch(batchActions([
-        recieveAuth(User, Token),
+        recieveAuth(Token, User),
         unsetFetching()
       ]));
       document.body.classList.remove('modal-open');

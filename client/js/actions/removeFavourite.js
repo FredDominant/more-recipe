@@ -4,6 +4,7 @@ import toastr from 'toastr';
 
 import { DELETE_FAVOURITE, DELETE_FAVOURITE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
+import { getFavouriteStatus } from './getOneRecipe';
 
 const removeFavouriteSuccess = recipeId => ({
   type: DELETE_FAVOURITE,
@@ -27,6 +28,7 @@ const removeFavourite = recipeId => (dispatch) => {
     .then(() => {
       dispatch(batchActions([
         removeFavouriteSuccess(recipeId),
+        getFavouriteStatus(false),
         unsetFetching()
       ]));
       toastr.options = {

@@ -8,7 +8,7 @@ import 'toastr/build/toastr.min.css';
 import store from './store/store';
 import App from './components/App';
 import decodeToken from './utils/decodeToken';
-import { SIGN_IN_USER, LOGOUT } from './actions/actionTypes';
+import { SIGN_IN_USER } from './actions/actionTypes';
 
 
 const user = decodeToken();
@@ -16,12 +16,6 @@ if (user) {
   store.dispatch({
     type: SIGN_IN_USER,
     user
-  });
-}
-
-if (!decodeToken()) {
-  store.dispatch({
-    type: LOGOUT
   });
 }
 

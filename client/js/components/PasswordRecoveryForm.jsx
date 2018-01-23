@@ -59,7 +59,6 @@ class PasswordRecoveryForm extends React.Component {
   onToggleLogin() {
     document.getElementById('recover-password').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
-    console.log(this);
   }
   /**
    * @description validates for inputs
@@ -84,9 +83,6 @@ class PasswordRecoveryForm extends React.Component {
     return (
       <div className="container">
         <div className="recover-password">
-          {this.props.fetching && <div className="container">
-            <MDSpinner />
-          </div>}
           <form className="form-group">
             <input
               className="form-control"
@@ -107,6 +103,9 @@ class PasswordRecoveryForm extends React.Component {
               onClick={this.onSubmit}
             >
             Recover password
+              {this.props.fetching && <span className="container">
+                <MDSpinner />
+              </span>}
             </button>
             <br />
             <div>

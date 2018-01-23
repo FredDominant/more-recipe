@@ -6,7 +6,6 @@ import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import updateRecipe from '../actions/updateRecipe';
 import uploadImage from '../utils/uploadImage';
-// import PropTypes from 'prop-types';
 /**
  *
  *

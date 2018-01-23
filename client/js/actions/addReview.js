@@ -24,20 +24,20 @@ const addReview = (review, recipeId) => (dispatch) => {
     data: { content: review }
   })
     .then((response) => {
-      const { Recipe } = response.data;
-      dispatch(addReviewSuccess(Recipe));
+      const Review = response.data;
+      dispatch(addReviewSuccess(Review));
       toastr.options = {
         closeButton: true
       };
       toastr.success('Review added');
     })
     .catch(() => {
-      const Message = 'an error occurred';
+      const Message = 'unable to add review';
       dispatch(addReviewFailure(Message));
       toastr.options = {
         closeButton: true
       };
-      toastr.error('unable to add review');
+      toastr.error(Message);
     });
 };
 

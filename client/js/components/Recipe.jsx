@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
 
 import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import upvoteRecipe from '../actions/upvote';
 import addFavourites from '../actions/addFavourites';
 import downvoteRecipe from '../actions/downvote';
-import ViewReviews from '../components/ViewReviews';
+import Reviews from '../components/Reviews';
 import AddReview from '../components/AddReview';
 import NotFoundPage from '../components/NotFoundPage';
 import capitalize from '../utils/capitalize';
@@ -29,6 +28,7 @@ class Recipe extends React.Component {
     super(props);
     this.state = {
       recipe: {},
+      favourited: '',
       reviews: [],
       owner: '',
     };
@@ -55,7 +55,7 @@ class Recipe extends React.Component {
     const recipe = (nextProps.recipe) ? (nextProps.recipe) : {};
     const reviews = (recipe.Reviews) ? (recipe.Reviews) : [];
     const owner = (recipe.User) ? (recipe.User) : {};
-    this.setState({ recipe, reviews, owner });
+    this.setState({ recipe, reviews, owner, favourited: nextProps.favourited });
   }
 
   /**
@@ -111,19 +111,6 @@ class Recipe extends React.Component {
       <li className="list-group-item text-left" key={`ingredient ${i + 1}`}>{capitalize(item)}</li>
     ));
 
-    const { reviews } = this.state;
-    const sortedReviews = reviews.sort((a, b) => (b.id - a.id));
-    const allReviews = sortedReviews.map((review, i) => (
-      <div key={`review ${i + 1}`} className="container">
-        <ViewReviews
-          image={review.User.picture}
-          firstname={review.User.firstname}
-          lastname={review.User.lastname}
-          content={review.content}
-          created={moment(new Date(review.createdAt)).fromNow()}
-        />
-      </div>
-    ));
     const { directions } = this.state.recipe;
     return (
       <div >
@@ -153,7 +140,7 @@ class Recipe extends React.Component {
                       type="button"
                       title="upvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={this.props.authenticated}
+                      disabled={!this.props.authenticated}
                       onClick={this.handleUpvote}
                     ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
 
@@ -161,15 +148,19 @@ class Recipe extends React.Component {
                       type="button"
                       title="downvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={this.props.authenticated}
+                      disabled={!this.props.authenticated}
                       onClick={this.handleDownvote}
                     ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
 
                     <button
+                      style={{
+                        backgroundColor: this.state.favourited === true ? 'red' : 'white',
+                        color: this.state.favourited === true ? 'white' : 'red'
+                      }}
                       type="button"
                       title="add to your favourites"
                       className="btn btn-outline-danger"
-                      disabled={this.props.authenticated}
+                      disabled={!this.props.authenticated}
                       onClick={this.handleFavourite}
                     ><i className="fab fa-gratipay" /></button>
                   </div>
@@ -194,13 +185,9 @@ class Recipe extends React.Component {
                 {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
                 <br />
               </div>
-              { allReviews.length > 0 && <div className="review-body">
-                {allReviews}
-              </div>}
-              { !allReviews.length && <div className="emptyContent">
-                <h2 className="text-center">There are currently no reviews for this recipe.</h2>
-                <br />
-              </div>}
+              <div className="container review-body">
+                <Reviews recipeId={parseInt(this.props.match.params.recipeId, 10)} />
+              </div>
             </div>
           </div>
         </div>
@@ -217,14 +204,17 @@ Recipe.propTypes = {
   favourite: PropTypes.func.isRequired,
   recipe: PropTypes.shape(),
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  favourited: PropTypes.bool
 };
 Recipe.defaultProps = {
   recipe: {},
+  favourited: false
 };
 
 const mapStateToProps = state => ({
   recipe: state.getOneRecipe.singleRecipe,
+  favourited: state.getOneRecipe.favourited,
   authenticated: state.auth.isAuthenticated,
   error: state.getOneRecipe.errorMessage,
   fetching: state.isFetching
@@ -238,4 +228,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
-

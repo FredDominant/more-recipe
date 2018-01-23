@@ -268,6 +268,14 @@ export default class Recipe {
           if (!req.decoded) {
             foundRecipe.increment('views');
           }
+          if (req.decoded) {
+            return favourite.findOne({ where:
+              { recipeId: req.params.recipeId, $and: { userId: req.decoded.id } } })
+              .then(foundFavourite => res.status(200).json({
+                Recipe: foundRecipe,
+                userFavourited: (foundFavourite) ? true : false
+              }));
+          }
           return res.status(200)
             .json({
               Recipe: foundRecipe,
@@ -293,10 +301,7 @@ export default class Recipe {
     recipe.findAndCountAll({
       where: {
         userId: req.decoded.id
-      },
-      include: [
-        { model: models.Review, attributes: ['content'] }
-      ]
+      }
     }).then((allUser) => {
       const page = parseInt((req.query.page || 1), 10);
       const numberOfItems = allUser.count;

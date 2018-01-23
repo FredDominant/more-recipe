@@ -6,10 +6,13 @@ import {
   UPVOTE_FAILURE,
   DOWNVOTE_SUCCESS,
   DOWNVOTE_FAILURE,
+  GET_REVIEW_SUCCESS,
+  GET_REVIEW_FAILURE,
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
   EDIT_RECIPE,
-  EDIT_RECIPE_ERROR
+  EDIT_RECIPE_ERROR,
+  GET_FAVOURITE_STATUS
 } from '../actions/actionTypes';
 
 const getOneRecipe = (state = initialState.recipe, action) => {
@@ -18,13 +21,41 @@ const getOneRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         singleRecipe: action.recipe,
-        errorMessage: ''
+        errorMessage: '',
+        reviews: []
       };
     case GET_ONE_RECIPE_ERROR:
       return {
         ...state,
         singleRecipe: null,
-        errorMessage: true
+        errorMessage: true,
+        reviews: []
+      };
+    case GET_FAVOURITE_STATUS:
+      return {
+        ...state,
+        favourited: action.favouriteStatus,
+      };
+    case GET_REVIEW_SUCCESS:
+      return {
+        ...state,
+        reviews: action.review,
+        reviewError: ''
+      };
+    case GET_REVIEW_FAILURE:
+      return {
+        ...state,
+        reviewError: action.message
+      };
+    case ADD_REVIEW_SUCCESS:
+      return {
+        ...state,
+        reviews: [...state.reviews, action.review]
+      };
+    case ADD_REVIEW_FAILURE:
+      return {
+        ...state,
+        addReviewError: action.message
       };
     case UPVOTE_SUCCESS:
       return {
@@ -48,16 +79,7 @@ const getOneRecipe = (state = initialState.recipe, action) => {
         ...state,
         errorMessage: action.message
       };
-    case ADD_REVIEW_SUCCESS:
-      return {
-        ...state,
-        singleRecipe: action.review
-      };
-    case ADD_REVIEW_FAILURE:
-      return {
-        ...state,
-        addReviewError: action.message
-      };
+
     case EDIT_RECIPE:
       return {
         ...state,

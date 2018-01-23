@@ -39,7 +39,7 @@ class SearchPage extends React.Component {
   render() {
     let recipes = (this.state.recipes) ? (this.state.recipes) : [];
     recipes = recipes.map(recipe => (
-      <div key={recipe.id} className="col-sm-4">
+      <div key={recipe.id} className="col-xs-8 col-sm-8 col-md-4">
         <RecipeItem
           image={recipe.picture}
           recipeId={recipe.id}

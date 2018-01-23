@@ -4,6 +4,7 @@ import toastr from 'toastr';
 
 import { setFetching, unsetFetching } from './fetching';
 import { ADD_FAVOURITES, ADD_FAVOURITES_ERROR } from '../actions/actionTypes';
+import { getFavouriteStatus } from './getOneRecipe';
 
 const addFavouriteSuccess = recipe => ({
   type: ADD_FAVOURITES,
@@ -27,6 +28,7 @@ const addFavourite = recipeId => (dispatch) => {
     .then(() => {
       dispatch(batchActions([
         addFavouriteSuccess(recipeId),
+        getFavouriteStatus(true),
         unsetFetching()
       ]));
       toastr.options = {

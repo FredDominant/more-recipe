@@ -1,12 +1,17 @@
 import { batchActions } from 'redux-batched-actions';
 import axios from 'axios';
 
-import { GET_ONE_RECIPE, GET_ONE_RECIPE_ERROR } from '../actions/actionTypes';
+import { GET_ONE_RECIPE, GET_ONE_RECIPE_ERROR, GET_FAVOURITE_STATUS } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
 const getRecipe = recipe => ({
   type: GET_ONE_RECIPE,
-  recipe
+  recipe,
+});
+
+export const getFavouriteStatus = favouriteStatus => ({
+  type: GET_FAVOURITE_STATUS,
+  favouriteStatus
 });
 
 const getRecipeError = error => ({
@@ -26,9 +31,10 @@ const getOneRecipe = recipeId => (dispatch) => {
       }
     })
       .then((response) => {
-        const { Recipe } = response.data;
+        const { Recipe, userFavourited } = response.data;
         dispatch(batchActions([
           getRecipe(Recipe),
+          getFavouriteStatus(userFavourited),
           unsetFetching()
         ]));
       })

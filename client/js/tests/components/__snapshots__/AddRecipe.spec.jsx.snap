@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for AddRecipePage component should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <AddRecipePage
+        addRecipeSuccess={null}
+        createRecipe={[MockFunction]}
+        dispatch={[MockFunction]}
+        errorMessage={null}
+        isFetching={false}
+        loading={false}
+        store={
+          Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          }
+        }
+      >
+        <div
+          className="container-fluid"
+        >
+          <div
+            className="container"
+            id="add-recipe-form"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <div
+                    className="recipe-image"
+                    id="add-recipe-image-container"
+                    onClick={[Function]}
+                    role="presentation"
+                  >
+                    <img
+                      alt=""
+                      className="img-thumbnail"
+                      id="add-recipe-image"
+                      src="/images/noImage.png"
+                      srcSet=""
+                    />
+                  </div>
+                  <br />
+                  <input
+                    id="file-upload"
+                    name="file"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                </div>
+                <div
+                  className="col-sm-8"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="recipeName"
+                    >
+                      Recipe Name
+                    </label>
+                    <input
+                      className="form-control"
+                      id="recipeName"
+                      name="name"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="recipeDescription"
+                    >
+                      Recipe Description
+                    </label>
+                    <input
+                      className="form-control"
+                      id="recipeDescription"
+                      name="description"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="recipeDirections"
+                    >
+                      Recipe Directions
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="recipeDirections"
+                      name="directions"
+                      onChange={[Function]}
+                      rows="5"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="recipeingredients"
+                    >
+                      Ingredients
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="recipeIngredients"
+                      name="ingredients"
+                      onChange={[Function]}
+                      placeholder="Comma separated list of ingredients"
+                      rows="5"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="form-group"
+                  >
+                    <button
+                      className="btn btn-primary"
+                    >
+                      <h6
+                        className="text-center"
+                      >
+                         Add Recipe 
+                      </h6>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </AddRecipePage>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

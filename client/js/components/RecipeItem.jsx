@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   Card,
   CardText,
@@ -8,100 +10,144 @@ import {
   CardTitle
 } from 'reactstrap';
 
-import ConfirmDelete from './ConfirmDelete';
+import capitalize from '../utils/capitalize';
 /**
- * @description
- * @argument {props} props
- * @returns {jsx} JSX
+ * @description renders a recipe item card
+ * @class RecipeItem
+ * @extends {React.Component}
  */
-const RecipeItem = props =>
-  (
-    <div className="recipeCard container">
-      <ConfirmDelete
-        recipeId={props.recipeId}
-        removeRecipe={props.onDelete}
-        removeFavourite={props.removeRecipe}
-        recipeCard={props.userRecipeCard}
-        favouriteCard={props.favouriteCard}
-      />
-      <Card>
-        <CardBody>
-          <CardTitle>
-            <img
-              src={props.image}
-              alt={props.recipeName}
-              className="img-thumbnail img-responsive"
-              id="recipe-images"
-              height="100"
-              width="100"
-            />
-            <br />
-            <div id="recipe-title">
-              <span className="recipe-title text-left">
-                <Link to={`/recipe/${props.recipeId}`}> {props.recipeName} </Link>
-              </span>
-            </div>
-          </CardTitle>
-          {
-            props.owner && <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {props.owner}</h6>
-          }
-          {props.home && <small> Created {props.created}</small>}
-          <hr />
-          <CardText>
-            <span className="recipe-description text-left">
-              {props.description}
-            </span>
-            <br />
-          </CardText>
-          <div className="all-buttons text-left">
-            <div className="btn-group" role="group" >
-
-              <button
-                title="number of downvotes"
-                className="btn btn-outline-danger"
-                disabled
-              ><i className="far fa-thumbs-up" /> <span id="likes">{props.upvotes} </span></button>
-
-              <button
-                title="number of downvotes"
-                className="btn btn-outline-danger"
-                disabled
-              ><i className="far fa-thumbs-down" /> <span id="unlikes">{props.downvotes} </span></button>
-
-              <button
-                title="number of views"
-                className="btn btn-outline-danger"
-                disabled
-              ><i className="fas fa-eye" /> <span id="views">{props.views} </span></button>
-              {props.userRecipeCard && <button
-                type="button"
-                title="edit this recipe"
-                className="btn btn-outline-danger"
-              >
-                <Link to={`/recipe/edit/${props.recipeId}`}> <i className="far fa-edit" /> </Link>
-              </button>
+class RecipeItem extends React.Component {
+  /**
+ * Creates an instance of RecipeItem.
+ * @param {any} props
+ * @memberof RecipeItem
+ */
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.onDeleteRecipe = this.onDeleteRecipe.bind(this);
+    this.onRemoveFavourite = this.onRemoveFavourite.bind(this);
+  }
+  /**
+   *
+   *
+   * @memberof RecipeItem
+   *
+   * @returns {null} null
+   */
+  onDeleteRecipe() {
+    confirmAlert({
+      title: 'Delete this recipe',
+      message: 'Are you sure you want to delete this recipe ?',
+      confirmLabel: 'Yes, delete!',
+      cancelLabel: 'Cancel',
+      onConfirm: () => this.props.onDelete(this.props.recipeId),
+    });
+  }
+  /**
+   *
+   *
+   * @memberof RecipeItem
+   *
+   * @returns {null} null
+   */
+  onRemoveFavourite() {
+    confirmAlert({
+      title: 'Remove from favourite',
+      message: 'Remove this recipe from your favourites ?',
+      confirmLabel: 'Yes, remove!',
+      cancelLabel: 'Cancel',
+      onConfirm: () => this.props.removeRecipe(this.props.recipeId),
+    });
+  }
+  /**
+   *
+   * @memberof RecipeItem
+   * @returns {node} JSX
+   */
+  render() {
+    return (
+      <div className="stuff">
+        <div className="recipeCard container">
+          <Card>
+            <CardBody>
+              <CardTitle>
+                <img
+                  src={this.props.image}
+                  alt={this.props.recipeName}
+                  className="img-thumbnail img-responsive"
+                  id="recipe-images"
+                  height="100"
+                  width="100"
+                />
+                <br />
+                <div id="recipe-title">
+                  <span className="recipe-title text-left">
+                    <Link to={`/recipe/${this.props.recipeId}`}> {capitalize(this.props.recipeName)} </Link>
+                  </span>
+                </div>
+              </CardTitle>
+              {
+                this.props.owner && <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {this.props.owner}</h6>
               }
-              {props.favouriteCard && <button
-                type="button"
-                title="remove from favourites"
-                className="btn btn-outline-danger"
-                data-toggle="modal"
-                data-target="#confirmDelete"
-              ><i className="fas fa-trash-alt" /></button>}
+              {this.props.home && <small> Created {this.props.created}</small>}
+              <hr />
+              <CardText>
+                <span className="recipe-description text-left">
+                  {capitalize(this.props.description)}
+                </span>
+                <br />
+              </CardText>
+              <div className="all-buttons text-left">
+                <div className="btn-group" role="group" >
 
-              {props.userRecipeCard && <button
-                type="button"
-                title="delete this recipe"
-                className="btn btn-outline-danger"
-                data-toggle="modal"
-                data-target="#confirmDelete"
-              ><i className="fas fa-trash-alt" /> </button>}
-            </div>
-          </div>
-        </CardBody>
-      </Card>
-    </div>
-  );
+                  <button
+                    title="number of downvotes"
+                    className="btn btn-outline-danger"
+                    disabled
+                  ><i className="far fa-thumbs-up" /> <span id="likes">{this.props.upvotes} </span></button>
+
+                  <button
+                    title="number of downvotes"
+                    className="btn btn-outline-danger"
+                    disabled
+                  ><i className="far fa-thumbs-down" /> <span id="unlikes">{this.props.downvotes} </span></button>
+
+                  <button
+                    title="number of views"
+                    className="btn btn-outline-danger"
+                    disabled
+                  ><i className="fas fa-eye" /> <span id="views">{this.props.views} </span></button>
+                  {this.props.userRecipeCard && <button
+                    type="button"
+                    title="edit this recipe"
+                    className="btn btn-outline-danger"
+                  >
+                    <Link to={`/recipe/edit/${this.props.recipeId}`}> <i className="far fa-edit" /> </Link>
+                  </button>
+                  }
+                  {this.props.favouriteCard && <button
+                    type="button"
+                    title="remove from favourites"
+                    className="btn btn-outline-danger"
+                    onClick={this.onRemoveFavourite}
+                  ><i className="fas fa-trash-alt" /></button>}
+
+                  {this.props.userRecipeCard && <button
+                    type="button"
+                    title="delete this recipe"
+                    className="btn btn-outline-danger"
+                    onClick={this.onDeleteRecipe}
+                  ><i className="fas fa-trash-alt" /> </button>}
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+}
 RecipeItem.propTypes = {
   recipeName: PropTypes.string.isRequired,
   owner: PropTypes.string,
@@ -127,7 +173,5 @@ RecipeItem.defaultProps = {
   created: null,
   home: null,
   owner: null
-
 };
-
 export default RecipeItem;

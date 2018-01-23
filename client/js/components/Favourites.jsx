@@ -133,7 +133,7 @@ class Favourites extends React.Component {
           <div className="emptyContent">
             <br />
             <h3 className="text-center">
-            You currently have no favourite recipes. Add recipes as favourites
+            You currently have no favourite recipes. Add recipes to favourites
             </h3>
           </div>
         </div>
