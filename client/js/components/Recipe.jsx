@@ -134,23 +134,34 @@ class Recipe extends React.Component {
                 <h5 className="text-left recipe-details-description ml-5">{this.state.recipe.description ? capitalize(this.state.recipe.description) : '' }</h5>
                 <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</small></h5>
                 <div className="actions ml-5 mb-3">
+                  {
+                    !this.props.authenticated && <div className="container text-left">
+                      <span className="mr-3"><i className="far fa-thumbs-up" />
+                        <span> {this.state.recipe.upvote}</span> </span>
+                      <span><i className="far fa-thumbs-down" />
+                        <span> {this.state.recipe.downvote}</span> </span>
+                    </div>
+                  }
+                  { this.props.authenticated &&
                   <div className="btn-group" role="group" >
 
                     <button
                       type="button"
                       title="upvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleUpvote}
-                    ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
+                      disabled={this.props.fetching}
+                    ><i className="far fa-thumbs-up" />
+                      <span>{this.state.recipe.upvote}</span></button>
 
                     <button
                       type="button"
                       title="downvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleDownvote}
-                    ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
+                      disabled={this.props.fetching}
+                    ><i className="far fa-thumbs-down" />
+                      <span>{this.state.recipe.downvote}</span></button>
 
                     <button
                       style={{
@@ -160,10 +171,10 @@ class Recipe extends React.Component {
                       type="button"
                       title="add to your favourites"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleFavourite}
                     ><i className="fab fa-gratipay" /></button>
                   </div>
+                  }
                 </div>
                 <br />
                 <h5 className="text-left ml-5 mb-3">INGREDIENTS</h5>

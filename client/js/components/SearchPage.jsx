@@ -58,7 +58,7 @@ class SearchPage extends React.Component {
         <div className="container search-page-body" id="search-body-result">
           <h1 className="text-center" id="search-header">Search Awesome Recipes</h1>
           <br />
-          <Search />
+          <Search focus />
           <br />
           {
             recipes.length > 0 && <h4 className="text-center" id="search-results">

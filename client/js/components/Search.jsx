@@ -72,6 +72,7 @@ class Search extends React.Component {
                 value={this.state.search}
                 onChange={this.onChange}
                 onFocus={this.onFocus}
+                autoFocus={this.props.focus}
               />
               <span className="input-group-btn">
                 <button className="btn btn-danger" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
@@ -85,9 +86,11 @@ class Search extends React.Component {
 }
 Search.propTypes = {
   search: PropTypes.func.isRequired,
+  focus: PropTypes.bool
 };
 Search.defaultProps = {
-  page: 1
+  page: 1,
+  focus: false
 };
 
 Search.contextTypes = {

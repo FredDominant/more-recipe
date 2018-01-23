@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
+import { connect } from 'react-redux';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   Card,
@@ -98,49 +99,66 @@ class RecipeItem extends React.Component {
                 </span>
                 <br />
               </CardText>
-              <div className="all-buttons text-left">
-                <div className="btn-group" role="group" >
+              {
+                this.props.authenticated && <div className="all-buttons text-left">
+                  <div className="btn-group" role="group" >
 
-                  <button
-                    title="number of downvotes"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="far fa-thumbs-up" /> <span id="likes">{this.props.upvotes} </span></button>
+                    <button
+                      title="number of downvotes"
+                      className="btn btn-outline-danger"
+                      disabled
+                    ><i className="far fa-thumbs-up" />
+                      <span id="likes">{this.props.upvotes} </span></button>
 
-                  <button
-                    title="number of downvotes"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="far fa-thumbs-down" /> <span id="unlikes">{this.props.downvotes} </span></button>
+                    <button
+                      title="number of downvotes"
+                      className="btn btn-outline-danger"
+                      disabled
+                    ><i className="far fa-thumbs-down" />
+                      <span id="unlikes">{this.props.downvotes} </span></button>
 
-                  <button
-                    title="number of views"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="fas fa-eye" /> <span id="views">{this.props.views} </span></button>
-                  {this.props.userRecipeCard && <button
-                    type="button"
-                    title="edit this recipe"
-                    className="btn btn-outline-danger"
-                  >
-                    <Link to={`/recipe/edit/${this.props.recipeId}`}> <i className="far fa-edit" /> </Link>
-                  </button>
-                  }
-                  {this.props.favouriteCard && <button
-                    type="button"
-                    title="remove from favourites"
-                    className="btn btn-outline-danger"
-                    onClick={this.onRemoveFavourite}
-                  ><i className="fas fa-trash-alt" /></button>}
+                    <button
+                      title="number of views"
+                      className="btn btn-outline-danger"
+                      disabled
+                    ><i className="fas fa-eye" />
+                      <span id="views">{this.props.views} </span></button>
+                    {this.props.userRecipeCard && <button
+                      type="button"
+                      title="edit this recipe"
+                      className="btn btn-outline-danger"
+                    >
+                      <Link to={`/recipe/edit/${this.props.recipeId}`}> <i className="far fa-edit" /> </Link>
+                    </button>
+                    }
+                    {this.props.favouriteCard && <button
+                      type="button"
+                      title="remove from favourites"
+                      className="btn btn-outline-danger"
+                      onClick={this.onRemoveFavourite}
+                    ><i className="fas fa-trash-alt" /></button>}
 
-                  {this.props.userRecipeCard && <button
-                    type="button"
-                    title="delete this recipe"
-                    className="btn btn-outline-danger"
-                    onClick={this.onDeleteRecipe}
-                  ><i className="fas fa-trash-alt" /> </button>}
+                    {this.props.userRecipeCard && <button
+                      type="button"
+                      title="delete this recipe"
+                      className="btn btn-outline-danger"
+                      onClick={this.onDeleteRecipe}
+                    ><i className="fas fa-trash-alt" /> </button>}
+                  </div>
                 </div>
-              </div>
+              }
+              {
+                !this.props.authenticated && <div className="container text-left">
+                  <div className="row">
+                    <div className="col-sm-4"><i className="far fa-thumbs-up" />
+                      <span id="likes"> {this.props.upvotes} </span></div>
+                    <div className="col-sm-4"><i className="far fa-thumbs-down" />
+                      <span id="unlikes"> {this.props.downvotes} </span></div>
+                    <div className="col-sm-4"><i className="fas fa-eye" />
+                      <span id="views"> {this.props.views} </span></div>
+                  </div>
+                </div>
+              }
             </CardBody>
           </Card>
         </div>
@@ -162,7 +180,8 @@ RecipeItem.propTypes = {
   removeRecipe: PropTypes.func,
   onDelete: PropTypes.func,
   created: PropTypes.string,
-  home: PropTypes.string
+  home: PropTypes.string,
+  authenticated: PropTypes.bool.isRequired
 };
 RecipeItem.defaultProps = {
   views: null,
@@ -174,4 +193,7 @@ RecipeItem.defaultProps = {
   home: null,
   owner: null
 };
-export default RecipeItem;
+const mapStateToprops = state => ({
+  authenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToprops, {})(RecipeItem);

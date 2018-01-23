@@ -67,7 +67,7 @@ class Favourites extends React.Component {
   render() {
     const { pages } = this.state.pageInfo;
     const allFavourites = this.state.userFavourites.map(recipe => (
-      <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
+      <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
         <RecipeItem
           favouriteCard={'true'}
           image={recipe.Recipe.picture}

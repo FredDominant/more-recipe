@@ -38,7 +38,7 @@ class TopRecipes extends React.Component {
   render() {
     const recipes = (this.props.recipes) ? (this.props.recipes) : [];
     const topRecipes = recipes.map(recipe => (
-      <div key={recipe.id} className="col-xs-8 col-sm-8 col-md-4">
+      <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
         <RecipeItem
           home={'home'}
           image={recipe.picture}

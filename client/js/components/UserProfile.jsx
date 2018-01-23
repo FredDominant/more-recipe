@@ -224,8 +224,8 @@ class UserProfile extends React.Component {
                           this.state.uploading ? 'uploading image...' : 'update'
                         }
                       </button></div>
-                    <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2" />
-                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <div className="col-sm-2 col-md-2 col-lg-2" />
+                    <div className="col-sm-5 col-md-5 col-lg-5">
                       <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
                     </div>
                   </div>

@@ -62,7 +62,7 @@ class UserRecipePage extends React.Component {
     const { pages } = this.props.pageInfo;
     const userRecipes = (this.props.userRecipes) ? this.props.userRecipes : [];
     const allUserRecipes = userRecipes.map(recipe => (
-      <div key={`${recipe.id}`} className="col-sm-6 col-md-4" >
+      <div key={`${recipe.id}`} className="col-sm-12 col-md-6 col-lg-4" >
         <RecipeItem
           image={recipe.picture}
           recipeName={recipe.name}
