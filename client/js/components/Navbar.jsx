@@ -43,7 +43,7 @@ class Navbar extends React.Component {
   render() {
     if (this.props.authenticated) {
       return (
-        <div className="">
+        <div>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="row" id="nav2">
               <div className="col-sm-10 col-xs-6">
@@ -101,9 +101,8 @@ class Navbar extends React.Component {
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link"><span>
-                                <i className="fab fa-gratipay" />
-                              </span><Link to="/favourites">
-                                Favourites</Link> <span className="sr-only">(current)</span></span>
+                                <i className="fab fa-gratipay" /> </span> <Link to="/favourites">
+                                 Favourites</Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link"><span><i className="fas fa-plus-circle" /> </span>
