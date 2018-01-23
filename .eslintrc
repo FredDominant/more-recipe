@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": "airbnb",
+  "extends":"airbnb",
   "env": {
     "node": true,
     "es6": true,
@@ -13,6 +13,13 @@
   "localStorage": true,
   "expect": true,
   "$": true
+  },
+  "settings":{
+    "import/resolver":{
+      "node":{
+        "extensions":[".js",".jsx"]
+      }
+    }
   },
   "rules": {
     "one-var": 0,
