@@ -6,7 +6,12 @@ const ViewReviews = props => (
     <div className="row">
       <div className="col-xs-4 col-sm-4 col-md-4 col-lg-1">
         <div className="reviewer-image">
-          <img src={props.image} alt={props.firstname} className="rounded float-left img-fluid" id="reviewer-image" />
+          <img
+            src={props.image}
+            alt={props.firstname}
+            className="rounded float-left img-fluid"
+            id="reviewer-image"
+          />
         </div>
       </div>
       <div className="col-xs-4 col-sm-4 col-md-4 col-lg-9">

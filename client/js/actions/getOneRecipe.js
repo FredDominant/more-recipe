@@ -32,7 +32,6 @@ const getOneRecipe = recipeId => (dispatch) => {
     })
       .then((response) => {
         const { Recipe, userFavourited } = response.data;
-        console.log(response.data);
         dispatch(batchActions([
           getRecipe(Recipe),
           getFavouriteStatus(userFavourited),

@@ -23,9 +23,7 @@ class Navbar extends React.Component {
     this.state = {};
     this.handleLogout = this.handleLogout.bind(this);
   }
-  // componentWillReceiveProps(props) {
-  //   console.log('nextProps =====>', nextProps);
-  // }
+
   /**
    * @description this method handles user logout
    * @returns {function} function
@@ -125,15 +123,6 @@ class Navbar extends React.Component {
                       </span>
                     </li>
                   </ul>}
-                  {/* {!this.props.authenticated &&
-                    <ul className="navbar-nav mr-auto">
-                      <li className="nav-item active">
-                        <a className="nav-link" data-toggle="modal" data-target="#register"><span><i className="fas fa-user-plus" /></span> REGISTER<span className="sr-only">(current)</span></a>
-                      </li>
-                      <li className="nav-item active">
-                        <a className="nav-link" data-toggle="modal" data-target="#login"><span><i className="fas fa-sign-in-alt" /></span> LOGIN<span className="sr-only">(current)</span></a>
-                      </li>
-                    </ul>} */}
                 </div>
               </div>
             </div>
@@ -205,10 +194,11 @@ Navbar.contextTypes = {
 Navbar.propTypes = {
   logOutUser: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired,
-  firstname: PropTypes.string.isRequired,
+  firstname: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 Navbar.defaultProps = {
+  firstname: ''
 };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,

@@ -28,7 +28,9 @@ class UserProfile extends React.Component {
       picture: '',
       disabled: true,
       uploadImageError: '',
-      selectedImage: false
+      selectedImage: false,
+      uploading: false,
+      fetching: false
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -94,7 +96,6 @@ class UserProfile extends React.Component {
    */
   onSelectImage() {
     $('input[type=file]').click();
-    console.log(this);
   }
   /**
    *
@@ -106,13 +107,16 @@ class UserProfile extends React.Component {
     const { firstname, lastname, email, picture } = this.state;
     event.preventDefault();
     if (this.state.selectedImage) {
+      this.setState({ uploading: true });
       return uploadImage(picture)
         .then((response) => {
           const url = response.data.secure_url;
           this.setState({ picture: url });
+          this.setState({ uploading: false });
           this.props.updateProfile(this.state);
         })
         .catch((error) => {
+          this.setState({ uploading: false });
           this.setState({ uploadImageError: error.error.message });
         });
     }
@@ -210,14 +214,18 @@ class UserProfile extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <div className="row">
-                    <div className="col-sm-2">
+                  <div className="container row">
+                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                       <button
                         className="btn btn-success"
                         disabled={this.state.disabled}
-                      >Update</button></div>
-                    <div className="col-sm-1" />
-                    <div className="col-sm-2">
+                      >
+                        {
+                          this.state.uploading ? 'uploading image...' : 'update'
+                        }
+                      </button></div>
+                    <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2" />
+                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                       <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
                     </div>
                   </div>
@@ -239,7 +247,7 @@ const mapDispatchToprops = dispatch => ({
 
 const mapStateToProps = state => ({
   userDetails: state.currentUserProfile.User,
-  updateSuccess: state.currentUserProfile.UpdateSuccess
+  updateSuccess: state.currentUserProfile.UpdateSuccess,
 });
 
 UserProfile.propTypes = {
@@ -249,7 +257,8 @@ UserProfile.propTypes = {
 };
 UserProfile.defaultProps = {
   userDetails: {},
-  updateSuccess: false
+  updateSuccess: false,
+  fetching: false
 };
 
 export default connect(mapStateToProps, mapDispatchToprops)(UserProfile);

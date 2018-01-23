@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
 
 import loginValidator from '../validation/LoginValidator';
@@ -49,7 +48,6 @@ class Login extends React.Component {
   onForgotPassword() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('recover-password').style.display = 'block';
-    console.log(this);
   }
   /**
    * @returns {dispatch} dispatch
@@ -88,9 +86,6 @@ class Login extends React.Component {
  */
   render() {
     const { errors } = this.state;
-    // if (this.props.authenticated) {
-    //   return <Redirect to="/home" />;
-    // }
     return (
       <div>
         <div className="modal fade" id="login" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
