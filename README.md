@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Noblemajesty/more-recipe.svg?branch=chore%2Ftest)](https://travis-ci.org/Noblemajesty/more-recipe)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c7e0da6db5c85bff9a79/maintainability)](https://codeclimate.com/github/Noblemajesty/more-recipe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c7e0da6db5c85bff9a79/test_coverage)](https://codeclimate.com/github/Noblemajesty/more-recipe/test_coverage)
-[![Coverage Status](https://coveralls.io/repos/github/Noblemajesty/more-recipe/badge.svg?branch=chore%2Ftest)](https://coveralls.io/github/Noblemajesty/more-recipe?branch=chore%2Ftest)
+
 
 # **_More-Recipes_**
 
