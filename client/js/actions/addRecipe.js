@@ -16,6 +16,8 @@ const recipeError = message => ({
 });
 
 const addRecipe = recipe => (dispatch) => {
+  console.log('recipe in action is', recipe);
+  const { name, ingredients, directions, description, recipeImage } = recipe;
   dispatch(uploading());
   const token = localStorage.getItem('token');
   axios({
@@ -24,7 +26,7 @@ const addRecipe = recipe => (dispatch) => {
     headers: {
       'x-access-token': token
     },
-    data: recipe
+    data: { name, ingredients, directions, description, picture: recipeImage }
   })
     .then((response) => {
       dispatch(batchActions([

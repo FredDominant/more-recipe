@@ -52,9 +52,6 @@ export default class Vote {
                   upvote.create(newUpvote).then(() => {
                     recipe.findById(req.params.recipeId)
                       .then((found) => {
-                        if (!found) {
-                          return res.status(404).json({ Message: 'recipe not found' });
-                        }
                         if (found) {
                           found.increment('upvote');
                           recipe.findOne({
@@ -91,9 +88,6 @@ export default class Vote {
                                   { model: models.User, attributes: ['firstname', 'lastname'] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'new upvote after destroying down', Recipe }));
-                            }
-                            if (!existingRecipe) {
-                              return res.status(404).json({ Message: 'Can\'t find recipe to increment after creation' });
                             }
                           });
                       });
@@ -168,9 +162,6 @@ export default class Vote {
                   downvote.create(newDownvote)
                     .then(() => {
                       recipe.findById(req.params.recipeId).then((found) => {
-                        if (!found) {
-                          return res.status(404).json({ Message: 'couldn\'t upvote recipe' });
-                        }
                         if (found) {
                           found.increment('downvote');
                           recipe.findOne({
@@ -207,9 +198,6 @@ export default class Vote {
                                   { model: models.User, attributes: ['firstname', 'lastname'] }
                                 ]
                               }).then(Recipe => res.status(200).json({ Message: 'Downvoted', Recipe }));
-                            }
-                            if (!found) {
-                              return res.status(404).json({ Message: 'Can\'t find recipe' });
                             }
                           });
                       });

@@ -163,15 +163,7 @@ export default class Recipe {
                 userId: req.decoded.id
               }
             }
-          })
-            .then(() => {
-              favourite.destroy({
-                where: {
-                  recipeId: req.params.recipeId
-                }
-              })
-                .then(() => res.status(200).json({ Message: 'recipe deleted' }));
-            });
+          }).then(() => res.status(200).json({ Message: 'recipe deleted' }));
         }
       })
       .catch(() => res.status(500)
@@ -415,8 +407,7 @@ export default class Recipe {
             Limit: limit,
             Recipe: foundRecipe
           });
-      }).catch(() => res.status(500)
-        .json({ Message: 'Internal server error. Unable to complete search.' }));
+      });
     }).catch(() => res.status(500)
       .json({ Message: 'Internal server error' }));
   }

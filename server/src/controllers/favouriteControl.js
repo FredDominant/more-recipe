@@ -56,7 +56,12 @@ export default class Favourite {
                 .json({
                   Message: 'Recipe added to favourites',
                   Favourite: newFavourite
-                }));
+                }))
+              .then(() => {
+                recipe.findById(req.params.recipeId).then((Recipe) => {
+                  Recipe.increment('favourites');
+                });
+              });
           });
       })
       .catch(() => res.status(500)
@@ -116,8 +121,7 @@ export default class Favourite {
                 Favourites: foundFavourites
               });
           }
-        }).catch(() => res.status(500)
-          .json({ Message: 'Unable to get favourites, internal server error' }));
+        });
     })
       .catch(() => res.status(500)
         .json({ Message: 'Unable to get favourites, internal server error' }));
@@ -152,11 +156,12 @@ export default class Favourite {
                   userId: req.decoded.id
                 }
               })
-                .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }));
-              return;
-            }
-            if (!foundFavourite) {
-              return res.status(404).json({ Message: 'Favourite not found' });
+                .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }))
+                .then(() => {
+                  recipe.findById(req.params.recipeId).then((Recipe) => {
+                    Recipe.decrement('favourites');
+                  });
+                });
             }
           });
       })

@@ -3,7 +3,13 @@ export default (sequelize, DataTypes) => {
   const Favourite = sequelize.define('Favourite', {
     recipeId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE',
+      reference: {
+        model: 'Recipes',
+        key: 'id',
+        as: 'recipeId'
+      }
     },
     userId: {
       type: DataTypes.INTEGER,

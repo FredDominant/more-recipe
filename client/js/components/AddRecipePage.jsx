@@ -102,6 +102,7 @@ export class AddRecipePage extends React.Component {
       return uploadImage(recipeImage)
         .then((response) => {
           const recipeUrl = response.data.secure_url;
+          console.log('recipe url is', recipeUrl);
           this.setState({ recipeImage: recipeUrl, isUploading: false });
           this.props.createRecipe(this.state);
         })
@@ -113,6 +114,7 @@ export class AddRecipePage extends React.Component {
           toastr.error(this.state.uploadImageError);
         });
     }
+    console.log('jumped to this place');
     this.props.createRecipe({ name, directions, ingredients, description });
   }
   /**

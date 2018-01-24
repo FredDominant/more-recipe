@@ -33,6 +33,11 @@ module.exports = {
       allowNull: true,
       defaultValue: 0
     },
+    favourites: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
     upvote: {
       type: Sequelize.INTEGER,
       allowNull: true,
