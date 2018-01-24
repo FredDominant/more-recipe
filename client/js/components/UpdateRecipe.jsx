@@ -116,18 +116,37 @@ class UpdateRecipe extends React.Component {
    * @memberof UpdateRecipe
    */
   render() {
+    const {
+      name,
+      description,
+      ingredients,
+      directions,
+      picture,
+      toggleEdit
+    } = this.state;
     return (
       <div>
         <br />
         <div className="container">
           <div className="container">
-            {this.state.editRecipeSuccess && <div className="alert alert-success alert-dismissible" role="alert">Recipe Updated</div>}
+            {
+              this.state.editRecipeSuccess &&
+              <div
+                className="alert alert-success alert-dismissible"
+                role="alert"
+              >Recipe Updated</div>
+            }
           </div>
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-sm-4">
                 <div className="recipe-image">
-                  <img className="img-thumbnail img-responsive" src={this.state.picture} alt="" srcSet="" />
+                  <img
+                    className="img-thumbnail img-responsive"
+                    src={picture}
+                    alt=""
+                    srcSet=""
+                  />
                 </div>
                 <br />
                 <label htmlFor="upload" className="file-upload__label">upload image</label>
@@ -136,7 +155,7 @@ class UpdateRecipe extends React.Component {
                   name="file"
                   id="file-upload"
                   onChange={this.onUpload}
-                  disabled={this.state.toggleEdit}
+                  disabled={toggleEdit}
                 />
               </div>
               <div className="col-sm-8">
@@ -148,9 +167,9 @@ class UpdateRecipe extends React.Component {
                     className="form-control"
                     placeholder="Michael's Awesome Sauce"
                     name="name"
-                    value={this.state.name}
+                    value={name}
                     onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
+                    disabled={toggleEdit}
                   />
                 </div>
 
@@ -162,9 +181,9 @@ class UpdateRecipe extends React.Component {
                     className="form-control"
                     placeholder="An awesome sauce by Michael"
                     name="description"
-                    value={this.state.description}
+                    value={description}
                     onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
+                    disabled={toggleEdit}
                   />
                 </div>
 
@@ -177,9 +196,9 @@ class UpdateRecipe extends React.Component {
                     className="form-control"
                     placeholder="Michael's Awesome Sauce"
                     name="directions"
-                    value={this.state.directions}
+                    value={directions}
                     onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
+                    disabled={toggleEdit}
                   />
                 </div>
 
@@ -192,16 +211,16 @@ class UpdateRecipe extends React.Component {
                     className="form-control"
                     placeholder="Michael's Ingredient list"
                     name="ingredients"
-                    value={this.state.ingredients}
+                    value={ingredients}
                     onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
+                    disabled={toggleEdit}
                   />
                 </div>
 
                 <div className="form-group">
                   <button
                     className="btn btn-primary"
-                    disabled={this.state.toggleEdit}
+                    disabled={toggleEdit}
                   >Update Recipe</button>
                   <button
                     className="btn btn-success"

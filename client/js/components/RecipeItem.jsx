@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from 'react-redux';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle
-} from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 import capitalize from '../utils/capitalize';
 /**
@@ -67,6 +62,21 @@ class RecipeItem extends React.Component {
    * @returns {node} JSX
    */
   render() {
+    const {
+      authenticated,
+      image,
+      recipeName,
+      recipeId,
+      owner,
+      description,
+      created,
+      home,
+      upvotes,
+      downvotes,
+      views,
+      userRecipeCard,
+      favouriteCard
+    } = this.props;
     return (
       <div className="stuff">
         <div className="recipeCard container">
@@ -74,8 +84,8 @@ class RecipeItem extends React.Component {
             <CardBody>
               <CardTitle>
                 <img
-                  src={this.props.image}
-                  alt={this.props.recipeName}
+                  src={image}
+                  alt={recipeName}
                   className="img-thumbnail img-responsive"
                   id="recipe-images"
                   height="100"
@@ -84,23 +94,26 @@ class RecipeItem extends React.Component {
                 <br />
                 <div id="recipe-title">
                   <span className="recipe-title text-left">
-                    <Link to={`/recipe/${this.props.recipeId}`}> {capitalize(this.props.recipeName)} </Link>
+                    <Link to={`/recipe/${recipeId}`}> {capitalize(recipeName)} </Link>
                   </span>
                 </div>
               </CardTitle>
               {
-                this.props.owner && <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {this.props.owner}</h6>
+                owner &&
+                <h6 className="recipe-owner">
+                  <i className="fas fa-user-circle" /> <span /> {owner}
+                </h6>
               }
-              {this.props.home && <small> Created {this.props.created}</small>}
+              {home && <small> Created {created}</small>}
               <hr />
               <CardText>
                 <span className="recipe-description text-left">
-                  {capitalize(this.props.description)}
+                  {capitalize(description)}
                 </span>
                 <br />
               </CardText>
               {
-                this.props.authenticated && <div className="all-buttons text-left">
+                authenticated && <div className="all-buttons text-left">
                   <div className="btn-group" role="group" >
 
                     <button
@@ -108,37 +121,37 @@ class RecipeItem extends React.Component {
                       className="btn btn-outline-danger"
                       disabled
                     ><i className="far fa-thumbs-up" />
-                      <span id="likes">{this.props.upvotes} </span></button>
+                      <span id="likes">{upvotes} </span></button>
 
                     <button
                       title="number of downvotes"
                       className="btn btn-outline-danger"
                       disabled
                     ><i className="far fa-thumbs-down" />
-                      <span id="unlikes">{this.props.downvotes} </span></button>
+                      <span id="unlikes">{downvotes} </span></button>
 
                     <button
                       title="number of views"
                       className="btn btn-outline-danger"
                       disabled
                     ><i className="fas fa-eye" />
-                      <span id="views">{this.props.views} </span></button>
-                    {this.props.userRecipeCard && <button
+                      <span id="views">{views} </span></button>
+                    {userRecipeCard && <button
                       type="button"
                       title="edit this recipe"
                       className="btn btn-outline-danger"
                     >
-                      <Link to={`/recipe/edit/${this.props.recipeId}`}> <i className="far fa-edit" /> </Link>
+                      <Link to={`/recipe/edit/${recipeId}`}> <i className="far fa-edit" /> </Link>
                     </button>
                     }
-                    {this.props.favouriteCard && <button
+                    {favouriteCard && <button
                       type="button"
                       title="remove from favourites"
                       className="btn btn-outline-danger"
                       onClick={this.onRemoveFavourite}
                     ><i className="fas fa-trash-alt" /></button>}
 
-                    {this.props.userRecipeCard && <button
+                    {userRecipeCard && <button
                       type="button"
                       title="delete this recipe"
                       className="btn btn-outline-danger"
@@ -148,14 +161,14 @@ class RecipeItem extends React.Component {
                 </div>
               }
               {
-                !this.props.authenticated && <div className="container text-left">
+                !authenticated && <div className="container text-left">
                   <div className="row">
                     <div className="col-sm-4"><i className="far fa-thumbs-up" />
-                      <span id="likes"> {this.props.upvotes} </span></div>
+                      <span id="likes"> {upvotes} </span></div>
                     <div className="col-sm-4"><i className="far fa-thumbs-down" />
-                      <span id="unlikes"> {this.props.downvotes} </span></div>
+                      <span id="unlikes"> {downvotes} </span></div>
                     <div className="col-sm-4"><i className="fas fa-eye" />
-                      <span id="views"> {this.props.views} </span></div>
+                      <span id="views"> {views} </span></div>
                   </div>
                 </div>
               }

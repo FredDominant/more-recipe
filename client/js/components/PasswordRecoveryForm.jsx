@@ -79,7 +79,8 @@ class PasswordRecoveryForm extends React.Component {
    * @memberof PasswordRecoveryForm
    */
   render() {
-    const { errors } = this.state;
+    const { errors, email } = this.state;
+    const { fetching } = this.props;
     return (
       <div className="container">
         <div className="recover-password">
@@ -90,7 +91,7 @@ class PasswordRecoveryForm extends React.Component {
               required
               name="email"
               onChange={this.onChange}
-              value={this.state.email}
+              value={email}
               placeholder="Type in your registered email"
             />
             {errors.email && <small className="form-text text-muted">
@@ -103,7 +104,7 @@ class PasswordRecoveryForm extends React.Component {
               onClick={this.onSubmit}
             >
             Recover password
-              {this.props.fetching && <span className="container">
+              {fetching && <span className="container">
                 <MDSpinner />
               </span>}
             </button>

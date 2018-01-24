@@ -76,15 +76,27 @@ class Signup extends React.Component {
    * @memberof Signup
    */
   render() {
-    const { errors } = this.state;
+    const { errors, firstname, lastname, email, password, confirmPassword } = this.state;
+    const { fetching, errorMessage } = this.props;
     return (
       <div>
-        <div className="modal fade" id="register" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          className="modal fade"
+          id="register"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div className="modal-dialog" role="document">
             <div className="modal-content container register-signup">
               <div className="row container">
                 <div className="col-xs-2">
-                  <button type="button" className="close cancel-signup" data-dismiss="modal" aria-label="Close">
+                  <button
+                    type="button"
+                    className="close cancel-signup"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
                     <span className="close-signup" aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -92,32 +104,46 @@ class Signup extends React.Component {
               <div className="row container">
                 <div className="col-xs-12 text-center">
                   <span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
-                  <span><h6 className="signup-text text-center">Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.</h6></span>
+                  <span>
+                    <h6 className="signup-text text-center">
+                    Register to view cool awesome recipes,
+                    rate and review recipes, and create your own recipes and menus.
+                    </h6>
+                  </span>
                 </div>
               </div>
               <div className="modal-body">
                 <div>
                   <div className="container">
-                    {this.props.errorMessage && <div className="alert alert-danger" role="alert">{this.props.errorMessage}
+                    {errorMessage &&
+                    <div className="alert alert-danger" role="alert">{errorMessage}
                     </div>}
-                    {errors.firstname && <div className="alert alert-danger" role="alert">{errors.firstname}
+                    {errors.firstname &&
+                    <div className="alert alert-danger" role="alert">{errors.firstname}
                     </div>}
-                    {errors.lastname && <div className="alert alert-danger" role="alert">{errors.lastname}
+                    {errors.lastname &&
+                    <div className="alert alert-danger" role="alert">{errors.lastname}
                     </div>}
-                    {errors.email && <div className="alert alert-danger" role="alert">{errors.email}
+                    {errors.email &&
+                    <div className="alert alert-danger" role="alert">{errors.email}
                     </div>}
-                    {errors.password && <div className="alert alert-danger" role="alert">{errors.password}
+                    {errors.password &&
+                    <div className="alert alert-danger" role="alert">{errors.password}
                     </div>}
-                    {errors.confirmPassword && <div className="alert alert-danger" role="alert">{errors.confirmPassword}
+                    {errors.confirmPassword &&
+                    <div className="alert alert-danger" role="alert">{errors.confirmPassword}
                     </div>}
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
                     <div className="container">
                       <div className="input-group">
-                        <span className="input-group-addon" id="firstName-addon"><i className="fa fa-user" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="firstName-addon"
+                        ><i className="fa fa-user" aria-hidden="true" /></span>
                         <input
                           type="text"
-                          value={this.state.firstname}
+                          value={firstname}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="First Name"
@@ -128,10 +154,13 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <span className="input-group-addon" id="lastName-addon"><i className="fa fa-user" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="lastName-addon"
+                        ><i className="fa fa-user" aria-hidden="true" /></span>
                         <input
                           type="text"
-                          value={this.state.lastname}
+                          value={lastname}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Last Name"
@@ -142,10 +171,14 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="email-addon"
+                        >
+                          <i className="fa fa-envelope" aria-hidden="true" /></span>
                         <input
                           type="email"
-                          value={this.state.email}
+                          value={email}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Email "
@@ -156,10 +189,13 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="password-addon"
+                        ><i className="fa fa-key" aria-hidden="true" /></span>
                         <input
                           type="password"
-                          value={this.state.password}
+                          value={password}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Password"
@@ -170,10 +206,13 @@ class Signup extends React.Component {
                       </div>
                       <br />
                       <div className="input-group">
-                        <span className="input-group-addon" id="confirmPassword-addon"><i className="fa fa-key" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="confirmPassword-addon"
+                        ><i className="fa fa-key" aria-hidden="true" /></span>
                         <input
                           type="password"
-                          value={this.state.confirmPassword}
+                          value={confirmPassword}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Confirm password"
@@ -187,11 +226,11 @@ class Signup extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn signup-form register-button"
-                          disabled={this.props.fetching}
+                          disabled={fetching}
                         >
                           <span className="register-text">
                           Register
-                            {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                            {fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
                           </span> </button>
                       </div>
                     </div>

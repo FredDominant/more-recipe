@@ -41,6 +41,7 @@ class Navbar extends React.Component {
    * @memberof Navbar
    */
   render() {
+    const { firstname } = this.props;
     if (this.props.authenticated) {
       return (
         <div>
@@ -83,7 +84,7 @@ class Navbar extends React.Component {
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >{ this.props.firstname }  <span className="caret" /> </a>
+                        >{ firstname }  <span className="caret" /> </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
@@ -117,7 +118,6 @@ class Navbar extends React.Component {
                               ><span><i className="fas fa-sign-out-alt" /> </span>Logout</button></a>
                             </li>
                           </div>
-
                         </ul>
                       </span>
                     </li>

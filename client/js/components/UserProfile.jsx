@@ -128,6 +128,15 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   render() {
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      picture,
+      disabled,
+      uploading
+    } = this.state;
     return (
       <div className="profile-body">
         <div className="container" id="update-profile-form">
@@ -144,8 +153,8 @@ class UserProfile extends React.Component {
                     <img
                       className="img-thumbnail"
                       id="update-profile-picture"
-                      src={this.state.picture}
-                      alt={this.state.firstname}
+                      src={picture}
+                      alt={firstname}
                       srcSet=""
                     />
                   </div>
@@ -156,7 +165,7 @@ class UserProfile extends React.Component {
                     id="profile-upload"
                     style={{ display: 'none' }}
                     onChange={this.onUpload}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
                 <br />
@@ -168,9 +177,9 @@ class UserProfile extends React.Component {
                     id="profile-firstname"
                     className="form-control"
                     name="firstname"
-                    value={this.state.firstname}
+                    value={firstname}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -181,9 +190,9 @@ class UserProfile extends React.Component {
                     id="profile-lastname"
                     className="form-control"
                     name="lastname"
-                    value={this.state.lastname}
+                    value={lastname}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -194,9 +203,9 @@ class UserProfile extends React.Component {
                     id="profile-email"
                     className="form-control"
                     name="email"
-                    value={this.state.email}
+                    value={email}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -207,9 +216,9 @@ class UserProfile extends React.Component {
                     id="profile-password"
                     className="form-control"
                     name="password"
-                    value={this.state.password}
+                    value={password}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -218,10 +227,10 @@ class UserProfile extends React.Component {
                     <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                       <button
                         className="btn btn-success"
-                        disabled={this.state.disabled}
+                        disabled={disabled}
                       >
                         {
-                          this.state.uploading ? 'uploading image...' : 'update'
+                          uploading ? 'uploading image...' : 'update'
                         }
                       </button></div>
                     <div className="col-sm-2 col-md-2 col-lg-2" />

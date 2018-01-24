@@ -63,6 +63,7 @@ class RecipeBody extends React.Component {
   render() {
     const { pages } = this.props.pageInfo;
     const { recipes } = this.state;
+    const { fetching } = this.props;
     const allRecipes = recipes.map(recipe =>
       (
         <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
@@ -112,7 +113,7 @@ class RecipeBody extends React.Component {
         </div>
       );
     }
-    if (this.props.fetching) {
+    if (fetching) {
       return (
         <div className="container loading-icon-container">
           <div className="text-center mt-30 loading-icon">

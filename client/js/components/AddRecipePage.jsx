@@ -134,15 +134,26 @@ export class AddRecipePage extends React.Component {
    * @memberof AddRecipePage
    */
   render() {
-    const errors = this.state.errors;
+    const { errors, recipeImage, name, description, directions, ingredients } = this.state;
     return (
       <div className="container-fluid">
         <div id="add-recipe-form" className="container">
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-sm-4">
-                <div className="recipe-image" id="add-recipe-image-container" onClick={this.handleSelectImage} role="presentation">
-                  <img className="img-thumbnail" src={this.state.recipeImage} alt="" srcSet="" id="add-recipe-image" />
+                <div
+                  className="recipe-image"
+                  id="add-recipe-image-container"
+                  onClick={this.handleSelectImage}
+                  role="presentation"
+                >
+                  <img
+                    className="img-thumbnail"
+                    src={recipeImage}
+                    alt=""
+                    srcSet=""
+                    id="add-recipe-image"
+                  />
                 </div>
                 <br />
                 <input
@@ -161,7 +172,7 @@ export class AddRecipePage extends React.Component {
                     id="recipeName"
                     className="form-control"
                     name="name"
-                    value={this.state.name}
+                    value={name}
                     onChange={this.onChange}
                   />
                   {errors.name && <small className="form-text text-muted">
@@ -176,7 +187,7 @@ export class AddRecipePage extends React.Component {
                     id="recipeDescription"
                     className="form-control"
                     name="description"
-                    value={this.state.description}
+                    value={description}
                     onChange={this.onChange}
                   />
                   {errors.description && <small className="form-text text-muted">
@@ -192,7 +203,7 @@ export class AddRecipePage extends React.Component {
                     id="recipeDirections"
                     className="form-control"
                     name="directions"
-                    value={this.state.directions}
+                    value={directions}
                     onChange={this.onChange}
                   />
                   {errors.directions && <small className="form-text text-muted">
@@ -209,7 +220,7 @@ export class AddRecipePage extends React.Component {
                     className="form-control"
                     placeholder="Comma separated list of ingredients"
                     name="ingredients"
-                    value={this.state.ingredients}
+                    value={ingredients}
                     onChange={this.onChange}
                   />
                   {errors.ingredients && <small className="form-text text-muted">
@@ -220,13 +231,16 @@ export class AddRecipePage extends React.Component {
                 <div className="form-group">
                   <button className="btn btn-primary">
                     {
-                      !this.state.isUploading && <h6 className="text-center"> Add Recipe </h6>
+                      !this.state.isUploading &&
+                      <h6 className="text-center"> Add Recipe </h6>
                     }
                     {
-                      this.state.isUploading && <h6 className="text-center"> Uploading Image... </h6>
+                      this.state.isUploading &&
+                      <h6 className="text-center"> Uploading Image... </h6>
                     }
                     {
-                      this.props.loading && <span> <MDSpinner /></span>
+                      this.props.loading &&
+                      <span> <MDSpinner /></span>
                     }
                   </button>
                 </div>

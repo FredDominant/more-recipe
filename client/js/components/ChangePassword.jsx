@@ -79,7 +79,7 @@ class ChangePassword extends React.Component {
     if (!verifyRecoveryToken(this.props.match.params.token) || this.props.authenticated) {
       return <Redirect to="/home" />;
     }
-    const { errors } = this.state;
+    const { password, confirmPassword, errors } = this.state;
     return (
       <div>
         <br />
@@ -93,7 +93,7 @@ class ChangePassword extends React.Component {
                     <label htmlFor="password">Enter Password</label>
                     <input
                       type="password"
-                      value={this.state.password}
+                      value={password}
                       onChange={this.onChange}
                       className="form-control reset-password mb-2"
                       id="password"
@@ -109,7 +109,7 @@ class ChangePassword extends React.Component {
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
                       type="password"
-                      value={this.state.confirmPassword}
+                      value={confirmPassword}
                       onChange={this.onChange}
                       className="form-control reset-password mb-2"
                       id="confirmPassword"

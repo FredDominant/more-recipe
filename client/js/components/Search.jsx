@@ -75,7 +75,10 @@ class Search extends React.Component {
                 autoFocus={this.props.focus}
               />
               <span className="input-group-btn">
-                <button className="btn btn-danger" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
+                <button
+                  className="btn btn-danger"
+                  type="submit"
+                ><i className="fa fa-search" aria-hidden="true" /></button>
               </span>
             </div>
           </form>

@@ -46,7 +46,8 @@ class Reviews extends React.Component {
 * @memberof Reviews
 */
   render() {
-    const allReviews = this.props.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
+    const { reviews } = this.props;
+    const allReviews = reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
           image={review.User.picture}
