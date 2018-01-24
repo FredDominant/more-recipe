@@ -5,14 +5,16 @@ import { connect } from 'react-redux';
 import addReview from '../actions/addReview';
 /**
  *
- *
  * @class AddReview
+ *
  * @extends {React.Component}
  */
 class AddReview extends React.Component {
 /**
- * Creates an instance of AddReview.
+ * @description Creates an instance of AddReview.
+ *
  * @param {any} props
+ *
  * @memberof AddReview
  */
   constructor(props) {
@@ -26,7 +28,9 @@ class AddReview extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof AddReview
    */
   onChange(event) {
@@ -36,6 +40,7 @@ class AddReview extends React.Component {
    * @returns {null} null
    *
    * @param {any} event
+   *
    * @memberof AddReview
    */
   handleSubmit(event) {
@@ -49,8 +54,8 @@ class AddReview extends React.Component {
   }
   /**
    *
+   * @returns {node} JSX
    *
-   * @returns {html} html
    * @memberof AddReview
    */
   render() {

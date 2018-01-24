@@ -6,13 +6,17 @@ import search from '../actions/search';
 /**
  *
  * @export
+ *
  * @class Search
+ *
  * @extends {React.Component}
  */
 class Search extends React.Component {
   /**
-   * Creates an instance of Search.
+   * @description Creates an instance of Search.
+   *
    * @param {any} props
+   *
    * @memberof Search
    */
   constructor(props) {
@@ -25,7 +29,9 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof Search
    */
   onChange(event) {
@@ -34,6 +40,7 @@ class Search extends React.Component {
   }
   /**
    * @memberof Search
+   *
    * @returns {null} null
    */
   onFocus() {
@@ -42,7 +49,9 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof Search
    */
   handleSubmit(event) {
@@ -53,6 +62,7 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof Search
    */
   render() {

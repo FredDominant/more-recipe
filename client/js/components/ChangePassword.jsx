@@ -13,12 +13,15 @@ import resetPassword from '../actions/resetPassword';
  * @description renders component to change users' paswword
  *
  * @class ChangePassword
+ *
  * @extends {React.Component}
  */
 class ChangePassword extends React.Component {
   /**
- * Creates an instance of ChangePassword.
+ * @description Creates an instance of ChangePassword.
+ *
  * @param {any} props
+ *
  * @memberof ChangePassword
  */
   constructor(props) {
@@ -35,7 +38,9 @@ class ChangePassword extends React.Component {
   /**
    *
    * @param {any} event
+   *
    * @memberof ChangePassword
+   *
    * @returns {null} null
    */
   onChange(event) {
@@ -46,7 +51,9 @@ class ChangePassword extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof ChangePassword
    */
   onSubmit(event) {
@@ -59,7 +66,9 @@ class ChangePassword extends React.Component {
   }
   /**
    * @description validates for inputs
+   *
    * @memberof PasswordRecoveryForm
+   *
    * @returns {boolean} true or false
    */
   isvalid() {
@@ -71,8 +80,8 @@ class ChangePassword extends React.Component {
   }
   /**
    *
+   * @returns {node} react component
    *
-   * @returns {jsx} react component
    * @memberof ChangePassword
    */
   render() {
@@ -85,8 +94,8 @@ class ChangePassword extends React.Component {
         <br />
         <div className="container">
           <div className="row">
-            <div className="col-md-4 col-xs-8 col-sm-4 col-lg-4" />
-            <div className="col-md-4 col-xs-8 col-sm-4 col-lg-4 change-password">
+            <div className="col-md-4 col-sm-4 col-lg-4" />
+            <div className="col-md-4 col-sm-4 col-lg-4 change-password">
               <form className="form-group" onSubmit={this.onSubmit}>
                 <div className="container reset-password-container mt-7 mb-7">
                   <div className="">

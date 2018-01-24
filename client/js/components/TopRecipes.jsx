@@ -8,13 +8,17 @@ import getTopRecipes from '../actions/getTopRecipes';
 import capitalize from '../utils/capitalize';
 /**
  * @description renders Top Recipes
+ *
  * @class TopRecipes
+ *
  * @extends {React.Component}
  */
 class TopRecipes extends React.Component {
 /**
- * Creates an instance of TopRecipes.
+ * @description Creates an instance of TopRecipes.
+ *
  * @param {any} props
+ *
  * @memberof TopRecipes
  */
   constructor(props) {
@@ -26,6 +30,7 @@ class TopRecipes extends React.Component {
   /**
  *
  * @returns {null} null
+ *
  * @memberof TopRecipes
 */
   componentDidMount() {
@@ -33,6 +38,7 @@ class TopRecipes extends React.Component {
   }
   /**
 * @returns {node} react component
+
 * @memberof TopRecipes
 */
   render() {

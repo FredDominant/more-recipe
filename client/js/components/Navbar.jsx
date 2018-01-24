@@ -8,14 +8,16 @@ import Signup from '../components/Signup';
 import logOutUser from '../actions/logoutUser';
 /**
  *
- *
  * @class Navbar
+ *
  * @extends {React.Component}
  */
 class Navbar extends React.Component {
   /**
- * Creates an instance of Navbar.
+ * @description Creates an instance of Navbar.
+ *
  * @param {any} props
+ *
  * @memberof Navbar
  */
   constructor(props) {
@@ -26,8 +28,11 @@ class Navbar extends React.Component {
 
   /**
    * @description this method handles user logout
+   *
    * @returns {function} function
+   *
    * @param {any} event
+   *
    * @memberof Navbar
    */
   handleLogout(event) {
@@ -38,6 +43,7 @@ class Navbar extends React.Component {
   /**
    *
    * @returns {component} react component
+   *
    * @memberof Navbar
    */
   render() {

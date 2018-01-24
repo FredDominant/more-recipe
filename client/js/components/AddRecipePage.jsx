@@ -9,14 +9,16 @@ import recipeValidator from '../validation/recipeValidator';
 import addRecipe from '../actions/addRecipe';
 /**
  *
- *
  * @class AddRecipePage
+ *
  * @extends {React.Component}
  */
 export class AddRecipePage extends React.Component {
 /**
- * Creates an instance of AddRecipePage.
+ * @description Creates an instance of AddRecipePage.
+ *
  * @param {any} props
+ *
  * @memberof AddRecipePage
  */
   constructor(props) {
@@ -39,8 +41,11 @@ export class AddRecipePage extends React.Component {
   }
   /**
  * @description component lifecycle method
+ *
  * @returns {null} null
+ *
  * @param {nextProp} nextProp object from store
+ *
  * @memberof AddRecipe
  */
   componentWillReceiveProps(nextProp) {
@@ -59,7 +64,9 @@ export class AddRecipePage extends React.Component {
   /**
 *
 * @returns {null} null
+
 * @param {any} event
+
 * @memberof AddRecipe
 */
   onUpload(event) {
@@ -72,6 +79,7 @@ export class AddRecipePage extends React.Component {
   /**
 *
 * @returns {null} null
+
 * @memberof AddRecipe
 */
   isValid() {
@@ -84,6 +92,7 @@ export class AddRecipePage extends React.Component {
   /**
  *
  * @returns {null} null
+ *
  * @memberof AddRecipe
  */
   addNewRecipe() {
@@ -109,7 +118,9 @@ export class AddRecipePage extends React.Component {
   /**
 *
 * @returns {null} null
+
 * @param {any} event
+
 * @memberof AddRecipe
 */
   handleSubmit(event) {
@@ -120,8 +131,8 @@ export class AddRecipePage extends React.Component {
   }
   /**
    *
-   *
    * @memberof AddRecipePage
+   *
    * @returns {null} null
    */
   handleSelectImage() {
@@ -129,8 +140,8 @@ export class AddRecipePage extends React.Component {
   }
   /**
    *
-   *
    * @returns {null} null
+   *
    * @memberof AddRecipePage
    */
   render() {

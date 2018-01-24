@@ -5,13 +5,13 @@ const recipe = models.Recipe;
 const user = models.User;
 /**
  *
- *
  * @export
+ *
  * @class Review
  */
 export default class Review {
   /**
-   * Thia method adds reviews to a recipe
+   * @description This method adds reviews to a recipe
    *
    * @param {request} req HTTP request
    *
@@ -22,7 +22,7 @@ export default class Review {
    * @returns {object} JSON HTTP Status code
    */
   static addReview(req, res) {
-    const content = req.body.content;
+    const { content } = req.body;
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {

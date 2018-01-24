@@ -8,14 +8,16 @@ import logout from '../actions/logoutUser';
 const AuthenticateRoutes = (component) => {
   /**
    *
-   *
    * @class CheckAuth
+   *
    * @extends {React.Component}
    */
   class CheckAuth extends React.Component {
     /**
-   * Creates an instance of CheckAuth.
+   * @description Creates an instance of CheckAuth.
+   *
    * @param {any} props
+   *
    * @memberof CheckAuth
    */
     constructor(props) {
@@ -25,6 +27,7 @@ const AuthenticateRoutes = (component) => {
     /**
      *
      * @returns {null} null
+     *
      * @memberof CheckAuth
      */
     componentWillMount() {
@@ -35,6 +38,7 @@ const AuthenticateRoutes = (component) => {
     /**
      *
      * @returns {jsx} jsx
+     *
      * @memberof CheckAuth
      */
     render() {

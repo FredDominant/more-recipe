@@ -4,26 +4,30 @@ const recipe = models.Recipe;
 const favourite = models.Favourite;
 /**
  *
- *
  * @export
+ *
  * @class Recipe
  */
 export default class Recipe {
   /**
    *
-   *
    * @param {request} req HTTP request
+   *
    * @param {request} res HTTP response
    *
    * @returns {object} JSON and HTTP status code
+   *
    * @memberof Recipe
    */
   static addRecipe(req, res) {
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const name = req.body.name;
-    const ingredients = req.body.ingredients;
-    const picture = req.body.recipeImage;
+    const {
+      name,
+      description,
+      directions,
+      ingredients,
+      picture
+    } = req.body;
+
     recipe.findOne({
       where: {
         name: name.toLowerCase(),
@@ -61,6 +65,7 @@ export default class Recipe {
    * @description This function updates a user's recipe
    *
    * @param {request} req HTTP Reques
+   *
    * @param {response} res HTTP Response
    *
    * @returns {object} JSON and HTTP status code
@@ -68,11 +73,14 @@ export default class Recipe {
    * @memberof Recipe
    */
   static updateRecipe(req, res) {
-    const name = req.body.name;
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const ingredients = req.body.ingredients;
-    const picture = req.body.picture;
+    const {
+      name,
+      description,
+      directions,
+      ingredients,
+      picture
+    } = req.body;
+
     recipe.findOne({
       where: {
         id: req.params.recipeId,
@@ -84,11 +92,16 @@ export default class Recipe {
       .then((foundRecipe) => {
         if (foundRecipe) {
           const newRecipe = {
-            name: name ? req.body.name.trim().toLowerCase() : foundRecipe.dataValues.name,
-            description: description ? description.trim().toLowerCase() : foundRecipe.dataValues.description,
-            ingredients: ingredients ? ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ? directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
-            picture: picture ? picture.trim() : foundRecipe.dataValues.picture
+            name: name ?
+              req.body.name.trim().toLowerCase() : foundRecipe.dataValues.name,
+            description: description ?
+              description.trim().toLowerCase() : foundRecipe.dataValues.description,
+            ingredients: ingredients ?
+              ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
+            directions: directions ?
+              directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
+            picture: picture ?
+              picture.trim() : foundRecipe.dataValues.picture
           };
           foundRecipe.update(newRecipe)
             .then(updatedRecipe => res.status(200)
@@ -112,9 +125,10 @@ export default class Recipe {
       });
   }
   /**
-   * This method deletes a recipe
+   * @description This method deletes a recipe
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON HTTP and status code
@@ -162,9 +176,10 @@ export default class Recipe {
         }));
   }
   /**
-   * This method returns all recipes
+   * @description This method returns all recipes
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -236,6 +251,7 @@ export default class Recipe {
    * @description This method returns details of only one recipe
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP status code
@@ -246,12 +262,7 @@ export default class Recipe {
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-        { model: models.Review,
-          attributes: ['id', 'content', 'createdAt'],
-          include: [
-            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-          ] }
+        { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
       ]
     })
       .then((foundRecipe) => {
@@ -288,9 +299,10 @@ export default class Recipe {
         }));
   }
   /**
-   * This method gets all recipes by current user
+   * @description This method gets all recipes by current user
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HHTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -345,9 +357,10 @@ export default class Recipe {
   }
   /**
  *
- *
  * @static
+ *
  * @param {request} req HTTP request
+ *
  * @param {response} res HTTP response
  *
  * @returns {obj} JSON and HTTP Status code

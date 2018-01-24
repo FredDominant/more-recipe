@@ -12,14 +12,16 @@ import Loading from '../components/Loading';
 
 /**
  *
- *
  * @class Favourites
+ *
  * @extends {React.Component}
  */
 class Favourites extends React.Component {
   /**
- * Creates an instance of Favourites.
+ * @description Creates an instance of Favourites.
+ *
  * @param {any} props
+ *
  * @memberof Favourites
  */
   constructor(props) {
@@ -33,6 +35,7 @@ class Favourites extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof Favourites
    */
   componentDidMount() {
@@ -41,7 +44,9 @@ class Favourites extends React.Component {
   /**
  *
  * @return {null} null
+ *
  * @param {any} nextProps
+ *
  * @memberof Favourites
  */
   componentWillReceiveProps(nextProps) {
@@ -50,8 +55,10 @@ class Favourites extends React.Component {
     this.setState({ userFavourites: favourites, pageInfo });
   }
   /**
-   * @param {any} current
+   * @param {object} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -60,8 +67,8 @@ class Favourites extends React.Component {
   }
   /**
    *
-   *
    * @returns {null} null
+   *
    * @memberof Favourites
    */
   render() {

@@ -14,14 +14,16 @@ import capitalize from '../utils/capitalize';
 import Loading from '../components/Loading';
 /**
  *
- *
  * @class Recipe
+ *
  * @extends {React.Component}
  */
 class Recipe extends React.Component {
 /**
- * Creates an instance of Recipe.
+ * @description Creates an instance of Recipe.
+ *
  * @param {any} props
+ *
  * @memberof Recipe
  */
   constructor(props) {
@@ -39,6 +41,7 @@ class Recipe extends React.Component {
    * @returns {null} null
    *
    * @param {any} nextProps
+   *
    * @memberof Recipe
    */
   componentWillMount() {
@@ -47,7 +50,9 @@ class Recipe extends React.Component {
   /**
    *
    * @return {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
@@ -59,7 +64,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles upvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleUpvote() {
@@ -69,7 +76,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles downvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleDownvote() {
@@ -79,7 +88,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles upvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleFavourite() {
@@ -88,8 +99,8 @@ class Recipe extends React.Component {
   }
   /**
    *
-   *
    * @returns {component} react component
+   *
    * @memberof Recipe
    */
   render() {

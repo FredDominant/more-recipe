@@ -9,13 +9,17 @@ import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 import capitalize from '../utils/capitalize';
 /**
  * @description renders a recipe item card
+ *
  * @class RecipeItem
+ *
  * @extends {React.Component}
  */
 class RecipeItem extends React.Component {
   /**
- * Creates an instance of RecipeItem.
+ * @description Creates an instance of RecipeItem.
+ *
  * @param {any} props
+ *
  * @memberof RecipeItem
  */
   constructor(props) {
@@ -25,7 +29,6 @@ class RecipeItem extends React.Component {
     this.onRemoveFavourite = this.onRemoveFavourite.bind(this);
   }
   /**
-   *
    *
    * @memberof RecipeItem
    *
@@ -41,7 +44,6 @@ class RecipeItem extends React.Component {
     });
   }
   /**
-   *
    *
    * @memberof RecipeItem
    *
@@ -59,6 +61,7 @@ class RecipeItem extends React.Component {
   /**
    *
    * @memberof RecipeItem
+   *
    * @returns {node} JSX
    */
   render() {

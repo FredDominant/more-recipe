@@ -13,12 +13,15 @@ import capitalize from '../utils/capitalize';
  * @description this class displays RecipeItem components
  *
  * @class RecipeBody
+ *
  * @extends {React.Component}
  */
 class RecipeBody extends React.Component {
   /**
- * Creates an instance of RecipeBody.
+ * @description Creates an instance of RecipeBody.
+ *
  * @param {any} props
+ *
  * @memberof RecipeBody
  */
   constructor(props) {
@@ -31,6 +34,7 @@ class RecipeBody extends React.Component {
   /**
    *
    * @returns {dispatch} dispatch
+   *
    * @memberof RecipeBody
    */
   componentDidMount() {
@@ -39,7 +43,9 @@ class RecipeBody extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof RecipeBody
    */
   componentWillReceiveProps(nextProps) {
@@ -48,7 +54,9 @@ class RecipeBody extends React.Component {
   }
   /**
    * @param {any} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -56,7 +64,7 @@ class RecipeBody extends React.Component {
     this.props.dispatch(getAllRecipes(current.selected));
   }
   /**
- * @returns {html} html
+ * @returns {node} React component
  *
  * @memberof RecipeBody
  */

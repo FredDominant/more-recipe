@@ -9,15 +9,18 @@ import PasswordRecoveryForm from '../components/PasswordRecoveryForm';
 
 /**
  *
- *
  * @export
+ *
  * @class Login
+ *
  * @extends {React.Component}
  */
 class Login extends React.Component {
   /**
- * Creates an instance of Login.
+ * @description Creates an instance of Login.
+ *
  * @param {any} props
+ *
  * @memberof Login
     */
   constructor(props) {
@@ -35,6 +38,7 @@ class Login extends React.Component {
    * @returns {null} null
    *
    * @param {any} event
+   *
    * @memberof Login
    */
   onChange(event) {
@@ -42,7 +46,9 @@ class Login extends React.Component {
   }
   /**
    * @description this method toggles display of password recovery
+   *
    * @returns {null} null
+   *
    * @memberof Login
    */
   onForgotPassword() {
@@ -53,6 +59,7 @@ class Login extends React.Component {
    * @returns {dispatch} dispatch
    *
    * @param {any} event
+   *
    * @memberof Login
    */
   handleSubmit(event) {
@@ -68,8 +75,8 @@ class Login extends React.Component {
   }
   /**
  *
- *
  * @returns {boolean} boolean
+ *
  * @memberof Login
  */
   isValid() {
@@ -81,7 +88,8 @@ class Login extends React.Component {
   }
   /**
  *
- * @returns {html} html
+ * @returns {node} React component
+ *
  * @memberof Login
  */
   render() {

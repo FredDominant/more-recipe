@@ -18,6 +18,7 @@ export default class User {
    * @description Takes in request and response as parameters and returns an object
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} object with message and status code
@@ -25,10 +26,13 @@ export default class User {
    * @memberof User
    */
   static createUser(req, res) {
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
+    const {
+      email,
+      password,
+      firstname,
+      lastname
+    } = req.body;
+
     user.findOne({
       where: { email }
     })
@@ -72,14 +76,15 @@ export default class User {
    * @description This function handles a user log in
    *
    * @param {request} req HTTP parameter
+   *
    * @param {response} res HTTP parameter
    *
    * @returns {object} JSON
+   *
    * @memberof User
    */
   static userLogin(req, res) {
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password } = req.body;
     user.findOne({
       where: { email }
     })
@@ -118,18 +123,23 @@ export default class User {
   }
   /**
    * @description This takes in reques, and response to update a user's details
+   *
    * @param {request} req HTTP request parameter
+   *
    * @param {response} res HTTP response parameter
    *
    * @returns {object} JSON
+   *
    * @memberof User
    */
   static updateUser(req, res) {
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const picture = req.body.picture;
+    const {
+      email,
+      password,
+      firstname,
+      lastname,
+      picture
+    } = req.body;
     user.findOne({
       where: {
         id: req.decoded.id
@@ -162,9 +172,13 @@ export default class User {
   /**
    *
    * @returns {null} null
+   *
    * @static
+   *
    * @param {any} req
+   *
    * @param {any} res
+   *
    * @memberof User
    */
   static userProfile(req, res) {
@@ -179,10 +193,15 @@ export default class User {
   }
   /**
    * @description checks if email sent is registered/in database
+   *
    * @static
+   *
    * @param {any} req
+   *
    * @param {any} res
+   *
    * @memberof User
+   *
    * @returns {res} HTTP Response
    */
   static verifyEmail(req, res) {
@@ -210,9 +229,13 @@ export default class User {
   /**
    *
    * @returns {null} null
+   *
    * @static
+   *
    * @param {any} req
+   *
    * @param {any} res
+   *
    * @memberof User
    */
   static ResetPassword(req, res) {

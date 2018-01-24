@@ -11,14 +11,16 @@ import Loading from './Loading';
 
 /**
  *
- *
  * @class UserRecipePage
+ *
  * @extends {React.Component}
  */
 class UserRecipePage extends React.Component {
 /**
- * Creates an instance of UserRecipePage.
+ * @description Creates an instance of UserRecipePage.
+ *
  * @param {any} props
+ *
  * @memberof UserRecipePage
  */
   constructor(props) {
@@ -29,14 +31,17 @@ class UserRecipePage extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UserRecipePage
    */
   componentDidMount() {
     this.props.getAllUserRecipes();
   }
   /**
-   * @param {any} current
+   * @param {object} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -46,7 +51,9 @@ class UserRecipePage extends React.Component {
   /**
    *
    * @return {null} null
-   * @param {any} id
+   *
+   * @param {number} id
+   *
    * @memberof UserRecipePage
    */
   onDelete(id) {
@@ -54,8 +61,8 @@ class UserRecipePage extends React.Component {
   }
   /**
    *
-   *
    * @returns {jsx} jsx
+   *
    * @memberof UserRecipePage
    */
   render() {

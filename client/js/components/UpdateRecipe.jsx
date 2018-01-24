@@ -8,14 +8,16 @@ import updateRecipe from '../actions/updateRecipe';
 import uploadImage from '../utils/uploadImage';
 /**
  *
- *
  * @class UpdateRecipe
+ *
  * @extends {React.Component}
  */
 class UpdateRecipe extends React.Component {
   /**
- * Creates an instance of UpdateRecipe.
+ * @description Creates an instance of UpdateRecipe.
+ *
  * @param {any} props
+ *
  * @memberof UpdateRecipe
  */
   constructor(props) {
@@ -38,6 +40,7 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UpdateRecipe
    */
   componentDidMount() {
@@ -46,8 +49,10 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
-   * @returns {null} niull
+   * @returns {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof UpdateRecipe
    */
   componentWillReceiveProps(nextProps) {
@@ -57,7 +62,9 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onUpload(event) {
@@ -71,7 +78,9 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onChange(event) {
@@ -79,8 +88,10 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
-   * @returns {null} nul
+   * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onToggleEdit(event) {
@@ -90,7 +101,9 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   handleSubmit(event) {
@@ -111,8 +124,8 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
-   *
    * @returns {null} null
+   *
    * @memberof UpdateRecipe
    */
   render() {

@@ -6,8 +6,8 @@ const downvote = models.Downvote;
 
 /**
  *
- *
  * @export
+ *
  * @class Vote
  */
 export default class Vote {

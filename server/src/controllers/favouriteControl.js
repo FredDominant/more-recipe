@@ -5,17 +5,19 @@ const favourite = models.Favourite;
 
 /**
  *
- *
  * @export
+ *
  * @class Favourite
  */
 export default class Favourite {
   /**
    *
-   *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
+   *
    * @returns {object} JSON and HTTP status code
+   *
    * @memberof Favourite
    */
   static addFavourite(req, res) {
@@ -62,10 +64,12 @@ export default class Favourite {
   }
   /**
    *
-   *
    * @param {any} req
+   *
    * @param {any} res
+   *
    * @returns {obj} any
+   *
    * @memberof Favourite
    */
   static getAll(req, res) {
@@ -122,8 +126,11 @@ export default class Favourite {
  * @returns {HTTPResponse} response
  *
  * @static
+ *
  * @param {any} req
+ *
  * @param {any} res
+ *
  * @memberof Favourite
  */
   static delete(req, res) {

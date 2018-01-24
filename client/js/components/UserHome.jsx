@@ -7,7 +7,7 @@ import Footer from './Footer';
 import TopRecipes from './TopRecipes';
 /**
  *
- * @description
+ * @description renders home page
  * @class UserHome
  * @extends {React.Component}
  */

@@ -9,12 +9,15 @@ import signupUser from '../actions/signupUser';
  * @description this class creates a signup form
  *
  * @class Signup
+ *
  * @extends {React.Component}
  */
 class Signup extends React.Component {
 /**
- * Creates an instance of Signup.
+ * @description Creates an instance of Signup.
+ *
  * @param {any} props
+ *
  * @memberof Signup
  */
   constructor(props) {
@@ -32,8 +35,11 @@ class Signup extends React.Component {
   }
   /**
  * @description handles form change events
+ *
  * @returns {null} null
+ *
  * @param {any} event
+ *
  * @memberof Signup
  */
   onChange(event) {
@@ -44,7 +50,9 @@ class Signup extends React.Component {
   /**
    *
    * @return {dispatch} react-redux dispatch
+   *
    * @param {any} event
+   *
    * @memberof Signup
    */
   onSubmit(event) {
@@ -60,6 +68,7 @@ class Signup extends React.Component {
   /**
    *
    * @returns {boolean} boolean
+   *
    * @memberof Signup
    */
   isValid() {
@@ -73,6 +82,7 @@ class Signup extends React.Component {
    * @description react render method
    *
    * @returns {component} react component
+   *
    * @memberof Signup
    */
   render() {

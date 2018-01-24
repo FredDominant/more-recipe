@@ -6,16 +6,19 @@ import Footer from './Footer';
 import userProfile from '../actions/userProfile';
 import updateProfile from '../actions/editProfile';
 import uploadImage from '../utils/uploadImage';
+import updatePasswordValidator from '../validation/updatePasswordValidator';
 /**
  *
- *
  * @class UserProfile
+ *
  * @extends {React.Component}
  */
 class UserProfile extends React.Component {
 /**
- * Creates an instance of UserProfile.
+ * @description Creates an instance of UserProfile.
+ *
  * @param {any} props
+ *
  * @memberof UserProfile
  */
   constructor(props) {
@@ -25,7 +28,9 @@ class UserProfile extends React.Component {
       lastname: '',
       email: '',
       password: '',
+      confirmPassword: '',
       picture: '',
+      errors: {},
       disabled: true,
       uploadImageError: '',
       selectedImage: false,
@@ -41,6 +46,7 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UserProfile
    */
   componentDidMount() {
@@ -49,7 +55,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
@@ -59,7 +67,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UserProfile
    */
   onUpload(event) {
@@ -73,7 +83,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UserProfile
    */
   onChange(event) {
@@ -82,7 +94,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UserProfile
    */
   onEdit(event) {
@@ -91,7 +105,9 @@ class UserProfile extends React.Component {
   }
   /**
    * @description selects image
+   *
    * @memberof UserProfile
+   *
    * @returns {null} null
    */
   onSelectImage() {
@@ -100,12 +116,45 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UserProfile
    */
   handleSubmit(event) {
-    const { firstname, lastname, email, picture } = this.state;
+    const { password } = this.state;
     event.preventDefault();
+    if (password.length) {
+      if (this.isValid()) {
+        return this.handleUpdate();
+      }
+    } else {
+      return this.handleUpdate();
+    }
+  }
+  /**
+*
+* @returns {null} null
+
+* @memberof AddRecipe
+*/
+  isValid() {
+    const { password, confirmPassword } = this.state;
+    const { errors, isValid } = updatePasswordValidator(password, confirmPassword);
+    if (!isValid) {
+      this.setState({ errors });
+    }
+    return isValid;
+  }
+  /**
+   * @description This functions handles profile updates
+   *
+   * @returns {null} null
+   *
+   * @memberof UserProfile
+   */
+  handleUpdate() {
+    const { firstname, lastname, email, picture, password, confirmPassword } = this.state;
     if (this.state.selectedImage) {
       this.setState({ uploading: true });
       return uploadImage(picture)
@@ -120,11 +169,12 @@ class UserProfile extends React.Component {
           this.setState({ uploadImageError: error.error.message });
         });
     }
-    this.props.updateProfile({ firstname, lastname, email, picture });
+    this.props.updateProfile({ firstname, lastname, email, picture, password, confirmPassword });
   }
   /**
    *
-   * @returns {null} null
+   * @returns {node} JSX
+   *
    * @memberof UserProfile
    */
   render() {
@@ -133,9 +183,11 @@ class UserProfile extends React.Component {
       lastname,
       email,
       password,
+      confirmPassword,
       picture,
       disabled,
-      uploading
+      uploading,
+      errors
     } = this.state;
     return (
       <div className="profile-body">
@@ -195,7 +247,9 @@ class UserProfile extends React.Component {
                     disabled={disabled}
                   />
                 </div>
-
+                <br />
+                <h6 className="text-left">Account setting</h6>
+                <hr />
                 <div className="form-group">
                   <label htmlFor="profile-email">Email</label>
                   <input
@@ -220,6 +274,25 @@ class UserProfile extends React.Component {
                     onChange={this.onChange}
                     disabled={disabled}
                   />
+                  {errors.password && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.password} </span>
+                  </small>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="profile-password">Confirm Password</label>
+                  <input
+                    type="text"
+                    id="profile-password"
+                    className="form-control"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={this.onChange}
+                    disabled={disabled}
+                  />
+                  {errors.confirmPassword && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.confirmPassword} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
