@@ -69,11 +69,37 @@ describe('Test for', () => {
           done();
         });
     });
-    it('allow users update recipes they added', (done) => {
+    // it('not allow users update recipe name to an already existing recipe name by them', (done) => {
+    //   chai.request(app)
+    //     .put('/api/v1/recipes/1')
+    //     .set('x-access-token', userToken)
+    //     .send({ name: 'a new name' })
+    //     .end((err, res) => {
+    //       expect(res.status).to.equal(403);
+    //       done();
+    //     });
+    // });
+    // it('not allow users update recipe name to an already existing recipe name by them', (done) => {
+    //   chai.request(app)
+    //     .post('/api/v1/recipes')
+    //     .set('x-access-token', userToken)
+    //     .send(fakeRecipes.thirdValidRecipe)
+    //     .end(() => {
+    //       chai.request(app)
+    //         .put('/api/v1/recipes/1')
+    //         .set('x-access-token', userToken)
+    //         .send({ name: 'random name' })
+    //         .end((err, res) => {
+    //           expect(res.status).to.equal(403);
+    //           done();
+    //         });
+    //     });
+    // });
+    it('allow users update recipe they added', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1')
         .set('x-access-token', userToken)
-        .send({ name: 'a new name' })
+        .send(fakeRecipes.randomName)
         .end((err, res) => {
           expect(res.status).to.equal(200);
           done();

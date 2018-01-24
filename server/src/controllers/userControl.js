@@ -149,7 +149,7 @@ export default class User {
           return res.status(403).json({ Message: 'Email already in use' });
         }
       }
-    }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
+    });
 
     user.findOne({
       where: {
@@ -177,8 +177,8 @@ export default class User {
             });
         }
       })
-      .catch(() => res.status(500)
-        .json({ Message: 'Internal server error. Unable to update profile' }));
+      .catch(error => res.status(500)
+        .json({ Message: 'Internal server error. Unable to update profile', error }));
   }
   /**
    *

@@ -241,7 +241,7 @@ export default class Validate {
    */
   static updatePassword(req, res, next) {
     const { password, confirmPassword } = req.body;
-    if (!password.length) {
+    if (!password) {
       return next();
     }
     if (password !== confirmPassword) {
