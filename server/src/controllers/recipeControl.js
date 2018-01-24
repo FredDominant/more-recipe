@@ -91,9 +91,13 @@ export default class Recipe {
     })
       .then((foundRecipe) => {
         if (foundRecipe) {
+          if (foundRecipe.name === name.trim().toLowerCase() &&
+          foundRecipe.userId === req.decoded.id) {
+            return res.status(403).json({ Mesage: 'You already have a recipe with this name' });
+          }
           const newRecipe = {
             name: name ?
-              req.body.name.trim().toLowerCase() : foundRecipe.dataValues.name,
+              name.trim().toLowerCase() : foundRecipe.dataValues.name,
             description: description ?
               description.trim().toLowerCase() : foundRecipe.dataValues.description,
             ingredients: ingredients ?

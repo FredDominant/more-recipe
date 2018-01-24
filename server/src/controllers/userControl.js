@@ -140,6 +140,17 @@ export default class User {
       lastname,
       picture
     } = req.body;
+
+    user.findOne({
+      where: { email }
+    }).then((foundUserEmail) => {
+      if (foundUserEmail) {
+        if (foundUserEmail.id !== req.decoded.id) {
+          return res.status(403).json({ Message: 'Email already in use' });
+        }
+      }
+    }).catch(() => res.status(500).json({ Message: 'Internal server error' }));
+
     user.findOne({
       where: {
         id: req.decoded.id

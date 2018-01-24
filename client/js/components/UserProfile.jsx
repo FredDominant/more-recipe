@@ -266,8 +266,8 @@ class UserProfile extends React.Component {
                 <div className="form-group">
                   <label htmlFor="profile-password">Password</label>
                   <input
-                    type="text"
-                    id="profile-password"
+                    type="password"
+                    id="profile-confirmPassword"
                     className="form-control"
                     name="password"
                     value={password}
@@ -282,7 +282,7 @@ class UserProfile extends React.Component {
                 <div className="form-group">
                   <label htmlFor="profile-password">Confirm Password</label>
                   <input
-                    type="text"
+                    type="password"
                     id="profile-password"
                     className="form-control"
                     name="confirmPassword"
