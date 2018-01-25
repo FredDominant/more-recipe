@@ -63,7 +63,7 @@ const editProfileRequest = (userData, token, dispatch) => axios({
       updateProfileFail(Message),
       unsetFetching()
     ]));
-    toaster.toastSuccess('profile updated');
+    toaster.toastError(Message);
   });
 
 /**
