@@ -166,7 +166,7 @@ class Recipe extends React.Component {
                       onClick={this.handleUpvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-up" />
-                      <span>{recipe.upvote}</span></button>
+                      <span> {recipe.upvote}</span></button>
 
                     <button
                       type="button"
@@ -175,7 +175,7 @@ class Recipe extends React.Component {
                       onClick={this.handleDownvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-down" />
-                      <span>{recipe.downvote}</span></button>
+                      <span> {recipe.downvote}</span></button>
 
                     <button
                       style={{
@@ -186,7 +186,7 @@ class Recipe extends React.Component {
                       title="add to your favourites"
                       className="btn btn-outline-danger"
                       onClick={this.handleFavourite}
-                    ><i className="far fa-heart" /></button>
+                    > <i className="far fa-heart" /></button>
                   </div>
                   }
                 </div>
