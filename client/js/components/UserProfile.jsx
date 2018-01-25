@@ -35,7 +35,6 @@ class UserProfile extends React.Component {
       uploadImageError: '',
       selectedImage: false,
       uploading: false,
-      fetching: false
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -182,8 +181,8 @@ class UserProfile extends React.Component {
       confirmPassword,
       picture,
       disabled,
-      uploading,
-      errors
+      errors,
+      fetching
     } = this.state;
     return (
       <div className="profile-body">
@@ -293,19 +292,25 @@ class UserProfile extends React.Component {
 
                 <div className="form-group">
                   <div className="container row">
-                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <div className="col-sm-2 col-md-2 col-lg-2">
+                      <button className="btn btn-primary" onClick={this.onEdit}>
+                        {
+                          !this.state.disabled && <span><i className="fas fa-lock" /></span>
+                        }
+                        {
+                          this.state.disabled && <span><i className="fas fa-unlock" /></span>
+                        }
+                      </button>
+                    </div>
+                    <div className="col-sm-10 col-md-10 col-lg-10">
                       <button
                         className="btn btn-success"
                         disabled={disabled}
                       >
-                        {
-                          uploading ? 'uploading image...' : 'update'
-                        }
+                       update profile
                       </button></div>
                     <div className="col-sm-2 col-md-2 col-lg-2" />
-                    <div className="col-sm-5 col-md-5 col-lg-5">
-                      <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -336,7 +341,6 @@ UserProfile.propTypes = {
 UserProfile.defaultProps = {
   userDetails: {},
   updateSuccess: false,
-  fetching: false
 };
 
 export default connect(mapStateToProps, mapDispatchToprops)(UserProfile);

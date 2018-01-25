@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
-import toastr from 'toastr';
 
-import uploadImage from '../utils/uploadImage';
 import recipeValidator from '../validation/recipeValidator';
 import addRecipe from '../actions/addRecipe';
 /**
@@ -29,7 +27,7 @@ export class AddRecipePage extends React.Component {
       ingredients: '',
       directions: '',
       isUploading: false,
-      recipeImage: '/images/noImage.png',
+      picture: '/images/noImage.png',
       errors: {},
       addRecipeError: '',
       uploadImageError: ''
@@ -44,7 +42,7 @@ export class AddRecipePage extends React.Component {
  *
  * @returns {null} null
  *
- * @param {nextProp} nextProp object from store
+ * @param {object} nextProp object from store
  *
  * @memberof AddRecipe
  */
@@ -55,7 +53,9 @@ export class AddRecipePage extends React.Component {
   /**
  *
  * @returns {null} null
- * @param {any} event
+ *
+ * @param {object} event
+ *
  * @memberof AddRecipe
  */
   onChange(event) {
@@ -65,20 +65,20 @@ export class AddRecipePage extends React.Component {
 *
 * @returns {null} null
 
-* @param {any} event
+* @param {object} event
 
 * @memberof AddRecipe
 */
   onUpload(event) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      this.setState({ recipeImage: e.target.result });
+      this.setState({ picture: e.target.result });
     };
     reader.readAsDataURL(event.target.files[0]);
   }
   /**
 *
-* @returns {null} null
+* @returns {boolean} isValid
 
 * @memberof AddRecipe
 */
@@ -96,32 +96,14 @@ export class AddRecipePage extends React.Component {
  * @memberof AddRecipe
  */
   addNewRecipe() {
-    const { recipeImage, name, description, directions, ingredients } = this.state;
-    if (recipeImage !== '/images/noImage.png') {
-      this.setState({ isUploading: true });
-      return uploadImage(recipeImage)
-        .then((response) => {
-          const recipeUrl = response.data.secure_url;
-          console.log('recipe url is', recipeUrl);
-          this.setState({ recipeImage: recipeUrl, isUploading: false });
-          this.props.createRecipe(this.state);
-        })
-        .catch(() => {
-          this.setState({ isUploading: false, uploadImageError: 'Could not upload image. Recipe not added' });
-          toastr.options = {
-            closeButton: true
-          };
-          toastr.error(this.state.uploadImageError);
-        });
-    }
-    console.log('jumped to this place');
-    this.props.createRecipe({ name, directions, ingredients, description });
+    const { picture, name, description, directions, ingredients } = this.state;
+    this.props.createRecipe({ name, directions, ingredients, description, picture });
   }
   /**
 *
 * @returns {null} null
 
-* @param {any} event
+* @param {object} event
 
 * @memberof AddRecipe
 */
@@ -142,12 +124,12 @@ export class AddRecipePage extends React.Component {
   }
   /**
    *
-   * @returns {null} null
+   * @returns {node} JSX
    *
    * @memberof AddRecipePage
    */
   render() {
-    const { errors, recipeImage, name, description, directions, ingredients } = this.state;
+    const { errors, picture, name, description, directions, ingredients } = this.state;
     return (
       <div className="container-fluid">
         <div id="add-recipe-form" className="container">
@@ -162,7 +144,7 @@ export class AddRecipePage extends React.Component {
                 >
                   <img
                     className="img-thumbnail"
-                    src={recipeImage}
+                    src={picture}
                     alt=""
                     srcSet=""
                     id="add-recipe-image"

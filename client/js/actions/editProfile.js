@@ -74,8 +74,8 @@ const editProfileRequest = (userData, token, dispatch) => axios({
  * @returns {promise} axios promise
  */
 const editProfile = userData => (dispatch) => {
-  const token = localStorage.getItem('token');
   dispatch(setFetching());
+  const token = localStorage.getItem('token');
   const { picture, selectedImage } = userData;
   if (selectedImage) {
     return uploadImage(picture)
