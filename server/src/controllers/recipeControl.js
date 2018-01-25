@@ -184,38 +184,32 @@ export default class Recipe {
    */
   static getAll(req, res) {
     if (!req.query.sort) {
-      recipe.findAndCountAll().then((all) => {
-        const limit = 6;
-        let offset = 0;
-        const page = parseInt((req.query.page || 1), 10);
-        const numberOfItems = all.count;
+      const limit = 6;
+      const page = parseInt((req.query.page || 1), 10);
+      const offset = limit * (page - 1);
+      recipe.findAndCountAll({
+        limit,
+        offset,
+        order: [
+          ['id', 'DESC']
+        ],
+        include: [
+          { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+        ]
+      }).then(({ rows, count }) => {
+        const numberOfItems = count;
         const pages = Math.ceil(numberOfItems / limit);
-        offset = limit * (page - 1);
-        recipe.findAll({
-          limit,
-          offset,
-          order: [
-            ['id', 'DESC']
-          ],
-          include: [
-            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-          ]
-        })
-          .then((recipes) => {
-            if (recipes) {
-              if (recipes.length < 1) {
-                return res.status(404)
-                  .json({ Message: 'There are currently no recipes in collection' });
-              }
-              return res.status(200)
-                .json({
-                  NumberOfItems: numberOfItems,
-                  Limit: limit,
-                  Pages: pages,
-                  CurrentPage: page,
-                  Recipes: recipes
-                });
-            }
+        if (count === 0) {
+          return res.status(404)
+            .json({ Message: 'There are currently no recipes in collection' });
+        }
+        return res.status(200)
+          .json({
+            NumberOfItems: numberOfItems,
+            Limit: limit,
+            Pages: pages,
+            CurrentPage: page,
+            Recipes: rows
           });
       }).catch(() => res.status(500)
         .json({ Message: 'Internal server' }));
@@ -306,50 +300,41 @@ export default class Recipe {
    * @memberof Recipe
    */
   static getAllUser(req, res) {
+    const limit = 6;
+    const page = parseInt((req.query.page || 1), 10);
+    const offset = limit * (page - 1);
     recipe.findAndCountAll({
       where: {
         userId: req.decoded.id
-      }
-    }).then((allUser) => {
-      const page = parseInt((req.query.page || 1), 10);
-      const numberOfItems = allUser.count;
-      const limit = 6;
+      },
+      limit,
+      offset,
+      order: [
+        ['id', 'DESC']
+      ],
+      include: [
+        { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+      ]
+    }).then(({ rows, count }) => {
+      const numberOfItems = count;
       const pages = Math.ceil(numberOfItems / limit);
-      let offset = 0;
-      offset = limit * (page - 1);
-      recipe.findAll({
-        where: {
-          userId: req.decoded.id
-        },
-        include: [
-          { model: models.Review, attributes: ['content'] }
-        ],
-        limit,
-        offset,
-        order: [
-          ['id', 'DESC']
-        ]
-      })
-        .then((allUserRecipes) => {
-          if (allUserRecipes) {
-            if (allUserRecipes.length < 1) {
-              return res.status(404)
-                .json({ Message: 'You currently have no recipes in catalogue' });
-            }
-            return res.status(200)
-              .json({
-                NumberOfItems: numberOfItems,
-                Limit: limit,
-                Pages: pages,
-                CurrentPage: page,
-                Recipes: allUserRecipes
-              });
-          }
+      if (count === 0) {
+        return res.status(404)
+          .json({ Message: 'You currently have no recipe in the catalogue' });
+      }
+      return res.status(200)
+        .json({
+          NumberOfItems: numberOfItems,
+          Limit: limit,
+          Pages: pages,
+          CurrentPage: page,
+          Recipes: rows
         });
-    }).catch(() => res.status(500)
-      .json({
-        Message: 'Internal server error'
-      }));
+    })
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error'
+        }));
   }
   /**
  *

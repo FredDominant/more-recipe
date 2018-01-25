@@ -115,7 +115,7 @@ class Recipe extends React.Component {
         </div>
       );
     }
-    if (!this.state.recipe.id) {
+    if (!recipe.id) {
       return <NotFoundPage />;
     }
     const ingredients = (recipe.ingredients) ? (recipe.ingredients) : '';
@@ -144,14 +144,16 @@ class Recipe extends React.Component {
               <div className="col-md-6 container">
                 <h2 className="text-left recipe-details-name ml-5">{recipe.name ? capitalize(recipe.name) : '' }</h2>
                 <h5 className="text-left recipe-details-description ml-5">{recipe.description ? capitalize(recipe.description) : '' }</h5>
-                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${owner.firstname} ${owner.lastname}`}</small></h5>
+                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstname)} ${capitalize(owner.lastname)}`}</small></h5>
                 <div className="actions ml-5 mb-3">
                   {
                     !authenticated && <div className="container text-left">
                       <span className="mr-3"><i className="far fa-thumbs-up" />
                         <span> {recipe.upvote}</span> </span>
-                      <span><i className="far fa-thumbs-down" />
+                      <span className="mr-3"><i className="far fa-thumbs-down" />
                         <span> {recipe.downvote}</span> </span>
+                      <span><i className="far fa-heart" />
+                        <span> {recipe.favourites}</span> </span>
                     </div>
                   }
                   { authenticated &&
@@ -184,7 +186,7 @@ class Recipe extends React.Component {
                       title="add to your favourites"
                       className="btn btn-outline-danger"
                       onClick={this.handleFavourite}
-                    ><i className="fab fa-gratipay" /></button>
+                    ><i className="far fa-heart" /></button>
                   </div>
                   }
                 </div>

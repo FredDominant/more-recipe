@@ -83,6 +83,7 @@ class Favourites extends React.Component {
           description={capitalize(recipe.Recipe.description)}
           upvotes={recipe.Recipe.upvote}
           downvotes={recipe.Recipe.downvote}
+          favourites={recipe.Recipe.favourites}
           owner={`${recipe.Recipe.User.firstname} ${recipe.Recipe.User.lastname}`}
           removeRecipe={this.props.removeFromFavourite}
         />
@@ -95,6 +96,7 @@ class Favourites extends React.Component {
         <div>
           <br />
           <div className="container favourite-body">
+            <h2 className="text-center mb-3 mt-3 allRecipes-title">Favourite Recipes</h2>
             <div className="row">
               {allFavourites}
             </div>

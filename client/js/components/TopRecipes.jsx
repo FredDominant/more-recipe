@@ -54,6 +54,7 @@ class TopRecipes extends React.Component {
           upvotes={recipe.upvote}
           downvotes={recipe.downvote}
           views={recipe.views}
+          favourites={recipe.favourites}
           created={moment(new Date(recipe.createdAt)).fromNow()}
         />
         <br />

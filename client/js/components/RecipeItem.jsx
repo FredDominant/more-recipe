@@ -76,6 +76,7 @@ class RecipeItem extends React.Component {
       home,
       upvotes,
       downvotes,
+      favourites,
       views,
       userRecipeCard,
       favouriteCard
@@ -107,7 +108,9 @@ class RecipeItem extends React.Component {
                   <i className="fas fa-user-circle" /> <span /> {owner}
                 </h6>
               }
-              {home && <small> Created {created}</small>}
+              {
+                home && <small> Created {created}</small>
+              }
               <hr />
               <CardText>
                 <span className="recipe-description text-left">
@@ -119,58 +122,77 @@ class RecipeItem extends React.Component {
                 authenticated && <div className="all-buttons text-left">
                   <div className="btn-group" role="group" >
 
-                    <button
+                    { home && <button
                       title="number of downvotes"
                       className="btn btn-outline-danger"
                       disabled
                     ><i className="far fa-thumbs-up" />
-                      <span id="likes">{upvotes} </span></button>
+                      <span id="likes"> {upvotes} </span></button>
+                    }
 
-                    <button
+                    { home && <button
                       title="number of downvotes"
                       className="btn btn-outline-danger"
                       disabled
                     ><i className="far fa-thumbs-down" />
-                      <span id="unlikes">{downvotes} </span></button>
-
-                    <button
-                      title="number of views"
-                      className="btn btn-outline-danger"
-                      disabled
-                    ><i className="fas fa-eye" />
-                      <span id="views">{views} </span></button>
-                    {userRecipeCard && <button
-                      type="button"
-                      title="edit this recipe"
-                      className="btn btn-outline-danger"
-                    >
-                      <Link to={`/recipe/edit/${recipeId}`}> <i className="far fa-edit" /> </Link>
-                    </button>
+                      <span id="unlikes"> {downvotes} </span></button>
                     }
-                    {favouriteCard && <button
-                      type="button"
-                      title="remove from favourites"
-                      className="btn btn-outline-danger"
-                      onClick={this.onRemoveFavourite}
-                    ><i className="fas fa-trash-alt" /></button>}
 
-                    {userRecipeCard && <button
-                      type="button"
-                      title="delete this recipe"
-                      className="btn btn-outline-danger"
-                      onClick={this.onDeleteRecipe}
-                    ><i className="fas fa-trash-alt" /> </button>}
+                    {
+                      (userRecipeCard || home) && <button
+                        title="number of favourites"
+                        className="btn btn-outline-danger"
+                        disabled
+                      ><i className="far fa-heart" />
+                        <span> {favourites}</span></button>
+                    }
+                    {
+                      !favouriteCard && <button
+                        title="number of views"
+                        className="btn btn-outline-danger"
+                        disabled
+                      ><i className="fas fa-eye" />
+                        <span id="views"> {views} </span></button>
+                    }
+                    {
+                      userRecipeCard && <button
+                        type="button"
+                        title="edit this recipe"
+                        className="btn btn-outline-danger"
+                      >
+                        <Link to={`/recipe/edit/${recipeId}`}> <i className="far fa-edit" /> </Link>
+                      </button>
+                    }
+                    {
+                      favouriteCard && <button
+                        type="button"
+                        title="remove from favourites"
+                        className="btn btn-outline-danger"
+                        onClick={this.onRemoveFavourite}
+                      ><i className="fas fa-trash-alt" /></button>
+                    }
+
+                    {
+                      userRecipeCard && <button
+                        type="button"
+                        title="delete this recipe"
+                        className="btn btn-outline-danger"
+                        onClick={this.onDeleteRecipe}
+                      ><i className="fas fa-trash-alt" /> </button>
+                    }
                   </div>
                 </div>
               }
               {
                 !authenticated && <div className="container text-left">
                   <div className="row">
-                    <div className="col-sm-4"><i className="far fa-thumbs-up" />
+                    <div className="col-sm-3"><i className="far fa-thumbs-up" />
                       <span id="likes"> {upvotes} </span></div>
-                    <div className="col-sm-4"><i className="far fa-thumbs-down" />
+                    <div className="col-sm-3"><i className="far fa-thumbs-down" />
                       <span id="unlikes"> {downvotes} </span></div>
-                    <div className="col-sm-4"><i className="fas fa-eye" />
+                    <div className="col-sm-3"><i className="far fa-heart" />
+                      <span id="likes"> {favourites} </span></div>
+                    <div className="col-sm-3"><i className="fas fa-eye" />
                       <span id="views"> {views} </span></div>
                   </div>
                 </div>
@@ -188,6 +210,7 @@ RecipeItem.propTypes = {
   description: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
+  favourites: PropTypes.number.isRequired,
   views: PropTypes.number,
   recipeId: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,

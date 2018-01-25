@@ -73,54 +73,43 @@ export default class Favourite {
    *
    * @param {any} res
    *
-   * @returns {obj} any
+   * @returns {object} any
    *
    * @memberof Favourite
    */
   static getAll(req, res) {
+    const limit = 6;
+    const page = parseInt((req.query.page || 1), 10);
+    const offset = limit * (page - 1);
     favourite.findAndCountAll({
       where: {
         userId: req.decoded.id
-      }
-    }).then((allFavourites) => {
-      let offset = 0;
-      const limit = 6;
-      const numberOfItems = allFavourites.count;
-      const page = parseInt((req.query.page || 1), 10);
+      },
+      include: [
+        {
+          model: models.Recipe,
+          include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
+        }
+      ],
+      limit,
+      offset,
+      order: [
+        ['id', 'DESC']
+      ]
+    }).then(({ rows, count }) => {
+      const numberOfItems = count;
       const pages = Math.ceil(numberOfItems / limit);
-      offset = limit * (page - 1);
-      favourite.findAll({
-        where: {
-          userId: req.decoded.id
-        },
-        include: [
-          {
-            model: models.Recipe,
-            attributes: ['name', 'ingredients', 'directions', 'description', 'picture', 'upvote', 'downvote'],
-            include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
-          }
-        ],
-        limit,
-        offset,
-        order: [
-          ['id', 'DESC']
-        ]
-      })
-        .then((foundFavourites) => {
-          if (foundFavourites) {
-            if (foundFavourites.length < 1) {
-              return res.status(404)
-                .json({ Message: 'You have no favourites. Add recipes to favourite' });
-            }
-            return res.status(200)
-              .json({
-                NumberOfItems: numberOfItems,
-                Pages: pages,
-                CurrentPage: page,
-                Limit: limit,
-                Favourites: foundFavourites
-              });
-          }
+      if (count === 0) {
+        return res.status(404)
+          .json({ Message: 'You have no favourite recipe' });
+      }
+      return res.status(200)
+        .json({
+          NumberOfItems: numberOfItems,
+          Limit: limit,
+          Pages: pages,
+          CurrentPage: page,
+          Favourites: rows
         });
     })
       .catch(() => res.status(500)
