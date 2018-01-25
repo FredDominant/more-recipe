@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Footer from './Footer';
 import userProfile from '../actions/userProfile';
 import updateProfile from '../actions/editProfile';
-import uploadImage from '../utils/uploadImage';
 import updatePasswordValidator from '../validation/updatePasswordValidator';
+
 /**
  *
  * @class UserProfile
@@ -56,7 +56,7 @@ class UserProfile extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof UserProfile
    */
@@ -68,7 +68,7 @@ class UserProfile extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UserProfile
    */
@@ -82,11 +82,11 @@ class UserProfile extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @param {any} event
    *
    * @memberof UserProfile
+   *
+   * @returns {null} null
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -95,7 +95,7 @@ class UserProfile extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UserProfile
    */
@@ -117,7 +117,7 @@ class UserProfile extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UserProfile
    */
@@ -134,7 +134,7 @@ class UserProfile extends React.Component {
   }
   /**
 *
-* @returns {null} null
+* @returns {boolean} boolean
 
 * @memberof AddRecipe
 */
@@ -154,22 +154,18 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   handleUpdate() {
-    const { firstname, lastname, email, picture, password, confirmPassword } = this.state;
-    if (this.state.selectedImage) {
-      this.setState({ uploading: true });
-      return uploadImage(picture)
-        .then((response) => {
-          const url = response.data.secure_url;
-          this.setState({ picture: url });
-          this.setState({ uploading: false });
-          this.props.updateProfile(this.state);
-        })
-        .catch((error) => {
-          this.setState({ uploading: false });
-          this.setState({ uploadImageError: error.error.message });
-        });
-    }
-    this.props.updateProfile({ firstname, lastname, email, picture, password, confirmPassword });
+    const {
+      firstname,
+      lastname,
+      email,
+      picture,
+      password,
+      confirmPassword,
+      selectedImage
+    } = this.state;
+    this.props.updateProfile({
+      firstname, lastname, email, picture, password, confirmPassword, selectedImage
+    });
   }
   /**
    *
