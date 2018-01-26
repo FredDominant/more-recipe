@@ -103,7 +103,7 @@ describe('Test for', () => {
     });
     it('not allow for recipes that don\'t exist', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/11')
+        .get('/api/v1/recipes/1100')
         .end((err, res) => {
           expect(res.status).to.equal(404);
           done();

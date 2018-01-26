@@ -89,6 +89,7 @@ const sendEmail = (url, email, res) => {
   };
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
+      console.log('error is', error);
       return res.status(500).json({ Message: 'Unable to send recovery email' });
     }
     return res.status(200).json({ Message: 'Recovery Email sent' });

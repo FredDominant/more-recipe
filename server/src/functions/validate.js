@@ -97,10 +97,10 @@ export default class Validate {
       picture
     };
     const recipeUpdateRules = {
-      name: 'required|string|min:2',
-      description: 'required|string|min:5',
-      directions: 'required|string|min:5',
-      ingredients: 'required|string|min:5',
+      name: 'string|min:2',
+      description: 'string|min:5',
+      directions: 'string|min:5',
+      ingredients: 'string|min:5',
       picture: 'string'
     };
     const validation = new Validator(recipeUpdateData, recipeUpdateRules);
@@ -131,7 +131,7 @@ export default class Validate {
       review
     };
     const reviewRules = {
-      review: 'string|alpha|required|min:2'
+      review: 'string|required|min:2'
     };
     const validation = new Validator(reviewData, reviewRules);
     if (validation.passes()) {
@@ -211,7 +211,7 @@ export default class Validate {
     };
 
     const loginRules = {
-      email: 'required|string|required|email',
+      email: 'required|string|email',
       password: 'required|string'
     };
 
@@ -262,7 +262,7 @@ export default class Validate {
    * @memberof Validate
    */
   static updateUser(req, res, next) {
-    const { email, password, firstname, lastname, picture } = req.body.email;
+    const { email, password, firstname, lastname, picture } = req.body;
     const userUpdateData = {
       email,
       password,
@@ -297,10 +297,11 @@ export default class Validate {
    */
   static recoverEmail(req, res, next) {
     const { email } = req.body;
+    const validateData = { email };
     const validateRules = {
       email: 'required|email'
     };
-    const validation = new Validator(email, validateRules);
+    const validation = new Validator(validateData, validateRules);
     if (validation.passes()) {
       next();
     } else {

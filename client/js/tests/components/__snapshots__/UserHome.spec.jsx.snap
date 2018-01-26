@@ -43,7 +43,7 @@ exports[`Test for UserHome component should render correctly 1`] = `
           <br />
           <Connect(Search)>
             <Search
-              page={1}
+              focus={false}
               search={[Function]}
             >
               <div
@@ -69,6 +69,7 @@ exports[`Test for UserHome component should render correctly 1`] = `
                       </span>
                       <input
                         aria-label="Search for..."
+                        autoFocus={false}
                         className="form-control"
                         id="search-box"
                         name="searchParam"
