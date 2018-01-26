@@ -140,7 +140,8 @@ export class AddRecipePage extends React.Component {
                   className="recipe-image"
                   id="add-recipe-image-container"
                   onClick={this.handleSelectImage}
-                  role="presentation"
+                  role="button"
+                  tabIndex={0}
                 >
                   <img
                     className="img-thumbnail"

@@ -35,6 +35,9 @@
     "import/extensions": 0,
     "jsx-a11y/no-autofocus": 0,
     "curly": ["error", "multi-line"],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "specialLink": [ "to" ]
+      }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": ["error", {
       "requireReturn": true,

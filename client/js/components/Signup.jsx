@@ -177,7 +177,8 @@ class Signup extends React.Component {
                           className="input-group-addon"
                           id="lastName-addon"
                         >
-                          <i className="fa fa-user" aria-hidden="true" /></span>
+                          <i className="fa fa-user" aria-hidden="true" />
+                        </span>
                         <input
                           type="text"
                           value={lastname}

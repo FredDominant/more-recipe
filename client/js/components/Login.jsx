@@ -195,7 +195,7 @@ class Login extends React.Component {
                           disabled={fetching}
                         >
                           <span className="register-text">
-                         Log in  { fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span> }
+                         Log in  { fetching && <span> <MDSpinner singleColor="#FFFFFF" /></span> }
                           </span>
                         </button>
                       </div>

@@ -91,7 +91,8 @@ class Navbar extends React.Component {
                           aria-haspopup="true"
                           aria-expanded="false"
                         >{ firstname }
-                          <span className="caret" /> </a>
+                          <span className="caret" />
+                        </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
@@ -108,9 +109,13 @@ class Navbar extends React.Component {
                                 <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span>
-                                <i className="fab fa-gratipay" /> </span> <Link to="/favourites">
-                                 Favourites</Link> <span className="sr-only">(current)</span>
+                              <span className="nav-link">
+                                <span>
+                                  <i className="fab fa-gratipay" />
+                                </span>
+                                <Link to="/favourites">
+                                 Favourites
+                                </Link> <span className="sr-only">(current)</span>
                               </span>
                             </li>
                             <li className="nav-item active">
@@ -123,14 +128,15 @@ class Navbar extends React.Component {
                             </li>
                             <hr />
                             <li className="nav-item active">
-                              <a>
-                                <button
-                                  className="btn btn-default"
-                                  onClick={this.handleLogout}
-                                >
-                                  <span>
-                                    <i className="fas fa-sign-out-alt" />
-                                  </span>Logout</button>
+                              <a
+                                className="btn btn-default"
+                                onClick={this.handleLogout}
+                                role="button"
+                                tabIndex={0}
+                              >
+                                <span>
+                                  <i className="fas fa-sign-out-alt" />
+                                </span>Logout
                               </a>
                             </li>
                           </div>

@@ -105,7 +105,7 @@ class RecipeItem extends React.Component {
               {
                 owner &&
                 <h6 className="recipe-owner">
-                  <i className="fas fa-user-circle" /> <span /> {owner}
+                  <i className="fas fa-user-circle" /> {owner}
                 </h6>
               }
               {
@@ -126,16 +126,20 @@ class RecipeItem extends React.Component {
                       title="number of downvotes"
                       className="btn btn-outline-danger"
                       disabled
-                    ><i className="far fa-thumbs-up" />
-                      <span id="likes"> {upvotes} </span></button>
+                    >
+                      <i className="far fa-thumbs-up" />
+                      <span id="likes"> {upvotes} </span>
+                    </button>
                     }
 
                     { home && <button
                       title="number of downvotes"
                       className="btn btn-outline-danger"
                       disabled
-                    ><i className="far fa-thumbs-down" />
-                      <span id="unlikes"> {downvotes} </span></button>
+                    >
+                      <i className="far fa-thumbs-down" />
+                      <span id="unlikes"> {downvotes} </span>
+                    </button>
                     }
 
                     {
@@ -143,16 +147,20 @@ class RecipeItem extends React.Component {
                         title="number of favourites"
                         className="btn btn-outline-danger"
                         disabled
-                      ><i className="far fa-heart" />
-                        <span> {favourites}</span></button>
+                      >
+                        <i className="far fa-heart" />
+                        <span> {favourites}</span>
+                      </button>
                     }
                     {
                       !favouriteCard && <button
                         title="number of views"
                         className="btn btn-outline-danger"
                         disabled
-                      ><i className="fas fa-eye" />
-                        <span id="views"> {views} </span></button>
+                      >
+                        <i className="fas fa-eye" />
+                        <span id="views"> {views} </span>
+                      </button>
                     }
                     {
                       userRecipeCard && <button
@@ -169,7 +177,8 @@ class RecipeItem extends React.Component {
                         title="remove from favourites"
                         className="btn btn-outline-danger"
                         onClick={this.onRemoveFavourite}
-                      ><i className="fas fa-trash-alt" />
+                      >
+                        <i className="fas fa-trash-alt" />
                       </button>
                     }
 
@@ -189,16 +198,20 @@ class RecipeItem extends React.Component {
               {
                 !authenticated && <div className="container text-left">
                   <div className="row">
-                    <div className="col-sm-3"><i className="far fa-thumbs-up" />
+                    <div className="col-sm-3">
+                      <i className="far fa-thumbs-up" />
                       <span id="likes"> {upvotes} </span>
                     </div>
-                    <div className="col-sm-3"><i className="far fa-thumbs-down" />
+                    <div className="col-sm-3">
+                      <i className="far fa-thumbs-down" />
                       <span id="unlikes"> {downvotes} </span>
                     </div>
-                    <div className="col-sm-3"><i className="far fa-heart" />
+                    <div className="col-sm-3">
+                      <i className="far fa-heart" />
                       <span id="likes"> {favourites} </span>
                     </div>
-                    <div className="col-sm-3"><i className="fas fa-eye" />
+                    <div className="col-sm-3">
+                      <i className="fas fa-eye" />
                       <span id="views"> {views} </span>
                     </div>
                   </div>
