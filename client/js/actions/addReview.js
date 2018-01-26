@@ -1,5 +1,5 @@
 import axios from 'axios';
-import toastr from 'toastr';
+import toaster from '../utils/toaster';
 
 import { ADD_REVIEW_SUCCESS, ADD_REVIEW_FAILURE } from '../actions/actionTypes';
 
@@ -26,18 +26,12 @@ const addReview = (review, recipeId) => (dispatch) => {
     .then((response) => {
       const Review = response.data;
       dispatch(addReviewSuccess(Review));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Review added');
+      toaster.toastSuccess('Review added');
     })
     .catch(() => {
       const Message = 'unable to add review';
       dispatch(addReviewFailure(Message));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error(Message);
+      toaster.toastError(Message);
     });
 };
 

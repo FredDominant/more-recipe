@@ -20,7 +20,7 @@ class ChangePassword extends React.Component {
   /**
  * @description Creates an instance of ChangePassword.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof ChangePassword
  */
@@ -37,7 +37,7 @@ class ChangePassword extends React.Component {
   }
   /**
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof ChangePassword
    *
@@ -52,7 +52,7 @@ class ChangePassword extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof ChangePassword
    */
@@ -86,7 +86,7 @@ class ChangePassword extends React.Component {
    */
   render() {
     if (!verifyRecoveryToken(this.props.match.params.token) || this.props.authenticated) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/" />;
     }
     const { password, confirmPassword, errors } = this.state;
     return (

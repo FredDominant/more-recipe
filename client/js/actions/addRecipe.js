@@ -92,7 +92,12 @@ const addRecipe = recipe => (dispatch) => {
         toaster.toastError(message);
       });
   }
-  recipe = { ...recipe, picture: null };
-  return addRecipeRequest(recipe, token, dispatch);
+  const noImageRecipe = {
+    name: recipe.name,
+    description: recipe.description,
+    directions: recipe.directions,
+    ingredients: recipe.ingredients
+  };
+  return addRecipeRequest(noImageRecipe, token, dispatch);
 };
 export default addRecipe;

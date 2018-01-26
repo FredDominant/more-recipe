@@ -1,9 +1,9 @@
 import axios from 'axios';
-import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { UPVOTE_SUCCESS, UPVOTE_FAILURE } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from './fetching';
+import toaster from '../utils/toaster';
 
 const upvoteSuccess = recipe => ({
   type: UPVOTE_SUCCESS,
@@ -35,10 +35,7 @@ const upvoteRecipe = recipeId => (dispatch) => {
     .catch((error) => {
       const { Message } = error;
       dispatch(upvoteFail(Message));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to upvote recipe');
+      toaster.toastError('Unable to complete');
     });
 };
 export default upvoteRecipe;

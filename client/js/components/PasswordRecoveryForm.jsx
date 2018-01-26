@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
 
@@ -17,7 +18,7 @@ class PasswordRecoveryForm extends React.Component {
   /**
  * @description Creates an instance of PasswordRecoveryForm.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof PasswordRecoveryForm
  */
@@ -34,7 +35,7 @@ class PasswordRecoveryForm extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof PasswordRecoveryForm
    */
@@ -47,7 +48,7 @@ class PasswordRecoveryForm extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof PasswordRecoveryForm
    */
@@ -124,10 +125,13 @@ class PasswordRecoveryForm extends React.Component {
               <small>
                 <h6 id="proceed-to-login">
                   <br />
-                  <a
+                  <Link
+                    to="#"
                     onClick={this.onToggleLogin}
                     role="presentation"
-                  >Proceed to log in</a></h6>
+                  >Proceed to log in
+                  </Link>
+                </h6>
               </small>
             </div>
           </form>

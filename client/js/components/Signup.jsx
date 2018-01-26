@@ -61,7 +61,7 @@ class Signup extends React.Component {
       const { firstname, lastname, email, password, confirmPassword } = this.state;
       this.props.signup({ firstname, lastname, email, password, confirmPassword });
       if (this.props.authenticated) {
-        this.context.router.history.push('/home');
+        this.context.router.history.push('/');
       }
     }
   }

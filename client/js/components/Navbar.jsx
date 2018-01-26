@@ -56,7 +56,7 @@ class Navbar extends React.Component {
               <div className="col-sm-10 col-xs-6">
                 <div className="col-sm-9" id="nav-button">
                   <span id="title" className="navbar-brand">
-                    <Link to="/home">
+                    <Link to="/">
                       <h3
                         className="more-recipes"
                         title="More Recipes and cooking tips"
@@ -83,16 +83,17 @@ class Navbar extends React.Component {
                   {this.props.authenticated && <ul className="navbar-nav mr-auto">
                     <li className="dropdown nav-item active">
                       <span className="nav-link" ><span><i className="fas fa-user" /> </span>
-                        <a
-                          href=""
+                        <Link
+                          to="#"
                           className="dropdown-toggle"
                           data-toggle="dropdown"
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >{ firstname }
+                        >
+                          { firstname }
                           <span className="caret" />
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
@@ -103,18 +104,18 @@ class Navbar extends React.Component {
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link">
-                                <span><i className="fab fa-gratipay" /> </span>
+                                <span><i className="fas fa-utensils" /></span>
                                 <Link to="/user/recipes">
-                                My Recipes</Link>
+                                  <span> My Recipes</span></Link>
                                 <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link">
                                 <span>
-                                  <i className="fab fa-gratipay" />
+                                  <i className="far fa-heart" />
                                 </span>
                                 <Link to="/favourites">
-                                 Favourites
+                                  <span> Favourites</span>
                                 </Link> <span className="sr-only">(current)</span>
                               </span>
                             </li>
@@ -123,12 +124,13 @@ class Navbar extends React.Component {
                                 <span>
                                   <i className="fas fa-plus-circle" />
                                 </span>
-                                <Link to="/add-recipe">Add Recipe
+                                <Link to="/add-recipe"> <span> Add Recipe</span>
                                 </Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <hr />
                             <li className="nav-item active">
-                              <a
+                              <Link
+                                to="/"
                                 className="btn btn-default"
                                 onClick={this.handleLogout}
                                 role="button"
@@ -136,8 +138,8 @@ class Navbar extends React.Component {
                               >
                                 <span>
                                   <i className="fas fa-sign-out-alt" />
-                                </span>Logout
-                              </a>
+                                </span> Logout
+                              </Link>
                             </li>
                           </div>
                         </ul>
@@ -180,21 +182,25 @@ class Navbar extends React.Component {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item active">
-                    <a
+                    <Link
+                      to="#"
                       className="nav-link"
                       data-toggle="modal"
                       data-target="#register"
                     ><span><i className="fas fa-user-plus" /></span> REGISTER
-                      <span className="sr-only">(current)</span></a>
+                      <span className="sr-only">(current)</span>
+                    </Link>
                   </li>
                   <li className="nav-item active">
-                    <a
+                    <Link
+                      to="#"
                       className="nav-link"
                       data-toggle="modal"
                       data-target="#login"
                     >
                       <span><i className="fas fa-sign-in-alt" /></span> LOGIN
-                      <span className="sr-only">(current)</span></a>
+                      <span className="sr-only">(current)</span>
+                    </Link>
                   </li>
                 </ul>
                 <Login />

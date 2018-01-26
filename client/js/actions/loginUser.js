@@ -1,9 +1,10 @@
 import axios from 'axios';
-import toastr from 'toastr';
 
 import { batchActions } from 'redux-batched-actions';
 import { setFetching, unsetFetching } from './fetching';
 import { RECIEVE_AUTH, AUTH_ERROR } from './actionTypes';
+import toaster from '../utils/toaster';
+
 
 export const recieveAuth = (token, user) => ({
   type: RECIEVE_AUTH,
@@ -29,10 +30,7 @@ const loginUser = ({ email, password }) => (dispatch) => {
       ]));
       document.body.classList.remove('modal-open');
       $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('You are now logged in');
+      toaster.toastSuccess('Welcome');
     })
     .catch((error) => {
       const message = error.response.data.Message;

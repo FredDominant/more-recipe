@@ -1,9 +1,9 @@
 import axios from 'axios';
-import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { DOWNVOTE_SUCCESS, DOWNVOTE_FAILURE } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from './fetching';
+import toaster from '../utils/toaster';
 
 const downvoteSuccess = recipe => ({
   type: DOWNVOTE_SUCCESS,
@@ -35,10 +35,7 @@ const downvoteRecipe = recipeId => (dispatch) => {
     .catch((error) => {
       const { Message } = error;
       dispatch(downvoteFail(Message));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to downvote!');
+      toaster.toastError('Unable to complete');
     });
 };
 export default downvoteRecipe;

@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from './Home';
 import Recipe from './Recipe';
-import UserHome from './UserHome';
+// import UserHome from './UserHome';
 import AddRecipePage from '../components/AddRecipePage';
 import UserProfile from '../components/UserProfile';
 import UserRecipePage from '../components/UserRecipePage';
@@ -17,7 +17,7 @@ import CheckAuth from '../utils/checkAuth.jsx';
 const Body = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/home" exact component={CheckAuth(UserHome)} />
+    {/* <Route path="/home" exact component={CheckAuth(UserHome)} /> */}
     <Route path="/add-recipe" exact component={CheckAuth(AddRecipePage)} />
     <Route path="/profile" exact component={CheckAuth(UserProfile)} />
     <Route path="/favourites" exact component={CheckAuth(Favourites)} />

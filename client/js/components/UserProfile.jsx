@@ -181,8 +181,7 @@ class UserProfile extends React.Component {
       confirmPassword,
       picture,
       disabled,
-      errors,
-      fetching
+      errors
     } = this.state;
     return (
       <div className="profile-body">
@@ -209,6 +208,7 @@ class UserProfile extends React.Component {
                   <input
                     type="file"
                     name="file"
+                    accept=".png,.gif,.jpg,.jpeg"
                     id="profile-upload"
                     style={{ display: 'none' }}
                     onChange={this.onUpload}

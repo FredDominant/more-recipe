@@ -45,7 +45,12 @@ export default class Favourite {
                   }
                 }
               })
-                .then(() => res.status(200).json({ Message: 'Removed from favourites' }));
+                .then(() => {
+                  res.status(200).json({ Message: 'Removed from favourites', userFavourited: false });
+                  recipe.findById(req.params.recipeId).then((Recipe) => {
+                    Recipe.decrement('favourites');
+                  });
+                });
               return;
             }
             favourite.create({
@@ -55,7 +60,8 @@ export default class Favourite {
               .then(newFavourite => res.status(201)
                 .json({
                   Message: 'Recipe added to favourites',
-                  Favourite: newFavourite
+                  Favourite: newFavourite,
+                  userFavourited: true
                 }))
               .then(() => {
                 recipe.findById(req.params.recipeId).then((Recipe) => {

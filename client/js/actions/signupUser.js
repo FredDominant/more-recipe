@@ -1,9 +1,10 @@
 import axios from 'axios';
-import toastr from 'toastr';
 import { batchActions } from 'redux-batched-actions';
 
 import { setFetching, unsetFetching } from './fetching';
 import { recieveAuth, authError } from './loginUser';
+import toaster from '../utils/toaster';
+
 /**
  * @description this function handles a user sign up
  *
@@ -24,10 +25,7 @@ const signupUser = userData => (dispatch) => {
       ]));
       document.body.classList.remove('modal-open');
       $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Welcome. You`re now signed in');
+      toaster.toastSuccess('Welcome');
     })
     .catch((error) => {
       const message = error.response.data.Message;

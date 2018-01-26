@@ -72,6 +72,7 @@ class AddReview extends React.Component {
                   placeholder="Add a review..."
                   onChange={this.onChange}
                   value={this.state.content}
+                  required
                 />
                 <br />
                 <button className="btn" id="add-review-button">

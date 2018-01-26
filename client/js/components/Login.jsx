@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
+import { Link } from 'react-router-dom';
 
 import loginValidator from '../validation/LoginValidator';
 import loginUser from '../actions/loginUser';
@@ -37,7 +38,7 @@ class Login extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof Login
    */
@@ -69,7 +70,7 @@ class Login extends React.Component {
       this.props.login({ email, password });
 
       if (this.props.authenticated) {
-        this.context.router.history.push('/home');
+        this.context.router.history.push('/');
       }
     }
   }
@@ -202,12 +203,13 @@ class Login extends React.Component {
                       <br />
                       <small>
                         <h6 id="forgot-password">
-                          <a
+                          <Link
+                            to="#"
                             onClick={this.onForgotPassword}
                             role="button"
                             tabIndex={0}
                           >Forgot password? No problem
-                          </a>
+                          </Link>
                         </h6>
                       </small>
                     </div>

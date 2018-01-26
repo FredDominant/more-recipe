@@ -56,7 +56,7 @@ export default class Validate {
       ingredients
     };
     const recipeRules = {
-      name: 'required|string|min:5',
+      name: 'required|string|min:2',
       description: 'required|string|min:5',
       directions: 'required|string|min:5',
       ingredients: 'required|string|min:5'
@@ -97,10 +97,10 @@ export default class Validate {
       picture
     };
     const recipeUpdateRules = {
-      name: 'string|min:5',
-      description: 'string|min:5',
-      directions: 'string|min:3',
-      ingredients: 'string|min:3',
+      name: 'required|string|min:2',
+      description: 'required|string|min:5',
+      directions: 'required|string|min:5',
+      ingredients: 'required|string|min:5',
       picture: 'string'
     };
     const validation = new Validator(recipeUpdateData, recipeUpdateRules);
@@ -131,7 +131,7 @@ export default class Validate {
       review
     };
     const reviewRules = {
-      review: 'string|required|min:2'
+      review: 'string|alpha|required|min:2'
     };
     const validation = new Validator(reviewData, reviewRules);
     if (validation.passes()) {
@@ -172,8 +172,8 @@ export default class Validate {
     const signupRules = {
       email: 'required|string|email',
       password: 'required|min:6',
-      firstname: 'required|string|alpha|min:3',
-      lastname: 'required|string|alpha|min:3',
+      firstname: 'required|string|alpha|min:2',
+      lastname: 'required|string|alpha|min:2',
       confirmPassword: 'required|min:6'
     };
     if (password !== confirmPassword) {
@@ -273,8 +273,8 @@ export default class Validate {
     const userUpdateRules = {
       email: 'string|email',
       password: 'string|min:6',
-      firstname: 'string|min:3|alpha',
-      lastname: 'string|min:3|alpha',
+      firstname: 'string|min:2|alpha',
+      lastname: 'string|min:2|alpha',
       picture: 'string'
     };
     const validation = new Validator(userUpdateData, userUpdateRules);
@@ -298,7 +298,7 @@ export default class Validate {
   static recoverEmail(req, res, next) {
     const { email } = req.body;
     const validateRules = {
-      email: 'string|email'
+      email: 'required|email'
     };
     const validation = new Validator(email, validateRules);
     if (validation.passes()) {

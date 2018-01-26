@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
-import toastr from 'toastr';
+
 
 import { DELETE_FAVOURITE, DELETE_FAVOURITE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 import { getFavouriteStatus } from './getOneRecipe';
+import toaster from '../utils/toaster';
 
 const removeFavouriteSuccess = recipeId => ({
   type: DELETE_FAVOURITE,
@@ -31,20 +32,14 @@ const removeFavourite = recipeId => (dispatch) => {
         getFavouriteStatus(false),
         unsetFetching()
       ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Recipe deleted');
+      toaster.toastSuccess('Removed!');
     })
     .catch(() => {
       dispatch(batchActions([
         removeFavouriteFailure(),
         unsetFetching()
       ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to delete recipe');
+      toaster.toastError('Unable to complete');
     });
 };
 export default removeFavourite;

@@ -27,7 +27,6 @@ export default class Recipe {
       ingredients,
       picture
     } = req.body;
-
     recipe.findOne({
       where: {
         name: name.toLowerCase(),
@@ -83,6 +82,17 @@ export default class Recipe {
 
     recipe.findOne({
       where: {
+        name: name.trim().toLowerCase(),
+        userId: req.decoded.id
+      }
+    }).then((existingRecipeWithSameName) => {
+      if (!(!existingRecipeWithSameName || existingRecipeWithSameName.name === name)) {
+        return res.status(403).json({ Message: 'You have a recipe with this name' });
+      }
+    });
+
+    recipe.findOne({
+      where: {
         id: req.params.recipeId,
         $and: {
           userId: req.decoded.id
@@ -91,10 +101,6 @@ export default class Recipe {
     })
       .then((foundRecipe) => {
         if (foundRecipe) {
-          if (foundRecipe.name === name.trim().toLowerCase() &&
-          foundRecipe.userId === req.decoded.id) {
-            return res.status(403).json({ Mesage: 'You already have a recipe with this name' });
-          }
           const newRecipe = {
             name: name ?
               name.trim().toLowerCase() : foundRecipe.dataValues.name,
@@ -107,7 +113,7 @@ export default class Recipe {
             picture: picture ?
               picture.trim() : foundRecipe.dataValues.picture
           };
-          foundRecipe.update(newRecipe)
+          return foundRecipe.update(newRecipe)
             .then(updatedRecipe => res.status(200)
               .json({
                 Message: 'Update successful',

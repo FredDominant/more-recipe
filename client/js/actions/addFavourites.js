@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { batchActions } from 'redux-batched-actions';
-import toastr from 'toastr';
+import toaster from '../utils/toaster';
 
 import { setFetching, unsetFetching } from './fetching';
 import { ADD_FAVOURITES, ADD_FAVOURITES_ERROR } from '../actions/actionTypes';
@@ -25,26 +25,21 @@ const addFavourite = recipeId => (dispatch) => {
       'x-access-token': token
     }
   })
-    .then(() => {
+    .then((response) => {
+      const { Message, userFavourited } = response.data;
       dispatch(batchActions([
         addFavouriteSuccess(recipeId),
-        getFavouriteStatus(true),
+        getFavouriteStatus(userFavourited),
         unsetFetching()
       ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Added to your favourites!');
+      toaster.toastSuccess(Message);
     })
     .catch(() => {
       dispatch(batchActions([
         addFavouriteError(),
         unsetFetching()
       ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to add to favourites');
+      toaster.toastError('Unable to add to favourites');
     });
 };
 export default addFavourite;

@@ -156,6 +156,7 @@ export class AddRecipePage extends React.Component {
                   style={{ display: 'none' }}
                   type="file"
                   name="file"
+                  accept=".png,.gif,.jpg,.jpeg"
                   id="file-upload"
                   onChange={this.onUpload}
                 />
