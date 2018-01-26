@@ -153,7 +153,8 @@ class Login extends React.Component {
                           className="input-group-addon"
                           id="email-addon"
                         >
-                          <i className="fa fa-envelope" aria-hidden="true" /></span>
+                          <i className="fa fa-envelope" aria-hidden="true" />
+                        </span>
                         <input
                           type="email"
                           name="email"
@@ -173,7 +174,8 @@ class Login extends React.Component {
                           className="input-group-addon"
                           id="password-addon"
                         >
-                          <i className="fa fa-key" aria-hidden="true" /></span>
+                          <i className="fa fa-key" aria-hidden="true" />
+                        </span>
                         <input
                           type="password"
                           name="password"
@@ -193,7 +195,7 @@ class Login extends React.Component {
                           disabled={fetching}
                         >
                           <span className="register-text">
-                         Log in  {fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                         Log in  { fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span> }
                           </span>
                         </button>
                       </div>
@@ -203,7 +205,9 @@ class Login extends React.Component {
                           <a
                             onClick={this.onForgotPassword}
                             role="presentation"
-                          >Forgot password? No problem</a></h6>
+                          >Forgot password? No problem
+                          </a>
+                        </h6>
                       </small>
                     </div>
                   </form>

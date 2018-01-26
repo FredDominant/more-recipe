@@ -109,19 +109,28 @@ class Navbar extends React.Component {
                             <li className="nav-item active">
                               <span className="nav-link"><span>
                                 <i className="fab fa-gratipay" /> </span> <Link to="/favourites">
-                                 Favourites</Link> <span className="sr-only">(current)</span></span>
+                                 Favourites</Link> <span className="sr-only">(current)</span>
+                              </span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span><i className="fas fa-plus-circle" /> </span>
+                              <span className="nav-link">
+                                <span>
+                                  <i className="fas fa-plus-circle" />
+                                </span>
                                 <Link to="/add-recipe">Add Recipe
                                 </Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <hr />
                             <li className="nav-item active">
-                              <a><button
-                                className="btn btn-default"
-                                onClick={this.handleLogout}
-                              ><span><i className="fas fa-sign-out-alt" /> </span>Logout</button></a>
+                              <a>
+                                <button
+                                  className="btn btn-default"
+                                  onClick={this.handleLogout}
+                                >
+                                  <span>
+                                    <i className="fas fa-sign-out-alt" />
+                                  </span>Logout</button>
+                              </a>
                             </li>
                           </div>
                         </ul>
