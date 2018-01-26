@@ -86,7 +86,14 @@ class Signup extends React.Component {
    * @memberof Signup
    */
   render() {
-    const { errors, firstname, lastname, email, password, confirmPassword } = this.state;
+    const {
+      errors,
+      firstname,
+      lastname,
+      email,
+      password,
+      confirmPassword
+    } = this.state;
     const { fetching, errorMessage } = this.props;
     return (
       <div>
@@ -150,7 +157,8 @@ class Signup extends React.Component {
                         <span
                           className="input-group-addon"
                           id="firstName-addon"
-                        ><i className="fa fa-user" aria-hidden="true" /></span>
+                        >
+                          <i className="fa fa-user" aria-hidden="true" /></span>
                         <input
                           type="text"
                           value={firstname}
@@ -167,7 +175,8 @@ class Signup extends React.Component {
                         <span
                           className="input-group-addon"
                           id="lastName-addon"
-                        ><i className="fa fa-user" aria-hidden="true" /></span>
+                        >
+                          <i className="fa fa-user" aria-hidden="true" /></span>
                         <input
                           type="text"
                           value={lastname}
@@ -202,7 +211,8 @@ class Signup extends React.Component {
                         <span
                           className="input-group-addon"
                           id="password-addon"
-                        ><i className="fa fa-key" aria-hidden="true" /></span>
+                        >
+                          <i className="fa fa-key" aria-hidden="true" /></span>
                         <input
                           type="password"
                           value={password}
@@ -219,7 +229,8 @@ class Signup extends React.Component {
                         <span
                           className="input-group-addon"
                           id="confirmPassword-addon"
-                        ><i className="fa fa-key" aria-hidden="true" /></span>
+                        >
+                          <i className="fa fa-key" aria-hidden="true" /></span>
                         <input
                           type="password"
                           value={confirmPassword}
@@ -239,8 +250,7 @@ class Signup extends React.Component {
                           disabled={fetching}
                         >
                           <span className="register-text">
-                          Register
-                            {fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                          Register { fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span> }
                           </span> </button>
                       </div>
                     </div>

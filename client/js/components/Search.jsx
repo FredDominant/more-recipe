@@ -15,7 +15,7 @@ class Search extends React.Component {
   /**
    * @description Creates an instance of Search.
    *
-   * @param {any} props
+   * @param {object} props
    *
    * @memberof Search
    */
@@ -30,7 +30,7 @@ class Search extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof Search
    */
@@ -50,7 +50,7 @@ class Search extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof Search
    */
@@ -88,7 +88,8 @@ class Search extends React.Component {
                 <button
                   className="btn btn-danger"
                   type="submit"
-                ><i className="fa fa-search" aria-hidden="true" /></button>
+                >
+                  <i className="fa fa-search" aria-hidden="true" /></button>
               </span>
             </div>
           </form>
@@ -102,7 +103,6 @@ Search.propTypes = {
   focus: PropTypes.bool
 };
 Search.defaultProps = {
-  page: 1,
   focus: false
 };
 
