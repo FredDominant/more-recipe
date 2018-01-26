@@ -90,7 +90,8 @@ class Navbar extends React.Component {
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >{ firstname }  <span className="caret" /> </a>
+                        >{ firstname }
+                          <span className="caret" /> </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">

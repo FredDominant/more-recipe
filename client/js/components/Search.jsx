@@ -89,7 +89,8 @@ class Search extends React.Component {
                   className="btn btn-danger"
                   type="submit"
                 >
-                  <i className="fa fa-search" aria-hidden="true" /></button>
+                  <i className="fa fa-search" aria-hidden="true" />
+                </button>
               </span>
             </div>
           </form>

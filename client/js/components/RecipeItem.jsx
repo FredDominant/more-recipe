@@ -169,7 +169,8 @@ class RecipeItem extends React.Component {
                         title="remove from favourites"
                         className="btn btn-outline-danger"
                         onClick={this.onRemoveFavourite}
-                      ><i className="fas fa-trash-alt" /></button>
+                      ><i className="fas fa-trash-alt" />
+                      </button>
                     }
 
                     {
@@ -178,7 +179,9 @@ class RecipeItem extends React.Component {
                         title="delete this recipe"
                         className="btn btn-outline-danger"
                         onClick={this.onDeleteRecipe}
-                      ><i className="fas fa-trash-alt" /> </button>
+                      >
+                        <i className="fas fa-trash-alt" />
+                      </button>
                     }
                   </div>
                 </div>
@@ -187,13 +190,17 @@ class RecipeItem extends React.Component {
                 !authenticated && <div className="container text-left">
                   <div className="row">
                     <div className="col-sm-3"><i className="far fa-thumbs-up" />
-                      <span id="likes"> {upvotes} </span></div>
+                      <span id="likes"> {upvotes} </span>
+                    </div>
                     <div className="col-sm-3"><i className="far fa-thumbs-down" />
-                      <span id="unlikes"> {downvotes} </span></div>
+                      <span id="unlikes"> {downvotes} </span>
+                    </div>
                     <div className="col-sm-3"><i className="far fa-heart" />
-                      <span id="likes"> {favourites} </span></div>
+                      <span id="likes"> {favourites} </span>
+                    </div>
                     <div className="col-sm-3"><i className="fas fa-eye" />
-                      <span id="views"> {views} </span></div>
+                      <span id="views"> {views} </span>
+                    </div>
                   </div>
                 </div>
               }

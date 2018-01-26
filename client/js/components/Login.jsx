@@ -204,7 +204,8 @@ class Login extends React.Component {
                         <h6 id="forgot-password">
                           <a
                             onClick={this.onForgotPassword}
-                            role="presentation"
+                            role="button"
+                            tabIndex={0}
                           >Forgot password? No problem
                           </a>
                         </h6>

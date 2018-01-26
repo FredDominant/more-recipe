@@ -4,7 +4,7 @@ import { batchActions } from 'redux-batched-actions';
 import { EDIT_RECIPE, EDIT_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 import toaster from '../utils/toaster';
-import uploadImage from '..//utils/uploadImage';
+import uploadImage from '../utils/uploadImage';
 
 /**
  * @description action creator
