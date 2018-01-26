@@ -2,24 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
+import { connect } from 'react-redux';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle
-} from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 import capitalize from '../utils/capitalize';
 /**
  * @description renders a recipe item card
+ *
  * @class RecipeItem
+ *
  * @extends {React.Component}
  */
 class RecipeItem extends React.Component {
   /**
- * Creates an instance of RecipeItem.
+ * @description Creates an instance of RecipeItem.
+ *
  * @param {any} props
+ *
  * @memberof RecipeItem
  */
   constructor(props) {
@@ -29,7 +29,6 @@ class RecipeItem extends React.Component {
     this.onRemoveFavourite = this.onRemoveFavourite.bind(this);
   }
   /**
-   *
    *
    * @memberof RecipeItem
    *
@@ -45,7 +44,6 @@ class RecipeItem extends React.Component {
     });
   }
   /**
-   *
    *
    * @memberof RecipeItem
    *
@@ -63,9 +61,26 @@ class RecipeItem extends React.Component {
   /**
    *
    * @memberof RecipeItem
+   *
    * @returns {node} JSX
    */
   render() {
+    const {
+      authenticated,
+      image,
+      recipeName,
+      recipeId,
+      owner,
+      description,
+      created,
+      home,
+      upvotes,
+      downvotes,
+      favourites,
+      views,
+      userRecipeCard,
+      favouriteCard
+    } = this.props;
     return (
       <div className="stuff">
         <div className="recipeCard container">
@@ -73,8 +88,8 @@ class RecipeItem extends React.Component {
             <CardBody>
               <CardTitle>
                 <img
-                  src={this.props.image}
-                  alt={this.props.recipeName}
+                  src={image}
+                  alt={recipeName}
                   className="img-thumbnail img-responsive"
                   id="recipe-images"
                   height="100"
@@ -83,64 +98,125 @@ class RecipeItem extends React.Component {
                 <br />
                 <div id="recipe-title">
                   <span className="recipe-title text-left">
-                    <Link to={`/recipe/${this.props.recipeId}`}> {capitalize(this.props.recipeName)} </Link>
+                    <Link to={`/recipe/${recipeId}`}> {capitalize(recipeName)} </Link>
                   </span>
                 </div>
               </CardTitle>
               {
-                this.props.owner && <h6 className="recipe-owner"><i className="fas fa-user-circle" /> <span /> {this.props.owner}</h6>
+                owner &&
+                <h6 className="recipe-owner">
+                  <i className="fas fa-user-circle" /> {owner}
+                </h6>
               }
-              {this.props.home && <small> Created {this.props.created}</small>}
+              {
+                home && <small> Created {created}</small>
+              }
               <hr />
               <CardText>
                 <span className="recipe-description text-left">
-                  {capitalize(this.props.description)}
+                  {capitalize(description)}
                 </span>
                 <br />
               </CardText>
-              <div className="all-buttons text-left">
-                <div className="btn-group" role="group" >
+              {
+                authenticated && <div className="all-buttons text-left">
+                  <div className="btn-group" role="group" >
 
-                  <button
-                    title="number of downvotes"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="far fa-thumbs-up" /> <span id="likes">{this.props.upvotes} </span></button>
+                    { home && <button
+                      title="number of downvotes"
+                      className="btn btn-outline-danger"
+                      disabled
+                    >
+                      <i className="far fa-thumbs-up" />
+                      <span id="likes"> {upvotes} </span>
+                    </button>
+                    }
 
-                  <button
-                    title="number of downvotes"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="far fa-thumbs-down" /> <span id="unlikes">{this.props.downvotes} </span></button>
+                    { home && <button
+                      title="number of downvotes"
+                      className="btn btn-outline-danger"
+                      disabled
+                    >
+                      <i className="far fa-thumbs-down" />
+                      <span id="unlikes"> {downvotes} </span>
+                    </button>
+                    }
 
-                  <button
-                    title="number of views"
-                    className="btn btn-outline-danger"
-                    disabled
-                  ><i className="fas fa-eye" /> <span id="views">{this.props.views} </span></button>
-                  {this.props.userRecipeCard && <button
-                    type="button"
-                    title="edit this recipe"
-                    className="btn btn-outline-danger"
-                  >
-                    <Link to={`/recipe/edit/${this.props.recipeId}`}> <i className="far fa-edit" /> </Link>
-                  </button>
-                  }
-                  {this.props.favouriteCard && <button
-                    type="button"
-                    title="remove from favourites"
-                    className="btn btn-outline-danger"
-                    onClick={this.onRemoveFavourite}
-                  ><i className="fas fa-trash-alt" /></button>}
+                    {
+                      (userRecipeCard || home) && <button
+                        title="number of favourites"
+                        className="btn btn-outline-danger"
+                        disabled
+                      >
+                        <i className="far fa-heart" />
+                        <span> {favourites}</span>
+                      </button>
+                    }
+                    {
+                      !favouriteCard && <button
+                        title="number of views"
+                        className="btn btn-outline-danger"
+                        disabled
+                      >
+                        <i className="fas fa-eye" />
+                        <span id="views"> {views} </span>
+                      </button>
+                    }
+                    {
+                      userRecipeCard && <button
+                        type="button"
+                        title="edit this recipe"
+                        className="btn btn-outline-danger"
+                      >
+                        <Link to={`/recipe/edit/${recipeId}`}> <i className="far fa-edit" /> </Link>
+                      </button>
+                    }
+                    {
+                      favouriteCard && <button
+                        type="button"
+                        title="remove from favourites"
+                        className="btn btn-outline-danger"
+                        onClick={this.onRemoveFavourite}
+                      >
+                        <i className="fas fa-trash-alt" />
+                      </button>
+                    }
 
-                  {this.props.userRecipeCard && <button
-                    type="button"
-                    title="delete this recipe"
-                    className="btn btn-outline-danger"
-                    onClick={this.onDeleteRecipe}
-                  ><i className="fas fa-trash-alt" /> </button>}
+                    {
+                      userRecipeCard && <button
+                        type="button"
+                        title="delete this recipe"
+                        className="btn btn-outline-danger"
+                        onClick={this.onDeleteRecipe}
+                      >
+                        <i className="fas fa-trash-alt" />
+                      </button>
+                    }
+                  </div>
                 </div>
-              </div>
+              }
+              {
+                !authenticated && <div className="container text-left">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <i className="far fa-thumbs-up" />
+                      <span id="likes"> {upvotes} </span>
+                    </div>
+                    <div className="col-sm-3">
+                      <i className="far fa-thumbs-down" />
+                      <span id="unlikes"> {downvotes} </span>
+                    </div>
+                    <div className="col-sm-3">
+                      <i className="far fa-heart" />
+                      <span id="likes"> {favourites} </span>
+                    </div>
+                    <div className="col-sm-3">
+                      <i className="fas fa-eye" />
+                      <span id="views"> {views} </span>
+                    </div>
+                  </div>
+                </div>
+              }
             </CardBody>
           </Card>
         </div>
@@ -154,6 +230,7 @@ RecipeItem.propTypes = {
   description: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
+  favourites: PropTypes.number.isRequired,
   views: PropTypes.number,
   recipeId: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
@@ -162,7 +239,8 @@ RecipeItem.propTypes = {
   removeRecipe: PropTypes.func,
   onDelete: PropTypes.func,
   created: PropTypes.string,
-  home: PropTypes.string
+  home: PropTypes.string,
+  authenticated: PropTypes.bool.isRequired
 };
 RecipeItem.defaultProps = {
   views: null,
@@ -174,4 +252,7 @@ RecipeItem.defaultProps = {
   home: null,
   owner: null
 };
-export default RecipeItem;
+const mapStateToprops = state => ({
+  authenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToprops, {})(RecipeItem);

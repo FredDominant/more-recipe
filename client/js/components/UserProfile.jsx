@@ -5,17 +5,20 @@ import PropTypes from 'prop-types';
 import Footer from './Footer';
 import userProfile from '../actions/userProfile';
 import updateProfile from '../actions/editProfile';
-import uploadImage from '../utils/uploadImage';
+import updatePasswordValidator from '../validation/updatePasswordValidator';
+
 /**
  *
- *
  * @class UserProfile
+ *
  * @extends {React.Component}
  */
 class UserProfile extends React.Component {
 /**
- * Creates an instance of UserProfile.
+ * @description Creates an instance of UserProfile.
+ *
  * @param {any} props
+ *
  * @memberof UserProfile
  */
   constructor(props) {
@@ -25,12 +28,13 @@ class UserProfile extends React.Component {
       lastname: '',
       email: '',
       password: '',
+      confirmPassword: '',
       picture: '',
+      errors: {},
       disabled: true,
       uploadImageError: '',
       selectedImage: false,
       uploading: false,
-      fetching: false
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,6 +45,7 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UserProfile
    */
   componentDidMount() {
@@ -49,7 +54,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} nextProps
+   *
+   * @param {object} nextProps
+   *
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
@@ -59,7 +66,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} event
+   *
+   * @param {object} event
+   *
    * @memberof UserProfile
    */
   onUpload(event) {
@@ -72,9 +81,11 @@ class UserProfile extends React.Component {
   }
   /**
    *
-   * @returns {null} null
    * @param {any} event
+   *
    * @memberof UserProfile
+   *
+   * @returns {null} null
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -82,7 +93,9 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} event
+   *
+   * @param {object} event
+   *
    * @memberof UserProfile
    */
   onEdit(event) {
@@ -91,7 +104,9 @@ class UserProfile extends React.Component {
   }
   /**
    * @description selects image
+   *
    * @memberof UserProfile
+   *
    * @returns {null} null
    */
   onSelectImage() {
@@ -100,34 +115,75 @@ class UserProfile extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} event
+   *
+   * @param {object} event
+   *
    * @memberof UserProfile
    */
   handleSubmit(event) {
-    const { firstname, lastname, email, picture } = this.state;
+    const { password } = this.state;
     event.preventDefault();
-    if (this.state.selectedImage) {
-      this.setState({ uploading: true });
-      return uploadImage(picture)
-        .then((response) => {
-          const url = response.data.secure_url;
-          this.setState({ picture: url });
-          this.setState({ uploading: false });
-          this.props.updateProfile(this.state);
-        })
-        .catch((error) => {
-          this.setState({ uploading: false });
-          this.setState({ uploadImageError: error.error.message });
-        });
+    if (password.length) {
+      if (this.isValid()) {
+        return this.handleUpdate();
+      }
+    } else {
+      return this.handleUpdate();
     }
-    this.props.updateProfile({ firstname, lastname, email, picture });
+  }
+  /**
+*
+* @returns {boolean} boolean
+
+* @memberof AddRecipe
+*/
+  isValid() {
+    const { password, confirmPassword } = this.state;
+    const { errors, isValid } = updatePasswordValidator(password, confirmPassword);
+    if (!isValid) {
+      this.setState({ errors });
+    }
+    return isValid;
+  }
+  /**
+   * @description This functions handles profile updates
+   *
+   * @returns {null} null
+   *
+   * @memberof UserProfile
+   */
+  handleUpdate() {
+    const {
+      firstname,
+      lastname,
+      email,
+      picture,
+      password,
+      confirmPassword,
+      selectedImage
+    } = this.state;
+    this.props.updateProfile({
+      firstname, lastname, email, picture, password, confirmPassword, selectedImage
+    });
   }
   /**
    *
-   * @returns {null} null
+   * @returns {node} JSX
+   *
    * @memberof UserProfile
    */
   render() {
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      confirmPassword,
+      picture,
+      disabled,
+      errors,
+      fetching
+    } = this.state;
     return (
       <div className="profile-body">
         <div className="container" id="update-profile-form">
@@ -144,8 +200,8 @@ class UserProfile extends React.Component {
                     <img
                       className="img-thumbnail"
                       id="update-profile-picture"
-                      src={this.state.picture}
-                      alt={this.state.firstname}
+                      src={picture}
+                      alt={firstname}
                       srcSet=""
                     />
                   </div>
@@ -156,7 +212,7 @@ class UserProfile extends React.Component {
                     id="profile-upload"
                     style={{ display: 'none' }}
                     onChange={this.onUpload}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
                 <br />
@@ -168,9 +224,9 @@ class UserProfile extends React.Component {
                     id="profile-firstname"
                     className="form-control"
                     name="firstname"
-                    value={this.state.firstname}
+                    value={firstname}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -181,12 +237,14 @@ class UserProfile extends React.Component {
                     id="profile-lastname"
                     className="form-control"
                     name="lastname"
-                    value={this.state.lastname}
+                    value={lastname}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
-
+                <br />
+                <h6 className="text-left">Account setting</h6>
+                <hr />
                 <div className="form-group">
                   <label htmlFor="profile-email">Email</label>
                   <input
@@ -194,40 +252,65 @@ class UserProfile extends React.Component {
                     id="profile-email"
                     className="form-control"
                     name="email"
-                    value={this.state.email}
+                    value={email}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="profile-password">Password</label>
                   <input
-                    type="text"
-                    id="profile-password"
+                    type="password"
+                    id="profile-confirmPassword"
                     className="form-control"
                     name="password"
-                    value={this.state.password}
+                    value={password}
                     onChange={this.onChange}
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                   />
+                  {errors.password && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.password} </span>
+                  </small>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="profile-password">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="profile-password"
+                    className="form-control"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={this.onChange}
+                    disabled={disabled}
+                  />
+                  {errors.confirmPassword && <small className="form-text text-muted">
+                    <span className="error-text"> {errors.confirmPassword} </span>
+                  </small>}
                 </div>
 
                 <div className="form-group">
                   <div className="container row">
-                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <div className="col-sm-2 col-md-2 col-lg-2">
+                      <button className="btn btn-primary" onClick={this.onEdit}>
+                        {
+                          !this.state.disabled && <span><i className="fas fa-lock" /></span>
+                        }
+                        {
+                          this.state.disabled && <span><i className="fas fa-unlock" /></span>
+                        }
+                      </button>
+                    </div>
+                    <div className="col-sm-10 col-md-10 col-lg-10">
                       <button
                         className="btn btn-success"
-                        disabled={this.state.disabled}
+                        disabled={disabled}
                       >
-                        {
-                          this.state.uploading ? 'uploading image...' : 'update'
-                        }
+                       update profile
                       </button></div>
-                    <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2" />
-                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                      <button className="btn btn-primary" onClick={this.onEdit}>Edit</button>
-                    </div>
+                    <div className="col-sm-2 col-md-2 col-lg-2" />
+
                   </div>
                 </div>
               </div>
@@ -258,7 +341,6 @@ UserProfile.propTypes = {
 UserProfile.defaultProps = {
   userDetails: {},
   updateSuccess: false,
-  fetching: false
 };
 
 export default connect(mapStateToProps, mapDispatchToprops)(UserProfile);

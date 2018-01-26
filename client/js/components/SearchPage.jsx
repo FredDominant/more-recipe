@@ -8,12 +8,15 @@ import RecipeItem from '../components/RecipeItem';
 import capitalize from '../utils/capitalize';
 /**
  * @class SearchPage
+ *
  * @extends {React.Component}
  */
 class SearchPage extends React.Component {
   /**
- * Creates an instance of SearchPage.
+ * @description Creates an instance of SearchPage.
+ *
  * @param {any} props
+ *
  * @memberof SearchPage
  */
   constructor(props) {
@@ -25,7 +28,9 @@ class SearchPage extends React.Component {
   }
   /**
    * @param {any} nextProps
+   *
    * @memberof SearchPage
+   *
    * @returns {null} null
    */
   componentWillReceiveProps(nextProps) {
@@ -34,6 +39,7 @@ class SearchPage extends React.Component {
   }
   /**
    * @returns {jsx} React component
+   *
    * @memberof SearchPage
    */
   render() {
@@ -58,7 +64,7 @@ class SearchPage extends React.Component {
         <div className="container search-page-body" id="search-body-result">
           <h1 className="text-center" id="search-header">Search Awesome Recipes</h1>
           <br />
-          <Search />
+          <Search focus />
           <br />
           {
             recipes.length > 0 && <h4 className="text-center" id="search-results">

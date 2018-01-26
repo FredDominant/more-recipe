@@ -1,7 +1,9 @@
 import axios from 'axios';
 import toastr from 'toastr';
+import { batchActions } from 'redux-batched-actions';
 
 import { UPVOTE_SUCCESS, UPVOTE_FAILURE } from '../actions/actionTypes';
+import { setFetching, unsetFetching } from './fetching';
 
 const upvoteSuccess = recipe => ({
   type: UPVOTE_SUCCESS,
@@ -15,6 +17,7 @@ const upvoteFail = message => ({
 
 const upvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
+  dispatch(setFetching());
   axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/upvote`,
@@ -24,7 +27,10 @@ const upvoteRecipe = recipeId => (dispatch) => {
   })
     .then((response) => {
       const { Recipe } = response.data;
-      dispatch(upvoteSuccess(Recipe));
+      dispatch(batchActions([
+        upvoteSuccess(Recipe),
+        unsetFetching()
+      ]));
     })
     .catch((error) => {
       const { Message } = error;

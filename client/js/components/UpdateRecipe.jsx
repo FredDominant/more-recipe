@@ -5,17 +5,19 @@ import PropTypes from 'prop-types';
 import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import updateRecipe from '../actions/updateRecipe';
-import uploadImage from '../utils/uploadImage';
+
 /**
  *
- *
  * @class UpdateRecipe
+ *
  * @extends {React.Component}
  */
 class UpdateRecipe extends React.Component {
   /**
- * Creates an instance of UpdateRecipe.
+ * @description Creates an instance of UpdateRecipe.
+ *
  * @param {any} props
+ *
  * @memberof UpdateRecipe
  */
   constructor(props) {
@@ -38,6 +40,7 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UpdateRecipe
    */
   componentDidMount() {
@@ -46,8 +49,10 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
-   * @returns {null} niull
+   * @returns {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof UpdateRecipe
    */
   componentWillReceiveProps(nextProps) {
@@ -57,7 +62,9 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onUpload(event) {
@@ -71,7 +78,9 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onChange(event) {
@@ -79,8 +88,10 @@ class UpdateRecipe extends React.Component {
   }
   /**
    *
-   * @returns {null} nul
+   * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   onToggleEdit(event) {
@@ -90,127 +101,144 @@ class UpdateRecipe extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof UpdateRecipe
    */
   handleSubmit(event) {
     event.preventDefault();
-    const { picture, id } = this.state;
-    if (this.state.selectedImage) {
-      return uploadImage(picture)
-        .then((response) => {
-          const url = response.data.secure_url;
-          this.setState({ picture: url });
-          this.props.updateRecipe(this.state, id);
-        })
-        .catch((error) => {
-          this.setState({ uploadImageError: error.error.message });
-        });
-    }
+    const { id } = this.state;
     this.props.updateRecipe(this.state, id);
   }
   /**
    *
-   *
    * @returns {null} null
+   *
    * @memberof UpdateRecipe
    */
   render() {
+    const {
+      name,
+      description,
+      ingredients,
+      directions,
+      picture,
+      toggleEdit
+    } = this.state;
     return (
       <div>
-        <br />
         <div className="container">
-          <div className="container">
-            {this.state.editRecipeSuccess && <div className="alert alert-success alert-dismissible" role="alert">Recipe Updated</div>}
+          <br />
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="col-sm-4">
+                  <div className="recipe-image">
+                    <img
+                      className="img-thumbnail img-responsive"
+                      src={picture}
+                      alt=""
+                      srcSet=""
+                    />
+                  </div>
+                  <br />
+                  <label htmlFor="upload" className="file-upload__label">upload image</label>
+                  <input
+                    type="file"
+                    name="file"
+                    id="file-upload"
+                    onChange={this.onUpload}
+                    disabled={toggleEdit}
+                  />
+                </div>
+                <div className="col-sm-8">
+                  <div className="form-group">
+                    <label htmlFor="recipeName">Recipe Name</label>
+                    <input
+                      type="text"
+                      id="recipeName"
+                      className="form-control"
+                      placeholder="Michael's Awesome Sauce"
+                      name="name"
+                      value={name}
+                      onChange={this.onChange}
+                      disabled={toggleEdit}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="recipeDescription">Recipe Description</label>
+                    <input
+                      type="text"
+                      id="recipeDescription"
+                      className="form-control"
+                      placeholder="An awesome sauce by Michael"
+                      name="description"
+                      value={description}
+                      onChange={this.onChange}
+                      disabled={toggleEdit}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="recipeDirections">Recipe Directions</label>
+                    <textarea
+                      type="text"
+                      rows="5"
+                      id="recipeDescription"
+                      className="form-control"
+                      placeholder="Michael's Awesome Sauce"
+                      name="directions"
+                      value={directions}
+                      onChange={this.onChange}
+                      disabled={toggleEdit}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="recipeingredients">Ingredients</label>
+                    <textarea
+                      type="text"
+                      rows="5"
+                      id="recipeIngredients"
+                      className="form-control"
+                      placeholder="Michael's Ingredient list"
+                      name="ingredients"
+                      value={ingredients}
+                      onChange={this.onChange}
+                      disabled={toggleEdit}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <div className="row">
+                      <div className="col-md-4 col-sm-6 col-lg-4">
+                        <button
+                          className="btn btn-success"
+                          onClick={this.onToggleEdit}
+                        >
+                          {
+                            !this.state.toggleEdit && <span><i className="fas fa-lock" /></span>
+                          }
+                          {
+                            this.state.toggleEdit && <span><i className="fas fa-unlock" /></span>
+                          }
+                        </button>
+                      </div>
+                      <div className="col-md-4 col-sm-6 col-lg-4">
+                        <button
+                          className="btn btn-primary"
+                          disabled={toggleEdit}
+                        >Update Recipe</button>
+                      </div>
+                      <div className="col-md-4 col-sm-6 col-lg-4" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="col-sm-4">
-                <div className="recipe-image">
-                  <img className="img-thumbnail img-responsive" src={this.state.picture} alt="" srcSet="" />
-                </div>
-                <br />
-                <label htmlFor="upload" className="file-upload__label">upload image</label>
-                <input
-                  type="file"
-                  name="file"
-                  id="file-upload"
-                  onChange={this.onUpload}
-                  disabled={this.state.toggleEdit}
-                />
-              </div>
-              <div className="col-sm-8">
-                <div className="form-group">
-                  <label htmlFor="recipeName">Recipe Name</label>
-                  <input
-                    type="text"
-                    id="recipeName"
-                    className="form-control"
-                    placeholder="Michael's Awesome Sauce"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="recipeDescription">Recipe Description</label>
-                  <input
-                    type="text"
-                    id="recipeDescription"
-                    className="form-control"
-                    placeholder="An awesome sauce by Michael"
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="recipeDirections">Recipe Directions</label>
-                  <textarea
-                    type="text"
-                    rows="5"
-                    id="recipeDescription"
-                    className="form-control"
-                    placeholder="Michael's Awesome Sauce"
-                    name="directions"
-                    value={this.state.directions}
-                    onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="recipeingredients">Ingredients</label>
-                  <textarea
-                    type="text"
-                    rows="5"
-                    id="recipeIngredients"
-                    className="form-control"
-                    placeholder="Michael's Ingredient list"
-                    name="ingredients"
-                    value={this.state.ingredients}
-                    onChange={this.onChange}
-                    disabled={this.state.toggleEdit}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button
-                    className="btn btn-primary"
-                    disabled={this.state.toggleEdit}
-                  >Update Recipe</button>
-                  <button
-                    className="btn btn-success"
-                    onClick={this.onToggleEdit}
-                  >Edit Recipe</button>
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
         <Footer />
       </div>

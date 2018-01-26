@@ -11,14 +11,16 @@ import Loading from './Loading';
 
 /**
  *
- *
  * @class UserRecipePage
+ *
  * @extends {React.Component}
  */
 class UserRecipePage extends React.Component {
 /**
- * Creates an instance of UserRecipePage.
+ * @description Creates an instance of UserRecipePage.
+ *
  * @param {any} props
+ *
  * @memberof UserRecipePage
  */
   constructor(props) {
@@ -29,14 +31,17 @@ class UserRecipePage extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof UserRecipePage
    */
   componentDidMount() {
     this.props.getAllUserRecipes();
   }
   /**
-   * @param {any} current
+   * @param {object} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -46,7 +51,9 @@ class UserRecipePage extends React.Component {
   /**
    *
    * @return {null} null
-   * @param {any} id
+   *
+   * @param {number} id
+   *
    * @memberof UserRecipePage
    */
   onDelete(id) {
@@ -54,26 +61,27 @@ class UserRecipePage extends React.Component {
   }
   /**
    *
-   *
    * @returns {jsx} jsx
+   *
    * @memberof UserRecipePage
    */
   render() {
     const { pages } = this.props.pageInfo;
     const userRecipes = (this.props.userRecipes) ? this.props.userRecipes : [];
     const allUserRecipes = userRecipes.map(recipe => (
-      <div key={`${recipe.id}`} className="col-sm-6 col-md-4" >
+      <div key={`${recipe.id}`} className="col-sm-12 col-md-6 col-lg-4" >
         <RecipeItem
           image={recipe.picture}
           recipeName={recipe.name}
           recipeId={recipe.id}
           description={recipe.description}
-          userRecipeCard={'user'}
+          userRecipeCard="user"
           onDelete={this.props.deleteRecipe}
           upvotes={recipe.upvote}
           downvotes={recipe.downvote}
           views={recipe.views}
-          owner={'you'}
+          favourites={recipe.favourites}
+          owner="Me"
         />
         <br />
       </div>
@@ -83,6 +91,7 @@ class UserRecipePage extends React.Component {
         <div>
           <br />
           <div className="container" >
+            <h2 className="text-center mb-3 mt-3 allRecipes-title">My Recipes</h2>
             <div className="row">
               {allUserRecipes}
             </div>

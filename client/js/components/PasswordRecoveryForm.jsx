@@ -10,12 +10,15 @@ import recoverPasswordValidator from '../validation/recoverPasswordValidator';
  * @description renders a form to recover password
  *
  * @class PasswordRecoveryForm
+ *
  * @extends {React.Component}
  */
 class PasswordRecoveryForm extends React.Component {
   /**
- * Creates an instance of PasswordRecoveryForm.
+ * @description Creates an instance of PasswordRecoveryForm.
+ *
  * @param {any} props
+ *
  * @memberof PasswordRecoveryForm
  */
   constructor(props) {
@@ -30,7 +33,9 @@ class PasswordRecoveryForm extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof PasswordRecoveryForm
    */
   onChange(event) {
@@ -41,7 +46,9 @@ class PasswordRecoveryForm extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} event
+   *
    * @memberof PasswordRecoveryForm
    */
   onSubmit(event) {
@@ -53,7 +60,9 @@ class PasswordRecoveryForm extends React.Component {
   }
   /**
    * @description hides recover password component and displays login form
+   *
    * @memberof PasswordRecoveryForm
+   *
    * @returns {null} null
    */
   onToggleLogin() {
@@ -62,7 +71,9 @@ class PasswordRecoveryForm extends React.Component {
   }
   /**
    * @description validates for inputs
+   *
    * @memberof PasswordRecoveryForm
+   *
    * @returns {boolean} true or false
    */
   isvalid() {
@@ -74,12 +85,13 @@ class PasswordRecoveryForm extends React.Component {
   }
   /**
    *
-   *
    * @returns {jsx} react component
+   *
    * @memberof PasswordRecoveryForm
    */
   render() {
-    const { errors } = this.state;
+    const { errors, email } = this.state;
+    const { fetching } = this.props;
     return (
       <div className="container">
         <div className="recover-password">
@@ -90,7 +102,7 @@ class PasswordRecoveryForm extends React.Component {
               required
               name="email"
               onChange={this.onChange}
-              value={this.state.email}
+              value={email}
               placeholder="Type in your registered email"
             />
             {errors.email && <small className="form-text text-muted">
@@ -103,7 +115,7 @@ class PasswordRecoveryForm extends React.Component {
               onClick={this.onSubmit}
             >
             Recover password
-              {this.props.fetching && <span className="container">
+              {fetching && <span className="container">
                 <MDSpinner />
               </span>}
             </button>

@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, '../client/assets')));
 router(app);
 
 app.get('/api/documentation', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/assets/doc/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../client/assets/doc/index.html'));
 });
 
 app.get('/*', (req, res) => {

@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 /**
  *
  * @class Loading
+ *
  * @extends {React.Component}
  */
 class Loading extends React.Component {
 /**
- * Creates an instance of Loading.
+ * @description Creates an instance of Loading.
+ *
  * @param {any} props
+ *
  * @memberof Loading
  */
   constructor(props) {
@@ -20,6 +23,7 @@ class Loading extends React.Component {
   /**
    *
    * @returns {node} jsx
+   *
    * @memberof Loading
    */
   render() {

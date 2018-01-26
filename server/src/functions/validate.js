@@ -230,6 +230,31 @@ export default class Validate {
    * @static
    *
    * @param {any} req
+   *
+   * @param {any} res
+   *
+   * @param {any} next
+   *
+   * @memberof Validate
+   *
+   * @returns {next} function
+   */
+  static updatePassword(req, res, next) {
+    const { password, confirmPassword } = req.body;
+    if (!password) {
+      return next();
+    }
+    if (password !== confirmPassword) {
+      return res.status(400).json({ Message: 'Passwords do not match' });
+    }
+    return next();
+  }
+  /**
+   *
+   *
+   * @static
+   *
+   * @param {any} req
    * @param {any} res
    * @param {any} next
    *

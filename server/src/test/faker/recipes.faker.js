@@ -13,6 +13,12 @@ export default {
     directions: faker.lorem.words(),
     ingredients: faker.lorem.words()
   },
+  thirdValidRecipe: {
+    name: 'random name',
+    description: faker.lorem.words(),
+    directions: faker.lorem.words(),
+    ingredients: faker.lorem.words()
+  },
   namelessRecipe: {
     description: faker.lorem.words(),
     directions: faker.lorem.words(),
@@ -24,5 +30,8 @@ export default {
     directions: faker.lorem.words(),
     ingredients: faker.lorem.words()
   },
+  randomName: {
+    name: faker.random.words()
+  }
 };
 

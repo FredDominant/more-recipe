@@ -9,12 +9,15 @@ import ViewReviews from './ViewReviews';
  * @description renders the reviews of a recipe
  *
  * @class Reviews
+ *
  * @extends {React.Component}
  */
 class Reviews extends React.Component {
 /**
- * Creates an instance of Reviews.
+ * @description Creates an instance of Reviews.
+ *
  * @param {any} props
+ *
  * @memberof Reviews
  */
   constructor(props) {
@@ -26,6 +29,7 @@ class Reviews extends React.Component {
   /**
    *
    * @memberof Reviews
+   *
    * @returns {null} null
    */
   componentDidMount() {
@@ -33,7 +37,9 @@ class Reviews extends React.Component {
   }
   /**
    * @param {any} nextProps
+   *
    * @memberof Reviews
+   *
    * @returns {null} null
    */
   componentWillReceiveProps(nextProps) {
@@ -43,10 +49,12 @@ class Reviews extends React.Component {
   /**
 *
 * @returns {node} JSX
+
 * @memberof Reviews
 */
   render() {
-    const allReviews = this.props.reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
+    const { reviews } = this.props;
+    const allReviews = reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
           image={review.User.picture}

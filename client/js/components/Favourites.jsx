@@ -12,14 +12,16 @@ import Loading from '../components/Loading';
 
 /**
  *
- *
  * @class Favourites
+ *
  * @extends {React.Component}
  */
 class Favourites extends React.Component {
   /**
- * Creates an instance of Favourites.
+ * @description Creates an instance of Favourites.
+ *
  * @param {any} props
+ *
  * @memberof Favourites
  */
   constructor(props) {
@@ -33,6 +35,7 @@ class Favourites extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof Favourites
    */
   componentDidMount() {
@@ -41,7 +44,9 @@ class Favourites extends React.Component {
   /**
  *
  * @return {null} null
+ *
  * @param {any} nextProps
+ *
  * @memberof Favourites
  */
   componentWillReceiveProps(nextProps) {
@@ -50,8 +55,10 @@ class Favourites extends React.Component {
     this.setState({ userFavourites: favourites, pageInfo });
   }
   /**
-   * @param {any} current
+   * @param {object} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -60,14 +67,14 @@ class Favourites extends React.Component {
   }
   /**
    *
-   *
    * @returns {null} null
+   *
    * @memberof Favourites
    */
   render() {
     const { pages } = this.state.pageInfo;
     const allFavourites = this.state.userFavourites.map(recipe => (
-      <div key={recipe.id} className=" col-xs-8 col-sm-2 col-md-4">
+      <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
         <RecipeItem
           favouriteCard={'true'}
           image={recipe.Recipe.picture}
@@ -76,6 +83,7 @@ class Favourites extends React.Component {
           description={capitalize(recipe.Recipe.description)}
           upvotes={recipe.Recipe.upvote}
           downvotes={recipe.Recipe.downvote}
+          favourites={recipe.Recipe.favourites}
           owner={`${recipe.Recipe.User.firstname} ${recipe.Recipe.User.lastname}`}
           removeRecipe={this.props.removeFromFavourite}
         />
@@ -88,6 +96,7 @@ class Favourites extends React.Component {
         <div>
           <br />
           <div className="container favourite-body">
+            <h2 className="text-center mb-3 mt-3 allRecipes-title">Favourite Recipes</h2>
             <div className="row">
               {allFavourites}
             </div>

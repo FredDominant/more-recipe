@@ -9,15 +9,18 @@ import PasswordRecoveryForm from '../components/PasswordRecoveryForm';
 
 /**
  *
- *
  * @export
+ *
  * @class Login
+ *
  * @extends {React.Component}
  */
 class Login extends React.Component {
   /**
- * Creates an instance of Login.
+ * @description Creates an instance of Login.
+ *
  * @param {any} props
+ *
  * @memberof Login
     */
   constructor(props) {
@@ -35,6 +38,7 @@ class Login extends React.Component {
    * @returns {null} null
    *
    * @param {any} event
+   *
    * @memberof Login
    */
   onChange(event) {
@@ -42,7 +46,9 @@ class Login extends React.Component {
   }
   /**
    * @description this method toggles display of password recovery
+   *
    * @returns {null} null
+   *
    * @memberof Login
    */
   onForgotPassword() {
@@ -53,6 +59,7 @@ class Login extends React.Component {
    * @returns {dispatch} dispatch
    *
    * @param {any} event
+   *
    * @memberof Login
    */
   handleSubmit(event) {
@@ -68,8 +75,8 @@ class Login extends React.Component {
   }
   /**
  *
- *
  * @returns {boolean} boolean
+ *
  * @memberof Login
  */
   isValid() {
@@ -81,14 +88,23 @@ class Login extends React.Component {
   }
   /**
  *
- * @returns {html} html
+ * @returns {node} React component
+ *
  * @memberof Login
  */
   render() {
-    const { errors } = this.state;
+    const { errors, email, password } = this.state;
+    const { errorMessage, fetching } = this.props;
     return (
       <div>
-        <div className="modal fade" id="login" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          className="modal fade"
+          id="login"
+          role="dialog"
+          data-backdrop="static"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div className="modal-dialog" role="document">
             <div className="modal-content container">
               <div className="row">
@@ -96,7 +112,12 @@ class Login extends React.Component {
                   <span><h1 className="modal-title" id="login-title">More Recipes</h1></span>
                 </div>
                 <div className="col-xs-3 login-close">
-                  <button type="button" className="close cancel-login" data-dismiss="modal" aria-label="Close">
+                  <button
+                    type="button"
+                    className="close cancel-login"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -104,11 +125,23 @@ class Login extends React.Component {
               <div className="modal-body">
                 <div id="login-form">
                   <div className="container error-body">
-                    {errors.email && <div className="alert alert-danger alert-dismissible" role="alert">{errors.email}
+                    {errors.email &&
+                    <div
+                      className="alert alert-danger alert-dismissible"
+                      role="alert"
+                    >{errors.email}
                     </div>}
-                    {this.props.errorMessage && <div className="alert alert-danger alert-dismissible" role="alert">{this.props.errorMessage}
+                    {errorMessage &&
+                    <div
+                      className="alert alert-danger alert-dismissible"
+                      role="alert"
+                    >{errorMessage}
                     </div>}
-                    {errors.password && <div className="alert alert-danger alert-dismissible" role="alert">{errors.password}
+                    {errors.password &&
+                    <div
+                      className="alert alert-danger alert-dismissible"
+                      role="alert"
+                    >{errors.password}
                     </div>}
                     <br />
                   </div>
@@ -116,11 +149,16 @@ class Login extends React.Component {
                     <div className="container">
                       <div className="input-group">
                         <label htmlFor="#" className="control-label" /> <br />
-                        <span className="input-group-addon" id="email-addon"><i className="fa fa-envelope" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="email-addon"
+                        >
+                          <i className="fa fa-envelope" aria-hidden="true" />
+                        </span>
                         <input
                           type="email"
                           name="email"
-                          value={this.state.email}
+                          value={email}
                           onChange={this.onChange}
                           className="form-control login-form"
                           placeholder="Email "
@@ -132,11 +170,16 @@ class Login extends React.Component {
                       <br />
                       <div className="input-group">
                         <label htmlFor="#" className="control-label" /> <br />
-                        <span className="input-group-addon" id="password-addon"><i className="fa fa-key" aria-hidden="true" /></span>
+                        <span
+                          className="input-group-addon"
+                          id="password-addon"
+                        >
+                          <i className="fa fa-key" aria-hidden="true" />
+                        </span>
                         <input
                           type="password"
                           name="password"
-                          value={this.state.password}
+                          value={password}
                           onChange={this.onChange}
                           className="form-control login-form"
                           placeholder="Password"
@@ -149,16 +192,23 @@ class Login extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn register-button"
-                          disabled={this.props.fetching}
+                          disabled={fetching}
                         >
                           <span className="register-text">
-                         Log in  {this.props.fetching && <span> <MDSpinner singleColor={'#FFFFFF'} /></span>}
+                         Log in  { fetching && <span> <MDSpinner singleColor="#FFFFFF" /></span> }
                           </span>
                         </button>
                       </div>
                       <br />
                       <small>
-                        <h6 id="forgot-password"><a onClick={this.onForgotPassword} role="presentation">Forgot password? No problem</a></h6>
+                        <h6 id="forgot-password">
+                          <a
+                            onClick={this.onForgotPassword}
+                            role="button"
+                            tabIndex={0}
+                          >Forgot password? No problem
+                          </a>
+                        </h6>
                       </small>
                     </div>
                   </form>

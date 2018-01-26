@@ -8,14 +8,16 @@ import Signup from '../components/Signup';
 import logOutUser from '../actions/logoutUser';
 /**
  *
- *
  * @class Navbar
+ *
  * @extends {React.Component}
  */
 class Navbar extends React.Component {
   /**
- * Creates an instance of Navbar.
+ * @description Creates an instance of Navbar.
+ *
  * @param {any} props
+ *
  * @memberof Navbar
  */
   constructor(props) {
@@ -26,8 +28,11 @@ class Navbar extends React.Component {
 
   /**
    * @description this method handles user logout
+   *
    * @returns {function} function
+   *
    * @param {any} event
+   *
    * @memberof Navbar
    */
   handleLogout(event) {
@@ -38,9 +43,11 @@ class Navbar extends React.Component {
   /**
    *
    * @returns {component} react component
+   *
    * @memberof Navbar
    */
   render() {
+    const { firstname } = this.props;
     if (this.props.authenticated) {
       return (
         <div>
@@ -83,7 +90,9 @@ class Navbar extends React.Component {
                           role="button"
                           aria-haspopup="true"
                           aria-expanded="false"
-                        >{ this.props.firstname }  <span className="caret" /> </a>
+                        >{ firstname }
+                          <span className="caret" />
+                        </a>
                         <ul className="dropdown-menu">
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
@@ -100,24 +109,37 @@ class Navbar extends React.Component {
                                 <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span>
-                                <i className="fab fa-gratipay" /> </span> <Link to="/favourites">
-                                 Favourites</Link> <span className="sr-only">(current)</span></span>
+                              <span className="nav-link">
+                                <span>
+                                  <i className="fab fa-gratipay" />
+                                </span>
+                                <Link to="/favourites">
+                                 Favourites
+                                </Link> <span className="sr-only">(current)</span>
+                              </span>
                             </li>
                             <li className="nav-item active">
-                              <span className="nav-link"><span><i className="fas fa-plus-circle" /> </span>
+                              <span className="nav-link">
+                                <span>
+                                  <i className="fas fa-plus-circle" />
+                                </span>
                                 <Link to="/add-recipe">Add Recipe
                                 </Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <hr />
                             <li className="nav-item active">
-                              <a><button
+                              <a
                                 className="btn btn-default"
                                 onClick={this.handleLogout}
-                              ><span><i className="fas fa-sign-out-alt" /> </span>Logout</button></a>
+                                role="button"
+                                tabIndex={0}
+                              >
+                                <span>
+                                  <i className="fas fa-sign-out-alt" />
+                                </span>Logout
+                              </a>
                             </li>
                           </div>
-
                         </ul>
                       </span>
                     </li>

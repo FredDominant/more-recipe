@@ -69,11 +69,12 @@ describe('Test for', () => {
           done();
         });
     });
-    it('allow users update recipes they added', (done) => {
+
+    it('allow users update recipe they added', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1')
         .set('x-access-token', userToken)
-        .send({ name: 'a new name' })
+        .send(fakeRecipes.randomName)
         .end((err, res) => {
           expect(res.status).to.equal(200);
           done();

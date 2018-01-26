@@ -4,26 +4,30 @@ const recipe = models.Recipe;
 const favourite = models.Favourite;
 /**
  *
- *
  * @export
+ *
  * @class Recipe
  */
 export default class Recipe {
   /**
    *
-   *
    * @param {request} req HTTP request
+   *
    * @param {request} res HTTP response
    *
    * @returns {object} JSON and HTTP status code
+   *
    * @memberof Recipe
    */
   static addRecipe(req, res) {
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const name = req.body.name;
-    const ingredients = req.body.ingredients;
-    const picture = req.body.recipeImage;
+    const {
+      name,
+      description,
+      directions,
+      ingredients,
+      picture
+    } = req.body;
+
     recipe.findOne({
       where: {
         name: name.toLowerCase(),
@@ -61,6 +65,7 @@ export default class Recipe {
    * @description This function updates a user's recipe
    *
    * @param {request} req HTTP Reques
+   *
    * @param {response} res HTTP Response
    *
    * @returns {object} JSON and HTTP status code
@@ -68,11 +73,14 @@ export default class Recipe {
    * @memberof Recipe
    */
   static updateRecipe(req, res) {
-    const name = req.body.name;
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const ingredients = req.body.ingredients;
-    const picture = req.body.picture;
+    const {
+      name,
+      description,
+      directions,
+      ingredients,
+      picture
+    } = req.body;
+
     recipe.findOne({
       where: {
         id: req.params.recipeId,
@@ -83,12 +91,21 @@ export default class Recipe {
     })
       .then((foundRecipe) => {
         if (foundRecipe) {
+          if (foundRecipe.name === name.trim().toLowerCase() &&
+          foundRecipe.userId === req.decoded.id) {
+            return res.status(403).json({ Mesage: 'You already have a recipe with this name' });
+          }
           const newRecipe = {
-            name: name ? req.body.name.trim().toLowerCase() : foundRecipe.dataValues.name,
-            description: description ? description.trim().toLowerCase() : foundRecipe.dataValues.description,
-            ingredients: ingredients ? ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ? directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
-            picture: picture ? picture.trim() : foundRecipe.dataValues.picture
+            name: name ?
+              name.trim().toLowerCase() : foundRecipe.dataValues.name,
+            description: description ?
+              description.trim().toLowerCase() : foundRecipe.dataValues.description,
+            ingredients: ingredients ?
+              ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
+            directions: directions ?
+              directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
+            picture: picture ?
+              picture.trim() : foundRecipe.dataValues.picture
           };
           foundRecipe.update(newRecipe)
             .then(updatedRecipe => res.status(200)
@@ -112,9 +129,10 @@ export default class Recipe {
       });
   }
   /**
-   * This method deletes a recipe
+   * @description This method deletes a recipe
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON HTTP and status code
@@ -145,15 +163,7 @@ export default class Recipe {
                 userId: req.decoded.id
               }
             }
-          })
-            .then(() => {
-              favourite.destroy({
-                where: {
-                  recipeId: req.params.recipeId
-                }
-              })
-                .then(() => res.status(200).json({ Message: 'recipe deleted' }));
-            });
+          }).then(() => res.status(200).json({ Message: 'recipe deleted' }));
         }
       })
       .catch(() => res.status(500)
@@ -162,9 +172,10 @@ export default class Recipe {
         }));
   }
   /**
-   * This method returns all recipes
+   * @description This method returns all recipes
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -173,38 +184,32 @@ export default class Recipe {
    */
   static getAll(req, res) {
     if (!req.query.sort) {
-      recipe.findAndCountAll().then((all) => {
-        const limit = 6;
-        let offset = 0;
-        const page = parseInt((req.query.page || 1), 10);
-        const numberOfItems = all.count;
+      const limit = 6;
+      const page = parseInt((req.query.page || 1), 10);
+      const offset = limit * (page - 1);
+      recipe.findAndCountAll({
+        limit,
+        offset,
+        order: [
+          ['id', 'DESC']
+        ],
+        include: [
+          { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+        ]
+      }).then(({ rows, count }) => {
+        const numberOfItems = count;
         const pages = Math.ceil(numberOfItems / limit);
-        offset = limit * (page - 1);
-        recipe.findAll({
-          limit,
-          offset,
-          order: [
-            ['id', 'DESC']
-          ],
-          include: [
-            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-          ]
-        })
-          .then((recipes) => {
-            if (recipes) {
-              if (recipes.length < 1) {
-                return res.status(404)
-                  .json({ Message: 'There are currently no recipes in collection' });
-              }
-              return res.status(200)
-                .json({
-                  NumberOfItems: numberOfItems,
-                  Limit: limit,
-                  Pages: pages,
-                  CurrentPage: page,
-                  Recipes: recipes
-                });
-            }
+        if (count === 0) {
+          return res.status(404)
+            .json({ Message: 'There are currently no recipes in collection' });
+        }
+        return res.status(200)
+          .json({
+            NumberOfItems: numberOfItems,
+            Limit: limit,
+            Pages: pages,
+            CurrentPage: page,
+            Recipes: rows
           });
       }).catch(() => res.status(500)
         .json({ Message: 'Internal server' }));
@@ -236,6 +241,7 @@ export default class Recipe {
    * @description This method returns details of only one recipe
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP status code
@@ -246,12 +252,7 @@ export default class Recipe {
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'email'] },
-        { model: models.Review,
-          attributes: ['id', 'content', 'createdAt'],
-          include: [
-            { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
-          ] }
+        { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
       ]
     })
       .then((foundRecipe) => {
@@ -288,9 +289,10 @@ export default class Recipe {
         }));
   }
   /**
-   * This method gets all recipes by current user
+   * @description This method gets all recipes by current user
    *
    * @param {request} req HTTP request
+   *
    * @param {response} res HHTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -298,56 +300,48 @@ export default class Recipe {
    * @memberof Recipe
    */
   static getAllUser(req, res) {
+    const limit = 6;
+    const page = parseInt((req.query.page || 1), 10);
+    const offset = limit * (page - 1);
     recipe.findAndCountAll({
       where: {
         userId: req.decoded.id
-      }
-    }).then((allUser) => {
-      const page = parseInt((req.query.page || 1), 10);
-      const numberOfItems = allUser.count;
-      const limit = 6;
+      },
+      limit,
+      offset,
+      order: [
+        ['id', 'DESC']
+      ],
+      include: [
+        { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+      ]
+    }).then(({ rows, count }) => {
+      const numberOfItems = count;
       const pages = Math.ceil(numberOfItems / limit);
-      let offset = 0;
-      offset = limit * (page - 1);
-      recipe.findAll({
-        where: {
-          userId: req.decoded.id
-        },
-        include: [
-          { model: models.Review, attributes: ['content'] }
-        ],
-        limit,
-        offset,
-        order: [
-          ['id', 'DESC']
-        ]
-      })
-        .then((allUserRecipes) => {
-          if (allUserRecipes) {
-            if (allUserRecipes.length < 1) {
-              return res.status(404)
-                .json({ Message: 'You currently have no recipes in catalogue' });
-            }
-            return res.status(200)
-              .json({
-                NumberOfItems: numberOfItems,
-                Limit: limit,
-                Pages: pages,
-                CurrentPage: page,
-                Recipes: allUserRecipes
-              });
-          }
+      if (count === 0) {
+        return res.status(404)
+          .json({ Message: 'You currently have no recipe in the catalogue' });
+      }
+      return res.status(200)
+        .json({
+          NumberOfItems: numberOfItems,
+          Limit: limit,
+          Pages: pages,
+          CurrentPage: page,
+          Recipes: rows
         });
-    }).catch(() => res.status(500)
-      .json({
-        Message: 'Internal server error'
-      }));
+    })
+      .catch(() => res.status(500)
+        .json({
+          Message: 'Internal server error'
+        }));
   }
   /**
  *
- *
  * @static
+ *
  * @param {request} req HTTP request
+ *
  * @param {response} res HTTP response
  *
  * @returns {obj} JSON and HTTP Status code
@@ -398,8 +392,7 @@ export default class Recipe {
             Limit: limit,
             Recipe: foundRecipe
           });
-      }).catch(() => res.status(500)
-        .json({ Message: 'Internal server error. Unable to complete search.' }));
+      });
     }).catch(() => res.status(500)
       .json({ Message: 'Internal server error' }));
   }

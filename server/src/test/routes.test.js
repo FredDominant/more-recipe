@@ -15,6 +15,14 @@ describe('Test for API', () => {
         done();
       });
   });
+  it('"/api/documentation" should return 200 for API documentation route', (done) => {
+    chai.request(app)
+      .get('/api/documentation')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
   it('"/some/routes" should return 404 for invalid routes', (done) => {
     chai.request(app)
       .post('/some/routes')

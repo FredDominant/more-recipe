@@ -13,12 +13,15 @@ import capitalize from '../utils/capitalize';
  * @description this class displays RecipeItem components
  *
  * @class RecipeBody
+ *
  * @extends {React.Component}
  */
 class RecipeBody extends React.Component {
   /**
- * Creates an instance of RecipeBody.
+ * @description Creates an instance of RecipeBody.
+ *
  * @param {any} props
+ *
  * @memberof RecipeBody
  */
   constructor(props) {
@@ -31,6 +34,7 @@ class RecipeBody extends React.Component {
   /**
    *
    * @returns {dispatch} dispatch
+   *
    * @memberof RecipeBody
    */
   componentDidMount() {
@@ -39,7 +43,9 @@ class RecipeBody extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof RecipeBody
    */
   componentWillReceiveProps(nextProps) {
@@ -48,7 +54,9 @@ class RecipeBody extends React.Component {
   }
   /**
    * @param {any} current
+   *
    * @returns {null} null
+   *
    * @memberof RecipeBody
    */
   onPageChange(current) {
@@ -56,16 +64,17 @@ class RecipeBody extends React.Component {
     this.props.dispatch(getAllRecipes(current.selected));
   }
   /**
- * @returns {html} html
+ * @returns {node} React component
  *
  * @memberof RecipeBody
  */
   render() {
     const { pages } = this.props.pageInfo;
     const { recipes } = this.state;
+    const { fetching } = this.props;
     const allRecipes = recipes.map(recipe =>
       (
-        <div key={recipe.id} className="col-xs-8 col-sm-8 col-md-4">
+        <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
           <RecipeItem
             home={'home'}
             image={recipe.picture}
@@ -75,6 +84,7 @@ class RecipeBody extends React.Component {
             upvotes={recipe.upvote}
             downvotes={recipe.downvote}
             views={recipe.views}
+            favourites={recipe.favourites}
             owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
             created={moment(new Date(recipe.createdAt)).fromNow()}
           />
@@ -112,7 +122,7 @@ class RecipeBody extends React.Component {
         </div>
       );
     }
-    if (this.props.fetching) {
+    if (fetching) {
       return (
         <div className="container loading-icon-container">
           <div className="text-center mt-30 loading-icon">

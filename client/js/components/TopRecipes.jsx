@@ -8,13 +8,17 @@ import getTopRecipes from '../actions/getTopRecipes';
 import capitalize from '../utils/capitalize';
 /**
  * @description renders Top Recipes
+ *
  * @class TopRecipes
+ *
  * @extends {React.Component}
  */
 class TopRecipes extends React.Component {
 /**
- * Creates an instance of TopRecipes.
+ * @description Creates an instance of TopRecipes.
+ *
  * @param {any} props
+ *
  * @memberof TopRecipes
  */
   constructor(props) {
@@ -26,6 +30,7 @@ class TopRecipes extends React.Component {
   /**
  *
  * @returns {null} null
+ *
  * @memberof TopRecipes
 */
   componentDidMount() {
@@ -33,12 +38,13 @@ class TopRecipes extends React.Component {
   }
   /**
 * @returns {node} react component
+
 * @memberof TopRecipes
 */
   render() {
     const recipes = (this.props.recipes) ? (this.props.recipes) : [];
     const topRecipes = recipes.map(recipe => (
-      <div key={recipe.id} className="col-xs-8 col-sm-8 col-md-4">
+      <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
         <RecipeItem
           home={'home'}
           image={recipe.picture}
@@ -48,6 +54,7 @@ class TopRecipes extends React.Component {
           upvotes={recipe.upvote}
           downvotes={recipe.downvote}
           views={recipe.views}
+          favourites={recipe.favourites}
           created={moment(new Date(recipe.createdAt)).fromNow()}
         />
         <br />

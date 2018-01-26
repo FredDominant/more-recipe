@@ -14,14 +14,16 @@ import capitalize from '../utils/capitalize';
 import Loading from '../components/Loading';
 /**
  *
- *
  * @class Recipe
+ *
  * @extends {React.Component}
  */
 class Recipe extends React.Component {
 /**
- * Creates an instance of Recipe.
+ * @description Creates an instance of Recipe.
+ *
  * @param {any} props
+ *
  * @memberof Recipe
  */
   constructor(props) {
@@ -29,7 +31,6 @@ class Recipe extends React.Component {
     this.state = {
       recipe: {},
       favourited: '',
-      reviews: [],
       owner: '',
     };
     this.handleUpvote = this.handleUpvote.bind(this);
@@ -40,6 +41,7 @@ class Recipe extends React.Component {
    * @returns {null} null
    *
    * @param {any} nextProps
+   *
    * @memberof Recipe
    */
   componentWillMount() {
@@ -48,7 +50,9 @@ class Recipe extends React.Component {
   /**
    *
    * @return {null} null
+   *
    * @param {any} nextProps
+   *
    * @memberof Recipe
    */
   componentWillReceiveProps(nextProps) {
@@ -60,7 +64,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles upvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleUpvote() {
@@ -70,7 +76,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles downvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleDownvote() {
@@ -80,7 +88,9 @@ class Recipe extends React.Component {
 
   /**
  * @description handles upvote event
+ *
  * @returns {null} null
+ *
  * @memberof Recipe
  */
   handleFavourite() {
@@ -89,12 +99,14 @@ class Recipe extends React.Component {
   }
   /**
    *
-   *
    * @returns {component} react component
+   *
    * @memberof Recipe
    */
   render() {
-    if ((this.props.fetching) && !(this.state.recipe.id)) {
+    const { fetching, authenticated } = this.props;
+    const { recipe, owner, favourited } = this.state;
+    if ((fetching) && !(recipe.id)) {
       return (
         <div className="container loading-icon-container">
           <div className="text-center mt-30 loading-icon">
@@ -103,10 +115,10 @@ class Recipe extends React.Component {
         </div>
       );
     }
-    if (!this.state.recipe.id) {
+    if (!recipe.id) {
       return <NotFoundPage />;
     }
-    const ingredients = (this.state.recipe.ingredients) ? (this.state.recipe.ingredients) : '';
+    const ingredients = (recipe.ingredients) ? (recipe.ingredients) : '';
     const splitIngredients = ingredients.split(',').map((item, i) => (
       <li className="list-group-item text-left" key={`ingredient ${i + 1}`}>{capitalize(item)}</li>
     ));
@@ -122,48 +134,61 @@ class Recipe extends React.Component {
                 <div className="image-container">
                   <img
                     className="img-thumbnail img-fluid"
-                    src={this.state.recipe.picture}
-                    alt={this.state.recipe.name}
+                    src={recipe.picture}
+                    alt={recipe.name}
                     height="50"
                     width="50"
                   />
                 </div>
               </div>
               <div className="col-md-6 container">
-                <h2 className="text-left recipe-details-name ml-5">{this.state.recipe.name ? capitalize(this.state.recipe.name) : '' }</h2>
-                <h5 className="text-left recipe-details-description ml-5">{this.state.recipe.description ? capitalize(this.state.recipe.description) : '' }</h5>
-                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${this.state.owner.firstname} ${this.state.owner.lastname}`}</small></h5>
+                <h2 className="text-left recipe-details-name ml-5">{recipe.name ? capitalize(recipe.name) : '' }</h2>
+                <h5 className="text-left recipe-details-description ml-5">{recipe.description ? capitalize(recipe.description) : '' }</h5>
+                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstname)} ${capitalize(owner.lastname)}`}</small></h5>
                 <div className="actions ml-5 mb-3">
+                  {
+                    !authenticated && <div className="container text-left">
+                      <span className="mr-3"><i className="far fa-thumbs-up" />
+                        <span> {recipe.upvote}</span> </span>
+                      <span className="mr-3"><i className="far fa-thumbs-down" />
+                        <span> {recipe.downvote}</span> </span>
+                      <span><i className="far fa-heart" />
+                        <span> {recipe.favourites}</span> </span>
+                    </div>
+                  }
+                  { authenticated &&
                   <div className="btn-group" role="group" >
 
                     <button
                       type="button"
                       title="upvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleUpvote}
-                    ><i className="far fa-thumbs-up" /> <span>{this.state.recipe.upvote}</span></button>
+                      disabled={fetching}
+                    ><i className="far fa-thumbs-up" />
+                      <span> {recipe.upvote}</span></button>
 
                     <button
                       type="button"
                       title="downvote this recipe"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleDownvote}
-                    ><i className="far fa-thumbs-down" /> <span>{this.state.recipe.downvote}</span></button>
+                      disabled={fetching}
+                    ><i className="far fa-thumbs-down" />
+                      <span> {recipe.downvote}</span></button>
 
                     <button
                       style={{
-                        backgroundColor: this.state.favourited === true ? 'red' : 'white',
-                        color: this.state.favourited === true ? 'white' : 'red'
+                        backgroundColor: favourited === true ? 'red' : 'white',
+                        color: favourited === true ? 'white' : 'red'
                       }}
                       type="button"
                       title="add to your favourites"
                       className="btn btn-outline-danger"
-                      disabled={!this.props.authenticated}
                       onClick={this.handleFavourite}
-                    ><i className="fab fa-gratipay" /></button>
+                    > <i className="far fa-heart" /></button>
                   </div>
+                  }
                 </div>
                 <br />
                 <h5 className="text-left ml-5 mb-3">INGREDIENTS</h5>
@@ -182,7 +207,7 @@ class Recipe extends React.Component {
             <div className="container-fluid" id="review-body">
               <h5 className="text-left mt-3 mb-3 ml-5">REVIEWS</h5>
               <div className="add-review-form align-center">
-                {this.props.authenticated && <AddReview recipeId={this.state.recipe.id} />}
+                {authenticated && <AddReview recipeId={recipe.id} />}
                 <br />
               </div>
               <div className="container review-body">

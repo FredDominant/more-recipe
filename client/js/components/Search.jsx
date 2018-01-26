@@ -6,13 +6,17 @@ import search from '../actions/search';
 /**
  *
  * @export
+ *
  * @class Search
+ *
  * @extends {React.Component}
  */
 class Search extends React.Component {
   /**
-   * Creates an instance of Search.
-   * @param {any} props
+   * @description Creates an instance of Search.
+   *
+   * @param {object} props
+   *
    * @memberof Search
    */
   constructor(props) {
@@ -25,7 +29,9 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} event
+   *
+   * @param {object} event
+   *
    * @memberof Search
    */
   onChange(event) {
@@ -34,6 +40,7 @@ class Search extends React.Component {
   }
   /**
    * @memberof Search
+   *
    * @returns {null} null
    */
   onFocus() {
@@ -42,7 +49,9 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
-   * @param {any} event
+   *
+   * @param {object} event
+   *
    * @memberof Search
    */
   handleSubmit(event) {
@@ -53,6 +62,7 @@ class Search extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof Search
    */
   render() {
@@ -72,9 +82,15 @@ class Search extends React.Component {
                 value={this.state.search}
                 onChange={this.onChange}
                 onFocus={this.onFocus}
+                autoFocus={this.props.focus}
               />
               <span className="input-group-btn">
-                <button className="btn btn-danger" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
+                <button
+                  className="btn btn-danger"
+                  type="submit"
+                >
+                  <i className="fa fa-search" aria-hidden="true" />
+                </button>
               </span>
             </div>
           </form>
@@ -85,9 +101,10 @@ class Search extends React.Component {
 }
 Search.propTypes = {
   search: PropTypes.func.isRequired,
+  focus: PropTypes.bool
 };
 Search.defaultProps = {
-  page: 1
+  focus: false
 };
 
 Search.contextTypes = {

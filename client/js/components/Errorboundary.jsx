@@ -5,14 +5,16 @@ import Footer from './Footer';
 
 /**
  *
- *
  * @class ErrorBoundary
+ *
  * @extends {Component}
  */
 class Errorboundary extends React.Component {
 /**
- * Creates an instance of ErrorBoundary.
+ * @description Creates an instance of ErrorBoundary.
+ *
  * @param {any} props
+ *
  * @memberof ErrorBoundary
  */
   constructor(props) {
@@ -23,8 +25,11 @@ class Errorboundary extends React.Component {
   }
   /**
    * @returns {null} null
+   *
    * @param {any} error
+   *
    * @param {any} info
+   *
    * @memberof Errorboundary
    */
   componentDidCatch() {
@@ -35,6 +40,7 @@ class Errorboundary extends React.Component {
   /**
    *
    * @returns {null} null
+   *
    * @memberof Errorboundary
    */
   render() {
