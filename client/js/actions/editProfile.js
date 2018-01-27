@@ -21,7 +21,7 @@ const updateProfileSuccess = userDetails => ({
 /**
  * @description action creator
  *
- * @param {string} error
+ * @param {object} error
  *
  *  @returns {object} action
  */
@@ -34,9 +34,7 @@ const updateProfileFail = error => ({
  * @description makes api call to server and dispatches to redux store
  *
  * @param {object} userData
- *
  * @param {string} token
- *
  * @param {function} dispatch
  *
  * @returns {promise} axios promise

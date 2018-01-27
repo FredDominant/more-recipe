@@ -9,7 +9,7 @@ import uploadImage from '../utils/uploadImage';
 /**
  * @description action creator. dispatched if no error
  *
- * @param {any} recipe
+ * @param {object} recipe
  *
  * @returns {object} action
  */
@@ -34,9 +34,7 @@ const recipeError = message => ({
  * @description makes api call to server and dispatches to redux store
  *
  * @param {object} recipe
- *
  * @param {string} token
- *
  * @param {function} dispatch
  *
  * @returns {promise} axios promise
@@ -69,7 +67,6 @@ const addRecipeRequest = (recipe, token, dispatch) => axios({
  * @description checks if image was selected from component and uploads depending on condition
  *
  * @param {object} recipe
- *
  * @returns {promise} axios promise
  */
 const addRecipe = recipe => (dispatch) => {
