@@ -24,8 +24,7 @@ const addReview = (reviewContent, recipeId) => (dispatch) => {
     data: { content: reviewContent }
   })
     .then((response) => {
-      const { review } = response.data;
-      dispatch(addReviewSuccess(review));
+      dispatch(addReviewSuccess(response.data));
       toaster.toastSuccess('Review added');
     })
     .catch(() => {

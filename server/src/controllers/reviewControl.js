@@ -39,7 +39,7 @@ export default class Review {
               where: { id: req.decoded.id },
               attributes: ['firstName', 'lastName', 'imageUrl']
             }).then(foundUser => res.status(201).json({
-              user: foundUser,
+              User: foundUser,
               content: reviewDetails.content,
               id: reviewDetails.id,
               userid: reviewDetails.userId,
