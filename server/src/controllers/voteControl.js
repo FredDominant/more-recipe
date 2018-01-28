@@ -14,11 +14,10 @@ export default class Vote {
   /**
    * @description this method handles a recipe's upvote
    *
-   * @param {any} req
+   * @param {object} req
+   * @param {object} res
    *
-   * @param {any} res
-   *
-   * @returns {obj} status code and message
+   * @returns {object} status code and message
    *
    * @memberof Vote
    */
@@ -26,7 +25,7 @@ export default class Vote {
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {
-          return res.status(404).json({ Message: 'recipe not found, ensure you typed correct recipe Id' });
+          return res.status(404).json({ message: 'recipe not found, ensure you typed correct recipe Id' });
         }
         if (foundRecipe) {
           upvote.findOne({
@@ -57,9 +56,9 @@ export default class Vote {
                           recipe.findOne({
                             where: { id: req.params.recipeId },
                             include: [
-                              { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
+                              { model: models.User, attributes: ['firstName', 'lastName'] }
                             ]
-                          }).then(Recipe => res.status(201).json({ Message: 'new upvote', Recipe }));
+                          }).then(Recipe => res.status(201).json({ message: 'new upvote', recipe: Recipe }));
                         }
                       });
                   });
@@ -85,9 +84,9 @@ export default class Vote {
                               recipe.findOne({
                                 where: { id: req.params.recipeId },
                                 include: [
-                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                  { model: models.User, attributes: ['firstName', 'lastName'] }
                                 ]
-                              }).then(Recipe => res.status(200).json({ Message: 'new upvote after destroying down', Recipe }));
+                              }).then(Recipe => res.status(200).json({ message: 'new upvote after destroying down', recipe: Recipe }));
                             }
                           });
                       });
@@ -107,27 +106,26 @@ export default class Vote {
                       recipe.findOne({
                         where: { id: req.params.recipeId },
                         include: [
-                          { model: models.User, attributes: ['firstname', 'lastname'] }
+                          { model: models.User, attributes: ['firstName', 'lastName'] }
                         ]
-                      }).then(Recipe => res.status(200).json({ Message: 'deleted upvote and decremented', Recipe }));
+                      }).then(Recipe => res.status(200).json({ message: 'deleted upvote and decremented', recipe: Recipe }));
                     });
                 });
             }
           });
         }
       })
-      .catch(() => res.status(500).json({ Message: 'Server error. Unable to complete vote' }));
+      .catch(() => res.status(500).json({ message: 'Server error. Unable to complete vote' }));
   }
   /**
    * @description this method handles a recipe's downvote
    *
    * @static
    *
-   * @param {any} req
+   * @param {object} req
+   * @param {object} res
    *
-   * @param {any} res
-   *
-   * @returns {obj} any
+   * @returns {object} any
    *
    * @memberof Vote
    */
@@ -136,7 +134,7 @@ export default class Vote {
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
-            .json({ Message: 'recipe not found, ensure recipe Id is valid' });
+            .json({ message: 'recipe not found, ensure recipe Id is valid' });
         }
         if (foundRecipe) {
           downvote.findOne({
@@ -167,9 +165,9 @@ export default class Vote {
                           recipe.findOne({
                             where: { id: req.params.recipeId },
                             include: [
-                              { model: models.User, attributes: ['firstname', 'lastname'] },
+                              { model: models.User, attributes: ['firstName', 'lastName'] },
                             ]
-                          }).then(Recipe => res.status(201).json({ Message: 'created downvote', Recipe }));
+                          }).then(Recipe => res.status(201).json({ message: 'created downvote', recipe: Recipe }));
                         }
                       });
                     });
@@ -195,9 +193,9 @@ export default class Vote {
                               recipe.findOne({
                                 where: { id: req.params.recipeId },
                                 include: [
-                                  { model: models.User, attributes: ['firstname', 'lastname'] }
+                                  { model: models.User, attributes: ['firstName', 'lastName'] }
                                 ]
-                              }).then(Recipe => res.status(200).json({ Message: 'Downvoted', Recipe }));
+                              }).then(Recipe => res.status(200).json({ message: 'Downvoted', recipe: Recipe }));
                             }
                           });
                       });
@@ -216,16 +214,16 @@ export default class Vote {
                     recipe.findOne({
                       where: { id: req.params.recipeId },
                       include: [
-                        { model: models.User, attributes: ['firstname', 'lastname'] }
+                        { model: models.User, attributes: ['firstName', 'lastName'] }
                       ]
-                    }).then(Recipe => res.status(200).json({ Message: 'deleted downvote', Recipe }));
+                    }).then(Recipe => res.status(200).json({ message: 'deleted downvote', recipe: Recipe }));
                   });
               });
             }
           });
         }
       }).catch(() =>
-        res.status(500).json({ Message: 'Server error. Unable to complete vote' })
+        res.status(500).json({ message: 'Server error. Unable to complete vote' })
       );
   }
 }

@@ -15,9 +15,9 @@ const recoverPassword = email => (dispatch) => {
       toaster.toastSuccess('Recovery link sent. Check your email');
     })
     .catch((error) => {
-      const { Message } = error.response.data;
+      const { message } = error.response.data;
       dispatch(unsetFetching());
-      toaster.toastError(Message);
+      toaster.toastError(message);
     });
 };
 export default recoverPassword;

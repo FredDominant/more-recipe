@@ -15,7 +15,7 @@ export default class Validate {
    *
    * @param {request} req HTTP request
    * @param {response} res HTTP response
-   * @param {next} next Middleware function
+   * @param {function} next Middleware function
    *
    * @returns {object} JSON object and status code
    *
@@ -25,11 +25,11 @@ export default class Validate {
     const id = req.params.recipeId;
     if (!id) {
       return res.status(400)
-        .json({ Message: 'recipeId is required' });
+        .json({ message: 'recipeId is required' });
     }
     if (isNaN(id)) {
       return res.status(400)
-        .json({ Message: 'recipeId is invalid' });
+        .json({ message: 'recipeId is invalid' });
     }
     return next();
   }
@@ -38,17 +38,14 @@ export default class Validate {
    *
    * @param {request} req HTTP Request
    * @param {response} res HTTP Response
-   * @param {next} next recipe directions to cook
+   * @param {function} next recipe directions to cook
    *
-   * @returns {any} next or HTTP status code
+   * @returns {object} next or HTTP status code
    *
    * @memberof Validate
    */
   static recipe(req, res, next) {
-    const name = req.body.name;
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const ingredients = req.body.ingredients;
+    const { name, description, directions, ingredients } = req.body;
     const recipeData = {
       name,
       description,
@@ -67,7 +64,7 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
@@ -77,18 +74,15 @@ export default class Validate {
    *
    * @param {request} req HTTP Request
    * @param {response} res HTTP Response
-   * @param {next} next Middleware function
+   * @param {function} next Middleware function
    *
-   * @returns {any} HTTP Status code or next
+   * @returns {object} HTTP Status code or next
    *
    * @memberof Validate
    */
   static updateRecipe(req, res, next) {
-    const name = req.body.name;
-    const description = req.body.description;
-    const directions = req.body.directions;
-    const ingredients = req.body.ingredients;
-    const picture = req.body.recipeImage;
+    const { name, description, directions, ingredients, picture } = req.body;
+
     const recipeUpdateData = {
       name,
       description,
@@ -109,7 +103,7 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
 
@@ -119,7 +113,7 @@ export default class Validate {
    *
    * @param {request} req HTTP request
    * @param {response} res HTTP response
-   * @param {next} next Middleware function
+   * @param {function} next Middleware function
    *
    * @returns {function} Middleware function or HTTP Status Code
    *
@@ -139,7 +133,7 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
@@ -149,36 +143,32 @@ export default class Validate {
    *
    * @param {request} req HTTP request
    * @param {response} res HTTP response
-   * @param {next} next Middleware function
+   * @param {function} next Middleware function
    *
    * @returns {object} HTTP status code and JSON
    *
    * @memberof Validate
    */
   static userSignup(req, res, next) {
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const confirmPassword = req.body.confirmPassword;
+    const { email, password, firstName, lastName, confirmPassword } = req.body;
     const signupData = {
       email,
       password,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       confirmPassword
     };
 
     const signupRules = {
       email: 'required|string|email',
       password: 'required|min:6',
-      firstname: 'required|string|alpha|min:2',
-      lastname: 'required|string|alpha|min:2',
+      firstName: 'required|string|alpha|min:2',
+      lastName: 'required|string|alpha|min:2',
       confirmPassword: 'required|min:6'
     };
     if (password !== confirmPassword) {
       return res.status(400)
-        .json({ Message: 'Passwords don\'t match' });
+        .json({ message: 'Passwords don\'t match' });
     }
     const validation = new Validator(signupData, signupRules);
     if (validation.passes()) {
@@ -186,7 +176,7 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
@@ -203,8 +193,7 @@ export default class Validate {
    * @memberof Validate
    */
   static userLogin(req, res, next) {
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password } = req.body;
     const loginData = {
       email,
       password
@@ -221,19 +210,16 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
    *
-   *
    * @static
    *
-   * @param {any} req
-   *
-   * @param {any} res
-   *
-   * @param {any} next
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
    *
    * @memberof Validate
    *
@@ -245,7 +231,7 @@ export default class Validate {
       return next();
     }
     if (password !== confirmPassword) {
-      return res.status(400).json({ Message: 'Passwords do not match' });
+      return res.status(400).json({ message: 'Passwords do not match' });
     }
     return next();
   }
@@ -254,28 +240,28 @@ export default class Validate {
    *
    * @static
    *
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   * @param {object} req
+   * @param {object} res
+   * @param {function} next
    *
-   * @returns {next} middleware function
+   * @returns {function} middleware function
    * @memberof Validate
    */
   static updateUser(req, res, next) {
-    const { email, password, firstname, lastname, picture } = req.body;
+    const { email, password, firstName, lastName, imageUrl } = req.body;
     const userUpdateData = {
       email,
       password,
-      firstname,
-      lastname,
-      picture
+      firstName,
+      lastName,
+      imageUrl
     };
     const userUpdateRules = {
       email: 'string|email',
       password: 'string|min:6',
-      firstname: 'string|min:2|alpha',
-      lastname: 'string|min:2|alpha',
-      picture: 'string'
+      firstName: 'string|min:2|alpha',
+      lastName: 'string|min:2|alpha',
+      imageUrl: 'string'
     };
     const validation = new Validator(userUpdateData, userUpdateRules);
     if (validation.passes()) {
@@ -283,15 +269,17 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
    *
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   *
    * @memberof Validate
    * @returns {Response} HTTP Response
    */
@@ -307,23 +295,26 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
   /**
    *
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {function} next
+   *
    * @memberof Validate
+   *
    * @returns {Response} HTTP Response
    */
   static resetPassword(req, res, next) {
     const { password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
       return res.status(400)
-        .json({ Message: 'Passwords don\'t match' });
+        .json({ message: 'Passwords don\'t match' });
     }
     const resetPasswordDetails = {
       password,
@@ -339,7 +330,7 @@ export default class Validate {
     } else {
       const errors = validation.errors.all();
       return res.status(400)
-        .json({ Message: errors });
+        .json({ message: errors });
     }
   }
 }

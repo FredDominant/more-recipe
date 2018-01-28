@@ -26,15 +26,15 @@ const downvoteRecipe = recipeId => (dispatch) => {
     }
   })
     .then((response) => {
-      const { Recipe } = response.data;
+      const { recipe } = response.data;
       dispatch(batchActions([
-        downvoteSuccess(Recipe),
+        downvoteSuccess(recipe),
         unsetFetching()
       ]));
     })
     .catch((error) => {
-      const { Message } = error;
-      dispatch(downvoteFail(Message));
+      const { message } = error;
+      dispatch(downvoteFail(message));
       toaster.toastError('Unable to complete');
     });
 };

@@ -25,10 +25,10 @@ const search = (searchParams, page) => (dispatch) => {
     }
   })
     .then((response) => {
-      const { CurrentPage, Limit, NumberOfItems, Pages, Recipe } = response.data;
-      const paginationInfo = { CurrentPage, Limit, NumberOfItems, Pages };
+      const { currentPage, limit, numberOfItems, pages, recipe } = response.data;
+      const paginationInfo = { currentPage, limit, numberOfItems, pages };
       dispatch(batchActions([
-        searchSuccess(Recipe),
+        searchSuccess(recipe),
         getPageDetails(paginationInfo),
         unsetFetching()
       ]));

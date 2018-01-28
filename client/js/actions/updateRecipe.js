@@ -31,11 +31,8 @@ const updateRecipeFail = () => ({
  *
  *
  * @param {object} recipe
- *
  * @param {number} recipeId
- *
  * @param {string} token
- *
  * @param {function} dispatch
  *
  * @returns {promise} axios promise
@@ -49,27 +46,26 @@ const updateRecipeRequest = (recipe, recipeId, token, dispatch) => axios({
   data: recipe
 })
   .then((response) => {
-    const { Recipe } = response.data;
+    const newRecipe = response.data.recipe;
     dispatch(batchActions([
-      updateRecipeSuccess(Recipe),
+      updateRecipeSuccess(newRecipe),
       unsetFetching()
     ]));
     toaster.toastSuccess('Recipe Updated');
   })
   .catch((error) => {
-    const errorMessage = error.response.data.Message;
+    const { message } = error.response;
     dispatch(batchActions([
       updateRecipeFail(),
       unsetFetching()
     ]));
-    toaster.toastError(errorMessage);
+    toaster.toastError(message);
   });
 
 /**
  * @description checks if image is added, then makes api call
  *
  * @param {object} recipe
- *
  * @param {number} recipeId
  *
  * @returns {promise} Axios promise

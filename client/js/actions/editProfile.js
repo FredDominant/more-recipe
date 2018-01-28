@@ -48,20 +48,20 @@ const editProfileRequest = (userData, token, dispatch) => axios({
   }
 })
   .then((response) => {
-    const { User } = response.data;
+    const { user } = response.data;
     dispatch(batchActions([
-      updateProfileSuccess(User),
+      updateProfileSuccess(user),
       unsetFetching()
     ]));
     toaster.toastSuccess('profile updated');
   })
   .catch((error) => {
-    const { Message } = error.response.data;
+    const { message } = error.response.data;
     dispatch(batchActions([
-      updateProfileFail(Message),
+      updateProfileFail(message),
       unsetFetching()
     ]));
-    toaster.toastError(Message);
+    toaster.toastError(message);
   });
 
 /**
@@ -74,12 +74,12 @@ const editProfileRequest = (userData, token, dispatch) => axios({
 const editProfile = userData => (dispatch) => {
   dispatch(setFetching());
   const token = localStorage.getItem('token');
-  const { picture, selectedImage } = userData;
+  const { imageUrl, selectedImage } = userData;
   if (selectedImage) {
-    return uploadImage(picture)
+    return uploadImage(imageUrl)
       .then((uploadResponse) => {
         const url = uploadResponse.data.secure_url;
-        userData = { ...userData, picture: url };
+        userData = { ...userData, imageUrl: url };
         return editProfileRequest(userData, token, dispatch);
       })
       .catch(() => {

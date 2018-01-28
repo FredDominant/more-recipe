@@ -31,34 +31,34 @@ const getOneRecipe = recipeId => (dispatch) => {
       }
     })
       .then((response) => {
-        const { Recipe, userFavourited } = response.data;
+        const { recipe, userFavourited } = response.data;
         dispatch(batchActions([
-          getRecipe(Recipe),
+          getRecipe(recipe),
           getFavouriteStatus(userFavourited),
           unsetFetching()
         ]));
       })
       .catch((error) => {
-        const errorMessage = error.response.data.Message;
+        const { message } = error.response.data;
         dispatch(batchActions([
           unsetFetching(),
-          getRecipeError(errorMessage)
+          getRecipeError(message)
         ]));
       });
   }
   return axios.get(`/api/v1/recipes/${recipeId}`)
     .then((response) => {
-      const { Recipe } = response.data;
+      const { recipe } = response.data;
       dispatch(batchActions([
-        getRecipe(Recipe),
+        getRecipe(recipe),
         unsetFetching()
       ]));
     })
     .catch((error) => {
-      const errorMessage = error.response.data.Message;
+      const { message } = error.response.data;
       dispatch(batchActions([
         unsetFetching(),
-        getRecipeError(errorMessage)
+        getRecipeError(message)
       ]));
     });
 };

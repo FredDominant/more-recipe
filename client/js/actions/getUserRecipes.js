@@ -26,11 +26,10 @@ const getUserRecipes = page => (dispatch) => {
     }
   })
     .then((response) => {
-      const { CurrentPage, Limit, NumberOfItems, Pages } = response.data;
-      const paginationInfo = { CurrentPage, Limit, NumberOfItems, Pages };
-      const { Recipes } = response.data;
+      const { currentPage, limit, numberOfItems, pages, recipes } = response.data;
+      const paginationInfo = { currentPage, limit, numberOfItems, pages };
       dispatch(batchActions([
-        getUserRecipeSuccess(Recipes),
+        getUserRecipeSuccess(recipes),
         getPageDetails(paginationInfo),
         unsetFetching()
       ]));

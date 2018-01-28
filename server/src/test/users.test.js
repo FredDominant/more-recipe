@@ -18,7 +18,7 @@ describe('Test for Users', () => {
           .post('/api/v1/users/signin')
           .send(fakeData.validLogin)
           .end((err, res) => {
-            userToken = res.body.Token;
+            userToken = res.body.token;
             done();
           });
       });
@@ -31,9 +31,9 @@ describe('Test for Users', () => {
         .send(fakeData.validSignup)
         .end((err, res) => {
           expect(res.status).to.equal(201);
-          expect(res.body).to.haveOwnProperty('Token').to.not.be.a('null');
-          expect(res.body).to.haveOwnProperty('User').to.be.an('object');
-          expect(res.body).to.haveOwnProperty('Message').to.equal('Account created');
+          expect(res.body).to.haveOwnProperty('token').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('user').to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Account created');
           done();
         });
     });
@@ -43,8 +43,8 @@ describe('Test for Users', () => {
         .send(fakeData.unmatchingPassword)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body).to.not.haveOwnProperty('Token');
-          expect(res.body).to.haveOwnProperty('Message').to.not.be.a('null');
+          expect(res.body).to.not.haveOwnProperty('token');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
           done();
         });
     });
@@ -102,7 +102,7 @@ describe('Test for Users', () => {
         .send(fakeData.invalidLogin)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -115,7 +115,7 @@ describe('Test for Users', () => {
         .send({ email: 'fredadewole@email.com' })
         .end((err, res) => {
           expect(res.status).to.not.equal(404);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -126,7 +126,7 @@ describe('Test for Users', () => {
         .send({ email: 'random@email.com' })
         .end((err, res) => {
           expect(res.status).to.equal(404);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -139,7 +139,7 @@ describe('Test for Users', () => {
         .send({ password: '111111', confirmPassword: '123456' })
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -150,7 +150,7 @@ describe('Test for Users', () => {
         .send({ password: '11', confirmPassword: '11' })
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -162,7 +162,7 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.not.equal(401);
           expect(res.status).to.not.equal(400);
-          expect(res.body).to.haveOwnProperty('Message');
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -175,7 +175,7 @@ describe('Test for Users', () => {
         .set('x-access-token', userToken)
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body).to.haveOwnProperty('User');
+          expect(res.body).to.haveOwnProperty('user');
           done();
         });
     });

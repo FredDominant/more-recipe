@@ -19,12 +19,12 @@ const getTopRecipes = () => (dispatch) => {
   return axios.get('/api/v1/recipes?sort=up&order=des')
     .then((response) => {
       dispatch(batchActions([
-        getTopRecipesSuccess(response.data.Recipes),
+        getTopRecipesSuccess(response.data.recipes),
         unsetFetching()
       ]));
     })
     .catch((error) => {
-      const message = error.response.data.Message;
+      const { message } = error.response.data;
       dispatch(batchActions([
         getTopRecipesError(message),
         unsetFetching()

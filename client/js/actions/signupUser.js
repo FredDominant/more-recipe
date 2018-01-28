@@ -17,10 +17,10 @@ const signupUser = userData => (dispatch) => {
   dispatch(setFetching());
   axios.post('/api/v1/users/signup', userData)
     .then((response) => {
-      const { User, Token } = response.data;
-      localStorage.setItem('token', Token);
+      const { user, token } = response.data;
+      localStorage.setItem('token', token);
       dispatch(batchActions([
-        recieveAuth(User, Token),
+        recieveAuth(user, token),
         unsetFetching()
       ]));
       document.body.classList.remove('modal-open');
@@ -28,7 +28,7 @@ const signupUser = userData => (dispatch) => {
       toaster.toastSuccess('Welcome');
     })
     .catch((error) => {
-      const message = error.response.data.Message;
+      const { message } = error.response.data;
       dispatch(batchActions([
         authError(message),
         unsetFetching()

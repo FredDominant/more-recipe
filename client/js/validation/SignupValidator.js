@@ -3,23 +3,23 @@ import Validator from 'validator';
 
 const signupValidator = (data) => {
   const errors = {};
-  if (Validator.isEmpty(data.firstname)) {
-    errors.firstname = 'First Name is required';
+  if (Validator.isEmpty(data.firstName)) {
+    errors.firstName = 'First Name is required';
   }
-  if (!Validator.isAlpha(data.firstname)) {
-    errors.firstname = 'First Name should be alphabets';
+  if (!Validator.isAlpha(data.firstName)) {
+    errors.firstName = 'First Name should be alphabets';
   }
-  if (!Validator.isAlpha(data.firstname.charAt(0))) {
-    errors.firstname = 'First Name shouldn\'t begin with a number';
+  if (!Validator.isAlpha(data.firstName.charAt(0))) {
+    errors.firstName = 'First Name shouldn\'t begin with a number';
   }
-  if (!Validator.isAlpha(data.lastname)) {
-    errors.lastname = 'Last Name should be alphabets';
+  if (!Validator.isAlpha(data.lastName)) {
+    errors.lastName = 'Last Name should be alphabets';
   }
-  if (!Validator.isAlpha(data.lastname.charAt(0))) {
-    errors.lastname = 'Last Name shouldn\'t begin with a number';
+  if (!Validator.isAlpha(data.lastName.charAt(0))) {
+    errors.lastName = 'Last Name shouldn\'t begin with a number';
   }
-  if (Validator.isEmpty(data.lastname)) {
-    errors.lastname = 'Last Name is required';
+  if (Validator.isEmpty(data.lastName)) {
+    errors.lastName = 'Last Name is required';
   }
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email is required';

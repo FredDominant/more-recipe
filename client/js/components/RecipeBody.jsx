@@ -85,7 +85,7 @@ class RecipeBody extends React.Component {
             downvotes={recipe.downvote}
             views={recipe.views}
             favourites={recipe.favourites}
-            owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
+            owner={`${recipe.User.firstName} ${recipe.User.lastName}`}
             created={moment(new Date(recipe.createdAt)).fromNow()}
           />
           <br />

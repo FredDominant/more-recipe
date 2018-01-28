@@ -144,7 +144,7 @@ class Recipe extends React.Component {
               <div className="col-md-6 container">
                 <h2 className="text-left recipe-details-name ml-5">{recipe.name ? capitalize(recipe.name) : '' }</h2>
                 <h5 className="text-left recipe-details-description ml-5">{recipe.description ? capitalize(recipe.description) : '' }</h5>
-                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstname)} ${capitalize(owner.lastname)}`}</small></h5>
+                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstName)} ${capitalize(owner.lastName)}`}</small></h5>
                 <div className="actions ml-5 mb-3">
                   {
                     !authenticated && <div className="container text-left">

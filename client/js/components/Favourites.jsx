@@ -84,7 +84,7 @@ class Favourites extends React.Component {
           upvotes={recipe.Recipe.upvote}
           downvotes={recipe.Recipe.downvote}
           favourites={recipe.Recipe.favourites}
-          owner={`${recipe.Recipe.User.firstname} ${recipe.Recipe.User.lastname}`}
+          owner={`${recipe.Recipe.User.firstName} ${recipe.Recipe.User.lastName}`}
           removeRecipe={this.props.removeFromFavourite}
         />
         <br />

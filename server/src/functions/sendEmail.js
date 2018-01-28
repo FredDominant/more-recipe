@@ -1,5 +1,13 @@
 import nodemailer from 'nodemailer';
-
+/**
+ * @description send users email to reset password
+ *
+ * @param {string} url link to direct to
+ * @param {string} email
+ * @param {object} res response object
+ *
+ * @returns {Object} HTTP Response and JSON
+ */
 const sendEmail = (url, email, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -89,10 +97,9 @@ const sendEmail = (url, email, res) => {
   };
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      console.log('error is', error);
-      return res.status(500).json({ Message: 'Unable to send recovery email' });
+      return res.status(500).json({ message: 'Unable to send recovery email' });
     }
-    return res.status(200).json({ Message: 'Recovery Email sent' });
+    return res.status(200).json({ message: 'Recovery Email sent' });
   });
 };
 

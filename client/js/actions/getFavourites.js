@@ -26,10 +26,10 @@ const getFavourites = page => (dispatch) => {
     }
   })
     .then((response) => {
-      const { CurrentPage, Limit, NumberOfItems, Pages, Favourites } = response.data;
-      const paginationInfo = { CurrentPage, Limit, NumberOfItems, Pages };
+      const { currentPage, limit, numberOfItems, pages, favourites } = response.data;
+      const paginationInfo = { currentPage, limit, numberOfItems, pages };
       dispatch(batchActions([
-        getFavouritesSuccess(Favourites),
+        getFavouritesSuccess(favourites),
         getPageDetails(paginationInfo),
         unsetFetching()
       ]));

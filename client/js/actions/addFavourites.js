@@ -26,13 +26,13 @@ const addFavourite = recipeId => (dispatch) => {
     }
   })
     .then((response) => {
-      const { Message, userFavourited } = response.data;
+      const { message, userFavourited } = response.data;
       dispatch(batchActions([
         addFavouriteSuccess(recipeId),
         getFavouriteStatus(userFavourited),
         unsetFetching()
       ]));
-      toaster.toastSuccess(Message);
+      toaster.toastSuccess(message);
     })
     .catch(() => {
       dispatch(batchActions([

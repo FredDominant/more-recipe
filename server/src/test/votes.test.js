@@ -19,7 +19,7 @@ describe('Test for', () => {
       .post('/api/v1/users/signin')
       .send(fakeUsers.validLogin)
       .end((err, res) => {
-        userToken = res.body.Token;
+        userToken = res.body.token;
         done();
       });
   });

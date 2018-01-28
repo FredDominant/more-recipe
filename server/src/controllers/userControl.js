@@ -18,7 +18,6 @@ export default class User {
    * @description Takes in request and response as parameters and returns an object
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
    *
    * @returns {object} object with message and status code
@@ -29,8 +28,8 @@ export default class User {
     const {
       email,
       password,
-      firstname,
-      lastname
+      firstName,
+      lastName
     } = req.body;
 
     user.findOne({
@@ -40,33 +39,33 @@ export default class User {
         if (!existingUser) {
           const Password = helper.hashPassword(password);
           user.create({
-            firstname,
-            lastname,
+            firstName,
+            lastName,
             email,
             password: Password
           }).then((newUser) => {
             const token = jwt.sign({
               id: newUser.id,
-              firstname: newUser.firstname
+              firstname: newUser.firstName
             }, secret, { expiresIn: 86400 });
             return res.status(201)
               .json({
-                Token: token,
-                User: {
-                  FirstName: newUser.email,
-                  LastName: newUser.lastname,
-                  Email: newUser.email
+                token,
+                user: {
+                  firstName: newUser.firstName,
+                  lastName: newUser.lastName,
+                  email: newUser.email
                 },
-                Message: 'Account created'
+                message: 'Account created'
               });
           }).catch(() => res.status(500)
             .json({
-              Message: 'Unable to create new user. Please try again later'
+              message: 'Unable to create new user. Please try again later'
             }));
         } else {
           return res.status(401)
             .json({
-              Message: 'Email already registered'
+              message: 'Email already registered'
             });
         }
       });
@@ -76,7 +75,6 @@ export default class User {
    * @description This function handles a user log in
    *
    * @param {request} req HTTP parameter
-   *
    * @param {response} res HTTP parameter
    *
    * @returns {object} JSON
@@ -94,38 +92,37 @@ export default class User {
           if (result) {
             const token = jwt.sign({
               id: foundUser.dataValues.id,
-              firstname: foundUser.dataValues.firstname
+              firstname: foundUser.dataValues.firstName
             }, secret, { expiresIn: 86400 });
             res.status(200)
               .json({
-                Token: token,
-                User: {
-                  FirstName: foundUser.dataValues.firstname,
-                  LastName: foundUser.dataValues.lastname,
-                  Email: foundUser.dataValues.email
+                token,
+                user: {
+                  firstName: foundUser.dataValues.firstName,
+                  lastName: foundUser.dataValues.lastName,
+                  email: foundUser.dataValues.email
                 },
-                Message: 'You\'re now logged in'
+                message: 'You\'re now logged in'
               });
           } else {
             res.status(401)
               .json({
-                Message: 'Invalid login credentials'
+                message: 'Invalid login credentials'
               });
           }
         } else {
           res.status(401)
             .json({
-              Message: 'Invalid login credentials'
+              message: 'Invalid login credentials'
             });
         }
       })
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
   }
   /**
    * @description This takes in reques, and response to update a user's details
    *
    * @param {request} req HTTP request parameter
-   *
    * @param {response} res HTTP response parameter
    *
    * @returns {object} JSON
@@ -136,9 +133,9 @@ export default class User {
     const {
       email,
       password,
-      firstname,
-      lastname,
-      picture
+      firstName,
+      lastName,
+      imageUrl
     } = req.body;
 
     user.findOne({
@@ -146,7 +143,7 @@ export default class User {
     }).then((foundUserEmail) => {
       if (foundUserEmail) {
         if (foundUserEmail.id !== req.decoded.id) {
-          return res.status(403).json({ Message: 'Email already in use' });
+          return res.status(403).json({ message: 'Email already in use' });
         }
       }
     });
@@ -161,9 +158,9 @@ export default class User {
           const newData = {
             email: email ? email.trim() : foundUser.dataValues.email,
             password: password ? helper.hashPassword(password) : foundUser.dataValues.password,
-            firstname: firstname ? firstname.trim() : foundUser.dataValues.firstname,
-            lastname: lastname ? lastname.trim() : foundUser.dataValues.lastname,
-            picture: picture ? picture.trim() : foundUser.dataValues.picture
+            firstName: firstName ? firstName.trim() : foundUser.dataValues.firstName,
+            lastName: lastName ? lastName.trim() : foundUser.dataValues.lastName,
+            imageUrl: imageUrl ? imageUrl.trim() : foundUser.dataValues.imageUrl
           };
           foundUser.update(newData)
             .then(() => {
@@ -171,24 +168,23 @@ export default class User {
                 where: {
                   id: req.decoded.id
                 },
-                attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
+                attributes: ['firstName', 'lastName', 'email', 'id', 'imageUrl']
               })
-                .then(currentUser => res.status(200).json({ User: currentUser }));
+                .then(currentUser => res.status(200).json({ user: currentUser }));
             });
         }
       })
       .catch(error => res.status(500)
-        .json({ Message: 'Internal server error. Unable to update profile', error }));
+        .json({ message: 'Internal server error. Unable to update profile', error }));
   }
   /**
    *
-   * @returns {null} null
+   * @returns {object} JSON and HTTP Response
    *
    * @static
    *
-   * @param {any} req
-   *
-   * @param {any} res
+   * @param {object} req
+   * @param {onject} res
    *
    * @memberof User
    */
@@ -197,19 +193,18 @@ export default class User {
       where: {
         id: req.decoded.id
       },
-      attributes: ['firstname', 'lastname', 'email', 'id', 'picture']
+      attributes: ['firstName', 'lastName', 'email', 'id', 'imageUrl']
     })
-      .then(currentUser => res.status(200).json({ User: currentUser }))
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+      .then(currentUser => res.status(200).json({ user: currentUser }))
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
   }
   /**
    * @description checks if email sent is registered/in database
    *
    * @static
    *
-   * @param {any} req
-   *
-   * @param {any} res
+   * @param {object} req
+   * @param {object} res
    *
    * @memberof User
    *
@@ -232,10 +227,10 @@ export default class User {
               sendEmail(url, foundUser.dataValues.email, res);
             });
         } else {
-          return res.status(404).json({ Message: 'Email not found' });
+          return res.status(404).json({ message: 'Email not found' });
         }
       })
-      .catch(() => res.status(500).json({ Message: 'Internal Server Error. Plaease try again' }));
+      .catch(() => res.status(500).json({ message: 'Internal Server Error. Plaease try again' }));
   }
   /**
    *
@@ -244,7 +239,6 @@ export default class User {
    * @static
    *
    * @param {any} req
-   *
    * @param {any} res
    *
    * @memberof User
@@ -263,11 +257,11 @@ export default class User {
             token: null
           };
           foundUser.update(updateDetails)
-            .then(() => res.status(200).json({ Message: 'Password reset successful' }));
+            .then(() => res.status(200).json({ message: 'Password reset successful' }));
         } else {
-          return res.status(403).json({ Message: 'You`re unauthorized to perform this action' });
+          return res.status(403).json({ message: 'You`re unauthorized to perform this action' });
         }
       })
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
   }
 }

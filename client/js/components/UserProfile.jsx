@@ -24,12 +24,12 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
-      picture: '',
+      imageUrl: '',
       errors: {},
       disabled: true,
       uploadImageError: '',
@@ -60,8 +60,8 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
-    const { firstname, lastname, email, picture } = nextProps.userDetails;
-    this.setState({ firstname, lastname, email, picture });
+    const { firstName, lastName, email, imageUrl } = nextProps.userDetails;
+    this.setState({ firstName, lastName, email, imageUrl });
   }
   /**
    *
@@ -74,7 +74,7 @@ class UserProfile extends React.Component {
   onUpload(event) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      this.setState({ picture: e.target.result });
+      this.setState({ imageUrl: e.target.result });
     };
     reader.readAsDataURL(event.target.files[0]);
     this.setState({ selectedImage: true });
@@ -154,16 +154,16 @@ class UserProfile extends React.Component {
    */
   handleUpdate() {
     const {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
-      picture,
+      imageUrl,
       password,
       confirmPassword,
       selectedImage
     } = this.state;
     this.props.updateProfile({
-      firstname, lastname, email, picture, password, confirmPassword, selectedImage
+      firstName, lastName, email, imageUrl, password, confirmPassword, selectedImage
     });
   }
   /**
@@ -174,12 +174,12 @@ class UserProfile extends React.Component {
    */
   render() {
     const {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       confirmPassword,
-      picture,
+      imageUrl,
       disabled,
       errors
     } = this.state;
@@ -198,9 +198,9 @@ class UserProfile extends React.Component {
                   >
                     <img
                       className="img-thumbnail"
-                      id="update-profile-picture"
-                      src={picture}
-                      alt={firstname}
+                      id="update-profile-image"
+                      src={imageUrl}
+                      alt={firstName}
                       srcSet=""
                     />
                   </div>
@@ -218,26 +218,26 @@ class UserProfile extends React.Component {
                 <br />
 
                 <div className="form-group">
-                  <label htmlFor="profile-firstname">First Name</label>
+                  <label htmlFor="profile-firstName">First Name</label>
                   <input
                     type="text"
-                    id="profile-firstname"
+                    id="profile-firstName"
                     className="form-control"
-                    name="firstname"
-                    value={firstname}
+                    name="firstName"
+                    value={firstName}
                     onChange={this.onChange}
                     disabled={disabled}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="profile-lastname">Last Name</label>
+                  <label htmlFor="profile-lastName">Last Name</label>
                   <input
                     type="text"
-                    id="profile-lastname"
+                    id="profile-lastName"
                     className="form-control"
-                    name="lastname"
-                    value={lastname}
+                    name="lastName"
+                    value={lastName}
                     onChange={this.onChange}
                     disabled={disabled}
                   />

@@ -55,7 +55,7 @@ const addRecipeRequest = (recipe, token, dispatch) => axios({
     toaster.toastSuccess('Recipe added');
   })
   .catch((error) => {
-    const message = error.response.data.Message;
+    const { message } = error.response.data;
     dispatch(batchActions([
       recipeError(message),
       unsetFetching()

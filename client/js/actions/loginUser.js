@@ -22,10 +22,10 @@ const loginUser = ({ email, password }) => (dispatch) => {
   dispatch(setFetching());
   return axios.post('/api/v1/users/signin', { email, password })
     .then((response) => {
-      const { Token, User } = response.data;
-      localStorage.setItem('token', Token);
+      const { token, user } = response.data;
+      localStorage.setItem('token', token);
       dispatch(batchActions([
-        recieveAuth(Token, User),
+        recieveAuth(token, user),
         unsetFetching()
       ]));
       document.body.classList.remove('modal-open');
@@ -33,7 +33,7 @@ const loginUser = ({ email, password }) => (dispatch) => {
       toaster.toastSuccess('Welcome');
     })
     .catch((error) => {
-      const message = error.response.data.Message;
+      const { message } = error.response.data;
       dispatch(batchActions([
         authError(message),
         unsetFetching()

@@ -13,7 +13,7 @@ const addReviewFailure = message => ({
   reviewError: message
 });
 
-const addReview = (review, recipeId) => (dispatch) => {
+const addReview = (reviewContent, recipeId) => (dispatch) => {
   const token = localStorage.getItem('token');
   axios({
     method: 'POST',
@@ -21,17 +21,17 @@ const addReview = (review, recipeId) => (dispatch) => {
     headers: {
       'x-access-token': token
     },
-    data: { content: review }
+    data: { content: reviewContent }
   })
     .then((response) => {
-      const Review = response.data;
-      dispatch(addReviewSuccess(Review));
+      const { review } = response.data;
+      dispatch(addReviewSuccess(review));
       toaster.toastSuccess('Review added');
     })
     .catch(() => {
-      const Message = 'unable to add review';
-      dispatch(addReviewFailure(Message));
-      toaster.toastError(Message);
+      const message = 'unable to add review';
+      dispatch(addReviewFailure(message));
+      toaster.toastError(message);
     });
 };
 

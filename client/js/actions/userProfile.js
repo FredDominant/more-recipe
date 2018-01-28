@@ -25,17 +25,17 @@ const viewProfile = () => (dispatch) => {
     }
   })
     .then((response) => {
-      const { User } = response.data;
+      const { user } = response.data;
       dispatch(batchActions([
         unsetFetching(),
-        viewProfileSuccess(User)
+        viewProfileSuccess(user)
       ]));
     })
     .catch((error) => {
-      const { Message } = error.response.data;
+      const { message } = error.response.data;
       dispatch(batchActions([
         unsetFetching(),
-        viewProfileError(Message)
+        viewProfileError(message)
       ]));
     });
 };

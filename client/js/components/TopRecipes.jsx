@@ -46,7 +46,7 @@ class TopRecipes extends React.Component {
     const topRecipes = recipes.map(recipe => (
       <div key={recipe.id} className="col-sm-12 col-md-6 col-lg-4">
         <RecipeItem
-          home={'home'}
+          home="home"
           image={recipe.picture}
           recipeId={recipe.id}
           recipeName={capitalize(recipe.name)}

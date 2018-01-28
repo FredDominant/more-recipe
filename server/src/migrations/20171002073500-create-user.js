@@ -7,11 +7,11 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    firstname: {
+    firstName: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    lastname: {
+    lastName: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -32,10 +32,10 @@ module.exports = {
       allowNull: true,
       defaultValue: true
     },
-    picture: {
+    imageUrl: {
       type: Sequelize.TEXT,
       allowNull: true,
-      defaultValue: 'https://d13yacurqjgara.cloudfront.net/users/583390/screenshots/2517460/sob_avatar_illustration__800x600px__1.0_1x.jpg'
+      defaultValue: '/images/user_avatar.png'
     },
     token: {
       type: Sequelize.TEXT,

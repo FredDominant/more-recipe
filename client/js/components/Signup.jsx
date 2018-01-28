@@ -23,8 +23,8 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -58,8 +58,8 @@ class Signup extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     if (this.isValid()) {
-      const { firstname, lastname, email, password, confirmPassword } = this.state;
-      this.props.signup({ firstname, lastname, email, password, confirmPassword });
+      const { firstName, lastName, email, password, confirmPassword } = this.state;
+      this.props.signup({ firstName, lastName, email, password, confirmPassword });
       if (this.props.authenticated) {
         this.context.router.history.push('/');
       }
@@ -88,8 +88,8 @@ class Signup extends React.Component {
   render() {
     const {
       errors,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       confirmPassword
@@ -135,11 +135,11 @@ class Signup extends React.Component {
                     {errorMessage &&
                     <div className="alert alert-danger" role="alert">{errorMessage}
                     </div>}
-                    {errors.firstname &&
-                    <div className="alert alert-danger" role="alert">{errors.firstname}
+                    {errors.firstName &&
+                    <div className="alert alert-danger" role="alert">{errors.firstName}
                     </div>}
-                    {errors.lastname &&
-                    <div className="alert alert-danger" role="alert">{errors.lastname}
+                    {errors.lastName &&
+                    <div className="alert alert-danger" role="alert">{errors.lastName}
                     </div>}
                     {errors.email &&
                     <div className="alert alert-danger" role="alert">{errors.email}
@@ -162,13 +162,13 @@ class Signup extends React.Component {
                         </span>
                         <input
                           type="text"
-                          value={firstname}
+                          value={firstName}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="First Name"
                           aria-label="firstName"
                           aria-describedby="firstName-addon"
-                          name="firstname"
+                          name="firstName"
                         />
                       </div>
                       <br />
@@ -181,13 +181,13 @@ class Signup extends React.Component {
                         </span>
                         <input
                           type="text"
-                          value={lastname}
+                          value={lastName}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Last Name"
                           aria-label="lastName"
                           aria-describedby="lastName-addon"
-                          name="lastname"
+                          name="lastName"
                         />
                       </div>
                       <br />

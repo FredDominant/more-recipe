@@ -58,8 +58,8 @@ class Reviews extends React.Component {
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
           image={review.User.picture}
-          firstname={review.User.firstname}
-          lastname={review.User.lastname}
+          firstName={review.User.firstName}
+          lastName={review.User.lastName}
           content={review.content}
           createdAt={moment(new Date(review.createdAt)).fromNow()}
         />

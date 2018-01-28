@@ -13,9 +13,7 @@ export default class Favourite {
   /**
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
-   *
    * @returns {object} JSON and HTTP status code
    *
    * @memberof Favourite
@@ -25,7 +23,7 @@ export default class Favourite {
       .then((recipeExists) => {
         if (!recipeExists) {
           return res.status(404)
-            .json({ Message: 'recipe doesn\'t exist in catalogue' });
+            .json({ message: 'recipe doesn\'t exist in catalogue' });
         }
         favourite.findOne({
           where: {
@@ -46,7 +44,7 @@ export default class Favourite {
                 }
               })
                 .then(() => {
-                  res.status(200).json({ Message: 'Removed from favourites', userFavourited: false });
+                  res.status(200).json({ message: 'Removed from favourites', userFavourited: false });
                   recipe.findById(req.params.recipeId).then((Recipe) => {
                     Recipe.decrement('favourites');
                   });
@@ -59,8 +57,8 @@ export default class Favourite {
             })
               .then(newFavourite => res.status(201)
                 .json({
-                  Message: 'Recipe added to favourites',
-                  Favourite: newFavourite,
+                  message: 'Recipe added to favourites',
+                  favourite: newFavourite,
                   userFavourited: true
                 }))
               .then(() => {
@@ -71,13 +69,12 @@ export default class Favourite {
           });
       })
       .catch(() => res.status(500)
-        .json({ Message: 'Internal server error, please try again later' }));
+        .json({ message: 'Internal server error, please try again later' }));
   }
   /**
    *
-   * @param {any} req
-   *
-   * @param {any} res
+   * @param {object} req
+   * @param {object} res
    *
    * @returns {object} any
    *
@@ -94,7 +91,7 @@ export default class Favourite {
       include: [
         {
           model: models.Recipe,
-          include: [{ model: models.User, attributes: ['firstname', 'lastname'] }]
+          include: [{ model: models.User, attributes: ['firstName', 'lastName'] }]
         }
       ],
       limit,
@@ -107,28 +104,27 @@ export default class Favourite {
       const pages = Math.ceil(numberOfItems / limit);
       if (count === 0) {
         return res.status(404)
-          .json({ Message: 'You have no favourite recipe' });
+          .json({ message: 'You have no favourite recipe' });
       }
       return res.status(200)
         .json({
-          NumberOfItems: numberOfItems,
-          Limit: limit,
-          Pages: pages,
-          CurrentPage: page,
-          Favourites: rows
+          numberOfItems,
+          limit,
+          pages,
+          currentPage: page,
+          favourites: rows
         });
     })
       .catch(() => res.status(500)
-        .json({ Message: 'Unable to get favourites, internal server error' }));
+        .json({ message: 'Unable to get favourites, internal server error' }));
   }
   /**
- * @returns {HTTPResponse} response
+ * @returns {object} response
  *
  * @static
  *
- * @param {any} req
- *
- * @param {any} res
+ * @param {object} req object
+ * @param {object} res object
  *
  * @memberof Favourite
  */
@@ -136,7 +132,7 @@ export default class Favourite {
     recipe.findById(req.params.recipeId)
       .then((foundRecipe) => {
         if (!foundRecipe) {
-          return res.status(404).json({ Message: 'Recipe not found' });
+          return res.status(404).json({ message: 'Recipe not found' });
         }
         favourite.findOne({
           where: { recipeId: req.params.recipeId,
@@ -151,7 +147,7 @@ export default class Favourite {
                   userId: req.decoded.id
                 }
               })
-                .then(() => res.status(200).json({ Message: 'Deleted recipe from favourites' }))
+                .then(() => res.status(200).json({ message: 'Deleted recipe from favourites' }))
                 .then(() => {
                   recipe.findById(req.params.recipeId).then((Recipe) => {
                     Recipe.decrement('favourites');
@@ -160,6 +156,6 @@ export default class Favourite {
             }
           });
       })
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
   }
 }

@@ -18,16 +18,16 @@ const getReviews = recipeId => (dispatch) => {
   dispatch(setFetching());
   axios.get(`/api/v1/recipes/${recipeId}/review`)
     .then((response) => {
-      const { Reviews } = response.data;
+      const { reviews } = response.data;
       dispatch(batchActions([
-        getReviewSuccess(Reviews),
+        getReviewSuccess(reviews),
         unsetFetching()
       ]));
     })
     .catch(() => {
-      const Message = 'an error occurred';
+      const message = 'an error occurred';
       dispatch(batchActions([
-        getReviewFailure(Message),
+        getReviewFailure(message),
         unsetFetching()
       ]));
     });

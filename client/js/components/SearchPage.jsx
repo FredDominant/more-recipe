@@ -54,7 +54,7 @@ class SearchPage extends React.Component {
           upvotes={recipe.upvote}
           downvotes={recipe.downvote}
           views={recipe.views}
-          owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
+          owner={`${recipe.User.firstName} ${recipe.User.lastName}`}
         />
         <br />
       </div>)
