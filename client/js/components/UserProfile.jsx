@@ -227,6 +227,8 @@ class UserProfile extends React.Component {
                     value={firstName}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
+                    pattern="[A-Za-z]+"
                   />
                 </div>
 
@@ -240,6 +242,8 @@ class UserProfile extends React.Component {
                     value={lastName}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
+                    pattern="[A-Za-z]+"
                   />
                 </div>
                 <br />
@@ -255,6 +259,7 @@ class UserProfile extends React.Component {
                     value={email}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
                   />
                 </div>
 

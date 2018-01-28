@@ -85,53 +85,53 @@ export default class Recipe {
         userId: req.decoded.id
       }
     }).then((existingRecipeWithSameName) => {
-      if (!(!existingRecipeWithSameName || existingRecipeWithSameName.name === name)) {
+      if (existingRecipeWithSameName &&
+        (parseInt(existingRecipeWithSameName.id, 10) !== parseInt(req.params.recipeId, 10))) {
         return res.status(403).json({ message: 'You have a recipe with this name' });
       }
-    });
-
-    recipe.findOne({
-      where: {
-        id: req.params.recipeId,
-        $and: {
-          userId: req.decoded.id
-        }
-      }
-    })
-      .then((foundRecipe) => {
-        if (foundRecipe) {
-          const newRecipe = {
-            name: name ?
-              name.trim().toLowerCase() : foundRecipe.dataValues.name,
-            description: description ?
-              description.trim().toLowerCase() : foundRecipe.dataValues.description,
-            ingredients: ingredients ?
-              ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ?
-              directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
-            picture: picture ?
-              picture.trim() : foundRecipe.dataValues.picture
-          };
-          return foundRecipe.update(newRecipe)
-            .then(updatedRecipe => res.status(200)
-              .json({
-                message: 'Update successful',
-                recipe: updatedRecipe
-              }));
-        }
-        if (!foundRecipe) {
-          return res.status(404)
-            .json({
-              message: `Can't find recipe with id ${req.params.recipeId} by you`
-            });
+      return recipe.findOne({
+        where: {
+          id: req.params.recipeId,
+          $and: {
+            userId: req.decoded.id
+          }
         }
       })
-      .catch(() => {
-        res.status(500)
-          .json({
-            message: 'Internal server error. Unable to complete request'
-          });
-      });
+        .then((foundRecipe) => {
+          if (foundRecipe) {
+            const newRecipe = {
+              name: name ?
+                name.trim().toLowerCase() : foundRecipe.dataValues.name,
+              description: description ?
+                description.trim().toLowerCase() : foundRecipe.dataValues.description,
+              ingredients: ingredients ?
+                ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
+              directions: directions ?
+                directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
+              picture: picture ?
+                picture.trim() : foundRecipe.dataValues.picture
+            };
+            return foundRecipe.update(newRecipe)
+              .then(updatedRecipe => res.status(200)
+                .json({
+                  message: 'Update successful',
+                  recipe: updatedRecipe
+                }));
+          }
+          if (!foundRecipe) {
+            return res.status(404)
+              .json({
+                message: `Can't find recipe with id ${req.params.recipeId} by you`
+              });
+          }
+        })
+        .catch(() => {
+          res.status(500)
+            .json({
+              message: 'Internal server error. Unable to complete request'
+            });
+        });
+    });
   }
   /**
    * @description This method deletes a recipe

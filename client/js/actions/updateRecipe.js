@@ -54,7 +54,7 @@ const updateRecipeRequest = (recipe, recipeId, token, dispatch) => axios({
     toaster.toastSuccess('Recipe Updated');
   })
   .catch((error) => {
-    const { message } = error.response;
+    const { message } = error.response.data;
     dispatch(batchActions([
       updateRecipeFail(),
       unsetFetching()

@@ -137,45 +137,41 @@ export default class User {
       lastName,
       imageUrl
     } = req.body;
-
     user.findOne({
       where: { email }
     }).then((foundUserEmail) => {
-      if (foundUserEmail) {
-        if (foundUserEmail.id !== req.decoded.id) {
-          return res.status(403).json({ message: 'Email already in use' });
-        }
+      if (foundUserEmail && (foundUserEmail.id !== req.decoded.id)) {
+        return res.status(403).json({ message: 'Email already in use' });
       }
-    });
-
-    user.findOne({
-      where: {
-        id: req.decoded.id
-      }
-    })
-      .then((foundUser) => {
-        if (foundUser) {
-          const newData = {
-            email: email ? email.trim() : foundUser.dataValues.email,
-            password: password ? helper.hashPassword(password) : foundUser.dataValues.password,
-            firstName: firstName ? firstName.trim() : foundUser.dataValues.firstName,
-            lastName: lastName ? lastName.trim() : foundUser.dataValues.lastName,
-            imageUrl: imageUrl ? imageUrl.trim() : foundUser.dataValues.imageUrl
-          };
-          foundUser.update(newData)
-            .then(() => {
-              user.findOne({
-                where: {
-                  id: req.decoded.id
-                },
-                attributes: ['firstName', 'lastName', 'email', 'id', 'imageUrl']
-              })
-                .then(currentUser => res.status(200).json({ user: currentUser }));
-            });
+      return user.findOne({
+        where: {
+          id: req.decoded.id
         }
       })
-      .catch(error => res.status(500)
-        .json({ message: 'Internal server error. Unable to update profile', error }));
+        .then((foundUser) => {
+          if (foundUser) {
+            const newData = {
+              email: email ? email.trim() : foundUser.dataValues.email,
+              password: password ? helper.hashPassword(password) : foundUser.dataValues.password,
+              firstName: firstName ? firstName.trim() : foundUser.dataValues.firstName,
+              lastName: lastName ? lastName.trim() : foundUser.dataValues.lastName,
+              imageUrl: imageUrl ? imageUrl.trim() : foundUser.dataValues.imageUrl
+            };
+            foundUser.update(newData)
+              .then(() => {
+                user.findOne({
+                  where: {
+                    id: req.decoded.id
+                  },
+                  attributes: ['firstName', 'lastName', 'email', 'id', 'imageUrl']
+                })
+                  .then(currentUser => res.status(200).json({ user: currentUser }));
+              });
+          }
+        })
+        .catch(error => res.status(500)
+          .json({ message: 'Internal server error. Unable to update profile', error }));
+    });
   }
   /**
    *
