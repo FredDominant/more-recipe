@@ -10,13 +10,13 @@ const signupValidator = (data) => {
     errors.firstName = 'First Name should be alphabets';
   }
   if (!Validator.isAlpha(data.firstName.charAt(0))) {
-    errors.firstName = 'First Name shouldn\'t begin with a number';
+    errors.firstName = 'First Name should be alphabetsr';
   }
   if (!Validator.isAlpha(data.lastName)) {
     errors.lastName = 'Last Name should be alphabets';
   }
   if (!Validator.isAlpha(data.lastName.charAt(0))) {
-    errors.lastName = 'Last Name shouldn\'t begin with a number';
+    errors.lastName = 'Last Name should be alphabets';
   }
   if (Validator.isEmpty(data.lastName)) {
     errors.lastName = 'Last Name is required';

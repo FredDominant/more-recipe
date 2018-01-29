@@ -7,7 +7,7 @@ const recipeValidator = (recipe) => {
     errors.name = 'Recipe name shouldn\'t be empty';
   }
   if (!Validator.isAlpha(recipe.name.charAt(0))) {
-    errors.name = 'Recipe name shouldn\'t begin with a number';
+    errors.name = 'Recipe name should be alphabets';
   }
   if (!Validator.isLength(recipe.name, { min: 2, max: 50 })) {
     errors.name = 'Recipe name should be between 2 and 50 characters';
@@ -16,7 +16,7 @@ const recipeValidator = (recipe) => {
     errors.description = 'Recipe should have a decription';
   }
   if (!Validator.isAlpha(recipe.description.charAt(0))) {
-    errors.description = 'Recipe description shouldn\'t begin with a number';
+    errors.description = 'Recipe description should be alphabets';
   }
   if (!Validator.isLength(recipe.description, { min: 5, max: 50 })) {
     errors.description = 'Recipe description should be between 5 and 50 characters';

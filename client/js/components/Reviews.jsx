@@ -57,7 +57,7 @@ class Reviews extends React.Component {
     const allReviews = reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
-          image={review.User.imageUrl}
+          imageUrl={review.User.imageUrl}
           firstName={review.User.firstName}
           lastName={review.User.lastName}
           content={review.content}
