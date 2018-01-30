@@ -60,6 +60,8 @@ class Signup extends React.Component {
     if (this.isValid()) {
       const { firstName, lastName, email, password, confirmPassword } = this.state;
       this.props.signup({ firstName, lastName, email, password, confirmPassword });
+      this.setState({ errors: {} });
+
       if (this.props.authenticated) {
         this.context.router.history.push('/');
       }

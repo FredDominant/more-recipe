@@ -1,19 +1,32 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { VIEW_PROFILE, VIEW_PROFILE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
+/**
+ * @returns {object} action
+ *
+ * @param {object} user
+ */
 const viewProfileSuccess = user => ({
   type: VIEW_PROFILE,
   user
 });
 
+/**
+ * @returns {object} action
+ *
+ * @param {string} message
+ */
 const viewProfileError = message => ({
   type: VIEW_PROFILE_ERROR,
   Error: message
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ */
 const viewProfile = () => (dispatch) => {
   dispatch(setFetching());
   const token = localStorage.getItem('token');
@@ -26,17 +39,13 @@ const viewProfile = () => (dispatch) => {
   })
     .then((response) => {
       const { user } = response.data;
-      dispatch(batchActions([
-        unsetFetching(),
-        viewProfileSuccess(user)
-      ]));
+      dispatch(unsetFetching());
+      dispatch(viewProfileSuccess(user));
     })
     .catch((error) => {
       const { message } = error.response.data;
-      dispatch(batchActions([
-        unsetFetching(),
-        viewProfileError(message)
-      ]));
+      dispatch(unsetFetching());
+      dispatch(viewProfileError(message));
     });
 };
 export default viewProfile;

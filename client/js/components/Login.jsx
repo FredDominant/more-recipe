@@ -68,6 +68,7 @@ class Login extends React.Component {
     if (this.isValid()) {
       const { email, password } = this.state;
       this.props.login({ email, password });
+      this.setState({ errors: {} });
 
       if (this.props.authenticated) {
         this.context.router.history.push('/');

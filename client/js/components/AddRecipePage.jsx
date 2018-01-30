@@ -60,6 +60,7 @@ export class AddRecipePage extends React.Component {
  */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    // this.isValid();
   }
   /**
 *
@@ -111,6 +112,7 @@ export class AddRecipePage extends React.Component {
     event.preventDefault();
     if (this.isValid()) {
       this.addNewRecipe();
+      this.setState({ errors: {} });
     }
   }
   /**

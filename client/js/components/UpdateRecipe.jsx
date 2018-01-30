@@ -126,6 +126,7 @@ class UpdateRecipe extends React.Component {
     const { id } = this.state;
     if (this.isValid()) {
       this.props.updateRecipe(this.state, id);
+      this.setState({ errors: {} });
     }
   }
   /**

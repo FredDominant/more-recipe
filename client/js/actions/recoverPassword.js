@@ -3,6 +3,11 @@ import toaster from '../utils/toaster';
 
 import { setFetching, unsetFetching } from './fetching';
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {string} email
+ */
 const recoverPassword = email => (dispatch) => {
   dispatch(setFetching());
   return axios({

@@ -1,20 +1,34 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { DOWNVOTE_SUCCESS, DOWNVOTE_FAILURE } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from './fetching';
 import toaster from '../utils/toaster';
 
+/**
+ * @returns {object} action
+ *
+ * @param {object} recipe
+ */
 const downvoteSuccess = recipe => ({
   type: DOWNVOTE_SUCCESS,
   recipe
 });
 
+/**
+ * @returns {object} action
+ *
+ * @param {string} message
+ */
 const downvoteFail = message => ({
   type: DOWNVOTE_FAILURE,
   message
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {number} recipeId
+ */
 const downvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
@@ -27,10 +41,8 @@ const downvoteRecipe = recipeId => (dispatch) => {
   })
     .then((response) => {
       const { recipe } = response.data;
-      dispatch(batchActions([
-        downvoteSuccess(recipe),
-        unsetFetching()
-      ]));
+      dispatch(downvoteSuccess(recipe));
+      dispatch(unsetFetching());
     })
     .catch((error) => {
       const { message } = error;

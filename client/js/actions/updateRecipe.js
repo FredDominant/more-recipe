@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { EDIT_RECIPE, EDIT_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
@@ -47,18 +46,14 @@ const updateRecipeRequest = (recipe, recipeId, token, dispatch) => axios({
 })
   .then((response) => {
     const newRecipe = response.data.recipe;
-    dispatch(batchActions([
-      updateRecipeSuccess(newRecipe),
-      unsetFetching()
-    ]));
+    dispatch(updateRecipeSuccess(newRecipe));
+    dispatch(unsetFetching());
     toaster.toastSuccess('Recipe Updated');
   })
   .catch((error) => {
     const { message } = error.response.data;
-    dispatch(batchActions([
-      updateRecipeFail(),
-      unsetFetching()
-    ]));
+    dispatch(updateRecipeFail(message));
+    dispatch(unsetFetching());
     toaster.toastError(message);
   });
 
@@ -83,10 +78,8 @@ const updateRecipe = (recipe, recipeId) => (dispatch) => {
       })
       .catch(() => {
         const message = 'could not upload image';
-        dispatch(batchActions([
-          updateRecipeFail(message),
-          unsetFetching()
-        ]));
+        dispatch(updateRecipeFail(message));
+        dispatch(unsetFetching());
         toaster.toastError(message);
       });
   }

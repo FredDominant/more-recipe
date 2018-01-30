@@ -3,6 +3,11 @@ import axios from 'axios';
 import { setFetching, unsetFetching } from './fetching';
 import toaster from '../utils/toaster';
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {object} userData
+ */
 const resetPassword = userData => (dispatch) => {
   const { token, password, confirmPassword } = userData;
   dispatch(setFetching());

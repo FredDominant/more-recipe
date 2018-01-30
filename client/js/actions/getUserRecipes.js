@@ -1,19 +1,32 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
-import { getPageDetails } from '../actions/getAllRecipes';
 
+import { getPageDetails } from '../actions/getAllRecipes';
 import { GET_USER_RECIPES, GET_USER_RECIPES_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
+/**
+ * @returns {object} action
+ *
+ * @param {array} recipes
+ */
 const getUserRecipeSuccess = recipes => ({
   type: GET_USER_RECIPES,
   recipes
 });
 
+/**
+ * @returns {object} action
+ *
+ */
 const getUserRecipeFailure = () => ({
   type: GET_USER_RECIPES_ERROR
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {number} page
+ */
 const getUserRecipes = page => (dispatch) => {
   page = page || 1;
   const token = localStorage.getItem('token');
@@ -28,17 +41,13 @@ const getUserRecipes = page => (dispatch) => {
     .then((response) => {
       const { currentPage, limit, numberOfItems, pages, recipes } = response.data;
       const paginationInfo = { currentPage, limit, numberOfItems, pages };
-      dispatch(batchActions([
-        getUserRecipeSuccess(recipes),
-        getPageDetails(paginationInfo),
-        unsetFetching()
-      ]));
+      dispatch(getUserRecipeSuccess(recipes));
+      dispatch(getPageDetails(paginationInfo));
+      dispatch(unsetFetching());
     })
     .catch(() => {
-      dispatch(batchActions([
-        getUserRecipeFailure(),
-        unsetFetching()
-      ]));
+      dispatch(getUserRecipeFailure());
+      dispatch(unsetFetching());
     });
 };
 export default getUserRecipes;

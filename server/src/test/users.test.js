@@ -45,6 +45,7 @@ describe('Test for Users', () => {
           expect(res.status).to.equal(400);
           expect(res.body).to.not.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Passwords don\'t match');
           done();
         });
     });
@@ -54,6 +55,9 @@ describe('Test for Users', () => {
         .send(fakeData.missingName)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.an('object');
           done();
         });
     });
@@ -63,6 +67,10 @@ describe('Test for Users', () => {
         .send({ email: 'fredadewole@email.com', password: '1111111111' })
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Invalid login credentials');
           done();
         });
     });
@@ -72,6 +80,9 @@ describe('Test for Users', () => {
         .send(fakeData.alreadyTakenEmail)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.an('object');
           done();
         });
     });
@@ -84,6 +95,13 @@ describe('Test for Users', () => {
         .send(fakeData.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('token');
+          expect(res.body).to.haveOwnProperty('token').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('user');
+          expect(res.body).to.haveOwnProperty('user').to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('You\'re now logged in');
           done();
         });
     });
@@ -93,6 +111,9 @@ describe('Test for Users', () => {
         .send(fakeData.unregisteredLogin)
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Invalid login credentials');
           done();
         });
     });
@@ -103,6 +124,8 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.an('object');
           done();
         });
     });
@@ -116,6 +139,7 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.not.equal(404);
           expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
           done();
         });
     });
@@ -127,6 +151,8 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Email not found');
           done();
         });
     });
@@ -140,6 +166,8 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Passwords don\'t match');
           done();
         });
     });
@@ -151,6 +179,7 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('object');
           done();
         });
     });
@@ -176,6 +205,9 @@ describe('Test for Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('user');
+          expect(res.body).to.haveOwnProperty('user').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('user').be.an('object');
+
           done();
         });
     });
@@ -186,6 +218,9 @@ describe('Test for Users', () => {
         .set('x-access-token', userToken)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('user');
+          expect(res.body).to.haveOwnProperty('user').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('user').be.an('object');
           done();
         });
     });

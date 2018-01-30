@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { setFetching, unsetFetching } from '../actions/fetching';
 import { ADD_RECIPE, RECIPE_ERROR } from '../actions/actionTypes';
@@ -48,18 +47,14 @@ const addRecipeRequest = (recipe, token, dispatch) => axios({
   data: recipe
 })
   .then((response) => {
-    dispatch(batchActions([
-      createRecipe(response.data),
-      unsetFetching()
-    ]));
+    dispatch(createRecipe(response.data));
+    dispatch(unsetFetching());
     toaster.toastSuccess('Recipe added');
   })
   .catch((error) => {
     const { message } = error.response.data;
-    dispatch(batchActions([
-      recipeError(message),
-      unsetFetching()
-    ]));
+    dispatch(recipeError(message));
+    dispatch(unsetFetching());
     toaster.toastError(message);
   });
 
@@ -82,19 +77,19 @@ const addRecipe = recipe => (dispatch) => {
       })
       .catch(() => {
         const message = 'unable to upload image';
-        dispatch(batchActions([
-          recipeError(message),
-          unsetFetching()
-        ]));
+        dispatch(recipeError(message));
+        dispatch(unsetFetching());
         toaster.toastError(message);
       });
   }
-  const noImageRecipe = {
-    name: recipe.name,
-    description: recipe.description,
-    directions: recipe.directions,
-    ingredients: recipe.ingredients
-  };
+  const { name, description, directions, ingredients } = recipe;
+  // const noImageRecipe = {
+  //   name: recipe.name,
+  //   description: recipe.description,
+  //   directions: recipe.directions,
+  //   ingredients: recipe.ingredients
+  // };
+  const noImageRecipe = { name, description, directions, ingredients };
   return addRecipeRequest(noImageRecipe, token, dispatch);
 };
 export default addRecipe;

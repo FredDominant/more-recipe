@@ -31,6 +31,9 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Failed to provide token');
           done();
         });
     });
@@ -41,6 +44,9 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('recipe doesn\'t exist in catalogue');
           done();
         });
     });
@@ -51,6 +57,12 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Recipe added to favourites');
+          expect(res.body).to.haveOwnProperty('favourite');
+          expect(res.body).to.haveOwnProperty('favourite').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('userFavourited').to.a('boolean');
           done();
         });
     });
@@ -61,6 +73,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('numberOfItems');
+          expect(res.body).to.haveOwnProperty('limit');
+          expect(res.body).to.haveOwnProperty('pages');
+          expect(res.body).to.haveOwnProperty('favourites').to.not.be.a('null');
           done();
         });
     });
@@ -71,6 +87,9 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Deleted recipe from favourites');
           done();
         });
     });
@@ -81,6 +100,9 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.status).to.not.equal(201);
+          expect(res.status).to.not.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
           done();
         });
     });
@@ -90,17 +112,28 @@ describe('Test for', () => {
         .set('x-access-token', userToken)
         .send(fakeUsers.validLogin)
         .end((err, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(201); expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Recipe added to favourites');
+          expect(res.body).to.haveOwnProperty('favourite');
+          expect(res.body).to.haveOwnProperty('favourite').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('userFavourited').to.equal(true);
+
           done();
         });
     });
-    it('allow registered users remove recipes from favourites', (done) => {
+    it('allow registered users remove recipes from favourites when they click again', (done) => {
       chai.request(app)
         .post('/api/v1/recipes/1/favourite')
         .set('x-access-token', userToken)
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Removed from favourites');
+          expect(res.body).to.haveOwnProperty('userFavourited').to.a('boolean');
+          expect(res.body).to.haveOwnProperty('userFavourited').to.equal(false);
           done();
         });
     });

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { EDIT_PROFILE, EDIT_PROFILE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
@@ -49,18 +48,14 @@ const editProfileRequest = (userData, token, dispatch) => axios({
 })
   .then((response) => {
     const { user } = response.data;
-    dispatch(batchActions([
-      updateProfileSuccess(user),
-      unsetFetching()
-    ]));
+    dispatch(updateProfileSuccess(user));
+    dispatch(unsetFetching());
     toaster.toastSuccess('profile updated');
   })
   .catch((error) => {
     const { message } = error.response.data;
-    dispatch(batchActions([
-      updateProfileFail(message),
-      unsetFetching()
-    ]));
+    dispatch(updateProfileFail(message));
+    dispatch(unsetFetching());
     toaster.toastError(message);
   });
 
@@ -84,10 +79,8 @@ const editProfile = userData => (dispatch) => {
       })
       .catch(() => {
         const message = 'could not upload image';
-        dispatch(batchActions([
-          updateProfileFail(message),
-          unsetFetching()
-        ]));
+        dispatch(updateProfileFail(message));
+        dispatch(unsetFetching());
         toaster.toastError(message);
       });
   }
