@@ -30,6 +30,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Failed to provide token');
           done();
         });
     });
@@ -40,6 +44,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('recipe not found, ensure you typed correct recipe Id');
           done();
         });
     });
@@ -50,6 +58,11 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
@@ -60,6 +73,11 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
@@ -72,6 +90,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Failed to provide token');
           done();
         });
     });
@@ -82,6 +104,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('recipe not found, ensure recipe Id is valid');
           done();
         });
     });
@@ -92,6 +118,11 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
@@ -102,6 +133,10 @@ describe('Test for', () => {
         .send(fakeUsers.validLogin)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
