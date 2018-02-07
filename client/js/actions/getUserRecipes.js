@@ -31,7 +31,7 @@ const getUserRecipes = page => (dispatch) => {
   page = page || 1;
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'GET',
     url: `/api/v1/recipes/user/all?page=${page}`,
     headers: {

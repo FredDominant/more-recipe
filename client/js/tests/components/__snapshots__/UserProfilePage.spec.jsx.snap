@@ -1,0 +1,592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile component should render correctly 1`] = `
+<div
+  className="profile-body"
+>
+  <div
+    className="container"
+    id="update-profile-form"
+  >
+    <div
+      id="update-profile-body"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className=""
+        >
+          <div
+            id="user-image-container"
+          >
+            <div
+              className="profile-image"
+              id="user-profile-image-container"
+              onClick={[Function]}
+              role="presentation"
+            >
+              <img
+                alt=""
+                className="img-thumbnail"
+                id="update-profile-image"
+                src=""
+                srcSet=""
+              />
+            </div>
+            <br />
+            <input
+              accept=".png,.gif,.jpg,.jpeg"
+              disabled={true}
+              id="profile-upload"
+              name="file"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
+          </div>
+          <br />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-firstName"
+            >
+              First Name
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-firstName"
+              name="firstName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-lastName"
+            >
+              Last Name
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-lastName"
+              name="lastName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <br />
+          <h6
+            className="text-left"
+          >
+            Account setting
+          </h6>
+          <hr />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-email"
+            >
+              Email
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-email"
+              name="email"
+              onChange={[Function]}
+              required={true}
+              type="email"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Password
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-confirmPassword"
+              name="password"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-password"
+              name="confirmPassword"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <div
+              className="container row"
+            >
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              >
+                <button
+                  className="btn btn-primary"
+                  id="edit"
+                  onClick={[Function]}
+                >
+                  <span>
+                    <i
+                      className="fas fa-unlock"
+                    />
+                  </span>
+                </button>
+              </div>
+              <div
+                className="col-sm-10 col-md-10 col-lg-10"
+              >
+                <button
+                  className="btn btn-success"
+                  disabled={true}
+                >
+                  update profile
+                </button>
+              </div>
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br />
+  <Footer />
+</div>
+`;
+
+exports[`onEdit should set form value 1`] = `
+<div
+  className="profile-body"
+>
+  <div
+    className="container"
+    id="update-profile-form"
+  >
+    <div
+      id="update-profile-body"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className=""
+        >
+          <div
+            id="user-image-container"
+          >
+            <div
+              className="profile-image"
+              id="user-profile-image-container"
+              onClick={[Function]}
+              role="presentation"
+            >
+              <img
+                alt=""
+                className="img-thumbnail"
+                id="update-profile-image"
+                src=""
+                srcSet=""
+              />
+            </div>
+            <br />
+            <input
+              accept=".png,.gif,.jpg,.jpeg"
+              disabled={false}
+              id="profile-upload"
+              name="file"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
+          </div>
+          <br />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-firstName"
+            >
+              First Name
+            </label>
+            <input
+              className="form-control"
+              disabled={false}
+              id="profile-firstName"
+              name="firstName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-lastName"
+            >
+              Last Name
+            </label>
+            <input
+              className="form-control"
+              disabled={false}
+              id="profile-lastName"
+              name="lastName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <br />
+          <h6
+            className="text-left"
+          >
+            Account setting
+          </h6>
+          <hr />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-email"
+            >
+              Email
+            </label>
+            <input
+              className="form-control"
+              disabled={false}
+              id="profile-email"
+              name="email"
+              onChange={[Function]}
+              required={true}
+              type="email"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Password
+            </label>
+            <input
+              className="form-control"
+              disabled={false}
+              id="profile-confirmPassword"
+              name="password"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="form-control"
+              disabled={false}
+              id="profile-password"
+              name="confirmPassword"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <div
+              className="container row"
+            >
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              >
+                <button
+                  className="btn btn-primary"
+                  id="edit"
+                  onClick={[Function]}
+                >
+                  <span>
+                    <i
+                      className="fas fa-lock"
+                    />
+                  </span>
+                </button>
+              </div>
+              <div
+                className="col-sm-10 col-md-10 col-lg-10"
+              >
+                <button
+                  className="btn btn-success"
+                  disabled={false}
+                >
+                  update profile
+                </button>
+              </div>
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br />
+  <Footer />
+</div>
+`;
+
+exports[`onSelectImage() should be called when image is clicked 1`] = `
+<div
+  className="profile-body"
+>
+  <div
+    className="container"
+    id="update-profile-form"
+  >
+    <div
+      id="update-profile-body"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className=""
+        >
+          <div
+            id="user-image-container"
+          >
+            <div
+              className="profile-image"
+              id="user-profile-image-container"
+              onClick={[Function]}
+              role="presentation"
+            >
+              <img
+                alt=""
+                className="img-thumbnail"
+                id="update-profile-image"
+                src=""
+                srcSet=""
+              />
+            </div>
+            <br />
+            <input
+              accept=".png,.gif,.jpg,.jpeg"
+              disabled={true}
+              id="profile-upload"
+              name="file"
+              onChange={[Function]}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+              type="file"
+            />
+          </div>
+          <br />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-firstName"
+            >
+              First Name
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-firstName"
+              name="firstName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-lastName"
+            >
+              Last Name
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-lastName"
+              name="lastName"
+              onChange={[Function]}
+              pattern="[A-Za-z]+"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <br />
+          <h6
+            className="text-left"
+          >
+            Account setting
+          </h6>
+          <hr />
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-email"
+            >
+              Email
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-email"
+              name="email"
+              onChange={[Function]}
+              required={true}
+              type="email"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Password
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-confirmPassword"
+              name="password"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="profile-password"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="form-control"
+              disabled={true}
+              id="profile-password"
+              name="confirmPassword"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <div
+              className="container row"
+            >
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              >
+                <button
+                  className="btn btn-primary"
+                  id="edit"
+                  onClick={[Function]}
+                >
+                  <span>
+                    <i
+                      className="fas fa-unlock"
+                    />
+                  </span>
+                </button>
+              </div>
+              <div
+                className="col-sm-10 col-md-10 col-lg-10"
+              >
+                <button
+                  className="btn btn-success"
+                  disabled={true}
+                >
+                  update profile
+                </button>
+              </div>
+              <div
+                className="col-sm-2 col-md-2 col-lg-2"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br />
+  <Footer />
+</div>
+`;

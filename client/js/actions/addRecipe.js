@@ -83,13 +83,8 @@ const addRecipe = recipe => (dispatch) => {
       });
   }
   const { name, description, directions, ingredients } = recipe;
-  // const noImageRecipe = {
-  //   name: recipe.name,
-  //   description: recipe.description,
-  //   directions: recipe.directions,
-  //   ingredients: recipe.ingredients
-  // };
   const noImageRecipe = { name, description, directions, ingredients };
   return addRecipeRequest(noImageRecipe, token, dispatch);
 };
 export default addRecipe;
+

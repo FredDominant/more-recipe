@@ -160,7 +160,7 @@ describe('Test for Users', () => {
   describe('Endpoint to reset password', () => {
     it('should return 400 if passwords don\'t match', (done) => {
       chai.request(app)
-        .put('/api/users/reset-password')
+        .put('/api/v1/users/reset-password')
         .set('x-access-token', userToken)
         .send({ password: '111111', confirmPassword: '123456' })
         .end((err, res) => {
@@ -173,7 +173,7 @@ describe('Test for Users', () => {
     });
     it('should return 400 if passwords are less than 6 characters', (done) => {
       chai.request(app)
-        .put('/api/users/reset-password')
+        .put('/api/v1/users/reset-password')
         .set('x-access-token', userToken)
         .send({ password: '11', confirmPassword: '11' })
         .end((err, res) => {
@@ -185,7 +185,7 @@ describe('Test for Users', () => {
     });
     it('should not give an error if passwords match', (done) => {
       chai.request(app)
-        .put('/api/users/reset-password')
+        .put('/api/v1/users/reset-password')
         .set('x-access-token', userToken)
         .send({ password: '123456', confirmPassword: '123456' })
         .end((err, res) => {

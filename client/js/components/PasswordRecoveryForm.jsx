@@ -14,7 +14,7 @@ import recoverPasswordValidator from '../validation/recoverPasswordValidator';
  *
  * @extends {React.Component}
  */
-class PasswordRecoveryForm extends React.Component {
+export class PasswordRecoveryForm extends React.Component {
   /**
  * @description Creates an instance of PasswordRecoveryForm.
  *
@@ -67,8 +67,10 @@ class PasswordRecoveryForm extends React.Component {
    * @returns {null} null
    */
   onToggleLogin() {
-    document.getElementById('recover-password').style.display = 'none';
-    document.getElementById('login-form').style.display = 'block';
+    // document.getElementById('recover-password').style.display = 'none';
+    // document.getElementById('login-form').style.display = 'block';
+    $('#recover-password').hide();
+    $('#login-form').show();
   }
   /**
    * @description validates for inputs
@@ -101,6 +103,7 @@ class PasswordRecoveryForm extends React.Component {
               className="form-control"
               type="email"
               required
+              id="email"
               name="email"
               onChange={this.onChange}
               value={email}
@@ -127,6 +130,7 @@ class PasswordRecoveryForm extends React.Component {
                   <br />
                   <Link
                     to="#"
+                    id="login-link"
                     onClick={this.onToggleLogin}
                     role="presentation"
                   >Proceed to log in

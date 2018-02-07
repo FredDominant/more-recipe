@@ -16,7 +16,7 @@ import Loading from '../components/Loading';
  *
  * @extends {React.Component}
  */
-class Favourites extends React.Component {
+export class Favourites extends React.Component {
   /**
  * @description Creates an instance of Favourites.
  *

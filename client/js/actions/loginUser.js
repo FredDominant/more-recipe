@@ -10,7 +10,7 @@ import toaster from '../utils/toaster';
  * @param {string} token
  * @param {object} user
  */
-export const recieveAuth = (token, user) => ({
+export const recieveAuth = ({ token, user }) => ({
   type: RECIEVE_AUTH,
   token,
   user
@@ -38,7 +38,7 @@ const loginUser = ({ email, password }) => (dispatch) => {
     .then((response) => {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
-      dispatch(recieveAuth(token, user));
+      dispatch(recieveAuth({ token, user }));
       dispatch(unsetFetching());
       document.body.classList.remove('modal-open');
       $('div.modal-backdrop ').removeClass('modal-backdrop fade show');

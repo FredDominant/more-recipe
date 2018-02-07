@@ -14,7 +14,7 @@ import capitalize from '../utils/capitalize';
  *
  * @extends {React.Component}
  */
-class RecipeItem extends React.Component {
+export class RecipeItem extends React.Component {
   /**
  * @description Creates an instance of RecipeItem.
  *
@@ -113,7 +113,7 @@ class RecipeItem extends React.Component {
               }
               <hr />
               <CardText>
-                <span className="recipe-description text-left">
+                <span className="recipe-description text-left ">
                   {capitalize(description)}
                 </span>
                 <br />
@@ -176,6 +176,7 @@ class RecipeItem extends React.Component {
                         type="button"
                         title="remove from favourites"
                         className="btn btn-outline-danger"
+                        id="remove-favourite"
                         onClick={this.onRemoveFavourite}
                       >
                         <i className="fas fa-trash-alt" />
@@ -186,6 +187,7 @@ class RecipeItem extends React.Component {
                       userRecipeCard && <button
                         type="button"
                         title="delete this recipe"
+                        id="deleteRecipe"
                         className="btn btn-outline-danger"
                         onClick={this.onDeleteRecipe}
                       >
@@ -230,7 +232,7 @@ RecipeItem.propTypes = {
   description: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
-  favourites: PropTypes.number.isRequired,
+  favourites: PropTypes.number,
   views: PropTypes.number,
   recipeId: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
@@ -250,7 +252,8 @@ RecipeItem.defaultProps = {
   onDelete: null,
   created: null,
   home: null,
-  owner: null
+  owner: null,
+  favourites: null
 };
 const mapStateToprops = state => ({
   authenticated: state.auth.isAuthenticated

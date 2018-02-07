@@ -9,7 +9,7 @@ import addReview from '../actions/addReview';
  *
  * @extends {React.Component}
  */
-class AddReview extends React.Component {
+export class AddReview extends React.Component {
 /**
  * @description Creates an instance of AddReview.
  *

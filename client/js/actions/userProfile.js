@@ -39,13 +39,13 @@ const viewProfile = () => (dispatch) => {
   })
     .then((response) => {
       const { user } = response.data;
-      dispatch(unsetFetching());
       dispatch(viewProfileSuccess(user));
+      dispatch(unsetFetching());
     })
     .catch((error) => {
       const { message } = error.response.data;
-      dispatch(unsetFetching());
       dispatch(viewProfileError(message));
+      dispatch(unsetFetching());
     });
 };
 export default viewProfile;

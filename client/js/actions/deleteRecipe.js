@@ -32,7 +32,7 @@ const deleteRecipeError = recipeId => ({
 const deleteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'DELETE',
     url: `/api/v1/recipes/${recipeId}`,
     headers: {

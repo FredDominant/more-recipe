@@ -38,7 +38,7 @@ const updateProfileFail = error => ({
  *
  * @returns {promise} axios promise
  */
-const editProfileRequest = (userData, token, dispatch) => axios({
+export const editProfileRequest = (userData, token, dispatch) => axios({
   method: 'PUT',
   url: '/api/v1/users/update',
   data: userData,

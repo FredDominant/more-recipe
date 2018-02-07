@@ -40,9 +40,9 @@ const getFavourites = page => (dispatch) => {
     }
   })
     .then((response) => {
-      const { currentPage, limit, numberOfItems, pages, favourites } = response.data;
+      const { currentPage, limit, numberOfItems, pages, recipes } = response.data;
       const paginationInfo = { currentPage, limit, numberOfItems, pages };
-      dispatch(getFavouritesSuccess(favourites));
+      dispatch(getFavouritesSuccess(recipes));
       dispatch(getPageDetails(paginationInfo));
       dispatch(unsetFetching());
     })

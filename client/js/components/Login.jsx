@@ -16,7 +16,7 @@ import PasswordRecoveryForm from '../components/PasswordRecoveryForm';
  *
  * @extends {React.Component}
  */
-class Login extends React.Component {
+export class Login extends React.Component {
   /**
  * @description Creates an instance of Login.
  *
@@ -53,8 +53,10 @@ class Login extends React.Component {
    * @memberof Login
    */
   onForgotPassword() {
-    document.getElementById('login-form').style.display = 'none';
-    document.getElementById('recover-password').style.display = 'block';
+    // document.getElementById('login-form').style.display = 'none';
+    // document.getElementById('recover-password').style.display = 'block';
+    $('#login-form').hide();
+    $('#recover-password').show();
   }
   /**
    * @returns {dispatch} dispatch
@@ -71,7 +73,8 @@ class Login extends React.Component {
       this.setState({ errors: {} });
 
       if (this.props.authenticated) {
-        this.context.router.history.push('/');
+        // this.context.router.history.push('/');
+        this.props.history.push('/');
       }
     }
   }
@@ -160,6 +163,7 @@ class Login extends React.Component {
                         <input
                           type="email"
                           name="email"
+                          id="login-email"
                           value={email}
                           onChange={this.onChange}
                           className="form-control login-form"
@@ -182,6 +186,7 @@ class Login extends React.Component {
                           type="password"
                           name="password"
                           value={password}
+                          id="password"
                           onChange={this.onChange}
                           className="form-control login-form"
                           placeholder="Password"
@@ -206,6 +211,7 @@ class Login extends React.Component {
                         <h6 id="forgot-password">
                           <Link
                             to="#"
+                            id="forgotPassword"
                             onClick={this.onForgotPassword}
                             role="button"
                             tabIndex={0}
@@ -231,14 +237,20 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 Login.defaultProps = {
-  errorMessage: null
+  errorMessage: null,
+  history: {
+    push: () => {}
+  }
 };
-Login.contextTypes = {
-  router: PropTypes.object.isRequired
-};
+// Login.contextTypes = {
+//   router: PropTypes.object.isRequired
+// };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,
   errorMessage: state.auth.errorMessage,

@@ -390,7 +390,7 @@ export default class Recipe {
             pages,
             currentPage: page,
             limit,
-            recipe: foundRecipe
+            recipes: foundRecipe
           });
       });
     }).catch(() => res.status(500)

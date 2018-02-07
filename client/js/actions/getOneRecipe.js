@@ -39,7 +39,7 @@ const getRecipeError = error => ({
  * @param {number} recipeId
  */
 const getOneRecipe = recipeId => (dispatch) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || global.token;
   dispatch(setFetching());
   if (token) {
     return axios({
@@ -57,8 +57,8 @@ const getOneRecipe = recipeId => (dispatch) => {
       })
       .catch((error) => {
         const { message } = error.response.data;
-        dispatch(unsetFetching());
         dispatch(getRecipeError(message));
+        dispatch(unsetFetching());
       });
   }
   return axios.get(`/api/v1/recipes/${recipeId}`)

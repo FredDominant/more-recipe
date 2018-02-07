@@ -13,7 +13,7 @@ import recipeValidator from '../validation/recipeValidator';
  *
  * @extends {React.Component}
  */
-class UpdateRecipe extends React.Component {
+export class UpdateRecipe extends React.Component {
   /**
  * @description Creates an instance of UpdateRecipe.
  *
@@ -248,6 +248,7 @@ class UpdateRecipe extends React.Component {
                       <div className="col-md-4 col-sm-6 col-lg-4">
                         <button
                           className="btn btn-success"
+                          id="edit"
                           onClick={this.onToggleEdit}
                         >
                           {

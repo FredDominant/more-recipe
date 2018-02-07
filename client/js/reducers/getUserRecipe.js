@@ -18,7 +18,7 @@ const getUserRecipe = (state = initialState.recipe, action) => {
       return {
         ...state,
         userRecipes: [],
-        getUserRecipe: true
+        getUserRecipeError: true
       };
     case DELETE_RECIPE:
       return {

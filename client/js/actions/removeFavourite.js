@@ -31,7 +31,7 @@ const removeFavouriteFailure = () => ({
 const removeFavourite = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'DELETE',
     url: `/api/v1/favourites/${recipeId}/delete`,
     headers: {

@@ -13,7 +13,7 @@ import updatePasswordValidator from '../validation/updatePasswordValidator';
  *
  * @extends {React.Component}
  */
-class UserProfile extends React.Component {
+export class UserProfile extends React.Component {
 /**
  * @description Creates an instance of UserProfile.
  *
@@ -125,6 +125,7 @@ class UserProfile extends React.Component {
     event.preventDefault();
     if (password.length) {
       if (this.isValid()) {
+        this.setState({ errors: {} });
         return this.handleUpdate();
       }
     } else {
@@ -298,7 +299,7 @@ class UserProfile extends React.Component {
                 <div className="form-group">
                   <div className="container row">
                     <div className="col-sm-2 col-md-2 col-lg-2">
-                      <button className="btn btn-primary" onClick={this.onEdit}>
+                      <button className="btn btn-primary" id="edit" onClick={this.onEdit}>
                         {
                           !this.state.disabled && <span><i className="fas fa-lock" /></span>
                         }

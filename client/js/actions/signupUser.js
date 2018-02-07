@@ -14,11 +14,11 @@ import toaster from '../utils/toaster';
 
 const signupUser = userData => (dispatch) => {
   dispatch(setFetching());
-  axios.post('/api/v1/users/signup', userData)
+  return axios.post('/api/v1/users/signup', userData)
     .then((response) => {
       const { user, token } = response.data;
       localStorage.setItem('token', token);
-      dispatch(recieveAuth(user, token));
+      dispatch(recieveAuth({ user, token }));
       dispatch(unsetFetching());
 
       document.body.classList.remove('modal-open');

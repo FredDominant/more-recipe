@@ -76,7 +76,7 @@ describe('Test for', () => {
           expect(res.body).to.haveOwnProperty('numberOfItems');
           expect(res.body).to.haveOwnProperty('limit');
           expect(res.body).to.haveOwnProperty('pages');
-          expect(res.body).to.haveOwnProperty('favourites').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('recipes').to.not.be.a('null');
           done();
         });
     });

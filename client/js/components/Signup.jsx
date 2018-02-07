@@ -12,7 +12,7 @@ import signupUser from '../actions/signupUser';
  *
  * @extends {React.Component}
  */
-class Signup extends React.Component {
+export class Signup extends React.Component {
 /**
  * @description Creates an instance of Signup.
  *
@@ -63,7 +63,7 @@ class Signup extends React.Component {
       this.setState({ errors: {} });
 
       if (this.props.authenticated) {
-        this.context.router.history.push('/');
+        this.props.history.push('/');
       }
     }
   }
@@ -165,6 +165,7 @@ class Signup extends React.Component {
                         <input
                           type="text"
                           value={firstName}
+                          id="firstName"
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="First Name"
@@ -276,16 +277,22 @@ Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 Signup.defaultProps = {
   errorMessage: '',
+  history: {
+    push: () => {}
+  }
 };
 
-Signup.contextTypes = {
-  router: PropTypes.object.isRequired
-};
+// Signup.contextTypes = {
+//   router: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.errorMessage,

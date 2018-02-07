@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for AddReview component should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <AddReview
+        postReview={[MockFunction]}
+        recipeId={1}
+        store={
+          Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          }
+        }
+      >
+        <div>
+          <div
+            id="review-form"
+          >
+            <div>
+              <div>
+                <form
+                  onSubmit={[Function]}
+                >
+                  <input
+                    className="form-control"
+                    name="content"
+                    onChange={[Function]}
+                    placeholder="Add a review..."
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                  <br />
+                  <button
+                    className="btn"
+                    id="add-review-button"
+                  >
+                    <span>
+                      <i
+                        className="fas fa-comment-alt"
+                      />
+                       
+                    </span>
+                    Post Review
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </AddReview>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

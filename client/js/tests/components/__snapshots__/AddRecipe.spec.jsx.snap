@@ -37,9 +37,10 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
     >
       <AddRecipePage
         addRecipeSuccess={null}
+        allRecipes={Array []}
         createRecipe={[MockFunction]}
         dispatch={[MockFunction]}
-        errorMessage={null}
+        errorMessage="error"
         isFetching={false}
         loading={false}
         store={

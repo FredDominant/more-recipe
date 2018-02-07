@@ -31,7 +31,7 @@ const addReviewFailure = message => ({
  */
 const addReview = (reviewContent, recipeId) => (dispatch) => {
   const token = localStorage.getItem('token');
-  axios({
+  return axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/review`,
     headers: {

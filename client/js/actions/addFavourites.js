@@ -5,9 +5,8 @@ import { setFetching, unsetFetching } from './fetching';
 import { ADD_FAVOURITES, ADD_FAVOURITES_ERROR } from '../actions/actionTypes';
 import { getFavouriteStatus } from './getOneRecipe';
 
-const addFavouriteSuccess = recipe => ({
+const addFavouriteSuccess = () => ({
   type: ADD_FAVOURITES,
-  recipe
 });
 
 const addFavouriteError = () => ({
@@ -17,7 +16,7 @@ const addFavouriteError = () => ({
 const addFavourite = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/favourite`,
     headers: {
@@ -26,7 +25,7 @@ const addFavourite = recipeId => (dispatch) => {
   })
     .then((response) => {
       const { message, userFavourited } = response.data;
-      dispatch(addFavouriteSuccess(recipeId));
+      dispatch(addFavouriteSuccess());
       dispatch(getFavouriteStatus(userFavourited));
       dispatch(unsetFetching());
       toaster.toastSuccess(message);

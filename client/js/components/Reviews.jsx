@@ -12,7 +12,7 @@ import ViewReviews from './ViewReviews';
  *
  * @extends {React.Component}
  */
-class Reviews extends React.Component {
+export class Reviews extends React.Component {
 /**
  * @description Creates an instance of Reviews.
  *

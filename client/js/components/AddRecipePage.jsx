@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MDSpinner from 'react-md-spinner';
 
 import recipeValidator from '../validation/recipeValidator';
 import addRecipe from '../actions/addRecipe';
@@ -237,10 +236,6 @@ export class AddRecipePage extends React.Component {
                       this.state.isUploading &&
                       <h6 className="text-center"> Uploading Image... </h6>
                     }
-                    {
-                      this.props.loading &&
-                      <span> <MDSpinner /></span>
-                    }
                   </button>
                 </div>
               </div>
@@ -254,7 +249,6 @@ export class AddRecipePage extends React.Component {
 const mapStateToProps = state => ({
   errorMessage: state.addRecipe.addRecipeErrorMessage,
   addRecipeSuccess: state.addRecipe.addRecipeSuccess,
-  loading: state.isUploading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -263,7 +257,6 @@ const mapDispatchToProps = dispatch => ({
 
 AddRecipePage.propTypes = {
   createRecipe: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
 };
 AddRecipePage.defaultProps = {
   errorMessage: null,

@@ -12,7 +12,7 @@ import logOutUser from '../actions/logoutUser';
  *
  * @extends {React.Component}
  */
-class Navbar extends React.Component {
+export class Navbar extends React.Component {
   /**
  * @description Creates an instance of Navbar.
  *
@@ -38,7 +38,8 @@ class Navbar extends React.Component {
   handleLogout(event) {
     event.preventDefault();
     this.props.logOutUser();
-    this.context.router.history.push('/');
+    // this.context.router.history.push('/');
+    this.props.history.push('/search');
   }
   /**
    *
@@ -160,7 +161,7 @@ class Navbar extends React.Component {
           <div className="row" id="nav2">
             <div className="col-sm-9" id="nav-button">
               <span id="title" className="navbar-brand">
-                <Link to="/home"><h3
+                <Link to="/"><h3
                   className="more-recipes"
                   title="More Recipes and cooking tips"
                 >More Recipes</h3></Link>
@@ -214,18 +215,21 @@ class Navbar extends React.Component {
     );
   }
 }
-Navbar.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 
 Navbar.propTypes = {
   logOutUser: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired,
   firstname: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 Navbar.defaultProps = {
-  firstname: ''
+  firstname: '',
+  history: {
+    push: () => {}
+  }
 };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,

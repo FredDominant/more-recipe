@@ -112,7 +112,7 @@ export default class Favourite {
           limit,
           pages,
           currentPage: page,
-          favourites: rows
+          recipes: rows
         });
     })
       .catch(() => res.status(500)

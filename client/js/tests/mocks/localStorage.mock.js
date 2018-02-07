@@ -45,7 +45,7 @@ class MockLocalStorage {
    * @param {any} item
    * @memberof MockLocalStorage
    */
-  deleteItem(item) {
+  removeItem(item) {
     delete this.data[item];
   }
 }

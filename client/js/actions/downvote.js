@@ -32,7 +32,7 @@ const downvoteFail = message => ({
 const downvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/downvote`,
     headers: {
@@ -44,10 +44,11 @@ const downvoteRecipe = recipeId => (dispatch) => {
       dispatch(downvoteSuccess(recipe));
       dispatch(unsetFetching());
     })
-    .catch((error) => {
-      const { message } = error;
+    .catch(() => {
+      const message = 'Unable to complete';
       dispatch(downvoteFail(message));
-      toaster.toastError('Unable to complete');
+      dispatch(unsetFetching());
+      toaster.toastError(message);
     });
 };
 export default downvoteRecipe;

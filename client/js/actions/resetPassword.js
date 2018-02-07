@@ -13,7 +13,7 @@ const resetPassword = userData => (dispatch) => {
   dispatch(setFetching());
   return axios({
     method: 'PUT',
-    url: '/api/users/reset-password',
+    url: '/api/v1/users/reset-password',
     headers: {
       'x-access-token': token
     },

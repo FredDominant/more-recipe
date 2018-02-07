@@ -41,9 +41,19 @@ exports[`Test for Home component should render correctly 1`] = `
       >
         <div>
           <br />
-          <Connect(Search)>
+          <Connect(Search)
+            dispatch={[MockFunction]}
+            isFetching={false}
+          >
             <Search
+              dispatch={[MockFunction]}
               focus={false}
+              history={
+                Object {
+                  "push": [Function],
+                }
+              }
+              isFetching={false}
               search={[Function]}
             >
               <div

@@ -15,7 +15,7 @@ import Loading from './Loading';
  *
  * @extends {React.Component}
  */
-class UserRecipePage extends React.Component {
+export class UserRecipePage extends React.Component {
 /**
  * @description Creates an instance of UserRecipePage.
  *
@@ -52,13 +52,13 @@ class UserRecipePage extends React.Component {
    *
    * @return {null} null
    *
-   * @param {number} id
+   * @param {number} recipeId
    *
    * @memberof UserRecipePage
    */
-  onDelete(id) {
-    this.props.deleteRecipe(id);
-  }
+  // onDelete(recipeId) {
+  //   this.props.deleteRecipe(recipeId);
+  // }
   /**
    *
    * @returns {jsx} jsx

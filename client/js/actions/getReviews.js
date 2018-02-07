@@ -30,7 +30,7 @@ const getReviewFailure = message => ({
  */
 const getReviews = recipeId => (dispatch) => {
   dispatch(setFetching());
-  axios.get(`/api/v1/recipes/${recipeId}/review`)
+  return axios.get(`/api/v1/recipes/${recipeId}/review`)
     .then((response) => {
       const { reviews } = response.data;
       dispatch(getReviewSuccess(reviews));

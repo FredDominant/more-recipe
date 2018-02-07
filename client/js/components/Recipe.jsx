@@ -18,7 +18,7 @@ import Loading from '../components/Loading';
  *
  * @extends {React.Component}
  */
-class Recipe extends React.Component {
+export class Recipe extends React.Component {
 /**
  * @description Creates an instance of Recipe.
  *
@@ -163,6 +163,7 @@ class Recipe extends React.Component {
                       type="button"
                       title="upvote this recipe"
                       className="btn btn-outline-danger"
+                      id="upvote"
                       onClick={this.handleUpvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-up" />
@@ -172,6 +173,7 @@ class Recipe extends React.Component {
                       type="button"
                       title="downvote this recipe"
                       className="btn btn-outline-danger"
+                      id="downvote"
                       onClick={this.handleDownvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-down" />
@@ -185,6 +187,7 @@ class Recipe extends React.Component {
                       type="button"
                       title="add to your favourites"
                       className="btn btn-outline-danger"
+                      id="favourite"
                       onClick={this.handleFavourite}
                     > <i className="far fa-heart" /></button>
                   </div>

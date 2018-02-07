@@ -39,9 +39,9 @@ const search = (searchParams, page) => (dispatch) => {
     }
   })
     .then((response) => {
-      const { currentPage, limit, numberOfItems, pages, recipe } = response.data;
+      const { currentPage, limit, numberOfItems, pages, recipes } = response.data;
       const paginationInfo = { currentPage, limit, numberOfItems, pages };
-      dispatch(searchSuccess(recipe));
+      dispatch(searchSuccess(recipes));
       dispatch(getPageDetails(paginationInfo));
       dispatch(unsetFetching());
     })

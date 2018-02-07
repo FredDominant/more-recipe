@@ -11,7 +11,7 @@ import capitalize from '../utils/capitalize';
  *
  * @extends {React.Component}
  */
-class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
   /**
  * @description Creates an instance of SearchPage.
  *
