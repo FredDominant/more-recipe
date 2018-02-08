@@ -17,7 +17,7 @@ export class UpdateRecipe extends React.Component {
   /**
  * @description Creates an instance of UpdateRecipe.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof UpdateRecipe
  */
@@ -53,7 +53,7 @@ export class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof UpdateRecipe
    */
@@ -65,7 +65,7 @@ export class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -81,7 +81,7 @@ export class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -92,7 +92,7 @@ export class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -117,7 +117,7 @@ export class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -131,9 +131,9 @@ export class UpdateRecipe extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof UpdateRecipe
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
@@ -185,9 +185,12 @@ export class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
-                    {errors.name && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.name} </span>
-                    </small>}
+                    {
+                      errors.name &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.name} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -202,9 +205,12 @@ export class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
-                    {errors.description && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.description} </span>
-                    </small>}
+                    {
+                      errors.description &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.description} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -220,9 +226,12 @@ export class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
-                    {errors.directions && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.directions} </span>
-                    </small>}
+                    {
+                      errors.directions &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.directions} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -238,9 +247,12 @@ export class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
-                    {errors.ingredients && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.ingredients} </span>
-                    </small>}
+                    {
+                      errors.ingredients &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.ingredients} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -263,7 +275,9 @@ export class UpdateRecipe extends React.Component {
                         <button
                           className="btn btn-primary"
                           disabled={toggleEdit}
-                        >Update Recipe</button>
+                        >
+                        Update Recipe
+                        </button>
                       </div>
                       <div className="col-md-4 col-sm-6 col-lg-4" />
                     </div>

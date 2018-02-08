@@ -62,6 +62,7 @@ export class ChangePassword extends React.Component {
       const { password, confirmPassword } = this.state;
       const { token } = this.props.match.params;
       this.props.resetPassword({ token, password, confirmPassword });
+      this.setState({ errors: {} });
     }
   }
   /**
@@ -80,16 +81,15 @@ export class ChangePassword extends React.Component {
   }
   /**
    *
-   * @returns {node} react component
-   *
    * @memberof ChangePassword
+   *
+   * @return {ReactElement} markup
    */
   render() {
     if (this.props.authenticated) {
       return this.props.history.push('/');
     }
     if (!verifyRecoveryToken(this.props.match.params.token)) {
-      // return <Redirect to="/" />;
       return this.props.history.push('/');
     }
     const { password, confirmPassword, errors } = this.state;
@@ -113,9 +113,12 @@ export class ChangePassword extends React.Component {
                       placeholder="Password"
                       name="password"
                     />
-                    {errors.password && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.password} </span>
-                    </small>}
+                    {
+                      errors.password &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.password} </span>
+                      </small>
+                    }
                   </div>
                   <br />
                   <div>
@@ -129,9 +132,12 @@ export class ChangePassword extends React.Component {
                       placeholder="Confirm password"
                       name="confirmPassword"
                     />
-                    {errors.confirmPassword && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.confirmPassword} </span>
-                    </small>}
+                    {
+                      errors.confirmPassword &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.confirmPassword} </span>
+                      </small>
+                    }
                   </div>
                   <br />
                   <div>

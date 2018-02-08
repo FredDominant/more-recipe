@@ -17,7 +17,7 @@ export class UserProfile extends React.Component {
 /**
  * @description Creates an instance of UserProfile.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof UserProfile
  */
@@ -81,7 +81,7 @@ export class UserProfile extends React.Component {
   }
   /**
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UserProfile
    *
@@ -169,9 +169,9 @@ export class UserProfile extends React.Component {
   }
   /**
    *
-   * @returns {node} JSX
-   *
    * @memberof UserProfile
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
@@ -248,7 +248,7 @@ export class UserProfile extends React.Component {
                   />
                 </div>
                 <br />
-                <h6 className="text-left">Account setting</h6>
+                <h6 className="text-left">Account security setting</h6>
                 <hr />
                 <div className="form-group">
                   <label htmlFor="profile-email">Email</label>
@@ -275,9 +275,12 @@ export class UserProfile extends React.Component {
                     onChange={this.onChange}
                     disabled={disabled}
                   />
-                  {errors.password && <small className="form-text text-muted">
-                    <span className="error-text"> {errors.password} </span>
-                  </small>}
+                  {
+                    errors.password &&
+                    <small className="form-text text-muted">
+                      <span className="error-text"> {errors.password} </span>
+                    </small>
+                  }
                 </div>
 
                 <div className="form-group">
@@ -291,9 +294,12 @@ export class UserProfile extends React.Component {
                     onChange={this.onChange}
                     disabled={disabled}
                   />
-                  {errors.confirmPassword && <small className="form-text text-muted">
-                    <span className="error-text"> {errors.confirmPassword} </span>
-                  </small>}
+                  {
+                    errors.confirmPassword &&
+                    <small className="form-text text-muted">
+                      <span className="error-text"> {errors.confirmPassword} </span>
+                    </small>
+                  }
                 </div>
 
                 <div className="form-group">
@@ -314,9 +320,9 @@ export class UserProfile extends React.Component {
                         disabled={disabled}
                       >
                        update profile
-                      </button></div>
+                      </button>
+                    </div>
                     <div className="col-sm-2 col-md-2 col-lg-2" />
-
                   </div>
                 </div>
               </div>

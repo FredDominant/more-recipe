@@ -16,7 +16,6 @@ import CheckAuth from '../utils/checkAuth.jsx';
 const Body = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    {/* <Route path="/home" exact component={CheckAuth(UserHome)} /> */}
     <Route path="/add-recipe" exact component={CheckAuth(AddRecipePage)} />
     <Route path="/profile" exact component={CheckAuth(UserProfile)} />
     <Route path="/favourites" exact component={CheckAuth(Favourites)} />

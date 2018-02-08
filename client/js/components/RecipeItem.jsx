@@ -18,7 +18,7 @@ export class RecipeItem extends React.Component {
   /**
  * @description Creates an instance of RecipeItem.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof RecipeItem
  */
@@ -62,7 +62,7 @@ export class RecipeItem extends React.Component {
    *
    * @memberof RecipeItem
    *
-   * @returns {node} JSX
+   * @return {ReactElement} markup
    */
   render() {
     const {

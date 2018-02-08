@@ -67,8 +67,6 @@ export class PasswordRecoveryForm extends React.Component {
    * @returns {null} null
    */
   onToggleLogin() {
-    // document.getElementById('recover-password').style.display = 'none';
-    // document.getElementById('login-form').style.display = 'block';
     $('#recover-password').hide();
     $('#login-form').show();
   }
@@ -88,9 +86,9 @@ export class PasswordRecoveryForm extends React.Component {
   }
   /**
    *
-   * @returns {jsx} react component
-   *
    * @memberof PasswordRecoveryForm
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { errors, email } = this.state;

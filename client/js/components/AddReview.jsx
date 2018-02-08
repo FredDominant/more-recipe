@@ -13,7 +13,7 @@ export class AddReview extends React.Component {
 /**
  * @description Creates an instance of AddReview.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof AddReview
  */
@@ -27,11 +27,11 @@ export class AddReview extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof AddReview
+   *
+   * @returns {null} null
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -39,7 +39,7 @@ export class AddReview extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof AddReview
    */
@@ -54,9 +54,10 @@ export class AddReview extends React.Component {
   }
   /**
    *
-   * @returns {node} JSX
    *
    * @memberof AddReview
+   *
+   * @return {ReactElement} markup
    */
   render() {
     return (

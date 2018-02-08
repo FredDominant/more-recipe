@@ -53,8 +53,6 @@ export class Login extends React.Component {
    * @memberof Login
    */
   onForgotPassword() {
-    // document.getElementById('login-form').style.display = 'none';
-    // document.getElementById('recover-password').style.display = 'block';
     $('#login-form').hide();
     $('#recover-password').show();
   }
@@ -73,7 +71,6 @@ export class Login extends React.Component {
       this.setState({ errors: {} });
 
       if (this.props.authenticated) {
-        // this.context.router.history.push('/');
         this.props.history.push('/');
       }
     }
@@ -93,9 +90,10 @@ export class Login extends React.Component {
   }
   /**
  *
- * @returns {node} React component
  *
  * @memberof Login
+ *
+ * @return {ReactElement} markup
  */
   render() {
     const { errors, email, password } = this.state;
@@ -248,9 +246,6 @@ Login.defaultProps = {
     push: () => {}
   }
 };
-// Login.contextTypes = {
-//   router: PropTypes.object.isRequired
-// };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,
   errorMessage: state.auth.errorMessage,

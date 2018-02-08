@@ -35,11 +35,4 @@ const Carousel = () => (
 
 );
 
-// UncontrolledCarousel.propTypes = {
-//     items: PropTypes.array,isRequired,
-//     indicators: PropTypes.bool, // default: true
-//     controls: PropTypes.bool, // default: true
-//     autoPlay: PropTypes.bool, // default: true
-//   };
-
 export default Carousel;

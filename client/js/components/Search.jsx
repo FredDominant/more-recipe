@@ -61,9 +61,9 @@ export class Search extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof Search
+   *
+   * @return {ReactElement} markup
    */
   render() {
     return (

@@ -16,7 +16,7 @@ export class Reviews extends React.Component {
 /**
  * @description Creates an instance of Reviews.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof Reviews
  */
@@ -36,7 +36,7 @@ export class Reviews extends React.Component {
     this.props.getReviews(this.props.recipeId);
   }
   /**
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof Reviews
    *
@@ -48,9 +48,9 @@ export class Reviews extends React.Component {
   }
   /**
 *
-* @returns {node} JSX
-
 * @memberof Reviews
+*
+* @return {ReactElement} markup
 */
   render() {
     const { reviews } = this.props;
@@ -69,12 +69,14 @@ export class Reviews extends React.Component {
     return (
       <div className="container">
         {
-          allReviews.length >= 1 && <div className="container">
+          allReviews.length >= 1 &&
+          <div className="container">
             { allReviews }
           </div>
         }
         {
-          !allReviews.length && <div className="container">
+          !allReviews.length &&
+          <div className="container">
             <h4 className="text-center allRecipes-title">
             This recipe has no reviews yet.
             </h4>

@@ -16,7 +16,7 @@ export class Signup extends React.Component {
 /**
  * @description Creates an instance of Signup.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof Signup
  */
@@ -38,7 +38,7 @@ export class Signup extends React.Component {
  *
  * @returns {null} null
  *
- * @param {any} event
+ * @param {object} event
  *
  * @memberof Signup
  */
@@ -83,9 +83,9 @@ export class Signup extends React.Component {
   /**
    * @description react render method
    *
-   * @returns {component} react component
-   *
    * @memberof Signup
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
@@ -125,8 +125,8 @@ export class Signup extends React.Component {
                   <span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
                   <span>
                     <h6 className="signup-text text-center">
-                    Register to view cool awesome recipes,
-                    rate and review recipes, and create your own recipes and menus.
+                      Register to view cool awesome recipes,
+                      rate and review recipes, and create your own recipes and menus.
                     </h6>
                   </span>
                 </div>
@@ -134,24 +134,42 @@ export class Signup extends React.Component {
               <div className="modal-body">
                 <div>
                   <div className="container">
-                    {errorMessage &&
-                    <div className="alert alert-danger" role="alert">{errorMessage}
-                    </div>}
-                    {errors.firstName &&
-                    <div className="alert alert-danger" role="alert">{errors.firstName}
-                    </div>}
-                    {errors.lastName &&
-                    <div className="alert alert-danger" role="alert">{errors.lastName}
-                    </div>}
-                    {errors.email &&
-                    <div className="alert alert-danger" role="alert">{errors.email}
-                    </div>}
-                    {errors.password &&
-                    <div className="alert alert-danger" role="alert">{errors.password}
-                    </div>}
-                    {errors.confirmPassword &&
-                    <div className="alert alert-danger" role="alert">{errors.confirmPassword}
-                    </div>}
+                    {
+                      errorMessage &&
+                      <div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                      </div>
+                    }
+                    {
+                      errors.firstName &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.firstName}
+                      </div>
+                    }
+                    {
+                      errors.lastName &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.lastName}
+                      </div>
+                    }
+                    {
+                      errors.email &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.email}
+                      </div>
+                    }
+                    {
+                      errors.password &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.password}
+                      </div>
+                    }
+                    {
+                      errors.confirmPassword &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.confirmPassword}
+                      </div>
+                    }
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
                     <div className="container">
@@ -289,10 +307,6 @@ Signup.defaultProps = {
     push: () => {}
   }
 };
-
-// Signup.contextTypes = {
-//   router: PropTypes.object.isRequired
-// };
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.errorMessage,

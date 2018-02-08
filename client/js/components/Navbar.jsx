@@ -38,14 +38,13 @@ export class Navbar extends React.Component {
   handleLogout(event) {
     event.preventDefault();
     this.props.logOutUser();
-    // this.context.router.history.push('/');
     this.props.history.push('/search');
   }
   /**
    *
-   * @returns {component} react component
-   *
    * @memberof Navbar
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { firstname } = this.props;
@@ -62,7 +61,9 @@ export class Navbar extends React.Component {
                         className="more-recipes"
                         title="More Recipes and cooking tips"
                       >
-                    More Recipes</h3></Link>
+                        More Recipes
+                      </h3>
+                    </Link>
                   </span>
                   <button
                     className="navbar-toggler"
@@ -100,14 +101,16 @@ export class Navbar extends React.Component {
                             <li className="nav-item active">
                               <span className="nav-link"><span><i className="fas fa-user" /> </span>
                                 <Link to="/profile">
-                                Profile</Link>
+                                Profile
+                                </Link>
                                 <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
                               <span className="nav-link">
                                 <span><i className="fas fa-utensils" /></span>
                                 <Link to="/user/recipes">
-                                  <span> My Recipes</span></Link>
+                                  <span> My Recipes</span>
+                                </Link>
                                 <span className="sr-only">(current)</span></span>
                             </li>
                             <li className="nav-item active">
@@ -161,10 +164,14 @@ export class Navbar extends React.Component {
           <div className="row" id="nav2">
             <div className="col-sm-9" id="nav-button">
               <span id="title" className="navbar-brand">
-                <Link to="/"><h3
-                  className="more-recipes"
-                  title="More Recipes and cooking tips"
-                >More Recipes</h3></Link>
+                <Link to="/">
+                  <h3
+                    className="more-recipes"
+                    title="More Recipes and cooking tips"
+                  >
+                More Recipes
+                  </h3>
+                </Link>
               </span>
               <button
                 className="navbar-toggler"

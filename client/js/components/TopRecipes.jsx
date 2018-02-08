@@ -17,7 +17,7 @@ class TopRecipes extends React.Component {
 /**
  * @description Creates an instance of TopRecipes.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof TopRecipes
  */
@@ -37,9 +37,10 @@ class TopRecipes extends React.Component {
     this.props.getTopRecipes();
   }
   /**
-* @returns {node} react component
-
+*
 * @memberof TopRecipes
+*
+* @return {ReactElement} markup
 */
   render() {
     const recipes = (this.props.recipes) ? (this.props.recipes) : [];
@@ -62,17 +63,20 @@ class TopRecipes extends React.Component {
     ));
     return (
       <div>
-        { topRecipes.length > 0 &&
+        {
+          topRecipes.length > 0 &&
           <div className="container mt-3">
-            <h3 className="text-center mt-3 mb-3 allRecipes-title"> Todays Top Three Delicacies</h3>
+            <h3 className="text-center mt-3 mb-3 allRecipes-title">
+              Todays Top Three Delicacies
+            </h3>
             <hr />
             <div className="row">
               {topRecipes}
             </div>
           </div>
         }
-        { !topRecipes.length &&
-          <div className="container mt-3" />
+        {
+          !topRecipes.length && <div className="container mt-3" />
         }
       </div>
     );

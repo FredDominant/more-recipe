@@ -44,7 +44,7 @@ class RecipeBody extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof RecipeBody
    */
@@ -53,7 +53,7 @@ class RecipeBody extends React.Component {
     this.setState({ recipes });
   }
   /**
-   * @param {any} current
+   * @param {object} current
    *
    * @returns {null} null
    *
@@ -64,9 +64,10 @@ class RecipeBody extends React.Component {
     this.props.dispatch(getAllRecipes(current.selected));
   }
   /**
- * @returns {node} React component
  *
  * @memberof RecipeBody
+ *
+ * @return {ReactElement} markup
  */
   render() {
     const { pages } = this.props.pageInfo;
@@ -132,7 +133,7 @@ class RecipeBody extends React.Component {
       );
     }
     return (
-      <div className="">
+      <div >
         <br />
         <div className="container">
           <br />

@@ -9,7 +9,7 @@ const NotFoundPage = () => (
         <strong> 404 </strong>
       </h1>
       <br />
-      <h3 className="text-center mb-10">
+      <h3 className="text-center mb-10 allRecipes-title">
         The resource you are looking for does not exist, or has been taken off the catalogue
       </h3>
     </div>

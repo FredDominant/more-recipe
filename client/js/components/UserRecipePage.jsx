@@ -19,7 +19,7 @@ export class UserRecipePage extends React.Component {
 /**
  * @description Creates an instance of UserRecipePage.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof UserRecipePage
  */
@@ -48,22 +48,12 @@ export class UserRecipePage extends React.Component {
     current.selected += 1;
     this.props.getAllUserRecipes(current.selected);
   }
+
   /**
    *
-   * @return {null} null
-   *
-   * @param {number} recipeId
-   *
    * @memberof UserRecipePage
-   */
-  // onDelete(recipeId) {
-  //   this.props.deleteRecipe(recipeId);
-  // }
-  /**
    *
-   * @returns {jsx} jsx
-   *
-   * @memberof UserRecipePage
+   * @return {ReactElement} markup
    */
   render() {
     const { pages } = this.props.pageInfo;
@@ -137,7 +127,7 @@ export class UserRecipePage extends React.Component {
           <div className="emptyContent">
             <br />
             <h3 className="mt-5 mb-5 text-center">
-            You currently have no Recipes. Add new recipes
+              You currently have no Recipes. Add new recipes
             </h3>
             <br />
           </div>

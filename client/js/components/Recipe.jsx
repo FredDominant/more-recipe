@@ -40,8 +40,6 @@ export class Recipe extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} nextProps
-   *
    * @memberof Recipe
    */
   componentWillMount() {
@@ -51,7 +49,7 @@ export class Recipe extends React.Component {
    *
    * @return {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof Recipe
    */
@@ -99,9 +97,9 @@ export class Recipe extends React.Component {
   }
   /**
    *
-   * @returns {component} react component
-   *
    * @memberof Recipe
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { fetching, authenticated } = this.props;
@@ -176,7 +174,8 @@ export class Recipe extends React.Component {
                       id="downvote"
                       onClick={this.handleDownvote}
                       disabled={fetching}
-                    ><i className="far fa-thumbs-down" />
+                    >
+                      <i className="far fa-thumbs-down" />
                       <span> {recipe.downvote}</span></button>
 
                     <button
@@ -189,7 +188,9 @@ export class Recipe extends React.Component {
                       className="btn btn-outline-danger"
                       id="favourite"
                       onClick={this.handleFavourite}
-                    > <i className="far fa-heart" /></button>
+                    >
+                      <i className="far fa-heart" />
+                    </button>
                   </div>
                   }
                 </div>

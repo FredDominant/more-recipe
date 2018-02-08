@@ -14,7 +14,7 @@ export class AddRecipePage extends React.Component {
 /**
  * @description Creates an instance of AddRecipePage.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof AddRecipePage
  */
@@ -59,7 +59,6 @@ export class AddRecipePage extends React.Component {
  */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    // this.isValid();
   }
   /**
 *
@@ -125,9 +124,9 @@ export class AddRecipePage extends React.Component {
   }
   /**
    *
-   * @returns {node} JSX
-   *
    * @memberof AddRecipePage
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { errors, picture, name, description, directions, ingredients } = this.state;

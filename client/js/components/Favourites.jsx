@@ -20,7 +20,7 @@ export class Favourites extends React.Component {
   /**
  * @description Creates an instance of Favourites.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof Favourites
  */
@@ -45,7 +45,7 @@ export class Favourites extends React.Component {
  *
  * @return {null} null
  *
- * @param {any} nextProps
+ * @param {object} nextProps
  *
  * @memberof Favourites
  */
@@ -67,9 +67,9 @@ export class Favourites extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof Favourites
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { pages } = this.state.pageInfo;
