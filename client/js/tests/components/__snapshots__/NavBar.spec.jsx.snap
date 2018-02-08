@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for authenticated Navbar component should render correctly for authenticated users 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-lg navbar-light bg-light"
+  >
+    <div
+      className="row"
+      id="nav2"
+    >
+      <div
+        className="col-sm-10 col-xs-6"
+      >
+        <div
+          className="col-sm-9"
+          id="nav-button"
+        >
+          <span
+            className="navbar-brand"
+            id="title"
+          >
+            <Link
+              replace={false}
+              to="/"
+            >
+              <h3
+                className="more-recipes"
+                title="More Recipes and cooking tips"
+              >
+                More Recipes
+              </h3>
+            </Link>
+          </span>
+          <button
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            className="navbar-toggler"
+            data-target="#navbarSupportedContent"
+            data-toggle="collapse"
+            id="nav-toggler"
+            type="button"
+          >
+            <span
+              className="navbar-toggler-icon"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        className="col-sm-2 col-xs-6"
+        id="navigation-icons"
+      >
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
+          <ul
+            className="navbar-nav mr-auto"
+          >
+            <li
+              className="dropdown nav-item active"
+            >
+              <span
+                className="nav-link"
+              >
+                <span>
+                  <i
+                    className="fas fa-user"
+                  />
+                   
+                </span>
+                <Link
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  className="dropdown-toggle"
+                  data-toggle="dropdown"
+                  replace={false}
+                  role="button"
+                  to="#"
+                >
+                  <span
+                    className="caret"
+                  />
+                </Link>
+                <ul
+                  className="dropdown-menu"
+                >
+                  <div
+                    className="container"
+                    id="dropdown-items"
+                  >
+                    <li
+                      className="nav-item active"
+                    >
+                      <span
+                        className="nav-link"
+                      >
+                        <span>
+                          <i
+                            className="fas fa-user"
+                          />
+                           
+                        </span>
+                        <Link
+                          replace={false}
+                          to="/profile"
+                        >
+                          Profile
+                        </Link>
+                        <span
+                          className="sr-only"
+                        >
+                          (current)
+                        </span>
+                      </span>
+                    </li>
+                    <li
+                      className="nav-item active"
+                    >
+                      <span
+                        className="nav-link"
+                      >
+                        <span>
+                          <i
+                            className="fas fa-utensils"
+                          />
+                        </span>
+                        <Link
+                          replace={false}
+                          to="/user/recipes"
+                        >
+                          <span>
+                             My Recipes
+                          </span>
+                        </Link>
+                        <span
+                          className="sr-only"
+                        >
+                          (current)
+                        </span>
+                      </span>
+                    </li>
+                    <li
+                      className="nav-item active"
+                    >
+                      <span
+                        className="nav-link"
+                      >
+                        <span>
+                          <i
+                            className="far fa-heart"
+                          />
+                        </span>
+                        <Link
+                          replace={false}
+                          to="/favourites"
+                        >
+                          <span>
+                             Favourites
+                          </span>
+                        </Link>
+                         
+                        <span
+                          className="sr-only"
+                        >
+                          (current)
+                        </span>
+                      </span>
+                    </li>
+                    <li
+                      className="nav-item active"
+                    >
+                      <span
+                        className="nav-link"
+                      >
+                        <span>
+                          <i
+                            className="fas fa-plus-circle"
+                          />
+                        </span>
+                        <Link
+                          replace={false}
+                          to="/add-recipe"
+                        >
+                           
+                          <span>
+                             Add Recipe
+                          </span>
+                        </Link>
+                         
+                        <span
+                          className="sr-only"
+                        >
+                          (current)
+                        </span>
+                      </span>
+                    </li>
+                    <hr />
+                    <li
+                      className="nav-item active"
+                    >
+                      <Link
+                        className="btn btn-default"
+                        onClick={[Function]}
+                        replace={false}
+                        role="button"
+                        tabIndex={0}
+                        to="/"
+                      >
+                        <span>
+                          <i
+                            className="fas fa-sign-out-alt"
+                          />
+                        </span>
+                         Logout
+                      </Link>
+                    </li>
+                  </div>
+                </ul>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div />
+</div>
+`;

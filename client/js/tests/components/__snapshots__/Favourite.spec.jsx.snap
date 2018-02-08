@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserRecipePage component should render correctly 1`] = `
+<div>
+  <br />
+  <div
+    className="container favourite-body"
+  >
+    <h2
+      className="text-center mb-3 mt-3 allRecipes-title"
+    >
+      Favourite Recipes
+    </h2>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-12 col-md-6 col-lg-4"
+        key="1"
+      >
+        <Connect(RecipeItem)
+          description="Recipe 1"
+          downvotes={1}
+          favouriteCard="true"
+          favourites={1}
+          image="randomw.jpg"
+          owner=" "
+          recipeName="Recipe 1"
+          removeRecipe={[MockFunction]}
+          upvotes={1}
+        />
+        <br />
+      </div>
+      <div
+        className="col-sm-12 col-md-6 col-lg-4"
+        key="2"
+      >
+        <Connect(RecipeItem)
+          description="Recipe 2"
+          downvotes={1}
+          favouriteCard="true"
+          favourites={1}
+          image="random.jpg"
+          owner=" "
+          recipeName="Recipe 2"
+          removeRecipe={[MockFunction]}
+          upvotes={1}
+        />
+        <br />
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <PaginationBoxView
+        activeClassName="page-item active"
+        breakClassName="text-center"
+        breakLabel="..."
+        containerClassName="container pagination justify-content-center"
+        disableInitialCallback={false}
+        disabledClassName="disabled"
+        initialPage={0}
+        marginPagesDisplayed={3}
+        nextClassName="page-item"
+        nextLabel="Next"
+        nextLinkClassName="page-link"
+        onPageChange={[Function]}
+        pageClassName="page-item"
+        pageCount={10}
+        pageLinkClassName="page-link"
+        pageRangeDisplayed={5}
+        previousClassName="page-item"
+        previousLabel="Previous"
+        previousLinkClassName="page-link"
+      />
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
+
+exports[`UserRecipePage component should render correctly if request is fetching 1`] = `
+<div
+  className="container loading-icon-container"
+>
+  <div
+    className="text-center mt-30 loading-icon"
+  >
+    <Loading
+      color={null}
+      singleColor={null}
+      size={100}
+    />
+  </div>
+</div>
+`;
+
+exports[`UserRecipePage component should render correctly if there are no favourite recipes 1`] = `
+<div
+  className="container loading-icon-container"
+>
+  <div
+    className="text-center mt-30 loading-icon"
+  >
+    <Loading
+      color={null}
+      singleColor={null}
+      size={100}
+    />
+  </div>
+</div>
+`;

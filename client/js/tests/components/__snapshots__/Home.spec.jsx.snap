@@ -1,0 +1,1089 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for Home component should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Home
+        dispatch={[MockFunction]}
+        isFetching={false}
+      >
+        <div>
+          <br />
+          <Connect(Search)
+            dispatch={[MockFunction]}
+            isFetching={false}
+          >
+            <Search
+              dispatch={[MockFunction]}
+              focus={false}
+              history={
+                Object {
+                  "push": [Function],
+                }
+              }
+              isFetching={false}
+              search={[Function]}
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="search-body"
+                >
+                  <form
+                    onSubmit={[Function]}
+                  >
+                    <div
+                      className="input-group"
+                    >
+                      <span
+                        id="search-intro"
+                      >
+                         
+                        <h5>
+                          Find a recipe: 
+                        </h5>
+                          
+                      </span>
+                      <input
+                        aria-label="Search for..."
+                        autoFocus={false}
+                        className="form-control"
+                        id="search-box"
+                        name="searchParam"
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        placeholder="Search Recipe name or ingredient"
+                        type="text"
+                      />
+                      <span
+                        className="input-group-btn"
+                      >
+                        <button
+                          className="btn btn-danger"
+                          type="submit"
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="fa fa-search"
+                          />
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </Search>
+          </Connect(Search)>
+          <br />
+          <div
+            className="container-fluid"
+          >
+            <Carousel>
+              <div
+                className="carousels container"
+              >
+                <UncontrolledCarousel
+                  autoPlay={true}
+                  controls={true}
+                  indicators={true}
+                  items={
+                    Array [
+                      Object {
+                        "altText": "Awesome sauce!",
+                        "caption": "",
+                        "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
+                      },
+                      Object {
+                        "caption": "",
+                        "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
+                      },
+                      Object {
+                        "altText": "Nahh!!!",
+                        "caption": "",
+                        "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
+                      },
+                      Object {
+                        "altText": "Foood",
+                        "caption": "",
+                        "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
+                      },
+                      Object {
+                        "altText": "Eaattt",
+                        "caption": "",
+                        "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
+                      },
+                    ]
+                  }
+                >
+                  <Carousel
+                    activeIndex={0}
+                    interval={5000}
+                    keyboard={true}
+                    next={[Function]}
+                    pause="hover"
+                    previous={[Function]}
+                    ride="carousel"
+                    slide={true}
+                  >
+                    <div
+                      className="carousel slide"
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <CarouselIndicators
+                        activeIndex={0}
+                        items={
+                          Array [
+                            Object {
+                              "altText": "Awesome sauce!",
+                              "caption": "",
+                              "src": "https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg",
+                            },
+                            Object {
+                              "caption": "",
+                              "src": "https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16",
+                            },
+                            Object {
+                              "altText": "Nahh!!!",
+                              "caption": "",
+                              "src": "http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg",
+                            },
+                            Object {
+                              "altText": "Foood",
+                              "caption": "",
+                              "src": "https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg",
+                            },
+                            Object {
+                              "altText": "Eaattt",
+                              "caption": "",
+                              "src": "https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg",
+                            },
+                          ]
+                        }
+                        onClickHandler={[Function]}
+                      >
+                        <ol
+                          className="carousel-indicators"
+                        >
+                          <li
+                            className="active"
+                            key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpgAwesome sauce!"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16undefined"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpegNahh!!!"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpgFoood"
+                            onClick={[Function]}
+                          />
+                          <li
+                            className=""
+                            key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpgEaattt"
+                            onClick={[Function]}
+                          />
+                        </ol>
+                      </CarouselIndicators>
+                      <div
+                        className="carousel-inner"
+                        role="listbox"
+                      >
+                        <CarouselItem
+                          altText="Awesome sauce!"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={true}
+                          key="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={true}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item active"
+                            >
+                              <img
+                                alt="Awesome sauce!"
+                                className="d-block img-fluid"
+                                src="https://www.mcdonalds.com/content/dam/usa/promotions/desktop/OFYQ_960x542.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader=""
+                                captionText=""
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3 />
+                                  <p />
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                className="d-block img-fluid"
+                                src="https://article.images.consumerreports.org/prod/content/dam/cro/news_articles/health/CR-Health-Crop-Food-Child-10-16"
+                              />
+                              <CarouselCaption
+                                captionHeader=""
+                                captionText=""
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3 />
+                                  <p />
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Nahh!!!"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Nahh!!!"
+                                className="d-block img-fluid"
+                                src="http://www.fnstatic.co.uk/images/content/package/50-barbecue-recipes-to-feed-a-crowd_1.jpeg"
+                              />
+                              <CarouselCaption
+                                captionHeader=""
+                                captionText=""
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3 />
+                                  <p />
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Foood"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Foood"
+                                className="d-block img-fluid"
+                                src="https://assets3.thrillist.com/v1/image/2416598/size/tmg-facebook_social.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader=""
+                                captionText=""
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3 />
+                                  <p />
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                        <CarouselItem
+                          altText="Eaattt"
+                          appear={false}
+                          enter={true}
+                          exit={true}
+                          in={false}
+                          key="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                          mountOnEnter={false}
+                          onEnter={[Function]}
+                          onEntered={[Function]}
+                          onEntering={[Function]}
+                          onExit={[Function]}
+                          onExited={[Function]}
+                          onExiting={[Function]}
+                          slide={true}
+                          src="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                          timeout={600}
+                          unmountOnExit={false}
+                        >
+                          <Transition
+                            appear={false}
+                            enter={true}
+                            exit={true}
+                            in={false}
+                            mountOnEnter={false}
+                            onEnter={[Function]}
+                            onEntered={[Function]}
+                            onEntering={[Function]}
+                            onExit={[Function]}
+                            onExited={[Function]}
+                            onExiting={[Function]}
+                            timeout={600}
+                            unmountOnExit={false}
+                          >
+                            <div
+                              className="carousel-item"
+                            >
+                              <img
+                                alt="Eaattt"
+                                className="d-block img-fluid"
+                                src="https://assets3.thrillist.com/v1/image/2417362/size/tmg-facebook_social.jpg"
+                              />
+                              <CarouselCaption
+                                captionHeader=""
+                                captionText=""
+                              >
+                                <div
+                                  className="carousel-caption d-none d-md-block"
+                                >
+                                  <h3 />
+                                  <p />
+                                </div>
+                              </CarouselCaption>
+                            </div>
+                          </Transition>
+                        </CarouselItem>
+                      </div>
+                      <CarouselControl
+                        direction="prev"
+                        directionText="Previous"
+                        onClickHandler={[Function]}
+                      >
+                        <a
+                          className="carousel-control-prev"
+                          onClick={[Function]}
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="carousel-control-prev-icon"
+                          />
+                          <span
+                            className="sr-only"
+                          >
+                            Previous
+                          </span>
+                        </a>
+                      </CarouselControl>
+                      <CarouselControl
+                        direction="next"
+                        directionText="Next"
+                        onClickHandler={[Function]}
+                      >
+                        <a
+                          className="carousel-control-next"
+                          onClick={[Function]}
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="carousel-control-next-icon"
+                          />
+                          <span
+                            className="sr-only"
+                          >
+                            Next
+                          </span>
+                        </a>
+                      </CarouselControl>
+                    </div>
+                  </Carousel>
+                </UncontrolledCarousel>
+              </div>
+            </Carousel>
+            <div
+              className="top-recipes"
+            >
+              <Connect(TopRecipes)>
+                <TopRecipes
+                  getTopRecipes={[Function]}
+                  recipes={Array []}
+                >
+                  <div>
+                    <div
+                      className="container mt-3"
+                    />
+                  </div>
+                </TopRecipes>
+              </Connect(TopRecipes)>
+            </div>
+            <div
+              className="recipes"
+            >
+              <Connect(RecipeBody)>
+                <RecipeBody
+                  dispatch={[Function]}
+                  fetching={true}
+                  pageInfo={Object {}}
+                  recipes={Array []}
+                >
+                  <div
+                    className="container loading-icon-container"
+                  >
+                    <div
+                      className="text-center mt-30 loading-icon"
+                    >
+                      <Loading
+                        color={null}
+                        singleColor={null}
+                        size={100}
+                      >
+                        <div
+                          className="container"
+                        >
+                          <MDSpinner
+                            color={null}
+                            color1="rgb(66, 165, 245)"
+                            color2="rgb(239, 83, 80)"
+                            color3="rgb(253, 216, 53)"
+                            color4="rgb(76, 175, 80)"
+                            duration={1333}
+                            singleColor={null}
+                            size={100}
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "animation": "__react-md-spinner-animation__root-rotate 1568.235294117647ms linear infinite",
+                                  "display": "inline-block",
+                                  "height": 100,
+                                  "position": "relative",
+                                  "verticalAlign": "middle",
+                                  "width": 100,
+                                }
+                              }
+                            >
+                              <span
+                                key="0"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-1-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(66, 165, 245)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(66, 165, 245) transparent transparent rgb(66, 165, 245)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(66, 165, 245) rgb(66, 165, 245) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="1"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-2-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(239, 83, 80)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(239, 83, 80) transparent transparent rgb(239, 83, 80)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(239, 83, 80) rgb(239, 83, 80) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="2"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-3-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(253, 216, 53)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(253, 216, 53) transparent transparent rgb(253, 216, 53)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(253, 216, 53) rgb(253, 216, 53) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                              <span
+                                key="3"
+                                style={
+                                  Object {
+                                    "animationDuration": "5332ms",
+                                    "animationIterationCount": "infinite",
+                                    "animationName": "__react-md-spinner-animation__fill-unfill-rotate, __react-md-spinner-animation__layer-4-fade-in-out",
+                                    "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                    "borderColor": "rgb(76, 175, 80)",
+                                    "display": "flex",
+                                    "height": "100%",
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "whiteSpace": "nowrap",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__left-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(76, 175, 80) transparent transparent rgb(76, 175, 80)",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "display": "inline-block",
+                                      "flexGrow": 1,
+                                      "height": "100%",
+                                      "overflow": "hidden",
+                                      "position": "relative",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "animationDuration": "1333ms",
+                                        "animationIterationCount": "infinite",
+                                        "animationName": "__react-md-spinner-animation__right-spin",
+                                        "animationTimingFunction": "cubic-bezier(.4, 0, .2, 1)",
+                                        "borderColor": "rgb(76, 175, 80) rgb(76, 175, 80) transparent transparent",
+                                        "borderRadius": "50%",
+                                        "borderStyle": "solid",
+                                        "borderWidth": 11,
+                                        "bottom": 0,
+                                        "boxSizing": "border-box",
+                                        "left": "-100%",
+                                        "position": "absolute",
+                                        "top": 0,
+                                        "transform": "rotate(-129deg)",
+                                        "width": "200%",
+                                      }
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  style={
+                                    Object {
+                                      "borderColor": "inherit",
+                                      "borderRadius": "50%",
+                                      "borderTopStyle": "solid",
+                                      "borderWidth": 11,
+                                      "boxSizing": "border-box",
+                                      "left": "45%",
+                                      "position": "absolute",
+                                      "top": 0,
+                                      "width": "10%",
+                                    }
+                                  }
+                                />
+                              </span>
+                            </span>
+                          </MDSpinner>
+                        </div>
+                      </Loading>
+                    </div>
+                  </div>
+                </RecipeBody>
+              </Connect(RecipeBody)>
+              <br />
+            </div>
+            <br />
+          </div>
+          <br />
+          <Footer>
+            <div
+              className="footer"
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="text-center"
+                >
+                  <br />
+                  <h4
+                    className="text-center"
+                  >
+                    <span
+                      className="footer-title"
+                    >
+                      More Recipes®
+                    </span>
+                    <br />
+                  </h4>
+                  <h5
+                    className="text-center mt-2"
+                  >
+                    licensed under MIT.
+                  </h5>
+                  <h5
+                    className="text-center mt-2"
+                  >
+                    Made by Fred Adewole for Andela®
+                    <br />
+                  </h5>
+                  <h6
+                    className="text-center mt-2"
+                  >
+                    © 2018
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </Footer>
+        </div>
+      </Home>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

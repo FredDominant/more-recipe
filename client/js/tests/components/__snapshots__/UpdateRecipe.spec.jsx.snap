@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for UpdateRecipe component should render correctly 1`] = `
+<div>
+  <div
+    className="container"
+  >
+    <br />
+    <div>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-sm-4"
+          >
+            <div
+              className="recipe-image"
+            >
+              <img
+                alt=""
+                className="img-thumbnail img-responsive"
+                src=""
+                srcSet=""
+              />
+            </div>
+            <br />
+            <label
+              className="file-upload__label"
+              htmlFor="upload"
+            >
+              upload image
+            </label>
+            <input
+              accept=".png,.gif,.jpg,.jpeg"
+              disabled={true}
+              id="file-upload"
+              name="file"
+              onChange={[Function]}
+              type="file"
+            />
+          </div>
+          <div
+            className="col-sm-8"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeName"
+              >
+                Recipe Name
+              </label>
+              <input
+                className="form-control"
+                disabled={true}
+                id="recipeName"
+                name="name"
+                onChange={[Function]}
+                placeholder="Michael's Awesome Sauce"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeDescription"
+              >
+                Recipe Description
+              </label>
+              <input
+                className="form-control"
+                disabled={true}
+                id="recipeDescription"
+                name="description"
+                onChange={[Function]}
+                placeholder="An awesome sauce by Michael"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeDirections"
+              >
+                Recipe Directions
+              </label>
+              <textarea
+                className="form-control"
+                disabled={true}
+                id="recipeDescription"
+                name="directions"
+                onChange={[Function]}
+                placeholder="Michael's Awesome Sauce"
+                rows="5"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeingredients"
+              >
+                Ingredients
+              </label>
+              <textarea
+                className="form-control"
+                disabled={true}
+                id="recipeIngredients"
+                name="ingredients"
+                onChange={[Function]}
+                placeholder="Michael's Ingredient list"
+                rows="5"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                >
+                  <button
+                    className="btn btn-success"
+                    id="edit"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      <i
+                        className="fas fa-unlock"
+                      />
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                >
+                  <button
+                    className="btn btn-primary"
+                    disabled={true}
+                  >
+                    Update Recipe
+                  </button>
+                </div>
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
+
+exports[`onToggleEdit should set form value 1`] = `
+<div>
+  <div
+    className="container"
+  >
+    <br />
+    <div>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-sm-4"
+          >
+            <div
+              className="recipe-image"
+            >
+              <img
+                alt=""
+                className="img-thumbnail img-responsive"
+                src=""
+                srcSet=""
+              />
+            </div>
+            <br />
+            <label
+              className="file-upload__label"
+              htmlFor="upload"
+            >
+              upload image
+            </label>
+            <input
+              accept=".png,.gif,.jpg,.jpeg"
+              disabled={false}
+              id="file-upload"
+              name="file"
+              onChange={[Function]}
+              type="file"
+            />
+          </div>
+          <div
+            className="col-sm-8"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeName"
+              >
+                Recipe Name
+              </label>
+              <input
+                className="form-control"
+                disabled={false}
+                id="recipeName"
+                name="name"
+                onChange={[Function]}
+                placeholder="Michael's Awesome Sauce"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeDescription"
+              >
+                Recipe Description
+              </label>
+              <input
+                className="form-control"
+                disabled={false}
+                id="recipeDescription"
+                name="description"
+                onChange={[Function]}
+                placeholder="An awesome sauce by Michael"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeDirections"
+              >
+                Recipe Directions
+              </label>
+              <textarea
+                className="form-control"
+                disabled={false}
+                id="recipeDescription"
+                name="directions"
+                onChange={[Function]}
+                placeholder="Michael's Awesome Sauce"
+                rows="5"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="recipeingredients"
+              >
+                Ingredients
+              </label>
+              <textarea
+                className="form-control"
+                disabled={false}
+                id="recipeIngredients"
+                name="ingredients"
+                onChange={[Function]}
+                placeholder="Michael's Ingredient list"
+                rows="5"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                >
+                  <button
+                    className="btn btn-success"
+                    id="edit"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      <i
+                        className="fas fa-lock"
+                      />
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                >
+                  <button
+                    className="btn btn-primary"
+                    disabled={false}
+                  >
+                    Update Recipe
+                  </button>
+                </div>
+                <div
+                  className="col-md-4 col-sm-6 col-lg-4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
