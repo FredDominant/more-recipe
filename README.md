@@ -81,6 +81,7 @@ cp .env.sample .env
 
 4. Finally, start the server
 ```sh
+npm run server
 ```
 
 ## Contributing to the project
