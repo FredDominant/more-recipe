@@ -22,9 +22,9 @@ class Loading extends React.Component {
   }
   /**
    *
-   * @returns {node} jsx
-   *
    * @memberof Loading
+   *
+   * @return {ReactElement} markup
    */
   render() {
     return (

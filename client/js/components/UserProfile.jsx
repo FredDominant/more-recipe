@@ -13,23 +13,23 @@ import updatePasswordValidator from '../validation/updatePasswordValidator';
  *
  * @extends {React.Component}
  */
-class UserProfile extends React.Component {
+export class UserProfile extends React.Component {
 /**
  * @description Creates an instance of UserProfile.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof UserProfile
  */
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
-      picture: '',
+      imageUrl: '',
       errors: {},
       disabled: true,
       uploadImageError: '',
@@ -60,8 +60,8 @@ class UserProfile extends React.Component {
    * @memberof UserProfile
    */
   componentWillReceiveProps(nextProps) {
-    const { firstname, lastname, email, picture } = nextProps.userDetails;
-    this.setState({ firstname, lastname, email, picture });
+    const { firstName, lastName, email, imageUrl } = nextProps.userDetails;
+    this.setState({ firstName, lastName, email, imageUrl });
   }
   /**
    *
@@ -74,14 +74,14 @@ class UserProfile extends React.Component {
   onUpload(event) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      this.setState({ picture: e.target.result });
+      this.setState({ imageUrl: e.target.result });
     };
     reader.readAsDataURL(event.target.files[0]);
     this.setState({ selectedImage: true });
   }
   /**
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UserProfile
    *
@@ -125,6 +125,7 @@ class UserProfile extends React.Component {
     event.preventDefault();
     if (password.length) {
       if (this.isValid()) {
+        this.setState({ errors: {} });
         return this.handleUpdate();
       }
     } else {
@@ -154,35 +155,34 @@ class UserProfile extends React.Component {
    */
   handleUpdate() {
     const {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
-      picture,
+      imageUrl,
       password,
       confirmPassword,
       selectedImage
     } = this.state;
     this.props.updateProfile({
-      firstname, lastname, email, picture, password, confirmPassword, selectedImage
+      firstName, lastName, email, imageUrl, password, confirmPassword, selectedImage
     });
   }
   /**
    *
-   * @returns {node} JSX
-   *
    * @memberof UserProfile
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       confirmPassword,
-      picture,
+      imageUrl,
       disabled,
-      errors,
-      fetching
+      errors
     } = this.state;
     return (
       <div className="profile-body">
@@ -199,9 +199,9 @@ class UserProfile extends React.Component {
                   >
                     <img
                       className="img-thumbnail"
-                      id="update-profile-picture"
-                      src={picture}
-                      alt={firstname}
+                      id="update-profile-image"
+                      src={imageUrl}
+                      alt={firstName}
                       srcSet=""
                     />
                   </div>
@@ -209,6 +209,7 @@ class UserProfile extends React.Component {
                   <input
                     type="file"
                     name="file"
+                    accept=".png,.gif,.jpg,.jpeg"
                     id="profile-upload"
                     style={{ display: 'none' }}
                     onChange={this.onUpload}
@@ -218,32 +219,36 @@ class UserProfile extends React.Component {
                 <br />
 
                 <div className="form-group">
-                  <label htmlFor="profile-firstname">First Name</label>
+                  <label htmlFor="profile-firstName">First Name</label>
                   <input
                     type="text"
-                    id="profile-firstname"
+                    id="profile-firstName"
                     className="form-control"
-                    name="firstname"
-                    value={firstname}
+                    name="firstName"
+                    value={firstName}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
+                    pattern="[A-Za-z]+"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="profile-lastname">Last Name</label>
+                  <label htmlFor="profile-lastName">Last Name</label>
                   <input
                     type="text"
-                    id="profile-lastname"
+                    id="profile-lastName"
                     className="form-control"
-                    name="lastname"
-                    value={lastname}
+                    name="lastName"
+                    value={lastName}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
+                    pattern="[A-Za-z]+"
                   />
                 </div>
                 <br />
-                <h6 className="text-left">Account setting</h6>
+                <h6 className="text-left">Account security setting</h6>
                 <hr />
                 <div className="form-group">
                   <label htmlFor="profile-email">Email</label>
@@ -255,6 +260,7 @@ class UserProfile extends React.Component {
                     value={email}
                     onChange={this.onChange}
                     disabled={disabled}
+                    required
                   />
                 </div>
 
@@ -269,9 +275,12 @@ class UserProfile extends React.Component {
                     onChange={this.onChange}
                     disabled={disabled}
                   />
-                  {errors.password && <small className="form-text text-muted">
-                    <span className="error-text"> {errors.password} </span>
-                  </small>}
+                  {
+                    errors.password &&
+                    <small className="form-text text-muted">
+                      <span className="error-text"> {errors.password} </span>
+                    </small>
+                  }
                 </div>
 
                 <div className="form-group">
@@ -285,15 +294,18 @@ class UserProfile extends React.Component {
                     onChange={this.onChange}
                     disabled={disabled}
                   />
-                  {errors.confirmPassword && <small className="form-text text-muted">
-                    <span className="error-text"> {errors.confirmPassword} </span>
-                  </small>}
+                  {
+                    errors.confirmPassword &&
+                    <small className="form-text text-muted">
+                      <span className="error-text"> {errors.confirmPassword} </span>
+                    </small>
+                  }
                 </div>
 
                 <div className="form-group">
                   <div className="container row">
                     <div className="col-sm-2 col-md-2 col-lg-2">
-                      <button className="btn btn-primary" onClick={this.onEdit}>
+                      <button className="btn btn-primary" id="edit" onClick={this.onEdit}>
                         {
                           !this.state.disabled && <span><i className="fas fa-lock" /></span>
                         }
@@ -308,9 +320,9 @@ class UserProfile extends React.Component {
                         disabled={disabled}
                       >
                        update profile
-                      </button></div>
+                      </button>
+                    </div>
                     <div className="col-sm-2 col-md-2 col-lg-2" />
-
                   </div>
                 </div>
               </div>

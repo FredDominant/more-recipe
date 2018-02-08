@@ -16,5 +16,5 @@ export default function userRoutes(app) {
   app.put('/api/v1/users/update', authorize, Validate.updateUser, Validate.updatePassword, User.updateUser); // user update profile
   app.get('/api/v1/users/favourites', authorize, Favourite.getAll); // User can get all favourites
   app.post('/api/v1/users/recover-email', Validate.recoverEmail, User.verifyEmail); // User can recover password
-  app.put('/api/users/reset-password', authorize, Validate.resetPassword, User.ResetPassword); // User can reset password
+  app.put('/api/v1/users/reset-password', authorize, Validate.resetPassword, User.ResetPassword); // User can reset password
 }

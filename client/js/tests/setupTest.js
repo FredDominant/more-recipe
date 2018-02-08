@@ -5,7 +5,13 @@ configure({ adapter: new Adapter() });
 
 global.shallow = shallow;
 global.mount = mount;
-
+global.$ = () => ({
+  removeClass: () => {},
+  click: () => {},
+  hide: () => {},
+  show: () => {}
+});
+global.document = document;
 console.error = (message) => {
   throw new Error(message);
 };

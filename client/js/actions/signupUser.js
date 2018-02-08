@@ -1,9 +1,9 @@
 import axios from 'axios';
-import toastr from 'toastr';
-import { batchActions } from 'redux-batched-actions';
 
 import { setFetching, unsetFetching } from './fetching';
 import { recieveAuth, authError } from './loginUser';
+import toaster from '../utils/toaster';
+
 /**
  * @description this function handles a user sign up
  *
@@ -14,27 +14,21 @@ import { recieveAuth, authError } from './loginUser';
 
 const signupUser = userData => (dispatch) => {
   dispatch(setFetching());
-  axios.post('/api/v1/users/signup', userData)
+  return axios.post('/api/v1/users/signup', userData)
     .then((response) => {
-      const { User, Token } = response.data;
-      localStorage.setItem('token', Token);
-      dispatch(batchActions([
-        recieveAuth(User, Token),
-        unsetFetching()
-      ]));
+      const { user, token } = response.data;
+      localStorage.setItem('token', token);
+      dispatch(recieveAuth({ user, token }));
+      dispatch(unsetFetching());
+
       document.body.classList.remove('modal-open');
       $('div.modal-backdrop ').removeClass('modal-backdrop fade show');
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Welcome. You`re now signed in');
+      toaster.toastSuccess('Welcome');
     })
     .catch((error) => {
-      const message = error.response.data.Message;
-      dispatch(batchActions([
-        authError(message),
-        unsetFetching()
-      ]));
+      const { message } = error.response.data;
+      dispatch(authError(message));
+      dispatch(unsetFetching());
     });
 };
 export default signupUser;

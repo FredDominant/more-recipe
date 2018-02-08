@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 import auth from './auth';
 import isFetching from './isFetching';
 import recipes from './allRecipes';
-import isUploading from './isUploading';
 import addRecipe from './addRecipe';
 import getOneRecipe from './getOneRecipe';
 import currentUserProfile from './currentUserProfile';
@@ -21,7 +20,6 @@ const reducers = combineReducers({
   getOneRecipe,
   getUserRecipe,
   getFavourites,
-  isUploading,
   currentUserProfile,
   pageInfo
 });

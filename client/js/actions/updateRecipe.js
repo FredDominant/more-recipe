@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { EDIT_RECIPE, EDIT_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
@@ -31,11 +30,8 @@ const updateRecipeFail = () => ({
  *
  *
  * @param {object} recipe
- *
  * @param {number} recipeId
- *
  * @param {string} token
- *
  * @param {function} dispatch
  *
  * @returns {promise} axios promise
@@ -49,27 +45,22 @@ const updateRecipeRequest = (recipe, recipeId, token, dispatch) => axios({
   data: recipe
 })
   .then((response) => {
-    const { Recipe } = response.data;
-    dispatch(batchActions([
-      updateRecipeSuccess(Recipe),
-      unsetFetching()
-    ]));
+    const newRecipe = response.data.recipe;
+    dispatch(updateRecipeSuccess(newRecipe));
+    dispatch(unsetFetching());
     toaster.toastSuccess('Recipe Updated');
   })
   .catch((error) => {
-    const errorMessage = error.response.data.Message;
-    dispatch(batchActions([
-      updateRecipeFail(),
-      unsetFetching()
-    ]));
-    toaster.toastError(errorMessage);
+    const { message } = error.response.data;
+    dispatch(updateRecipeFail(message));
+    dispatch(unsetFetching());
+    toaster.toastError(message);
   });
 
 /**
  * @description checks if image is added, then makes api call
  *
  * @param {object} recipe
- *
  * @param {number} recipeId
  *
  * @returns {promise} Axios promise
@@ -87,10 +78,8 @@ const updateRecipe = (recipe, recipeId) => (dispatch) => {
       })
       .catch(() => {
         const message = 'could not upload image';
-        dispatch(batchActions([
-          updateRecipeFail(message),
-          unsetFetching()
-        ]));
+        dispatch(updateRecipeFail(message));
+        dispatch(unsetFetching());
         toaster.toastError(message);
       });
   }

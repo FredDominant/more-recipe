@@ -11,11 +11,11 @@ import capitalize from '../utils/capitalize';
  *
  * @extends {React.Component}
  */
-class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
   /**
  * @description Creates an instance of SearchPage.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof SearchPage
  */
@@ -27,7 +27,7 @@ class SearchPage extends React.Component {
     };
   }
   /**
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof SearchPage
    *
@@ -38,9 +38,10 @@ class SearchPage extends React.Component {
     this.setState({ recipes, searchErrors });
   }
   /**
-   * @returns {jsx} React component
    *
    * @memberof SearchPage
+   *
+   * @return {ReactElement} markup
    */
   render() {
     let recipes = (this.state.recipes) ? (this.state.recipes) : [];
@@ -54,7 +55,7 @@ class SearchPage extends React.Component {
           upvotes={recipe.upvote}
           downvotes={recipe.downvote}
           views={recipe.views}
-          owner={`${recipe.User.firstname} ${recipe.User.lastname}`}
+          owner={`${recipe.User.firstName} ${recipe.User.lastName}`}
         />
         <br />
       </div>)
@@ -67,7 +68,8 @@ class SearchPage extends React.Component {
           <Search focus />
           <br />
           {
-            recipes.length > 0 && <h4 className="text-center" id="search-results">
+            recipes.length > 0 &&
+            <h4 className="text-center" id="search-results">
              Search results
             </h4>
           }
@@ -75,9 +77,12 @@ class SearchPage extends React.Component {
           <div className="row">
             {recipes}
           </div>
-          { this.state.searchErrors.length > 2 && <div className="">
-            <h5 className="text-center" id="no-match-found"> No match(es) found</h5>
-          </div>}
+          {
+            this.state.searchErrors.length > 2 &&
+            <div>
+              <h5 className="text-center" id="no-match-found"> No match(es) found</h5>
+            </div>
+          }
         </div>
         <Footer />
       </div>

@@ -1,10 +1,10 @@
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    firstname: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -25,10 +25,10 @@ export default (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: true
     },
-    picture: {
+    imageUrl: {
       type: DataTypes.TEXT,
       allowNull: true,
-      defaultValue: 'https://d13yacurqjgara.cloudfront.net/users/583390/screenshots/2517460/sob_avatar_illustration__800x600px__1.0_1x.jpg'
+      defaultValue: '/images/user_avatar.png'
     },
     token: {
       type: DataTypes.TEXT,

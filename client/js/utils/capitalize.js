@@ -1,6 +1,4 @@
-const capitalize = (word) => {
-  const nameList = word.split('');
-  nameList[0] = nameList[0].toUpperCase();
-  return nameList.join('');
-};
+import capitalizeWord from 'lodash.capitalize';
+
+const capitalize = word => capitalizeWord(word);
 export default capitalize;

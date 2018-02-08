@@ -1,24 +1,38 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
-import toastr from 'toastr';
 
+import toaster from '../utils/toaster';
 import { DELETE_RECIPE, DELETE_RECIPE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 
+/**
+ * @returns {object} action
+ *
+ * @param {number} recipeId
+ */
 const deleteRecipeSuccess = recipeId => ({
   type: DELETE_RECIPE,
   recipeId
 });
 
+/**
+ * @returns {object} action
+ *
+ * @param {number} recipeId
+ */
 const deleteRecipeError = recipeId => ({
   type: DELETE_RECIPE_ERROR,
   recipeId
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {number} recipeId
+ */
 const deleteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'DELETE',
     url: `/api/v1/recipes/${recipeId}`,
     headers: {
@@ -26,24 +40,14 @@ const deleteRecipe = recipeId => (dispatch) => {
     }
   })
     .then(() => {
-      dispatch(batchActions([
-        deleteRecipeSuccess(recipeId),
-        unsetFetching()
-      ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Recipe deleted');
+      dispatch(deleteRecipeSuccess(recipeId));
+      dispatch(unsetFetching());
+      toaster.toastSuccess('Recipe deleted');
     })
     .catch(() => {
-      dispatch(batchActions([
-        deleteRecipeError(recipeId),
-        unsetFetching()
-      ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to delete recipe');
+      dispatch(deleteRecipeError(recipeId));
+      dispatch(unsetFetching());
+      toaster.toastError('Unable to delete recipe');
     });
 };
 export default deleteRecipe;

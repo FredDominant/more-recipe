@@ -1,8 +1,13 @@
 import axios from 'axios';
-import toastr from 'toastr';
+import toaster from '../utils/toaster';
 
 import { setFetching, unsetFetching } from './fetching';
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {string} email
+ */
 const recoverPassword = email => (dispatch) => {
   dispatch(setFetching());
   return axios({
@@ -12,18 +17,12 @@ const recoverPassword = email => (dispatch) => {
   })
     .then(() => {
       dispatch(unsetFetching());
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Recovery link sent. Please check the email you provided to reset your password');
+      toaster.toastSuccess('Recovery link sent. Check your email');
     })
     .catch((error) => {
-      const { Message } = error.response.data;
+      const { message } = error.response.data;
       dispatch(unsetFetching());
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error(Message);
+      toaster.toastError(message);
     });
 };
 export default recoverPassword;

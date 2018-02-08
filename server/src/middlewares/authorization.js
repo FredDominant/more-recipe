@@ -10,7 +10,7 @@ const authorize = (req, res, next) => {
       if (error) {
         return res.status(401)
           .json({
-            Message: 'Unable to verify token'
+            message: 'Unable to verify token'
           });
       }
       req.decoded = decoded;
@@ -19,7 +19,7 @@ const authorize = (req, res, next) => {
   } else {
     return res.status(401)
       .json({
-        Message: 'Failed to provide token'
+        message: 'Failed to provide token'
       });
   }
 };

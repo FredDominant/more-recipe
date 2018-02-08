@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reviews component should render correctly if there are reviews 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="container"
+      key="review 1"
+    >
+      <ViewReviews
+        content="some content"
+        createdAt="Invalid date"
+        firstName="firstName"
+        imageUrl=""
+        lastName="lastName"
+      />
+    </div>
+    <div
+      className="container"
+      key="review 2"
+    >
+      <ViewReviews
+        content="some other content"
+        createdAt="Invalid date"
+        firstName="second firstName"
+        imageUrl=""
+        lastName="lsecond astName"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Reviews component should render correctly if there are reviews 2`] = `
+<div
+  className="container"
+>
+  <div
+    className="container"
+  >
+    <h4
+      className="text-center allRecipes-title"
+    >
+      This recipe has no reviews yet.
+    </h4>
+  </div>
+</div>
+`;

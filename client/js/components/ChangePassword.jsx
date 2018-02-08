@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import MDSpinner from 'react-md-spinner';
 
@@ -16,11 +16,11 @@ import resetPassword from '../actions/resetPassword';
  *
  * @extends {React.Component}
  */
-class ChangePassword extends React.Component {
+export class ChangePassword extends React.Component {
   /**
  * @description Creates an instance of ChangePassword.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof ChangePassword
  */
@@ -37,7 +37,7 @@ class ChangePassword extends React.Component {
   }
   /**
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof ChangePassword
    *
@@ -52,7 +52,7 @@ class ChangePassword extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof ChangePassword
    */
@@ -62,6 +62,7 @@ class ChangePassword extends React.Component {
       const { password, confirmPassword } = this.state;
       const { token } = this.props.match.params;
       this.props.resetPassword({ token, password, confirmPassword });
+      this.setState({ errors: {} });
     }
   }
   /**
@@ -80,13 +81,16 @@ class ChangePassword extends React.Component {
   }
   /**
    *
-   * @returns {node} react component
-   *
    * @memberof ChangePassword
+   *
+   * @return {ReactElement} markup
    */
   render() {
-    if (!verifyRecoveryToken(this.props.match.params.token) || this.props.authenticated) {
-      return <Redirect to="/home" />;
+    if (this.props.authenticated) {
+      return this.props.history.push('/');
+    }
+    if (!verifyRecoveryToken(this.props.match.params.token)) {
+      return this.props.history.push('/');
     }
     const { password, confirmPassword, errors } = this.state;
     return (
@@ -109,9 +113,12 @@ class ChangePassword extends React.Component {
                       placeholder="Password"
                       name="password"
                     />
-                    {errors.password && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.password} </span>
-                    </small>}
+                    {
+                      errors.password &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.password} </span>
+                      </small>
+                    }
                   </div>
                   <br />
                   <div>
@@ -125,9 +132,12 @@ class ChangePassword extends React.Component {
                       placeholder="Confirm password"
                       name="confirmPassword"
                     />
-                    {errors.confirmPassword && <small className="form-text text-muted">
-                      <span className="error-text"> {errors.confirmPassword} </span>
-                    </small>}
+                    {
+                      errors.confirmPassword &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.confirmPassword} </span>
+                      </small>
+                    }
                   </div>
                   <br />
                   <div>
@@ -154,7 +164,16 @@ ChangePassword.propTypes = {
   match: PropTypes.shape().isRequired,
   resetPassword: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
+};
+
+ChangePassword.defaultProps = {
+  history: {
+    push: () => {}
+  }
 };
 const mapDispatchToProps = dispatch => ({
   resetPassword: userData => dispatch((resetPassword(userData)))

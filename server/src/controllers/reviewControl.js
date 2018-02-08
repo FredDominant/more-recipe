@@ -14,7 +14,6 @@ export default class Review {
    * @description This method adds reviews to a recipe
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
 
    * @memberof Review
@@ -27,7 +26,7 @@ export default class Review {
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
-            .json({ Message: `No recipe with id ${req.params.recipeId}` });
+            .json({ message: `No recipe with id ${req.params.recipeId}` });
         }
         const newReview = {
           content,
@@ -38,7 +37,7 @@ export default class Review {
           .then((reviewDetails) => {
             user.findOne({
               where: { id: req.decoded.id },
-              attributes: ['firstname', 'lastname', 'picture']
+              attributes: ['firstName', 'lastName', 'imageUrl']
             }).then(foundUser => res.status(201).json({
               User: foundUser,
               content: reviewDetails.content,
@@ -51,13 +50,12 @@ export default class Review {
           });
       })
       .catch(() => res.status(500)
-        .json({ Message: 'Internal error ocurred. Please try again later' }));
+        .json({ message: 'Internal error ocurred. Please try again later' }));
   }
   /**
    * @description returns the reviews of a particular recipe
    *
    * @param {any} req
-   *
    * @param {any} res
    *
    * @memberof Review
@@ -79,7 +77,7 @@ export default class Review {
           recipeId: req.params.recipeId
         },
         include: [
-          { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+          { model: models.User, attributes: ['firstName', 'lastName', 'imageUrl'] }
         ],
         limit,
         offset,
@@ -87,22 +85,22 @@ export default class Review {
           ['id', 'DESC']
         ]
       })
-        .then((Reviews) => {
-          if (Reviews) {
-            if (Reviews.length < 1) {
-              return res.status(404).json({ Message: 'There are currently no reviews for this recipe' });
+        .then((reviews) => {
+          if (reviews) {
+            if (reviews.length < 1) {
+              return res.status(404).json({ message: 'There are currently no reviews for this recipe' });
             }
             return res.status(200)
               .json({
-                NumberOfItems: numberOfItems,
-                Limit: limit,
-                Pages: pages,
-                CurrentPage: page,
-                Reviews
+                numberOfItems,
+                limit,
+                pages,
+                currentPage: page,
+                reviews
               });
           }
         });
     })
-      .catch(() => res.status(500).json({ Message: 'Internal server error' }));
+      .catch(() => res.status(500).json({ message: 'Internal server error' }));
   }
 }

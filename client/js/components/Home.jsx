@@ -6,10 +6,10 @@ import RecipeBody from './RecipeBody';
 import Footer from './Footer';
 import TopRecipes from './TopRecipes';
 
-const Home = () => (
+const Home = props => (
   <div>
     <br />
-    <Search />
+    <Search {...props} />
     <br />
     <div className="container-fluid">
       <Carousel />

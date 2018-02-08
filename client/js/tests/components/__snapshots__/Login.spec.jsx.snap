@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for Login component should render correctly 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    aria-labelledby="exampleModalLabel"
+    className="modal fade"
+    data-backdrop="static"
+    id="login"
+    role="dialog"
+  >
+    <div
+      className="modal-dialog"
+      role="document"
+    >
+      <div
+        className="modal-content container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-xs-9 login-head text-center"
+          >
+            <span>
+              <h1
+                className="modal-title"
+                id="login-title"
+              >
+                More Recipes
+              </h1>
+            </span>
+          </div>
+          <div
+            className="col-xs-3 login-close"
+          >
+            <button
+              aria-label="Close"
+              className="close cancel-login"
+              data-dismiss="modal"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+              >
+                ×
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div
+            id="login-form"
+          >
+            <div
+              className="container error-body"
+            >
+              <br />
+            </div>
+            <form
+              className="form-group"
+              onSubmit={[Function]}
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="input-group"
+                >
+                  <label
+                    className="control-label"
+                    htmlFor="#"
+                  />
+                   
+                  <br />
+                  <span
+                    className="input-group-addon"
+                    id="email-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-envelope"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="email-addon"
+                    aria-label="email"
+                    className="form-control login-form"
+                    id="login-email"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email "
+                    type="email"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <label
+                    className="control-label"
+                    htmlFor="#"
+                  />
+                   
+                  <br />
+                  <span
+                    className="input-group-addon"
+                    id="password-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-key"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="password-addon"
+                    aria-label="password"
+                    className="form-control login-form"
+                    id="password"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <button
+                    className="form-control btn register-button"
+                    disabled={false}
+                    type="submit"
+                  >
+                    <span
+                      className="register-text"
+                    >
+                      Log in  
+                    </span>
+                  </button>
+                </div>
+                <br />
+                <small>
+                  <h6
+                    id="forgot-password"
+                  >
+                    <Link
+                      id="forgotPassword"
+                      onClick={[Function]}
+                      replace={false}
+                      role="button"
+                      tabIndex={0}
+                      to="#"
+                    >
+                      Forgot password? No problem
+                    </Link>
+                  </h6>
+                </small>
+              </div>
+            </form>
+          </div>
+          <div
+            id="recover-password"
+          >
+            <Connect(PasswordRecoveryForm) />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

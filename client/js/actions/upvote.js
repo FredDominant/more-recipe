@@ -1,24 +1,38 @@
 import axios from 'axios';
-import toastr from 'toastr';
-import { batchActions } from 'redux-batched-actions';
 
 import { UPVOTE_SUCCESS, UPVOTE_FAILURE } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from './fetching';
+import toaster from '../utils/toaster';
 
+/**
+ * @returns {object} action
+ *
+ * @param {object} recipe
+ */
 const upvoteSuccess = recipe => ({
   type: UPVOTE_SUCCESS,
   recipe
 });
 
+/**
+ * @returns {object} action
+ *
+ * @param {string} message
+ */
 const upvoteFail = message => ({
   type: UPVOTE_FAILURE,
   message
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {number} recipeId
+ */
 const upvoteRecipe = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/upvote`,
     headers: {
@@ -26,19 +40,15 @@ const upvoteRecipe = recipeId => (dispatch) => {
     }
   })
     .then((response) => {
-      const { Recipe } = response.data;
-      dispatch(batchActions([
-        upvoteSuccess(Recipe),
-        unsetFetching()
-      ]));
+      const { recipe } = response.data;
+      dispatch(upvoteSuccess(recipe));
+      dispatch(unsetFetching());
     })
-    .catch((error) => {
-      const { Message } = error;
-      dispatch(upvoteFail(Message));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to upvote recipe');
+    .catch(() => {
+      const message = 'Unable to complete';
+      dispatch(upvoteFail(message));
+      dispatch(unsetFetching());
+      toaster.toastError(message);
     });
 };
 export default upvoteRecipe;

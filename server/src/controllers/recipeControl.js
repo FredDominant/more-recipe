@@ -27,7 +27,6 @@ export default class Recipe {
       ingredients,
       picture
     } = req.body;
-
     recipe.findOne({
       where: {
         name: name.toLowerCase(),
@@ -38,7 +37,7 @@ export default class Recipe {
         if (foundRecipe) {
           return res.status(403)
             .json({
-              Message: 'You already have a recipe with this name'
+              message: 'You already have a recipe with this name'
             });
         }
         if (!foundRecipe) {
@@ -52,20 +51,19 @@ export default class Recipe {
           })
             .then(newRecipe => res.status(201)
               .json({
-                Recipe: newRecipe
+                recipe: newRecipe
               }));
         }
       })
       .catch(() => res.status(500)
         .json({
-          Message: 'Internal server error. Unable to Add new recipe'
+          message: 'Internal server error. Unable to Add new recipe'
         }));
   }
   /**
    * @description This function updates a user's recipe
    *
    * @param {request} req HTTP Reques
-   *
    * @param {response} res HTTP Response
    *
    * @returns {object} JSON and HTTP status code
@@ -83,56 +81,62 @@ export default class Recipe {
 
     recipe.findOne({
       where: {
-        id: req.params.recipeId,
-        $and: {
-          userId: req.decoded.id
-        }
+        name: name.trim().toLowerCase(),
+        userId: req.decoded.id
       }
-    })
-      .then((foundRecipe) => {
-        if (foundRecipe) {
-          if (foundRecipe.name === name.trim().toLowerCase() &&
-          foundRecipe.userId === req.decoded.id) {
-            return res.status(403).json({ Mesage: 'You already have a recipe with this name' });
+    }).then((existingRecipeWithSameName) => {
+      if (existingRecipeWithSameName &&
+        (parseInt(existingRecipeWithSameName.id, 10) !== parseInt(req.params.recipeId, 10))) {
+        return res.status(403).json({ message: 'You have a recipe with this name' });
+      }
+      return recipe.findOne({
+        where: {
+          id: req.params.recipeId,
+          $and: {
+            userId: req.decoded.id
           }
-          const newRecipe = {
-            name: name ?
-              name.trim().toLowerCase() : foundRecipe.dataValues.name,
-            description: description ?
-              description.trim().toLowerCase() : foundRecipe.dataValues.description,
-            ingredients: ingredients ?
-              ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
-            directions: directions ?
-              directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
-            picture: picture ?
-              picture.trim() : foundRecipe.dataValues.picture
-          };
-          foundRecipe.update(newRecipe)
-            .then(updatedRecipe => res.status(200)
-              .json({
-                Message: 'Update successful',
-                Recipe: updatedRecipe
-              }));
-        }
-        if (!foundRecipe) {
-          return res.status(404)
-            .json({
-              Message: `Can't find recipe with id ${req.params.recipeId} by you`
-            });
         }
       })
-      .catch(() => {
-        res.status(500)
-          .json({
-            Message: 'Internal server error. Unable to complete request'
-          });
-      });
+        .then((foundRecipe) => {
+          if (foundRecipe) {
+            const newRecipe = {
+              name: name ?
+                name.trim().toLowerCase() : foundRecipe.dataValues.name,
+              description: description ?
+                description.trim().toLowerCase() : foundRecipe.dataValues.description,
+              ingredients: ingredients ?
+                ingredients.trim().toLowerCase() : foundRecipe.dataValues.ingredients,
+              directions: directions ?
+                directions.trim().toLowerCase() : foundRecipe.dataValues.directions,
+              picture: picture ?
+                picture.trim() : foundRecipe.dataValues.picture
+            };
+            return foundRecipe.update(newRecipe)
+              .then(updatedRecipe => res.status(200)
+                .json({
+                  message: 'Update successful',
+                  recipe: updatedRecipe
+                }));
+          }
+          if (!foundRecipe) {
+            return res.status(404)
+              .json({
+                message: `Can't find recipe with id ${req.params.recipeId} by you`
+              });
+          }
+        })
+        .catch(() => {
+          res.status(500)
+            .json({
+              message: 'Internal server error. Unable to complete request'
+            });
+        });
+    });
   }
   /**
    * @description This method deletes a recipe
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON HTTP and status code
@@ -152,7 +156,7 @@ export default class Recipe {
         if (!foundRecipe) {
           return res.status(404)
             .json({
-              Message: `Can't find recipe with id ${req.params.recipeId} by you`
+              message: `Can't find recipe with id ${req.params.recipeId} by you`
             });
         }
         if (foundRecipe) {
@@ -163,19 +167,18 @@ export default class Recipe {
                 userId: req.decoded.id
               }
             }
-          }).then(() => res.status(200).json({ Message: 'recipe deleted' }));
+          }).then(() => res.status(200).json({ message: 'recipe deleted' }));
         }
       })
       .catch(() => res.status(500)
         .json({
-          Message: 'Internal server error.'
+          message: 'Internal server error.'
         }));
   }
   /**
    * @description This method returns all recipes
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -194,25 +197,25 @@ export default class Recipe {
           ['id', 'DESC']
         ],
         include: [
-          { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+          { model: models.User, attributes: ['firstName', 'lastName', 'imageUrl'] }
         ]
       }).then(({ rows, count }) => {
         const numberOfItems = count;
         const pages = Math.ceil(numberOfItems / limit);
         if (count === 0) {
           return res.status(404)
-            .json({ Message: 'There are currently no recipes in collection' });
+            .json({ message: 'There are currently no recipes in collection' });
         }
         return res.status(200)
           .json({
-            NumberOfItems: numberOfItems,
-            Limit: limit,
-            Pages: pages,
-            CurrentPage: page,
-            Recipes: rows
+            numberOfItems,
+            limit,
+            pages,
+            currentPage: page,
+            recipes: rows
           });
       }).catch(() => res.status(500)
-        .json({ Message: 'Internal server' }));
+        .json({ message: 'Internal server' }));
     }
     if (req.query.sort) {
       recipe.findAll({ limit: 3 })
@@ -221,19 +224,19 @@ export default class Recipe {
             if (allRecipes.length < 1) {
               return res.status(404)
                 .json({
-                  Message: 'There are currently no recipes'
+                  message: 'There are currently no recipes'
                 });
             }
             const sortedRecipes = allRecipes.sort((a, b) => b.upvote - a.upvote);
             return res.status(200)
               .json({
-                Recipes: sortedRecipes
+                recipes: sortedRecipes
               });
           }
         })
         .catch(() => res.status(500)
           .json({
-            Message: 'Internal server error. Unable to complete request.'
+            message: 'Internal server error. Unable to complete request.'
           }));
     }
   }
@@ -241,7 +244,6 @@ export default class Recipe {
    * @description This method returns details of only one recipe
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HTTP response
    *
    * @returns {object} JSON and HTTP status code
@@ -252,13 +254,13 @@ export default class Recipe {
     recipe.findOne({
       where: { id: req.params.recipeId },
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'email'] }
+        { model: models.User, attributes: ['firstName', 'lastName'] }
       ]
     })
       .then((foundRecipe) => {
         if (!foundRecipe) {
           return res.status(404)
-            .json({ Message: `Can't find recipe with id ${req.params.recipeId}` });
+            .json({ message: `Can't find recipe with id ${req.params.recipeId}` });
         }
         if (foundRecipe) {
           if (req.decoded) {
@@ -273,26 +275,25 @@ export default class Recipe {
             return favourite.findOne({ where:
               { recipeId: req.params.recipeId, $and: { userId: req.decoded.id } } })
               .then(foundFavourite => res.status(200).json({
-                Recipe: foundRecipe,
+                recipe: foundRecipe,
                 userFavourited: (foundFavourite) ? true : false
               }));
           }
           return res.status(200)
             .json({
-              Recipe: foundRecipe,
+              recipe: foundRecipe,
             });
         }
       })
       .catch(() => res.status(500)
         .json({
-          Message: 'Internal server error. Unable to complete request.'
+          message: 'Internal server error. Unable to complete request.'
         }));
   }
   /**
    * @description This method gets all recipes by current user
    *
    * @param {request} req HTTP request
-   *
    * @param {response} res HHTP response
    *
    * @returns {object} JSON and HTTP Status Code
@@ -313,27 +314,27 @@ export default class Recipe {
         ['id', 'DESC']
       ],
       include: [
-        { model: models.User, attributes: ['firstname', 'lastname', 'picture'] }
+        { model: models.User, attributes: ['firstName', 'lastName', 'imageUrl'] }
       ]
     }).then(({ rows, count }) => {
       const numberOfItems = count;
       const pages = Math.ceil(numberOfItems / limit);
       if (count === 0) {
         return res.status(404)
-          .json({ Message: 'You currently have no recipe in the catalogue' });
+          .json({ message: 'You currently have no recipe in the catalogue' });
       }
       return res.status(200)
         .json({
-          NumberOfItems: numberOfItems,
-          Limit: limit,
-          Pages: pages,
-          CurrentPage: page,
-          Recipes: rows
+          numberOfItems,
+          limit,
+          pages,
+          currentPage: page,
+          recipes: rows
         });
     })
       .catch(() => res.status(500)
         .json({
-          Message: 'Internal server error'
+          message: 'Internal server error'
         }));
   }
   /**
@@ -341,7 +342,6 @@ export default class Recipe {
  * @static
  *
  * @param {request} req HTTP request
- *
  * @param {response} res HTTP response
  *
  * @returns {obj} JSON and HTTP Status code
@@ -370,7 +370,7 @@ export default class Recipe {
             queryIngredient.concat(queryName)
         },
         include: [
-          { model: models.User, attributes: ['firstname', 'lastname'] }
+          { model: models.User, attributes: ['firstName', 'lastName'] }
         ],
         limit,
         offset,
@@ -381,19 +381,19 @@ export default class Recipe {
         if (foundRecipe.length < 1) {
           return res.status(404)
             .json({
-              Message: 'No match(es) found'
+              message: 'No match(es) found'
             });
         }
         return res.status(200)
           .json({
-            NumberOfItems: numberOfItems,
-            Pages: pages,
-            CurrentPage: page,
-            Limit: limit,
-            Recipe: foundRecipe
+            numberOfItems,
+            pages,
+            currentPage: page,
+            limit,
+            recipes: foundRecipe
           });
       });
     }).catch(() => res.status(500)
-      .json({ Message: 'Internal server error' }));
+      .json({ message: 'Internal server error' }));
   }
 }

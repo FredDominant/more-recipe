@@ -6,14 +6,20 @@ const recipeValidator = (recipe) => {
   if (Validator.isEmpty(recipe.name)) {
     errors.name = 'Recipe name shouldn\'t be empty';
   }
-  if (!Validator.isLength(recipe.name, { min: 5 })) {
-    errors.name = 'Recipe name should be at least 5 characters';
+  if (!Validator.isAlpha(recipe.name.charAt(0))) {
+    errors.name = 'Recipe name should be alphabets';
+  }
+  if (!Validator.isLength(recipe.name, { min: 2, max: 50 })) {
+    errors.name = 'Recipe name should be between 2 and 50 characters';
   }
   if (Validator.isEmpty(recipe.description)) {
     errors.description = 'Recipe should have a decription';
   }
-  if (!Validator.isLength(recipe.description, { min: 5 })) {
-    errors.description = 'Recipe description should be at least 5 characters';
+  if (!Validator.isAlpha(recipe.description.charAt(0))) {
+    errors.description = 'Recipe description should be alphabets';
+  }
+  if (!Validator.isLength(recipe.description, { min: 5, max: 50 })) {
+    errors.description = 'Recipe description should be between 5 and 50 characters';
   }
   if (Validator.isEmpty(recipe.directions)) {
     errors.directions = 'Recipe should have cook directions';

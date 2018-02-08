@@ -12,19 +12,19 @@ import signupUser from '../actions/signupUser';
  *
  * @extends {React.Component}
  */
-class Signup extends React.Component {
+export class Signup extends React.Component {
 /**
  * @description Creates an instance of Signup.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof Signup
  */
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -38,7 +38,7 @@ class Signup extends React.Component {
  *
  * @returns {null} null
  *
- * @param {any} event
+ * @param {object} event
  *
  * @memberof Signup
  */
@@ -58,10 +58,12 @@ class Signup extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     if (this.isValid()) {
-      const { firstname, lastname, email, password, confirmPassword } = this.state;
-      this.props.signup({ firstname, lastname, email, password, confirmPassword });
+      const { firstName, lastName, email, password, confirmPassword } = this.state;
+      this.props.signup({ firstName, lastName, email, password, confirmPassword });
+      this.setState({ errors: {} });
+
       if (this.props.authenticated) {
-        this.context.router.history.push('/home');
+        this.props.history.push('/');
       }
     }
   }
@@ -81,15 +83,15 @@ class Signup extends React.Component {
   /**
    * @description react render method
    *
-   * @returns {component} react component
-   *
    * @memberof Signup
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
       errors,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       confirmPassword
@@ -123,8 +125,8 @@ class Signup extends React.Component {
                   <span><h1 className="modal-title" id="signup-title" >More Recipes</h1></span>
                   <span>
                     <h6 className="signup-text text-center">
-                    Register to view cool awesome recipes,
-                    rate and review recipes, and create your own recipes and menus.
+                      Register to view cool awesome recipes,
+                      rate and review recipes, and create your own recipes and menus.
                     </h6>
                   </span>
                 </div>
@@ -132,24 +134,42 @@ class Signup extends React.Component {
               <div className="modal-body">
                 <div>
                   <div className="container">
-                    {errorMessage &&
-                    <div className="alert alert-danger" role="alert">{errorMessage}
-                    </div>}
-                    {errors.firstname &&
-                    <div className="alert alert-danger" role="alert">{errors.firstname}
-                    </div>}
-                    {errors.lastname &&
-                    <div className="alert alert-danger" role="alert">{errors.lastname}
-                    </div>}
-                    {errors.email &&
-                    <div className="alert alert-danger" role="alert">{errors.email}
-                    </div>}
-                    {errors.password &&
-                    <div className="alert alert-danger" role="alert">{errors.password}
-                    </div>}
-                    {errors.confirmPassword &&
-                    <div className="alert alert-danger" role="alert">{errors.confirmPassword}
-                    </div>}
+                    {
+                      errorMessage &&
+                      <div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                      </div>
+                    }
+                    {
+                      errors.firstName &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.firstName}
+                      </div>
+                    }
+                    {
+                      errors.lastName &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.lastName}
+                      </div>
+                    }
+                    {
+                      errors.email &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.email}
+                      </div>
+                    }
+                    {
+                      errors.password &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.password}
+                      </div>
+                    }
+                    {
+                      errors.confirmPassword &&
+                      <div className="alert alert-danger" role="alert">
+                        {errors.confirmPassword}
+                      </div>
+                    }
                   </div>
                   <form className="form-group" onSubmit={this.onSubmit}>
                     <div className="container">
@@ -162,13 +182,14 @@ class Signup extends React.Component {
                         </span>
                         <input
                           type="text"
-                          value={firstname}
+                          value={firstName}
+                          id="firstName"
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="First Name"
                           aria-label="firstName"
                           aria-describedby="firstName-addon"
-                          name="firstname"
+                          name="firstName"
                         />
                       </div>
                       <br />
@@ -181,13 +202,13 @@ class Signup extends React.Component {
                         </span>
                         <input
                           type="text"
-                          value={lastname}
+                          value={lastName}
                           onChange={this.onChange}
                           className="form-control signup-form"
                           placeholder="Last Name"
                           aria-label="lastName"
                           aria-describedby="lastName-addon"
-                          name="lastname"
+                          name="lastName"
                         />
                       </div>
                       <br />
@@ -274,15 +295,17 @@ Signup.propTypes = {
   signup: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 Signup.defaultProps = {
   errorMessage: '',
-};
-
-Signup.contextTypes = {
-  router: PropTypes.object.isRequired
+  history: {
+    push: () => {}
+  }
 };
 
 const mapStateToProps = state => ({

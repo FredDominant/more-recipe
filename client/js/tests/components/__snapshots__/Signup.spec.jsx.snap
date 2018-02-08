@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for Signup component should render correctly 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    aria-labelledby="exampleModalLabel"
+    className="modal fade"
+    id="register"
+    role="dialog"
+  >
+    <div
+      className="modal-dialog"
+      role="document"
+    >
+      <div
+        className="modal-content container register-signup"
+      >
+        <div
+          className="row container"
+        >
+          <div
+            className="col-xs-2"
+          >
+            <button
+              aria-label="Close"
+              className="close cancel-signup"
+              data-dismiss="modal"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                className="close-signup"
+              >
+                ×
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          className="row container"
+        >
+          <div
+            className="col-xs-12 text-center"
+          >
+            <span>
+              <h1
+                className="modal-title"
+                id="signup-title"
+              >
+                More Recipes
+              </h1>
+            </span>
+            <span>
+              <h6
+                className="signup-text text-center"
+              >
+                Register to view cool awesome recipes, rate and review recipes, and create your own recipes and menus.
+              </h6>
+            </span>
+          </div>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div>
+            <div
+              className="container"
+            />
+            <form
+              className="form-group"
+              onSubmit={[Function]}
+            >
+              <div
+                className="container"
+              >
+                <div
+                  className="input-group"
+                >
+                  <span
+                    className="input-group-addon"
+                    id="firstName-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="firstName-addon"
+                    aria-label="firstName"
+                    className="form-control signup-form"
+                    id="firstName"
+                    name="firstName"
+                    onChange={[Function]}
+                    placeholder="First Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <span
+                    className="input-group-addon"
+                    id="lastName-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="lastName-addon"
+                    aria-label="lastName"
+                    className="form-control signup-form"
+                    name="lastName"
+                    onChange={[Function]}
+                    placeholder="Last Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <span
+                    className="input-group-addon"
+                    id="email-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-envelope"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="email-addon"
+                    aria-label="email"
+                    className="form-control signup-form"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email "
+                    type="email"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <span
+                    className="input-group-addon"
+                    id="password-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-key"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="password-addon"
+                    aria-label="password"
+                    className="form-control signup-form"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <span
+                    className="input-group-addon"
+                    id="confirmPassword-addon"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-key"
+                    />
+                  </span>
+                  <input
+                    aria-describedby="confirmPassword-addon"
+                    aria-label="confirmPassword"
+                    className="form-control signup-form"
+                    name="confirmPassword"
+                    onChange={[Function]}
+                    placeholder="Confirm password"
+                    type="password"
+                    value=""
+                  />
+                </div>
+                <br />
+                <div
+                  className="input-group"
+                >
+                  <button
+                    className="form-control btn signup-form register-button"
+                    disabled={false}
+                    type="submit"
+                  >
+                    <span
+                      className="register-text"
+                    >
+                      Register 
+                    </span>
+                     
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

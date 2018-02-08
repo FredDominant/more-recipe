@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
+import { Link } from 'react-router-dom';
 
 import loginValidator from '../validation/LoginValidator';
 import loginUser from '../actions/loginUser';
@@ -15,7 +16,7 @@ import PasswordRecoveryForm from '../components/PasswordRecoveryForm';
  *
  * @extends {React.Component}
  */
-class Login extends React.Component {
+export class Login extends React.Component {
   /**
  * @description Creates an instance of Login.
  *
@@ -37,7 +38,7 @@ class Login extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof Login
    */
@@ -52,8 +53,8 @@ class Login extends React.Component {
    * @memberof Login
    */
   onForgotPassword() {
-    document.getElementById('login-form').style.display = 'none';
-    document.getElementById('recover-password').style.display = 'block';
+    $('#login-form').hide();
+    $('#recover-password').show();
   }
   /**
    * @returns {dispatch} dispatch
@@ -67,9 +68,10 @@ class Login extends React.Component {
     if (this.isValid()) {
       const { email, password } = this.state;
       this.props.login({ email, password });
+      this.setState({ errors: {} });
 
       if (this.props.authenticated) {
-        this.context.router.history.push('/home');
+        this.props.history.push('/');
       }
     }
   }
@@ -88,9 +90,10 @@ class Login extends React.Component {
   }
   /**
  *
- * @returns {node} React component
  *
  * @memberof Login
+ *
+ * @return {ReactElement} markup
  */
   render() {
     const { errors, email, password } = this.state;
@@ -158,6 +161,7 @@ class Login extends React.Component {
                         <input
                           type="email"
                           name="email"
+                          id="login-email"
                           value={email}
                           onChange={this.onChange}
                           className="form-control login-form"
@@ -180,6 +184,7 @@ class Login extends React.Component {
                           type="password"
                           name="password"
                           value={password}
+                          id="password"
                           onChange={this.onChange}
                           className="form-control login-form"
                           placeholder="Password"
@@ -202,12 +207,14 @@ class Login extends React.Component {
                       <br />
                       <small>
                         <h6 id="forgot-password">
-                          <a
+                          <Link
+                            to="#"
+                            id="forgotPassword"
                             onClick={this.onForgotPassword}
                             role="button"
                             tabIndex={0}
                           >Forgot password? No problem
-                          </a>
+                          </Link>
                         </h6>
                       </small>
                     </div>
@@ -228,13 +235,16 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   authenticated: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 Login.defaultProps = {
-  errorMessage: null
-};
-Login.contextTypes = {
-  router: PropTypes.object.isRequired
+  errorMessage: null,
+  history: {
+    push: () => {}
+  }
 };
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated,

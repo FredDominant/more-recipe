@@ -1,24 +1,37 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
-import toastr from 'toastr';
 
 import { DELETE_FAVOURITE, DELETE_FAVOURITE_ERROR } from '../actions/actionTypes';
 import { setFetching, unsetFetching } from '../actions/fetching';
 import { getFavouriteStatus } from './getOneRecipe';
+import toaster from '../utils/toaster';
 
+/**
+ * @returns {object} action
+ *
+ * @param {number} recipeId
+ */
 const removeFavouriteSuccess = recipeId => ({
   type: DELETE_FAVOURITE,
   recipeId
 });
 
+/**
+ * @returns {object} action
+ *
+ */
 const removeFavouriteFailure = () => ({
   type: DELETE_FAVOURITE_ERROR
 });
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {number} recipeId
+ */
 const removeFavourite = recipeId => (dispatch) => {
   const token = localStorage.getItem('token');
   dispatch(setFetching());
-  axios({
+  return axios({
     method: 'DELETE',
     url: `/api/v1/favourites/${recipeId}/delete`,
     headers: {
@@ -26,25 +39,15 @@ const removeFavourite = recipeId => (dispatch) => {
     }
   })
     .then(() => {
-      dispatch(batchActions([
-        removeFavouriteSuccess(recipeId),
-        getFavouriteStatus(false),
-        unsetFetching()
-      ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Recipe deleted');
+      dispatch(removeFavouriteSuccess(recipeId));
+      dispatch(getFavouriteStatus(false));
+      dispatch(unsetFetching());
+      toaster.toastSuccess('Removed!');
     })
     .catch(() => {
-      dispatch(batchActions([
-        removeFavouriteFailure(),
-        unsetFetching()
-      ]));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('Unable to delete recipe');
+      dispatch(removeFavouriteFailure());
+      dispatch(unsetFetching());
+      toaster.toastError('Unable to complete');
     });
 };
 export default removeFavourite;

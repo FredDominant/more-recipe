@@ -9,11 +9,11 @@ import addReview from '../actions/addReview';
  *
  * @extends {React.Component}
  */
-class AddReview extends React.Component {
+export class AddReview extends React.Component {
 /**
  * @description Creates an instance of AddReview.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof AddReview
  */
@@ -27,11 +27,11 @@ class AddReview extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof AddReview
+   *
+   * @returns {null} null
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -39,7 +39,7 @@ class AddReview extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof AddReview
    */
@@ -54,9 +54,10 @@ class AddReview extends React.Component {
   }
   /**
    *
-   * @returns {node} JSX
    *
    * @memberof AddReview
+   *
+   * @return {ReactElement} markup
    */
   render() {
     return (
@@ -72,6 +73,7 @@ class AddReview extends React.Component {
                   placeholder="Add a review..."
                   onChange={this.onChange}
                   value={this.state.content}
+                  required
                 />
                 <br />
                 <button className="btn" id="add-review-button">

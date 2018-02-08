@@ -44,7 +44,7 @@ export default (sequelize, DataTypes) => {
     picture: {
       type: DataTypes.TEXT,
       allowNull: true,
-      defaultValue: 'https://www.impaktovisual.com.br/3661-large_default/display-cupcake.jpg'
+      defaultValue: '/images/default-food-image.jpg'
     }
   });
   Recipe.associate = (models) => {

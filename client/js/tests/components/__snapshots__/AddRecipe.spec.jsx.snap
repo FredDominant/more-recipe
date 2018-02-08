@@ -37,9 +37,10 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
     >
       <AddRecipePage
         addRecipeSuccess={null}
+        allRecipes={Array []}
         createRecipe={[MockFunction]}
         dispatch={[MockFunction]}
-        errorMessage={null}
+        errorMessage="error"
         isFetching={false}
         loading={false}
         store={
@@ -72,7 +73,8 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
                     className="recipe-image"
                     id="add-recipe-image-container"
                     onClick={[Function]}
-                    role="presentation"
+                    role="button"
+                    tabIndex={0}
                   >
                     <img
                       alt=""
@@ -84,6 +86,7 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
                   </div>
                   <br />
                   <input
+                    accept=".png,.gif,.jpg,.jpeg"
                     id="file-upload"
                     name="file"
                     onChange={[Function]}

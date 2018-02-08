@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { batchActions } from 'redux-batched-actions';
 
 import { setFetching, unsetFetching } from '../actions/fetching';
 import { ADD_RECIPE, RECIPE_ERROR } from '../actions/actionTypes';
@@ -9,7 +8,7 @@ import uploadImage from '../utils/uploadImage';
 /**
  * @description action creator. dispatched if no error
  *
- * @param {any} recipe
+ * @param {object} recipe
  *
  * @returns {object} action
  */
@@ -34,9 +33,7 @@ const recipeError = message => ({
  * @description makes api call to server and dispatches to redux store
  *
  * @param {object} recipe
- *
  * @param {string} token
- *
  * @param {function} dispatch
  *
  * @returns {promise} axios promise
@@ -50,18 +47,14 @@ const addRecipeRequest = (recipe, token, dispatch) => axios({
   data: recipe
 })
   .then((response) => {
-    dispatch(batchActions([
-      createRecipe(response.data),
-      unsetFetching()
-    ]));
+    dispatch(createRecipe(response.data));
+    dispatch(unsetFetching());
     toaster.toastSuccess('Recipe added');
   })
   .catch((error) => {
-    const message = error.response.data.Message;
-    dispatch(batchActions([
-      recipeError(message),
-      unsetFetching()
-    ]));
+    const { message } = error.response.data;
+    dispatch(recipeError(message));
+    dispatch(unsetFetching());
     toaster.toastError(message);
   });
 
@@ -69,7 +62,6 @@ const addRecipeRequest = (recipe, token, dispatch) => axios({
  * @description checks if image was selected from component and uploads depending on condition
  *
  * @param {object} recipe
- *
  * @returns {promise} axios promise
  */
 const addRecipe = recipe => (dispatch) => {
@@ -85,14 +77,14 @@ const addRecipe = recipe => (dispatch) => {
       })
       .catch(() => {
         const message = 'unable to upload image';
-        dispatch(batchActions([
-          recipeError(message),
-          unsetFetching()
-        ]));
+        dispatch(recipeError(message));
+        dispatch(unsetFetching());
         toaster.toastError(message);
       });
   }
-  recipe = { ...recipe, picture: null };
-  return addRecipeRequest(recipe, token, dispatch);
+  const { name, description, directions, ingredients } = recipe;
+  const noImageRecipe = { name, description, directions, ingredients };
+  return addRecipeRequest(noImageRecipe, token, dispatch);
 };
 export default addRecipe;
+

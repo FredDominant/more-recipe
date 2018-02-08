@@ -12,11 +12,11 @@ import ViewReviews from './ViewReviews';
  *
  * @extends {React.Component}
  */
-class Reviews extends React.Component {
+export class Reviews extends React.Component {
 /**
  * @description Creates an instance of Reviews.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof Reviews
  */
@@ -36,7 +36,7 @@ class Reviews extends React.Component {
     this.props.getReviews(this.props.recipeId);
   }
   /**
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof Reviews
    *
@@ -48,18 +48,18 @@ class Reviews extends React.Component {
   }
   /**
 *
-* @returns {node} JSX
-
 * @memberof Reviews
+*
+* @return {ReactElement} markup
 */
   render() {
     const { reviews } = this.props;
     const allReviews = reviews.sort((a, b) => (b.id - a.id)).map((review, index) => (
       <div key={`review ${index + 1}`} className="container">
         <ViewReviews
-          image={review.User.picture}
-          firstname={review.User.firstname}
-          lastname={review.User.lastname}
+          imageUrl={review.User.imageUrl}
+          firstName={review.User.firstName}
+          lastName={review.User.lastName}
           content={review.content}
           createdAt={moment(new Date(review.createdAt)).fromNow()}
         />
@@ -69,12 +69,14 @@ class Reviews extends React.Component {
     return (
       <div className="container">
         {
-          allReviews.length >= 1 && <div className="container">
+          allReviews.length >= 1 &&
+          <div className="container">
             { allReviews }
           </div>
         }
         {
-          !allReviews.length && <div className="container">
+          !allReviews.length &&
+          <div className="container">
             <h4 className="text-center allRecipes-title">
             This recipe has no reviews yet.
             </h4>

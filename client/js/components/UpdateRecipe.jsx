@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Footer from './Footer';
 import getOneRecipe from '../actions/getOneRecipe';
 import updateRecipe from '../actions/updateRecipe';
+import recipeValidator from '../validation/recipeValidator';
 
 /**
  *
@@ -12,11 +13,11 @@ import updateRecipe from '../actions/updateRecipe';
  *
  * @extends {React.Component}
  */
-class UpdateRecipe extends React.Component {
+export class UpdateRecipe extends React.Component {
   /**
  * @description Creates an instance of UpdateRecipe.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof UpdateRecipe
  */
@@ -29,6 +30,7 @@ class UpdateRecipe extends React.Component {
       ingredients: '',
       directions: '',
       picture: '',
+      errors: '',
       selectedImage: false,
       toggleEdit: true
     };
@@ -51,7 +53,7 @@ class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof UpdateRecipe
    */
@@ -63,7 +65,7 @@ class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -79,7 +81,7 @@ class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -90,7 +92,7 @@ class UpdateRecipe extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
@@ -99,23 +101,39 @@ class UpdateRecipe extends React.Component {
     this.setState({ toggleEdit: !this.state.toggleEdit });
   }
   /**
+*
+* @returns {boolean} isValid
+
+* @memberof AddRecipe
+*/
+  isValid() {
+    const { errors, isValid } = recipeValidator(this.state);
+    if (!isValid) {
+      this.setState({ errors });
+    }
+    return isValid;
+  }
+  /**
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof UpdateRecipe
    */
   handleSubmit(event) {
     event.preventDefault();
     const { id } = this.state;
-    this.props.updateRecipe(this.state, id);
+    if (this.isValid()) {
+      this.props.updateRecipe(this.state, id);
+      this.setState({ errors: {} });
+    }
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof UpdateRecipe
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const {
@@ -124,7 +142,8 @@ class UpdateRecipe extends React.Component {
       ingredients,
       directions,
       picture,
-      toggleEdit
+      toggleEdit,
+      errors
     } = this.state;
     return (
       <div>
@@ -147,6 +166,7 @@ class UpdateRecipe extends React.Component {
                   <input
                     type="file"
                     name="file"
+                    accept=".png,.gif,.jpg,.jpeg"
                     id="file-upload"
                     onChange={this.onUpload}
                     disabled={toggleEdit}
@@ -165,6 +185,12 @@ class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
+                    {
+                      errors.name &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.name} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -179,6 +205,12 @@ class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
+                    {
+                      errors.description &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.description} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -194,6 +226,12 @@ class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
+                    {
+                      errors.directions &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.directions} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -209,6 +247,12 @@ class UpdateRecipe extends React.Component {
                       onChange={this.onChange}
                       disabled={toggleEdit}
                     />
+                    {
+                      errors.ingredients &&
+                      <small className="form-text text-muted">
+                        <span className="error-text"> {errors.ingredients} </span>
+                      </small>
+                    }
                   </div>
 
                   <div className="form-group">
@@ -216,6 +260,7 @@ class UpdateRecipe extends React.Component {
                       <div className="col-md-4 col-sm-6 col-lg-4">
                         <button
                           className="btn btn-success"
+                          id="edit"
                           onClick={this.onToggleEdit}
                         >
                           {
@@ -230,7 +275,9 @@ class UpdateRecipe extends React.Component {
                         <button
                           className="btn btn-primary"
                           disabled={toggleEdit}
-                        >Update Recipe</button>
+                        >
+                        Update Recipe
+                        </button>
                       </div>
                       <div className="col-md-4 col-sm-6 col-lg-4" />
                     </div>

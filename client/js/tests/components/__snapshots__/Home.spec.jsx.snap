@@ -41,9 +41,19 @@ exports[`Test for Home component should render correctly 1`] = `
       >
         <div>
           <br />
-          <Connect(Search)>
+          <Connect(Search)
+            dispatch={[MockFunction]}
+            isFetching={false}
+          >
             <Search
-              page={1}
+              dispatch={[MockFunction]}
+              focus={false}
+              history={
+                Object {
+                  "push": [Function],
+                }
+              }
+              isFetching={false}
               search={[Function]}
             >
               <div
@@ -69,6 +79,7 @@ exports[`Test for Home component should render correctly 1`] = `
                       </span>
                       <input
                         aria-label="Search for..."
+                        autoFocus={false}
                         className="form-control"
                         id="search-box"
                         name="searchParam"
@@ -1040,7 +1051,7 @@ exports[`Test for Home component should render correctly 1`] = `
                   className="text-center"
                 >
                   <br />
-                  <h3
+                  <h4
                     className="text-center"
                   >
                     <span
@@ -1049,7 +1060,7 @@ exports[`Test for Home component should render correctly 1`] = `
                       More Recipes®
                     </span>
                     <br />
-                  </h3>
+                  </h4>
                   <h5
                     className="text-center mt-2"
                   >

@@ -18,7 +18,7 @@ import Loading from '../components/Loading';
  *
  * @extends {React.Component}
  */
-class Recipe extends React.Component {
+export class Recipe extends React.Component {
 /**
  * @description Creates an instance of Recipe.
  *
@@ -40,8 +40,6 @@ class Recipe extends React.Component {
   /**
    * @returns {null} null
    *
-   * @param {any} nextProps
-   *
    * @memberof Recipe
    */
   componentWillMount() {
@@ -51,7 +49,7 @@ class Recipe extends React.Component {
    *
    * @return {null} null
    *
-   * @param {any} nextProps
+   * @param {object} nextProps
    *
    * @memberof Recipe
    */
@@ -99,9 +97,9 @@ class Recipe extends React.Component {
   }
   /**
    *
-   * @returns {component} react component
-   *
    * @memberof Recipe
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { fetching, authenticated } = this.props;
@@ -144,7 +142,7 @@ class Recipe extends React.Component {
               <div className="col-md-6 container">
                 <h2 className="text-left recipe-details-name ml-5">{recipe.name ? capitalize(recipe.name) : '' }</h2>
                 <h5 className="text-left recipe-details-description ml-5">{recipe.description ? capitalize(recipe.description) : '' }</h5>
-                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstname)} ${capitalize(owner.lastname)}`}</small></h5>
+                <h5 className="text-left ml-5 recipe-detail-user"> <small> By: {`${capitalize(owner.firstName)} ${capitalize(owner.lastName)}`}</small></h5>
                 <div className="actions ml-5 mb-3">
                   {
                     !authenticated && <div className="container text-left">
@@ -163,6 +161,7 @@ class Recipe extends React.Component {
                       type="button"
                       title="upvote this recipe"
                       className="btn btn-outline-danger"
+                      id="upvote"
                       onClick={this.handleUpvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-up" />
@@ -172,9 +171,11 @@ class Recipe extends React.Component {
                       type="button"
                       title="downvote this recipe"
                       className="btn btn-outline-danger"
+                      id="downvote"
                       onClick={this.handleDownvote}
                       disabled={fetching}
-                    ><i className="far fa-thumbs-down" />
+                    >
+                      <i className="far fa-thumbs-down" />
                       <span> {recipe.downvote}</span></button>
 
                     <button
@@ -185,8 +186,11 @@ class Recipe extends React.Component {
                       type="button"
                       title="add to your favourites"
                       className="btn btn-outline-danger"
+                      id="favourite"
                       onClick={this.handleFavourite}
-                    > <i className="far fa-heart" /></button>
+                    >
+                      <i className="far fa-heart" />
+                    </button>
                   </div>
                   }
                 </div>

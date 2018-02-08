@@ -13,9 +13,9 @@ class Errorboundary extends React.Component {
 /**
  * @description Creates an instance of ErrorBoundary.
  *
- * @param {any} props
- *
  * @memberof ErrorBoundary
+ *
+ * @param {object} props
  */
   constructor(props) {
     super(props);
@@ -24,13 +24,10 @@ class Errorboundary extends React.Component {
     };
   }
   /**
+   * @memberof Errorboundary
+   *
    * @returns {null} null
    *
-   * @param {any} error
-   *
-   * @param {any} info
-   *
-   * @memberof Errorboundary
    */
   componentDidCatch() {
     this.setState({
@@ -39,9 +36,9 @@ class Errorboundary extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof Errorboundary
+   *
+  * @return {ReactElement} markup
    */
   render() {
     if (this.state.hasError) {
@@ -49,8 +46,12 @@ class Errorboundary extends React.Component {
         <div>
           <br />
           <div className="container">
-            <h3>An Error has ocurred. Please try again later</h3>
+            <h3 className="text-center allRecipes-title">
+              An Error has ocurred. Please try again later
+            </h3>
+            <br />
           </div>
+          <br />
           <Footer />
         </div>
       );

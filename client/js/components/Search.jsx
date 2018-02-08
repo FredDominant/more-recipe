@@ -11,7 +11,7 @@ import search from '../actions/search';
  *
  * @extends {React.Component}
  */
-class Search extends React.Component {
+export class Search extends React.Component {
   /**
    * @description Creates an instance of Search.
    *
@@ -44,7 +44,7 @@ class Search extends React.Component {
    * @returns {null} null
    */
   onFocus() {
-    this.context.router.history.push('/search');
+    this.props.history.push('/search');
   }
   /**
    *
@@ -61,9 +61,9 @@ class Search extends React.Component {
   }
   /**
    *
-   * @returns {null} null
-   *
    * @memberof Search
+   *
+   * @return {ReactElement} markup
    */
   render() {
     return (
@@ -101,15 +101,18 @@ class Search extends React.Component {
 }
 Search.propTypes = {
   search: PropTypes.func.isRequired,
-  focus: PropTypes.bool
+  focus: PropTypes.bool,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 Search.defaultProps = {
-  focus: false
+  focus: false,
+  history: {
+    push: () => {}
+  }
 };
 
-Search.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 const mapDispatchToProps = dispatch => ({
   search: searchParam => (dispatch(search(searchParam)))
 });

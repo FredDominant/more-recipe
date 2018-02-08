@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const decodeToken = () => {
-  const userToken = localStorage.getItem('token');
+  const userToken = localStorage.getItem('token') || global.userToken;
   if (userToken) {
     return jwt.verify(userToken, 'ARSENAL', ((error) => {
       if (!error) {

@@ -1,43 +1,52 @@
 import axios from 'axios';
-import toastr from 'toastr';
+
+import toaster from '../utils/toaster';
 
 import { ADD_REVIEW_SUCCESS, ADD_REVIEW_FAILURE } from '../actions/actionTypes';
-
+/**
+ * @returns {object} action
+ *
+ * @param {object} review
+ */
 const addReviewSuccess = review => ({
   type: ADD_REVIEW_SUCCESS,
   review
 });
 
+/**
+ * @returns {object} action
+ *
+ * @param {string} message
+ */
 const addReviewFailure = message => ({
   type: ADD_REVIEW_FAILURE,
   reviewError: message
 });
 
-const addReview = (review, recipeId) => (dispatch) => {
+/**
+ * @returns {promise} axios
+ *
+ * @param {string} reviewContent
+ * @param {number} recipeId
+ */
+const addReview = (reviewContent, recipeId) => (dispatch) => {
   const token = localStorage.getItem('token');
-  axios({
+  return axios({
     method: 'POST',
     url: `/api/v1/recipes/${recipeId}/review`,
     headers: {
       'x-access-token': token
     },
-    data: { content: review }
+    data: { content: reviewContent }
   })
     .then((response) => {
-      const Review = response.data;
-      dispatch(addReviewSuccess(Review));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Review added');
+      dispatch(addReviewSuccess(response.data));
+      toaster.toastSuccess('Review added');
     })
     .catch(() => {
-      const Message = 'unable to add review';
-      dispatch(addReviewFailure(Message));
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error(Message);
+      const message = 'unable to add review';
+      dispatch(addReviewFailure(message));
+      toaster.toastError(message);
     });
 };
 

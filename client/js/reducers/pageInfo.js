@@ -6,10 +6,10 @@ const pageInfo = (state = initialState.recipes, action) => {
     case GET_PAGE_DETAILS:
       return {
         ...state,
-        currentPage: action.details.CurrentPage,
-        limit: action.details.Limit,
-        pages: action.details.Pages,
-        numberOfItems: action.details.NumberOfItems
+        currentPage: action.details.currentPage,
+        limit: action.details.limit,
+        pages: action.details.pages,
+        numberOfItems: action.details.numberOfItems
       };
     default:
       return state;

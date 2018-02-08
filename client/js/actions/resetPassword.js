@@ -1,14 +1,19 @@
 import axios from 'axios';
-import toastr from 'toastr';
 
 import { setFetching, unsetFetching } from './fetching';
+import toaster from '../utils/toaster';
 
+/**
+ * @returns {promise} axios promise
+ *
+ * @param {object} userData
+ */
 const resetPassword = userData => (dispatch) => {
   const { token, password, confirmPassword } = userData;
   dispatch(setFetching());
   return axios({
     method: 'PUT',
-    url: '/api/users/reset-password',
+    url: '/api/v1/users/reset-password',
     headers: {
       'x-access-token': token
     },
@@ -16,17 +21,11 @@ const resetPassword = userData => (dispatch) => {
   })
     .then(() => {
       dispatch(unsetFetching());
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.success('Password reset. Proceed to login');
+      toaster.toastSuccess('Password reset. Proceed to login');
     })
     .catch(() => {
       dispatch(unsetFetching());
-      toastr.options = {
-        closeButton: true
-      };
-      toastr.error('An error ocurred. Please try again later');
+      toaster.toastError('Unable to complete');
     });
 };
 export default resetPassword;

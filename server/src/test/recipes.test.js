@@ -20,7 +20,7 @@ describe('Test for', () => {
       .post('/api/v1/users/signin')
       .send(fakeUsers.validLogin)
       .end((err, res) => {
-        userToken = res.body.Token;
+        userToken = res.body.token;
         done();
       });
   });
@@ -33,6 +33,8 @@ describe('Test for', () => {
         .send(fakeRecipes.validRecipe)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
@@ -43,6 +45,8 @@ describe('Test for', () => {
         .send(fakeRecipes.validRecipe)
         .end((err, res) => {
           expect(res.status).to.equal(403);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.equal('You already have a recipe with this name');
           done();
         });
     });
@@ -53,6 +57,8 @@ describe('Test for', () => {
         .send(fakeRecipes.namelessRecipe)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.an('object').to.haveOwnProperty('name').to.not.be.a('null');
           done();
         });
     });
@@ -66,6 +72,8 @@ describe('Test for', () => {
         .send({ name: 'a' })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.an('object').to.haveOwnProperty('name').to.not.be.a('name is too short');
           done();
         });
     });
@@ -77,6 +85,10 @@ describe('Test for', () => {
         .send(fakeRecipes.randomName)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Update successful');
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
           done();
         });
     });
@@ -87,6 +99,9 @@ describe('Test for', () => {
         .send({ name: 'a new name' })
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Can\'t find recipe with id 5 by you');
+          expect(res.body).to.not.haveOwnProperty('recipe');
           done();
         });
     });
@@ -98,14 +113,20 @@ describe('Test for', () => {
         .get('/api/v1/recipes/1')
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
+          expect(res.body).to.not.haveOwnProperty('userFavourited');
           done();
         });
     });
     it('not allow for recipes that don\'t exist', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/11')
+        .get('/api/v1/recipes/1100')
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Can\'t find recipe with id 1100');
           done();
         });
     });
@@ -115,6 +136,9 @@ describe('Test for', () => {
         .set('x-access-token', userToken)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('recipe');
+          expect(res.body).to.haveOwnProperty('recipe').to.be.an('object');
+          expect(res.body).to.haveOwnProperty('userFavourited').to.be.a('boolean');
           done();
         });
     });
@@ -123,6 +147,9 @@ describe('Test for', () => {
         .get(`/api/v1/recipes/${'vggj'}`)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.be.a('string');
+          expect(res.body).haveOwnProperty('message').to.equal('recipeId is invalid');
           done();
         });
     });
@@ -134,6 +161,12 @@ describe('Test for', () => {
         .get('/api/v1/recipes')
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('numberOfItems');
+          expect(res.body).to.haveOwnProperty('limit');
+          expect(res.body).to.haveOwnProperty('pages');
+          expect(res.body).to.haveOwnProperty('currentPage');
+          expect(res.body).to.haveOwnProperty('recipes').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('recipes').to.be.an('array');
           done();
         });
     });
@@ -142,6 +175,8 @@ describe('Test for', () => {
         .get('/api/v1/recipes?sort=up&order=des')
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('recipes').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('recipes').to.be.an('array');
           done();
         });
     });
@@ -154,6 +189,12 @@ describe('Test for', () => {
         .set('x-access-token', userToken)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('numberOfItems');
+          expect(res.body).to.haveOwnProperty('limit');
+          expect(res.body).to.haveOwnProperty('pages');
+          expect(res.body).to.haveOwnProperty('currentPage');
+          expect(res.body).to.haveOwnProperty('recipes').to.not.be.a('null');
+          expect(res.body).to.haveOwnProperty('recipes').to.be.an('array');
           done();
         });
     });
@@ -162,6 +203,8 @@ describe('Test for', () => {
         .get('/api/v1/recipes/user/all')
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Failed to provide token');
           done();
         });
     });
@@ -171,7 +214,7 @@ describe('Test for', () => {
     it('work for all users', (done) => {
       chai.request(app)
         .post('/api/v1/search')
-        .send({ search: 'lorem ipsum ' })
+        .send({ search: 'lorem ipsum' })
         .end((err, res) => {
           expect(res.status).to.not.equal(401);
           expect(res.status).to.not.equal(403);
@@ -199,6 +242,8 @@ describe('Test for', () => {
         .delete('/api/v1/recipes/1')
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.body).to.haveOwnProperty('message');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Failed to provide token');
           done();
         });
     });
@@ -209,22 +254,9 @@ describe('Test for', () => {
       .set('x-access-token', userToken)
       .end((err, res) => {
         expect(res.status).to.equal(404);
+        expect(res.body).to.haveOwnProperty('message');
+        expect(res.body).to.haveOwnProperty('message').to.equal('Can\'t find recipe with id 11 by you');
         done();
-      });
-  });
-  it('delete if user owns recipe', (done) => {
-    chai.request(app)
-      .post('/api/v1/recipes')
-      .set('x-access-token', userToken)
-      .send(fakeRecipes.secondValidRecipe)
-      .end(() => {
-        chai.request(app)
-          .delete('/api/v1/recipes/2')
-          .set('x-access-token', userToken)
-          .end((err, res) => {
-            expect(res.status).to.equal(404);
-            done();
-          });
       });
   });
 });

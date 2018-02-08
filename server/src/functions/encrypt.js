@@ -9,8 +9,11 @@ import bcrypt from 'bcrypt';
 export default class PasswordHelper {
   /**
    * @description hashes password
-   * @param {any} password
+   *
+   * @param {string} password
+   *
    * @returns {hash} hashed password
+   *
    * @memberof PasswordHelper
    */
   hashPassword(password) {
@@ -21,9 +24,12 @@ export default class PasswordHelper {
 
   /**
  * @description compares password to hash
- * @param {any} password
+ *
+ * @param {string} password
  * @param {any} hash
+ *
  * @returns {boolean} true or false
+ *
  * @memberof PasswordHelper
  */
   decrypt(password, hash) {

@@ -5,12 +5,13 @@ const Footer = () => (
     <div className="container">
       <div className="text-center">
         <br />
-        <h3 className="text-center">
+        <h4 className="text-center">
           <span className="footer-title">More Recipes&reg;</span>
           <br />
-        </h3>
+        </h4>
         <h5 className="text-center mt-2">
-          licensed under MIT.</h5>
+          licensed under MIT.
+        </h5>
         <h5 className="text-center mt-2">
             Made by Fred Adewole for Andela&reg;
           <br />

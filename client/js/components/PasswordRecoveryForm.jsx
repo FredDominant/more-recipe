@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
 
@@ -13,11 +14,11 @@ import recoverPasswordValidator from '../validation/recoverPasswordValidator';
  *
  * @extends {React.Component}
  */
-class PasswordRecoveryForm extends React.Component {
+export class PasswordRecoveryForm extends React.Component {
   /**
  * @description Creates an instance of PasswordRecoveryForm.
  *
- * @param {any} props
+ * @param {object} props
  *
  * @memberof PasswordRecoveryForm
  */
@@ -34,7 +35,7 @@ class PasswordRecoveryForm extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof PasswordRecoveryForm
    */
@@ -47,7 +48,7 @@ class PasswordRecoveryForm extends React.Component {
    *
    * @returns {null} null
    *
-   * @param {any} event
+   * @param {object} event
    *
    * @memberof PasswordRecoveryForm
    */
@@ -66,8 +67,8 @@ class PasswordRecoveryForm extends React.Component {
    * @returns {null} null
    */
   onToggleLogin() {
-    document.getElementById('recover-password').style.display = 'none';
-    document.getElementById('login-form').style.display = 'block';
+    $('#recover-password').hide();
+    $('#login-form').show();
   }
   /**
    * @description validates for inputs
@@ -85,9 +86,9 @@ class PasswordRecoveryForm extends React.Component {
   }
   /**
    *
-   * @returns {jsx} react component
-   *
    * @memberof PasswordRecoveryForm
+   *
+   * @return {ReactElement} markup
    */
   render() {
     const { errors, email } = this.state;
@@ -100,6 +101,7 @@ class PasswordRecoveryForm extends React.Component {
               className="form-control"
               type="email"
               required
+              id="email"
               name="email"
               onChange={this.onChange}
               value={email}
@@ -124,10 +126,14 @@ class PasswordRecoveryForm extends React.Component {
               <small>
                 <h6 id="proceed-to-login">
                   <br />
-                  <a
+                  <Link
+                    to="#"
+                    id="login-link"
                     onClick={this.onToggleLogin}
                     role="presentation"
-                  >Proceed to log in</a></h6>
+                  >Proceed to log in
+                  </Link>
+                </h6>
               </small>
             </div>
           </form>

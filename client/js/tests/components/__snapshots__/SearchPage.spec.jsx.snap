@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchPage component should render correctly 1`] = `
+<div>
+  <div
+    className="container search-page-body"
+    id="search-body-result"
+  >
+    <h1
+      className="text-center"
+      id="search-header"
+    >
+      Search Awesome Recipes
+    </h1>
+    <br />
+    <Connect(Search)
+      focus={true}
+    />
+    <br />
+    <br />
+    <div
+      className="row"
+    />
+  </div>
+  <Footer />
+</div>
+`;
