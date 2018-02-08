@@ -36,13 +36,11 @@ const state = {
  */
 const setup = () => {
   const shallowWrapper = shallow(<UpdateRecipe {...props} />);
-  const mountedWrapper = mount(
-    <Provider store={store}>
-      <BrowserRouter>
-        <UpdateRecipe {...props} store={store} />
-      </BrowserRouter>
-    </Provider>
-  );
+  const mountedWrapper = mount(<Provider store={store}>
+    <BrowserRouter>
+      <UpdateRecipe {...props} store={store} />
+    </BrowserRouter>
+  </Provider>);
 
   return {
     shallowWrapper,

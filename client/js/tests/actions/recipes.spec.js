@@ -563,7 +563,8 @@ describe('Test for recipes actions', () => {
       });
       const expectedActions = [
         { type: SET_FETCHING },
-        { type: DELETE_RECIPE,
+        {
+          type: DELETE_RECIPE,
           recipeId: 1
         },
         { type: UNSET_FETCHING }
@@ -606,12 +607,18 @@ describe('Test for recipes actions', () => {
       });
       const expectedActions = [
         { type: SET_FETCHING },
-        { type: GET_USER_RECIPES,
+        {
+          type: GET_USER_RECIPES,
           recipes: allRecipes.recipes
         },
         {
           type: GET_PAGE_DETAILS,
-          details: { currentPage: 1, limit: 6, numberOfItems: 3, pages: 1 }
+          details: {
+            currentPage: 1,
+            limit: 6,
+            numberOfItems: 3,
+            pages: 1
+          }
         },
         { type: UNSET_FETCHING }
       ];
@@ -650,7 +657,8 @@ describe('Test for recipes actions', () => {
       });
       const expectedActions = [
         { type: SET_FETCHING },
-        { type: DELETE_FAVOURITE,
+        {
+          type: DELETE_FAVOURITE,
           recipeId: 1
         },
         {

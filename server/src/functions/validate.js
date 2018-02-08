@@ -45,7 +45,12 @@ export default class Validate {
    * @memberof Validate
    */
   static recipe(req, res, next) {
-    const { name, description, directions, ingredients } = req.body;
+    const {
+      name,
+      description,
+      directions,
+      ingredients
+    } = req.body;
     const recipeData = {
       name,
       description,
@@ -81,7 +86,13 @@ export default class Validate {
    * @memberof Validate
    */
   static updateRecipe(req, res, next) {
-    const { name, description, directions, ingredients, picture } = req.body;
+    const {
+      name,
+      description,
+      directions,
+      ingredients,
+      picture
+    } = req.body;
 
     const recipeUpdateData = {
       name,
@@ -150,7 +161,13 @@ export default class Validate {
    * @memberof Validate
    */
   static userSignup(req, res, next) {
-    const { email, password, firstName, lastName, confirmPassword } = req.body;
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+      confirmPassword
+    } = req.body;
     const signupData = {
       email,
       password,

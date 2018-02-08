@@ -34,13 +34,11 @@ const state = {
  */
 const setup = () => {
   const shallowWrapper = shallow(<UserProfile {...props} />);
-  const mountedWrapper = mount(
-    <Provider store={store}>
-      <BrowserRouter>
-        <UserProfile {...props} store={store} />
-      </BrowserRouter>
-    </Provider>
-  );
+  const mountedWrapper = mount(<Provider store={store}>
+    <BrowserRouter>
+      <UserProfile {...props} store={store} />
+    </BrowserRouter>
+  </Provider>);
 
   return {
     shallowWrapper,

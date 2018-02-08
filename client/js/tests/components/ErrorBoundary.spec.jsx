@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 

@@ -9,7 +9,6 @@ import viewProfile from '../../actions/userProfile';
 import logOut from '../../actions/logoutUser';
 import recoverPassword from '../../actions/recoverPassword';
 import resetPassword from '../../actions/resetPassword';
-import editProfile, { editProfileRequest } from '../../actions/editProfile';
 
 import {
   RECIEVE_AUTH,
@@ -18,8 +17,6 @@ import {
   UNSET_FETCHING,
   VIEW_PROFILE,
   VIEW_PROFILE_ERROR,
-  EDIT_PROFILE,
-  EDIT_PROFILE_ERROR,
   LOGOUT
 } from '../../actions/actionTypes';
 
