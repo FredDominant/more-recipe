@@ -57,22 +57,18 @@ export default class User {
                   email: newUser.email
                 },
                 message: 'Account created'
-              })
-              .catch(() => res.status(400)
-                .json({
-                  message: 'Unable to create new user. Please try again later'
-                }));
-          }).catch(() => res.status(500)
-            .json({
-              message: 'Unable to create new user. Please try again later'
-            }));
+              });
+          });
         } else {
           return res.status(401)
             .json({
               message: 'Email already registered'
             });
         }
-      });
+      }).catch(() => res.status(500)
+        .json({
+          message: 'Unable to create new user. Please try again later'
+        }));
   }
 
   /**

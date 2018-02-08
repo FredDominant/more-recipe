@@ -195,3 +195,143 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
   </BrowserRouter>
 </Provider>
 `;
+
+exports[`handleSelectImage() should be called when image is clicked 1`] = `
+<div
+  className="container-fluid"
+>
+  <div
+    className="container"
+    id="add-recipe-form"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm-4"
+        >
+          <div
+            className="recipe-image"
+            id="add-recipe-image-container"
+            onClick={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <img
+              alt=""
+              className="img-thumbnail"
+              id="add-recipe-image"
+              src="/images/noImage.png"
+              srcSet=""
+            />
+          </div>
+          <br />
+          <input
+            accept=".png,.gif,.jpg,.jpeg"
+            id="file-upload"
+            name="file"
+            onChange={[Function]}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            type="file"
+          />
+        </div>
+        <div
+          className="col-sm-8"
+        >
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="recipeName"
+            >
+              Recipe Name
+            </label>
+            <input
+              className="form-control"
+              id="recipeName"
+              name="name"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="recipeDescription"
+            >
+              Recipe Description
+            </label>
+            <input
+              className="form-control"
+              id="recipeDescription"
+              name="description"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="recipeDirections"
+            >
+              Recipe Directions
+            </label>
+            <textarea
+              className="form-control"
+              id="recipeDirections"
+              name="directions"
+              onChange={[Function]}
+              rows="5"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="recipeingredients"
+            >
+              Ingredients
+            </label>
+            <textarea
+              className="form-control"
+              id="recipeIngredients"
+              name="ingredients"
+              onChange={[Function]}
+              placeholder="Comma separated list of ingredients"
+              rows="5"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <button
+              className="btn btn-primary"
+            >
+              <h6
+                className="text-center"
+              >
+                 Add Recipe 
+              </h6>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
