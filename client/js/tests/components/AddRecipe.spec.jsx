@@ -213,6 +213,8 @@ describe('handleSelectImage()', () => {
     const { shallowWrapper } = setup();
     const selectImage = shallowWrapper.find('.recipe-image');
     selectImage.simulate('click');
+    shallowWrapper.instance().handleSelectImage();
+    expect(shallowWrapper).toMatchSnapshot();
   });
 });
 

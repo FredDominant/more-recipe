@@ -8,7 +8,7 @@ const ViewReviews = ({
   createdAt,
   content
 }) => (
-  <div className="container">
+  <div className="">
     <div className="row">
       <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
         <div className="reviewer-image">

@@ -2,7 +2,7 @@
 
 exports[`Test for ViewReviews component should render correctly 1`] = `
 <div
-  className="container"
+  className=""
 >
   <div
     className="row"

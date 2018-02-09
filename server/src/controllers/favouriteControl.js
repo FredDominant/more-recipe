@@ -65,7 +65,8 @@ export default class Favourite {
                 recipe.findById(req.params.recipeId).then((Recipe) => {
                   Recipe.increment('favourites');
                 });
-              });
+              }).catch(() => res.status(422)
+                .json({ message: 'Internal server error, please try again later' }));
           });
       })
       .catch(() => res.status(500)
