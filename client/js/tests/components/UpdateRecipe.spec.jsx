@@ -73,7 +73,7 @@ describe('ComponentWillRecieveProps()', () => {
   it('should be called when component is passed in new props', () => {
     const wrapper = shallow(<UpdateRecipe {...props} />);
     wrapper.setState(state);
-    const nexrProps = {
+    const nextProps = {
       recipeDetails: {
         id: '',
         name: '',
@@ -86,7 +86,7 @@ describe('ComponentWillRecieveProps()', () => {
         toggleEdit: true
       }
     };
-    wrapper.instance().componentWillReceiveProps(nexrProps);
+    wrapper.instance().componentWillReceiveProps(nextProps);
     expect(UpdateRecipe.prototype.componentWillReceiveProps.calledOnce).toEqual(true);
   });
 });

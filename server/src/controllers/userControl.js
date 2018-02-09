@@ -58,17 +58,17 @@ export default class User {
                 },
                 message: 'Account created'
               });
-          });
+          }).catch(() => res.status(503)
+            .json({
+              message: 'Unable to create new user. Please try again later'
+            }));
         } else {
           return res.status(401)
             .json({
               message: 'Email already registered'
             });
         }
-      }).catch(() => res.status(500)
-        .json({
-          message: 'Unable to create new user. Please try again later'
-        }));
+      });
   }
 
   /**
