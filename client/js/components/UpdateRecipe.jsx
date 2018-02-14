@@ -218,7 +218,7 @@ export class UpdateRecipe extends React.Component {
                     <textarea
                       type="text"
                       rows="5"
-                      id="recipeDescription"
+                      id="recipeDirections"
                       className="form-control"
                       placeholder="Michael's Awesome Sauce"
                       name="directions"
@@ -274,6 +274,7 @@ export class UpdateRecipe extends React.Component {
                       <div className="col-md-4 col-sm-6 col-lg-4">
                         <button
                           className="btn btn-primary"
+                          id="updateRecipe-button"
                           disabled={toggleEdit}
                         >
                         Update Recipe

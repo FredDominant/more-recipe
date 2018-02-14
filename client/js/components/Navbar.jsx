@@ -83,11 +83,12 @@ export class Navbar extends React.Component {
               <div className="col-sm-2 col-xs-6" id="navigation-icons">
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   {this.props.authenticated && <ul className="navbar-nav mr-auto">
-                    <li className="dropdown nav-item active">
+                    <li className="dropdown nav-item active" >
                       <span className="nav-link" ><span><i className="fas fa-user" /> </span>
                         <Link
                           to="#"
                           className="dropdown-toggle"
+                          id="user-menu"
                           data-toggle="dropdown"
                           role="button"
                           aria-haspopup="true"
@@ -100,7 +101,7 @@ export class Navbar extends React.Component {
                           <div className="container" id="dropdown-items">
                             <li className="nav-item active">
                               <span className="nav-link"><span><i className="fas fa-user" /> </span>
-                                <Link to="/profile">
+                                <Link to="/profile" id="user-profile">
                                 Profile
                                 </Link>
                                 <span className="sr-only">(current)</span></span>
@@ -108,7 +109,10 @@ export class Navbar extends React.Component {
                             <li className="nav-item active">
                               <span className="nav-link">
                                 <span><i className="fas fa-utensils" /></span>
-                                <Link to="/user/recipes">
+                                <Link
+                                  to="/user/recipes"
+                                  id="user-recipes"
+                                >
                                   <span> My Recipes</span>
                                 </Link>
                                 <span className="sr-only">(current)</span></span>
@@ -118,7 +122,10 @@ export class Navbar extends React.Component {
                                 <span>
                                   <i className="far fa-heart" />
                                 </span>
-                                <Link to="/favourites">
+                                <Link
+                                  to="/favourites"
+                                  id="user-favourites"
+                                >
                                   <span> Favourites</span>
                                 </Link> <span className="sr-only">(current)</span>
                               </span>
@@ -128,7 +135,10 @@ export class Navbar extends React.Component {
                                 <span>
                                   <i className="fas fa-plus-circle" />
                                 </span>
-                                <Link to="/add-recipe"> <span> Add Recipe</span>
+                                <Link
+                                  to="/add-recipe"
+                                  id="user-add-recipe"
+                                > <span> Add Recipe</span>
                                 </Link> <span className="sr-only">(current)</span></span>
                             </li>
                             <hr />
@@ -136,6 +146,7 @@ export class Navbar extends React.Component {
                               <Link
                                 to="/"
                                 className="btn btn-default"
+                                id="user-logout"
                                 onClick={this.handleLogout}
                                 role="button"
                                 tabIndex={0}
@@ -193,6 +204,7 @@ export class Navbar extends React.Component {
                     <Link
                       to="#"
                       className="nav-link"
+                      id="register-modal"
                       data-toggle="modal"
                       data-target="#register"
                     ><span><i className="fas fa-user-plus" /></span> REGISTER
@@ -205,6 +217,7 @@ export class Navbar extends React.Component {
                       className="nav-link"
                       data-toggle="modal"
                       data-target="#login"
+                      id="login-modal"
                     >
                       <span><i className="fas fa-sign-in-alt" /></span> LOGIN
                       <span className="sr-only">(current)</span>

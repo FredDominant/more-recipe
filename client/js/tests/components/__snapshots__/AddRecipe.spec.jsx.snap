@@ -157,7 +157,7 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="recipeingredients"
+                      htmlFor="recipeIngredients"
                     >
                       Ingredients
                     </label>
@@ -177,6 +177,7 @@ exports[`Test for AddRecipePage component should render correctly 1`] = `
                   >
                     <button
                       className="btn btn-primary"
+                      id="add-recipe-button"
                     >
                       <h6
                         className="text-center"
@@ -301,7 +302,7 @@ exports[`handleSelectImage() should be called when image is clicked 1`] = `
             className="form-group"
           >
             <label
-              htmlFor="recipeingredients"
+              htmlFor="recipeIngredients"
             >
               Ingredients
             </label>
@@ -321,6 +322,7 @@ exports[`handleSelectImage() should be called when image is clicked 1`] = `
           >
             <button
               className="btn btn-primary"
+              id="add-recipe-button"
             >
               <h6
                 className="text-center"

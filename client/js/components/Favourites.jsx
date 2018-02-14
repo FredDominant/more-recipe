@@ -96,7 +96,9 @@ export class Favourites extends React.Component {
         <div>
           <br />
           <div className="container favourite-body">
-            <h2 className="text-center mb-3 mt-3 allRecipes-title">Favourite Recipes</h2>
+            <h2 className="text-center mb-3 mt-3 allRecipes-title" id="allRecipes-title">
+            Favourite Recipes
+            </h2>
             <div className="row">
               {allFavourites}
             </div>

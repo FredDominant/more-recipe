@@ -184,7 +184,7 @@ export class Login extends React.Component {
                           type="password"
                           name="password"
                           value={password}
-                          id="password"
+                          id="login-password"
                           onChange={this.onChange}
                           className="form-control login-form"
                           placeholder="Password"
@@ -196,6 +196,7 @@ export class Login extends React.Component {
                       <div className="input-group">
                         <button
                           type="submit"
+                          id="user-login-button"
                           className="form-control btn register-button"
                           disabled={fetching}
                         >

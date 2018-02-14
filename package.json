@@ -128,12 +128,17 @@
     "test:report": "nyc --reporter=html --reporter=text cross-env NODE_ENV=test mocha --timeout 500000 --compilers js:babel-core/register server/src/test/index.js",
     "test:dev": "cross-env NODE_ENV=test npm run migration && cross-env NODE_ENV=test mocha --timeout 500000 --compilers js:babel-core/register server/src/test/index.js",
     "test": "NODE_ENV=test npm run migration && NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 500000 --compilers js:babel-core/register server/src/test/index.js",
-    "test:e2e": "nightwatch ./e2e_test/*.spec.js",
+    "e2e-server": "selenium-standalone start",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "coverage:dev": "nyc npm test  && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration": "sequelize db:migrate",
-    "postinstall": "[ \"NODE_ENV\" != production ] && exit 0; npm run migration"
+    "postinstall": "[ \"NODE_ENV\" != production ] && exit 0; npm run migration",
+    "e2einstall": "node_modules/selenium-standalone/bin/selenium-standalone install",
+    "pretest:e2e": "sequelize db:migrate:undo:all --env=test && sequelize db:migrate --env=test",
+    "test:e2e": "nightwatch ./e2e_test/*.spec.js",
+    "start:e2e": "cross-env NODE_ENV=test babel-node -- server/bin/www.js",
+    "e2e": "npm run start:e2e && npm run test:e2e"
   },
   "repository": {
     "type": "git",

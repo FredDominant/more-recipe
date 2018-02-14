@@ -120,7 +120,7 @@ exports[`Test for Login component should render correctly 1`] = `
                     aria-describedby="password-addon"
                     aria-label="password"
                     className="form-control login-form"
-                    id="password"
+                    id="login-password"
                     name="password"
                     onChange={[Function]}
                     placeholder="Password"
@@ -135,6 +135,7 @@ exports[`Test for Login component should render correctly 1`] = `
                   <button
                     className="form-control btn register-button"
                     disabled={false}
+                    id="user-login-button"
                     type="submit"
                   >
                     <span

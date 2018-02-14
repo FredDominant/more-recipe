@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="31">
+
+  <testsuite name="browserTest.spec"
+    errors="0" failures="0" hostname="" id="" package="browserTest.spec" skipped="0"
+    tests="31" time="117.9" timestamp="Tue, 13 Feb 2018 23:07:08 GMT">
+  
+    <testcase name="Render home page correctly" classname="browserTest.spec" time="6.428" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to sign up and sees modal with fields" classname="browserTest.spec" time="1.709" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User signs up without first and last names" classname="browserTest.spec" time="1.511" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User signs up with unmatching passwords" classname="browserTest.spec" time="1.347" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User signs up with valid details" classname="browserTest.spec" time="7.590" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User signs up successfully and proceeds to logout" classname="browserTest.spec" time="1.347" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User then tries to log in with invalid details" classname="browserTest.spec" time="9.003" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User logins successfully" classname="browserTest.spec" time="6.575" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to view profile" classname="browserTest.spec" time="1.511" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to update profile" classname="browserTest.spec" time="6.748" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to update passwords incorrectly" classname="browserTest.spec" time="1.190" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to update passwords successfully" classname="browserTest.spec" time="6.700" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to add recipe" classname="browserTest.spec" time="0.5210" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to add recipe without recipe details" classname="browserTest.spec" time="0.3450" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to add recipe with correct details" classname="browserTest.spec" time="6.977" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to add recipe with the same name" classname="browserTest.spec" time="8.800" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to their recipes page" classname="browserTest.spec" time="0.5070" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to the home page then clicks on a recipe" classname="browserTest.spec" time="2.493" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User adds review to a recipe" classname="browserTest.spec" time="6.908" assertions="7">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User adds recipe as favourite" classname="browserTest.spec" time="6.520" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User upvotes recipe" classname="browserTest.spec" time="1.339" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User downvotes recipe" classname="browserTest.spec" time="1.327" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to their favourite recipes page" classname="browserTest.spec" time="0.6910" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to remove recipe from favourites page" classname="browserTest.spec" time="1.128" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User proceeds to create new recipe" classname="browserTest.spec" time="7.417" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Then proceeds to her recipes page" classname="browserTest.spec" time="1.493" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User clicks on recipe to update it" classname="browserTest.spec" time="0.2240" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User updates their recipe" classname="browserTest.spec" time="7.572" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User goes to delete recipe" classname="browserTest.spec" time="2.189" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User logs out successfully" classname="browserTest.spec" time="7.237" assertions="12">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Unauthenticated user proceeds to the home page then clicks on a recipe" classname="browserTest.spec" time="2.540" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

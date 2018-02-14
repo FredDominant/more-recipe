@@ -98,7 +98,7 @@ export class RecipeItem extends React.Component {
                 <br />
                 <div id="recipe-title">
                   <span className="recipe-title text-left">
-                    <Link to={`/recipe/${recipeId}`}> {capitalize(recipeName)} </Link>
+                    <Link to={`/recipe/${recipeId}`} id="recipe-details"> {capitalize(recipeName)} </Link>
                   </span>
                 </div>
               </CardTitle>
@@ -167,8 +167,11 @@ export class RecipeItem extends React.Component {
                         type="button"
                         title="edit this recipe"
                         className="btn btn-outline-danger"
+                        id="edit-recipe"
                       >
-                        <Link to={`/recipe/edit/${recipeId}`}> <i className="far fa-edit" /> </Link>
+                        <Link to={`/recipe/edit/${recipeId}`} className="edit-recipe-link">
+                          <i className="far fa-edit" />
+                        </Link>
                       </button>
                     }
                     {

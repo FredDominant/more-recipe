@@ -10,7 +10,7 @@ const signupValidator = (data) => {
     errors.firstName = 'First Name should be alphabets';
   }
   if (!Validator.isAlpha(data.firstName.charAt(0))) {
-    errors.firstName = 'First Name should be alphabetsr';
+    errors.firstName = 'First Name should be alphabets';
   }
   if (!Validator.isAlpha(data.lastName)) {
     errors.lastName = 'Last Name should be alphabets';

@@ -59,6 +59,7 @@ exports[`Test for AddReview component should render correctly 1`] = `
                 >
                   <input
                     className="form-control"
+                    id="review-form-field"
                     name="content"
                     onChange={[Function]}
                     placeholder="Add a review..."

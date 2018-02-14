@@ -8,6 +8,7 @@ exports[`UserRecipePage component should render correctly 1`] = `
   >
     <h2
       className="text-center mb-3 mt-3 allRecipes-title"
+      id="allRecipes-title"
     >
       My Recipes
     </h2>

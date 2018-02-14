@@ -221,6 +221,7 @@ export class Signup extends React.Component {
                         </span>
                         <input
                           type="email"
+                          id="signup-email"
                           value={email}
                           onChange={this.onChange}
                           className="form-control signup-form"
@@ -242,6 +243,7 @@ export class Signup extends React.Component {
                           type="password"
                           value={password}
                           onChange={this.onChange}
+                          id="signup-password"
                           className="form-control signup-form"
                           placeholder="Password"
                           aria-label="password"
@@ -261,6 +263,7 @@ export class Signup extends React.Component {
                           type="password"
                           value={confirmPassword}
                           onChange={this.onChange}
+                          id="signup-confirmPassword"
                           className="form-control signup-form"
                           placeholder="Confirm password"
                           aria-label="confirmPassword"
@@ -273,6 +276,7 @@ export class Signup extends React.Component {
                         <button
                           type="submit"
                           className="form-control btn signup-form register-button"
+                          id="register-button"
                           disabled={fetching}
                         >
                           <span className="register-text">

@@ -165,7 +165,7 @@ export class Recipe extends React.Component {
                       onClick={this.handleUpvote}
                       disabled={fetching}
                     ><i className="far fa-thumbs-up" />
-                      <span> {recipe.upvote}</span></button>
+                      <span id="upvote-count"> {recipe.upvote}</span></button>
 
                     <button
                       type="button"
@@ -176,7 +176,7 @@ export class Recipe extends React.Component {
                       disabled={fetching}
                     >
                       <i className="far fa-thumbs-down" />
-                      <span> {recipe.downvote}</span></button>
+                      <span id="downvote-count"> {recipe.downvote}</span></button>
 
                     <button
                       style={{
