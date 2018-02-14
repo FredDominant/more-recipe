@@ -127,7 +127,7 @@ exports[`UserProfile component should render correctly 1`] = `
             <input
               className="form-control"
               disabled={true}
-              id="profile-confirmPassword"
+              id="profile-password"
               name="password"
               onChange={[Function]}
               type="password"
@@ -145,7 +145,7 @@ exports[`UserProfile component should render correctly 1`] = `
             <input
               className="form-control"
               disabled={true}
-              id="profile-password"
+              id="profile-confirmPassword"
               name="confirmPassword"
               onChange={[Function]}
               type="password"
@@ -179,6 +179,7 @@ exports[`UserProfile component should render correctly 1`] = `
                 <button
                   className="btn btn-success"
                   disabled={true}
+                  id="update-profile-button"
                 >
                   update profile
                 </button>
@@ -324,7 +325,7 @@ exports[`onEdit should set form value 1`] = `
             <input
               className="form-control"
               disabled={false}
-              id="profile-confirmPassword"
+              id="profile-password"
               name="password"
               onChange={[Function]}
               type="password"
@@ -342,7 +343,7 @@ exports[`onEdit should set form value 1`] = `
             <input
               className="form-control"
               disabled={false}
-              id="profile-password"
+              id="profile-confirmPassword"
               name="confirmPassword"
               onChange={[Function]}
               type="password"
@@ -376,6 +377,7 @@ exports[`onEdit should set form value 1`] = `
                 <button
                   className="btn btn-success"
                   disabled={false}
+                  id="update-profile-button"
                 >
                   update profile
                 </button>
@@ -521,7 +523,7 @@ exports[`onSelectImage() should be called when image is clicked 1`] = `
             <input
               className="form-control"
               disabled={true}
-              id="profile-confirmPassword"
+              id="profile-password"
               name="password"
               onChange={[Function]}
               type="password"
@@ -539,7 +541,7 @@ exports[`onSelectImage() should be called when image is clicked 1`] = `
             <input
               className="form-control"
               disabled={true}
-              id="profile-password"
+              id="profile-confirmPassword"
               name="confirmPassword"
               onChange={[Function]}
               type="password"
@@ -573,6 +575,7 @@ exports[`onSelectImage() should be called when image is clicked 1`] = `
                 <button
                   className="btn btn-success"
                   disabled={true}
+                  id="update-profile-button"
                 >
                   update profile
                 </button>

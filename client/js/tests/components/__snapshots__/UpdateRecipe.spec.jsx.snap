@@ -94,7 +94,7 @@ exports[`Test for UpdateRecipe component should render correctly 1`] = `
               <textarea
                 className="form-control"
                 disabled={true}
-                id="recipeDescription"
+                id="recipeDirections"
                 name="directions"
                 onChange={[Function]}
                 placeholder="Michael's Awesome Sauce"
@@ -150,6 +150,7 @@ exports[`Test for UpdateRecipe component should render correctly 1`] = `
                   <button
                     className="btn btn-primary"
                     disabled={true}
+                    id="updateRecipe-button"
                   >
                     Update Recipe
                   </button>
@@ -262,7 +263,7 @@ exports[`onToggleEdit should set form value 1`] = `
               <textarea
                 className="form-control"
                 disabled={false}
-                id="recipeDescription"
+                id="recipeDirections"
                 name="directions"
                 onChange={[Function]}
                 placeholder="Michael's Awesome Sauce"
@@ -318,6 +319,7 @@ exports[`onToggleEdit should set form value 1`] = `
                   <button
                     className="btn btn-primary"
                     disabled={false}
+                    id="updateRecipe-button"
                   >
                     Update Recipe
                   </button>

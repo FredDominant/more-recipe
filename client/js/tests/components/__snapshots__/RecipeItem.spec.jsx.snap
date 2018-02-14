@@ -102,11 +102,13 @@ exports[`RecipeItem component should render correctly 1`] = `
                             className="recipe-title text-left"
                           >
                             <Link
+                              id="recipe-details"
                               replace={false}
                               to="/recipe/3"
                             >
                               <a
                                 href="/recipe/3"
+                                id="recipe-details"
                                 onClick={[Function]}
                               >
                                  
@@ -164,22 +166,23 @@ exports[`RecipeItem component should render correctly 1`] = `
                         </button>
                         <button
                           className="btn btn-outline-danger"
+                          id="edit-recipe"
                           title="edit this recipe"
                           type="button"
                         >
                           <Link
+                            className="edit-recipe-link"
                             replace={false}
                             to="/recipe/edit/3"
                           >
                             <a
+                              className="edit-recipe-link"
                               href="/recipe/edit/3"
                               onClick={[Function]}
                             >
-                               
                               <i
                                 className="far fa-edit"
                               />
-                               
                             </a>
                           </Link>
                         </button>

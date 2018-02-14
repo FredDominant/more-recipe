@@ -209,7 +209,7 @@ export class AddRecipePage extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="recipeingredients">Ingredients</label>
+                  <label htmlFor="recipeIngredients">Ingredients</label>
                   <textarea
                     type="text"
                     rows="5"
@@ -226,7 +226,7 @@ export class AddRecipePage extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary" id="add-recipe-button">
                     {
                       !this.state.isUploading &&
                       <h6 className="text-center"> Add Recipe </h6>

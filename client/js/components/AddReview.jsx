@@ -68,6 +68,7 @@ export class AddReview extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <input
                   type="text"
+                  id="review-form-field"
                   className="form-control"
                   name="content"
                   placeholder="Add a review..."

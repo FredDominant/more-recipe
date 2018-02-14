@@ -139,6 +139,7 @@ exports[`Test for Signup component should render correctly 1`] = `
                     aria-describedby="email-addon"
                     aria-label="email"
                     className="form-control signup-form"
+                    id="signup-email"
                     name="email"
                     onChange={[Function]}
                     placeholder="Email "
@@ -163,6 +164,7 @@ exports[`Test for Signup component should render correctly 1`] = `
                     aria-describedby="password-addon"
                     aria-label="password"
                     className="form-control signup-form"
+                    id="signup-password"
                     name="password"
                     onChange={[Function]}
                     placeholder="Password"
@@ -187,6 +189,7 @@ exports[`Test for Signup component should render correctly 1`] = `
                     aria-describedby="confirmPassword-addon"
                     aria-label="confirmPassword"
                     className="form-control signup-form"
+                    id="signup-confirmPassword"
                     name="confirmPassword"
                     onChange={[Function]}
                     placeholder="Confirm password"
@@ -201,6 +204,7 @@ exports[`Test for Signup component should render correctly 1`] = `
                   <button
                     className="form-control btn signup-form register-button"
                     disabled={false}
+                    id="register-button"
                     type="submit"
                   >
                     <span

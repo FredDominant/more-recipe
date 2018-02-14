@@ -268,7 +268,7 @@ export class UserProfile extends React.Component {
                   <label htmlFor="profile-password">Password</label>
                   <input
                     type="password"
-                    id="profile-confirmPassword"
+                    id="profile-password"
                     className="form-control"
                     name="password"
                     value={password}
@@ -287,7 +287,7 @@ export class UserProfile extends React.Component {
                   <label htmlFor="profile-password">Confirm Password</label>
                   <input
                     type="password"
-                    id="profile-password"
+                    id="profile-confirmPassword"
                     className="form-control"
                     name="confirmPassword"
                     value={confirmPassword}
@@ -318,6 +318,7 @@ export class UserProfile extends React.Component {
                       <button
                         className="btn btn-success"
                         disabled={disabled}
+                        id="update-profile-button"
                       >
                        update profile
                       </button>

@@ -95,7 +95,9 @@ class RecipeBody extends React.Component {
     if (allRecipes.length) {
       return (
         <div className="container">
-          <h3 className="text-center mt-3 mb-3 allRecipes-title"> Other Awesome Recipes </h3>
+          <h3 className="text-center mt-3 mb-3 allRecipes-title" id="all-recipes">
+          Other Awesome Recipes
+          </h3>
           <hr />
           <div className="row recipes-body">
             { allRecipes }

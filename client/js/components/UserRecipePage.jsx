@@ -81,7 +81,9 @@ export class UserRecipePage extends React.Component {
         <div>
           <br />
           <div className="container" >
-            <h2 className="text-center mb-3 mt-3 allRecipes-title">My Recipes</h2>
+            <h2 className="text-center mb-3 mt-3 allRecipes-title" id="allRecipes-title">
+            My Recipes
+            </h2>
             <div className="row">
               {allUserRecipes}
             </div>

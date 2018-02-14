@@ -76,6 +76,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                   aria-haspopup="true"
                   className="dropdown-toggle"
                   data-toggle="dropdown"
+                  id="user-menu"
                   replace={false}
                   role="button"
                   to="#"
@@ -104,6 +105,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                            
                         </span>
                         <Link
+                          id="user-profile"
                           replace={false}
                           to="/profile"
                         >
@@ -128,6 +130,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                           />
                         </span>
                         <Link
+                          id="user-recipes"
                           replace={false}
                           to="/user/recipes"
                         >
@@ -154,6 +157,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                           />
                         </span>
                         <Link
+                          id="user-favourites"
                           replace={false}
                           to="/favourites"
                         >
@@ -181,6 +185,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                           />
                         </span>
                         <Link
+                          id="user-add-recipe"
                           replace={false}
                           to="/add-recipe"
                         >
@@ -203,6 +208,7 @@ exports[`Test for authenticated Navbar component should render correctly for aut
                     >
                       <Link
                         className="btn btn-default"
+                        id="user-logout"
                         onClick={[Function]}
                         replace={false}
                         role="button"
