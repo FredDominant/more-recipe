@@ -209,7 +209,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="/doc//images/logo.png" class="logo" alt="Logo" />
+      <img src="/doc/images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">Node</a>
         </div>
@@ -356,6 +356,13 @@ More Recipes requires authentication with <code>email</code> and <code>password<
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Created"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be as a result of invalid inputs or server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unable to create new user. Please try again later"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>POST /api/v1/users/signup</code> <br />
 <code>Body (application/json)</code></p>
@@ -387,6 +394,13 @@ More Recipes requires authentication with <code>email</code> and <code>password<
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're now logged in"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>POST /api/v1/users/signin</code> <br />
 <code>Body (application/json)</code></p>
@@ -416,6 +430,13 @@ More Recipes requires authentication with <code>email</code> and <code>password<
     </span><span class="s2">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@email.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image_rl"</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Request</strong> <br />
@@ -485,6 +506,13 @@ POST /api/v1/users/recover-email</p>
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recovery email sent"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>POST /api/v1/users/recover-email</code> <br />
 <code>Body (application/json)</code></p>
@@ -512,6 +540,13 @@ POST /api/v1/users/reset-password</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Password reset successful"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Request</strong> <br />
@@ -576,6 +611,13 @@ POST /api/v1/users/reset-password</p>
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This endpoint retrieves all recipes.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET GET /api/v1/recipes?page=1</code></p>
@@ -621,6 +663,20 @@ POST /api/v1/recipes</p>
   </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_image.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In a case where a user tries to add a recipe with an already existing recipe name by same user:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You already have a recipe with this name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>POST /api/v1/recipes</code> <br />
 <code>Body (application/json)</code></p>
@@ -660,6 +716,28 @@ PUT /api/v1/recipes/:recipeId</p>
     </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_image.jpg"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>In a case where a user tries to update a recipe name to an already existing recipe name by same user:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You already have a recipe with this name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When a user tries to update a recipe they didn&#39;t add:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"can't find recipe with id by you"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error. Unable to complete request"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -696,6 +774,20 @@ DELETE /api/v1/recipes/:recipeId</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recipe deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When a user tries to delete a recipe they didn&#39;t add:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"can't find recipe with id by you"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
@@ -750,7 +842,20 @@ GET /api/v1/recipes/:recipeId</p>
     </span><span class="s2">"Reviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='query-parameters-4'>Query Parameters</h3>
+</span></code></pre>
+<blockquote>
+<p>When a user tries to view a recipe that doesn&#39;t exist:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unable to find recipe with id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight plaintext"><code>&gt; In case of errors, which could be a server errors:
+
+```json
+{
+  "message": "Internal server error"
+}
+</code></pre><h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -831,6 +936,13 @@ GET /api/v1/recipes/user/all</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>GET GET /api/v1/recipes/user/all</code> <br />
 <code>Body (application/json)</code></p>
@@ -899,6 +1011,13 @@ POST /api/v1/search</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>POST /api/v1/search</code> <br />
 <code>Body (application/json)</code></p>
@@ -955,6 +1074,13 @@ POST /api/v1/recipes/:recipeId/review</p>
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
@@ -1024,6 +1150,20 @@ POST /api/v1/recipes/:recipeId/review</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When a user tries to upvote a recipe that doesn&#39;t exist:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recipe not found, ensure you typed correct recipe Id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='query-parameters-6'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1092,6 +1232,20 @@ POST /api/v1/recipes/:recipeId/review</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When a user tries to downvote a recipe that doesn&#39;t exist:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recipe not found, ensure you typed correct recipe Id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='query-parameters-7'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1135,6 +1289,20 @@ POST /api/v1/recipes/:recipeId/favourite</p>
     </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T08:47:19.040Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-18T08:47:19.040Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When a user tries to add recipe that doesn&#39;t exist to their favourite:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recipe doesn't exist in catalogue"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Request</strong> <br />
@@ -1202,6 +1370,13 @@ GET /api/v1/users/favourites</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Request</strong> <br />
 <code>GET /api/v1/users/favourites</code> <br />
 <code>Body (application/json)</code></p>
@@ -1222,6 +1397,13 @@ DELETE /api/v1/recipes/:recipeId/favourite</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deleted recipe from favourites"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In case of errors, which could be a server errors:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Request</strong> <br />
